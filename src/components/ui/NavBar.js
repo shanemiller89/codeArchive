@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Icon, Button } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import { logout } from '../authentication/userManager';
 
 const archiveColor = {
@@ -16,16 +16,20 @@ const flexbox = {
     flexDirection: "column"
 }
 
-let username = localStorage.getItem("user")
-username =  JSON.parse(username)
+// let username = ""
+// username =  JSON.parse(username)
+
 export default class NavBar extends Component {
-  state = { activeItem: "", redirect: false };
+  state = { 
+    activeItem: "", 
+    redirect: false,
+    username: ""
+   };
 
   logUserOut = () => {
     this.setState({ user: null });
     logout();
   }
-
 
   render() {
     return (
@@ -41,7 +45,7 @@ export default class NavBar extends Component {
           </Menu.Item>
           <Menu.Item>
             <div style={flexbox}>
-              <span style={usernameDisplay}>Username</span>
+              <span style={usernameDisplay}>{this.state.username}</span>
               <span onClick={this.logUserOut}>Logout</span>
             </div>
           </Menu.Item>
