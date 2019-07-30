@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import * as firebase from 'firebase/app';
+import 'firebase/storage';
 import {
   Modal,
   Button,
@@ -26,25 +28,56 @@ export default class Register extends Component {
     email: "",
     password: "",
     name: "",
-    profile: ""
+    profile: null
   };
 
-  submit = () => {
-    const user = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
-      name: this.state.name,
-      profile: ""
-    }
+  storageRef = firebase.storage().ref('profile_picture');
 
-    register(user)
-      .then((user) => {
-        this.props.onRegister(user);
-        this.props.setAuthState()
-        // this.props.history.push('/');
-      });
+
+  submit = () => {
+    const ref = this.storageRef.child(this.state.username);
+
+    return ref.put(this.state.profile)
+      .then(data => data.ref.getDownloadURL())
+      .then(imageUrl => {
+
+        const user = {
+          username: this.state.username,
+          email: this.state.email,
+          password: this.state.password,
+          name: this.state.name,
+          profile: imageUrl
+        }
+
+        return register(user)
+        .then((user) => {
+          this.props.setAuthState()
+          this.props.onRegister(user);
+      })
+      // .then(() => this.props.history.push('/'));
+  })
   }
+
+
+
+  // submit = () => {
+  //   const ref = this.storageRef.child(this.state.username);
+
+    // const user = {
+    //   username: this.state.username,
+    //   email: this.state.email,
+    //   password: this.state.password,
+    //   name: this.state.name,
+    //   profile: ""
+    // }
+
+    // register(user)
+    //   .then((user) => {
+    //     this.props.onRegister(user);
+    //     this.props.setAuthState()
+    //     // this.props.history.push('/');
+    //   });
+  // }
 
 
   render() {
@@ -103,6 +136,7 @@ export default class Register extends Component {
                       iconPosition="left"
                       placeholder="Upload Profile Pick"
                       type="file"
+                      onChange={(e) => this.setState({ profile: e.target.files[0] })}
                     />
                     <Button primary fluid size="large" onClick={this.submit}>
                       Register

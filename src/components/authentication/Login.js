@@ -25,8 +25,8 @@ export default class Login extends Component {
   submit = () => {
     login(this.state.email, this.state.password)
       .then((user) => {
-        this.props.onLogin(user);
         this.props.setAuthState()
+        this.props.onLogin(user);
         // this.props.history.push('/');
       });
   }
@@ -34,7 +34,7 @@ export default class Login extends Component {
   render() {
     return (
       <Modal trigger={<Button>Login</Button>} centered={false}>
-        <Modal.Header></Modal.Header>
+
         <Modal.Content>
 
             <Header size="huge" textAlign="center">       
