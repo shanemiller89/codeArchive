@@ -1,94 +1,100 @@
 {
-    "users": [
-      {
-        "username": "",
-        "email": "",
-        "password": "",
-        "name": "",
-        "profile": "", 
-        "id": 1
-      }
-    ],
-    "languages": [
-        {
-          "title": "",
-          "link": "",
-          "imageURL": "",
-          "userId": "",
-          "id": 1
-        }
-      ],
-      "subLanguages": [
-        {
-          "title": "",
-          "link": "",
-          "imageURL": "",
-          "languageId": "",
-          "id": 1
-        }
-      ],
-      "archives": [
-        {
-          "title": "",
-          "link": "",
-          "languageId": "",
-          "subLanguageId": "",
-          "id": 1
-        }
-      ],
-      "videos": [
-        {
-          "title": "",
-          "link": "",
-          "imageURL": "",
-          "archiveId": "",
-          "id": 1
-        }
-      ],
-      "resources": [
-        {
-          "title": "",
-          "link": "",
-          "archiveId": "",
-          "id": 1
-        }
-      ],
-      "notes": [
-        {
-          "title": "",
-          "text": "",
-          "imageURL": "",
-          "archiveId": "",
-          "issueId": "",
-          "codeId": "",
-          "id": 1
-        }
-      ],
-      "snippets": [
-        {
-          "title": "",
-          "text": "",
-          "archiveId": "",
-          "issueId": "",
-          "codeId": "",
-          "id": 1
-        }
-      ],
-      "issues": [
-        {
-          "title": "",
-          "keywords": [],
-          "userId": "",
-          "id": 1
-        }
-      ],
-      "codes": [
-        {
-          "title": "",
-          "keywords": [],
-          "userId": "",
-          "id": 1
-        }
-      ]
- 
-  }
+  "users": [
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "name": "",
+      "profile": "",
+      "id": 1
+    },
+    {
+      "username": "shanemiller89",
+      "email": "shanemiller89@gmail.com",
+      "name": "Shane Miller",
+      "profile": "",
+      "id": "6vvjuhVpUESjWKb2Dhl6NDwfIu62"
+    }
+  ],
+  "languages": [
+    {
+      "title": "",
+      "link": "",
+      "imageURL": "",
+      "userId": "",
+      "id": 1
+    }
+  ],
+  "subLanguages": [
+    {
+      "title": "",
+      "link": "",
+      "imageURL": "",
+      "languageId": "",
+      "id": 1
+    }
+  ],
+  "archives": [
+    {
+      "title": "",
+      "link": "",
+      "languageId": "",
+      "subLanguageId": "",
+      "id": 1
+    }
+  ],
+  "videos": [
+    {
+      "title": "",
+      "link": "",
+      "imageURL": "",
+      "archiveId": "",
+      "id": 1
+    }
+  ],
+  "resources": [
+    {
+      "title": "",
+      "link": "",
+      "archiveId": "",
+      "id": 1
+    }
+  ],
+  "notes": [
+    {
+      "title": "",
+      "text": "",
+      "imageURL": "",
+      "archiveId": "",
+      "issueId": "",
+      "codeId": "",
+      "id": 1
+    }
+  ],
+  "snippets": [
+    {
+      "title": "",
+      "text": "",
+      "archiveId": "",
+      "issueId": "",
+      "codeId": "",
+      "id": 1
+    }
+  ],
+  "issues": [
+    {
+      "title": "",
+      "keywords": [],
+      "userId": "",
+      "id": 1
+    }
+  ],
+  "codes": [
+    {
+      "title": "",
+      "keywords": [],
+      "userId": "",
+      "id": 1
+    }
+  ]
+}

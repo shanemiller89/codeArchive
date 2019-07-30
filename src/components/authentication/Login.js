@@ -10,6 +10,7 @@ import {
   Grid,
   Container
 } from "semantic-ui-react";
+import { login } from './userManager';
 
 const archiveColor = {
   color: "#15CA00"
@@ -20,9 +21,27 @@ const textLarge = {
   };
 
 export default class Login extends Component {
+
+  submit = () => {
+    login(this.state.email, this.state.password)
+      .then((user) => {
+        this.props.onLogin(user);
+        this.props.history.push('/');
+      });
+  }
+
+  submit = () => {
+    login(this.state.email, this.state.password)
+      .then((user) => {
+        this.props.onLogin(user);
+        this.props.history.push('/');
+      });
+  }
+
   render() {
     return (
       <Modal trigger={<Button>Login</Button>} centered={false}>
+        <Modal.Header></Modal.Header>
         <Modal.Content>
 
             <Header size="huge" textAlign="center">       
@@ -45,6 +64,7 @@ export default class Login extends Component {
                       icon="mail"
                       iconPosition="left"
                       placeholder="E-mail address"
+                      onChange={(e) => this.setState({ email: e.target.value })}
                     />
                     <Form.Input
                       fluid
@@ -52,8 +72,9 @@ export default class Login extends Component {
                       iconPosition="left"
                       placeholder="Password"
                       type="password"
+                      onChange={(e) => this.setState({ password: e.target.value })}
                     />
-                    <Button primary fluid size="large">
+                    <Button primary fluid size="large" onClick={this.submit}>
                       Login
                     </Button>
                   </Segment>
