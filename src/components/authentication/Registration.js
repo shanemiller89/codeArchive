@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import * as firebase from 'firebase/app';
-import 'firebase/storage';
+import * as firebase from "firebase/app";
+import "firebase/storage";
 import {
   Modal,
   Button,
@@ -11,7 +11,7 @@ import {
   Segment,
   Grid
 } from "semantic-ui-react";
-import { register } from './userManager'
+import { register } from "./userManager";
 
 const archiveColor = {
   color: "#15CA00"
@@ -22,7 +22,6 @@ const textLarge = {
 };
 
 export default class Register extends Component {
-
   state = {
     username: "",
     email: "",
@@ -31,54 +30,30 @@ export default class Register extends Component {
     profile: null
   };
 
-  storageRef = firebase.storage().ref('profile_picture');
-
+  storageRef = firebase.storage().ref("profile_picture");
 
   submit = () => {
     const ref = this.storageRef.child(this.state.username);
 
-    return ref.put(this.state.profile)
+    return ref
+      .put(this.state.profile)
       .then(data => data.ref.getDownloadURL())
       .then(imageUrl => {
-
         const user = {
           username: this.state.username,
           email: this.state.email,
           password: this.state.password,
           name: this.state.name,
           profile: imageUrl
-        }
+        };
 
-        return register(user)
-        .then((user) => {
-          this.props.setAuthState()
+        return register(user).then(user => {
+          this.props.setAuthState();
           this.props.onRegister(user);
-      })
-      // .then(() => this.props.history.push('/'));
-  })
-  }
-
-
-
-  // submit = () => {
-  //   const ref = this.storageRef.child(this.state.username);
-
-    // const user = {
-    //   username: this.state.username,
-    //   email: this.state.email,
-    //   password: this.state.password,
-    //   name: this.state.name,
-    //   profile: ""
-    // }
-
-    // register(user)
-    //   .then((user) => {
-    //     this.props.onRegister(user);
-    //     this.props.setAuthState()
-    //     // this.props.history.push('/');
-    //   });
-  // }
-
+        });
+        // .then(() => this.props.history.push('/'));
+      });
+  };
 
   render() {
     return (
@@ -106,21 +81,23 @@ export default class Register extends Component {
                       icon="address card"
                       iconPosition="left"
                       placeholder="Full Name"
-                      onChange={(e) => this.setState({ name: e.target.value })}
+                      onChange={e => this.setState({ name: e.target.value })}
                     />
                     <Form.Input
                       fluid
                       icon="user"
                       iconPosition="left"
                       placeholder="Username"
-                      onChange={(e) => this.setState({ username: e.target.value })}
+                      onChange={e =>
+                        this.setState({ username: e.target.value })
+                      }
                     />
                     <Form.Input
                       fluid
                       icon="mail"
                       iconPosition="left"
                       placeholder="E-mail address"
-                      onChange={(e) => this.setState({ email: e.target.value })}
+                      onChange={e => this.setState({ email: e.target.value })}
                     />
                     <Form.Input
                       fluid
@@ -128,7 +105,9 @@ export default class Register extends Component {
                       iconPosition="left"
                       placeholder="Password"
                       type="password"
-                      onChange={(e) => this.setState({ password: e.target.value })}
+                      onChange={e =>
+                        this.setState({ password: e.target.value })
+                      }
                     />
                     <Form.Input
                       fluid
@@ -136,7 +115,9 @@ export default class Register extends Component {
                       iconPosition="left"
                       placeholder="Upload Profile Pick"
                       type="file"
-                      onChange={(e) => this.setState({ profile: e.target.files[0] })}
+                      onChange={e =>
+                        this.setState({ profile: e.target.files[0] })
+                      }
                     />
                     <Button primary fluid size="large" onClick={this.submit}>
                       Register

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Menu, Icon } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import Login from "./Login";
 import Register from "./Registration";
 

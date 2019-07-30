@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Icon, Button } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import { logout } from '../authentication/userManager';
 
 const archiveColor = {
