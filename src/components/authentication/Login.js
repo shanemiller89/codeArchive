@@ -26,15 +26,8 @@ export default class Login extends Component {
     login(this.state.email, this.state.password)
       .then((user) => {
         this.props.onLogin(user);
-        this.props.history.push('/');
-      });
-  }
-
-  submit = () => {
-    login(this.state.email, this.state.password)
-      .then((user) => {
-        this.props.onLogin(user);
-        this.props.history.push('/');
+        this.props.setAuthState()
+        // this.props.history.push('/');
       });
   }
 

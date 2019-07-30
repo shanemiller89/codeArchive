@@ -7,7 +7,7 @@ export default class Authentication extends Component {
     render() {
         return (
             <React.Fragment>
-                <LoginNavBar />
+                <LoginNavBar setAuthState={this.props.setAuthState}/>
             </React.Fragment>
         )
     }

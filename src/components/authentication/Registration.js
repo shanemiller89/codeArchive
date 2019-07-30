@@ -40,8 +40,9 @@ export default class Register extends Component {
 
     register(user)
       .then((user) => {
-        this.props.history.push('/');
         this.props.onRegister(user);
+        this.props.setAuthState()
+        // this.props.history.push('/');
       });
   }
 
@@ -63,7 +64,6 @@ export default class Register extends Component {
           </Container>
 
           <Modal.Description>
-            Test
             <Grid textAlign="center" verticalAlign="middle">
               <Grid.Column>
                 <Form size="large">

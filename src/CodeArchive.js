@@ -1,24 +1,41 @@
 import React, { Component } from 'react'
 import Authentication from './components/authentication/Authentication';
 import {getUserFromLocalStorage, logout } from './components/authentication/userManager';
+import ApplicationViews from './ApplicationViews'
+import NavBar from './components/ui/NavBar'
 
 
 export default class CodeArchive extends Component {
 
     state = {
-        user: getUserFromLocalStorage()
-      }
-    
-      logUserOut = () => {
-        this.setState({ user: null });
-        logout();
+        user: getUserFromLocalStorage(),
+        authenticated: localStorage.getItem("user")
       }
 
+      setAuthState = () => {
+        if( localStorage.getItem("user")) {
+          this.setState({authenticated: true})
+        } else {
+          this.setState({authenticated: false})
+        }
+      }
+
+
     render() {
-        return (
-            <div>
-                <Authentication />
-            </div>
-        )
+        if(this.state.authenticated) {
+            return(
+            <React.Fragment>
+              <NavBar />
+              <ApplicationViews isAuthenticated={this.state.authenticated} />
+            </React.Fragment>
+            )
+          } else {
+          return (
+            <React.Fragment>
+            <Authentication setAuthState={this.setAuthState} />
+            </React.Fragment>
+          
+          );
+          }
     }
 }
