@@ -2,33 +2,44 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Home from "./Home";
 import Library from "./components/library/Library";
-import API from './modules/API'
+import API from "./modules/API";
 
 export default class ApplicationViews extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     languages: []
-  }
+  };
   componentDidMount() {
-    const newState = {} 
+    const newState = {};
     API.getAll("languages", `userId=${this.state.currentUser}`)
-      .then(languages => newState.languages = languages)
-      .then(() => this.setState(newState))
+      .then(languages => (newState.languages = languages))
+      .then(() => this.setState(newState));
   }
 
-    addLanguage = (data) => {
-      API.post("languages", data)
+  addLanguage = data => {
+    API.post("languages", data)
       .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
-      .then(languages => this.setState({
+      .then(languages =>
+        this.setState({
+          languages: languages
+        })
+      );
+  };
+
+  deleteLanguage = id => {
+    API.delete("languages", id).then(languages =>
+      this.setState({
         languages: languages
-      }))
-    }
+      })
+    );
+  };
 
   render() {
     return (
       <React.Fragment>
         <Route
-          exact path="/"
+          exact
+          path="/"
           render={props => {
             return <Home {...props} />;
           }}
@@ -36,7 +47,15 @@ export default class ApplicationViews extends Component {
         <Route
           path="/library"
           render={props => {
-            return <Library {...props} languages={this.state.languages} addLanguage={this.addLanguage} currentUser={this.state.currentUser} />;
+            return (
+              <Library
+                {...props}
+                languages={this.state.languages}
+                addLanguage={this.addLanguage}
+                deleteLanguage={this.deleteLanguage}
+                currentUser={this.state.currentUser}
+              />
+            );
           }}
         />
       </React.Fragment>

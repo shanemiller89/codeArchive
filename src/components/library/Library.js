@@ -47,7 +47,7 @@ export default class Library extends Component {
           </Header> */}
           <Grid fluid columns={4} style={{marginLeft: "25px", marginRight: "25px"}}>
             {this.props.languages.map(language => (
-              <LanguageCard key={language.id} language={language} />
+              <LanguageCard key={language.id} language={language} deleteLanguage={this.props.deleteLanguage} />
             ))}
           </Grid>
         </div>
