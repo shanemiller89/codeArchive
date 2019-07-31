@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Menu, Icon } from "semantic-ui-react";
 import { logout } from '../authentication/userManager';
 import {withRouter} from "react-router-dom";
+import API from '../../modules/API'
 
 // TODO:
 // 1.Add Link hover over logout
@@ -29,8 +30,16 @@ class NavBar extends Component {
   state = { 
     activeItem: "", 
     redirect: false,
-    username: "username"
+    currentUser: JSON.parse(localStorage.getItem("user")),
+    username: []
    };
+
+   componentDidMount() {
+    const newState = {} 
+    API.getAll("users", `id=${this.state.currentUser}`)
+      .then(username => newState.username = username)
+      .then(() => this.setState(newState))
+  }
 
   logUserOut = () => {
     this.setState({ user: null });
@@ -38,6 +47,7 @@ class NavBar extends Component {
     this.props.history.push("/")
     window.location.reload();
   }
+
 
   render() {
     return (
@@ -53,7 +63,7 @@ class NavBar extends Component {
           </Menu.Item>
           <Menu.Item>
             <div style={flexbox}>
-              <span style={usernameDisplay}>{this.state.username}</span>
+              <span style={usernameDisplay}>{this.state.username.map(username => username.username)}</span>
               <span onClick={this.logUserOut}>Logout</span>
             </div>
           </Menu.Item>

@@ -13,6 +13,9 @@ import {
 } from "semantic-ui-react";
 import { register } from "./userManager";
 
+// TODO:
+// 1.Form Validation
+
 const archiveColor = {
   color: "#15CA00"
 };

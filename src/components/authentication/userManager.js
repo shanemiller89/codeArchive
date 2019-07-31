@@ -4,7 +4,7 @@ import 'firebase/auth';
 const url = 'http://localhost:8088/users';
 
 const setUserInLocalStorage = (user) => {
-  localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem('user', JSON.stringify(user.id));
 }
 
 export const saveUserToJsonServer = (user) => {

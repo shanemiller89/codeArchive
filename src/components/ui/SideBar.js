@@ -40,37 +40,37 @@ export default class SideBar extends Component {
             inverted
             onHide={this.handleSidebarHide}
             vertical
-            visible="true"
+            visible={true}
             width="thin"
             size="huge"
           >
             <Link to="/">
-              <Menu.Item as="a">
+              <Menu.Item>
                 <Icon name="home" />
                 Home
               </Menu.Item>
             </Link>
             <Link to="/library">
-              <Menu.Item as="a">
+              <Menu.Item>
                 <Icon name="book" />
                 Library
               </Menu.Item>
             </Link>
             <Link to="/issues">
-              <Menu.Item as="a">
+              <Menu.Item>
                 <Icon name="dont" />
                 Issues
               </Menu.Item>
             </Link>
             <Link to="/code">
-              <Menu.Item as="a">
+              <Menu.Item>
                 <Icon name="code" />
                 Code
               </Menu.Item>
             </Link>
           </Sidebar>
 
-          <Sidebar.Pusher>
+          <Sidebar.Pusher style={{ background: "#F5F5F5"}}>
             <ApplicationViews />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
