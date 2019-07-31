@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "username": "",
-      "email": "",
-      "password": "",
-      "name": "",
-      "profile": "",
-      "id": 1
-    },
-    {
       "username": "shanemiller89",
       "email": "shanemiller89@gmail.com",
       "name": "Shane Miller",
@@ -18,10 +10,10 @@
   ],
   "languages": [
     {
-      "title": "",
+      "title": "Javascript",
       "link": "",
-      "imageURL": "",
-      "userId": "",
+      "imageURL": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavaScript-logo.png?alt=media&token=6108be08-abd3-428b-8c12-0a80dc0aca3d",
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
     }
   ],
