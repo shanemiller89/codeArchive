@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
-import ApplicationViews from '../../ApplicationViews';
+import React, { Component } from "react";
+import { Button, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import ApplicationViews from "../../ApplicationViews";
 
 const height = {
   marginTop: "45px",
   height: "100vh"
-}
+};
 export default class SideBar extends Component {
-  state = { visible: false }
+  state = { visible: false };
 
-
-  handleHideClick = () => this.setState({ visible: false })
-  handleShowClick = () => this.setState({ visible: true })
-  handleSidebarHide = () => this.setState({ visible: false })
+  handleHideClick = () => this.setState({ visible: false });
+  handleShowClick = () => this.setState({ visible: true });
+  handleSidebarHide = () => this.setState({ visible: false });
 
   render() {
-    const { visible } = this.state
+    const { visible } = this.state;
 
     return (
       <div>
@@ -31,30 +31,39 @@ export default class SideBar extends Component {
         <Sidebar.Pushable style={height} as={Segment}>
           <Sidebar
             as={Menu}
-            animation='push'
-            icon='labeled'
+            animation="push"
+            icon="labeled"
             inverted
             onHide={this.handleSidebarHide}
             vertical
             visible="true"
-            width='thin'
+            width="thin"
+            size="huge"
           >
-            <Menu.Item as='a'>
-              <Icon name='home' />
-              Home
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='book' />
-              Library
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='dont' />
-              Issues
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='code' />
-              Code
-            </Menu.Item>
+            <Link to="/">
+              <Menu.Item as="a">
+                <Icon name="home" />
+                Home
+              </Menu.Item>
+            </Link>
+            <Link to="/library">
+              <Menu.Item as="a">
+                <Icon name="book" />
+                Library
+              </Menu.Item>
+            </Link>
+            <Link to="/issues">
+              <Menu.Item as="a">
+                <Icon name="dont" />
+                Issues
+              </Menu.Item>
+            </Link>
+            <Link to="/code">
+              <Menu.Item as="a">
+                <Icon name="code" />
+                Code
+              </Menu.Item>
+            </Link>
           </Sidebar>
 
           <Sidebar.Pusher>
@@ -62,6 +71,6 @@ export default class SideBar extends Component {
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
-    )
+    );
   }
 }

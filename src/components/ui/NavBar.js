@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Menu, Icon } from "semantic-ui-react";
 import { logout } from '../authentication/userManager';
+import {withRouter} from "react-router-dom";
 
 const archiveColor = {
   color: "#15CA00"
@@ -19,7 +20,7 @@ const flexbox = {
 // let username = ""
 // username =  JSON.parse(username)
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   state = { 
     activeItem: "", 
     redirect: false,
@@ -29,6 +30,8 @@ export default class NavBar extends Component {
   logUserOut = () => {
     this.setState({ user: null });
     logout();
+    this.props.history.push("/")
+    window.location.reload();
   }
 
   render() {
@@ -55,4 +58,4 @@ export default class NavBar extends Component {
   }
 }
 
-// export default withRouter(NavBar)
+export default withRouter(NavBar)
