@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { Menu, Icon } from "semantic-ui-react";
 import { logout } from '../authentication/userManager';
+import {withRouter} from "react-router-dom";
+
+// TODO:
+// 1.Add Link hover over logout
+// 2. Implement Username Display
+// 3.Fix Refresh to logout bug
 
 const archiveColor = {
   color: "#15CA00"
@@ -19,21 +25,23 @@ const flexbox = {
 // let username = ""
 // username =  JSON.parse(username)
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   state = { 
     activeItem: "", 
     redirect: false,
-    username: ""
+    username: "username"
    };
 
   logUserOut = () => {
     this.setState({ user: null });
     logout();
+    this.props.history.push("/")
+    window.location.reload();
   }
 
   render() {
     return (
-      <Menu borderless size="huge">
+      <Menu borderless size="huge" fixed="top">
         <Menu.Item header as="h2">
           <Icon name="database" style={archiveColor} size="large" />
           code.<span style={archiveColor}>Archive</span>
@@ -55,4 +63,4 @@ export default class NavBar extends Component {
   }
 }
 
-// export default withRouter(NavBar)
+export default withRouter(NavBar)

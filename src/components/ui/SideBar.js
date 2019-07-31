@@ -1,11 +1,80 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Button, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import ApplicationViews from "../../ApplicationViews";
 
+// TODO:
+// 1.Revisit this, find a way to make side bar stick or fixed
+// 2.Add Show/Hide Toggle
+
+const height = {
+  marginTop: "45px",
+  height: "100vh"
+};
 export default class SideBar extends Component {
-    render() {
-        return (
-            <React.Fragment>
-            </React.Fragment>    
-            </div>
-        )
-    }
+  state = { visible: false };
+
+  handleHideClick = () => this.setState({ visible: false });
+  handleShowClick = () => this.setState({ visible: true });
+  handleSidebarHide = () => this.setState({ visible: false });
+
+  render() {
+    const { visible } = this.state;
+
+    return (
+      <div>
+        <Button.Group>
+          <Button disabled={visible} onClick={this.handleShowClick}>
+            Show sidebar
+          </Button>
+          <Button disabled={!visible} onClick={this.handleHideClick}>
+            Hide sidebar
+          </Button>
+        </Button.Group>
+
+        <Sidebar.Pushable style={height} as={Segment}>
+          <Sidebar
+            as={Menu}
+            animation="push"
+            icon="labeled"
+            inverted
+            onHide={this.handleSidebarHide}
+            vertical
+            visible="true"
+            width="thin"
+            size="huge"
+          >
+            <Link to="/">
+              <Menu.Item as="a">
+                <Icon name="home" />
+                Home
+              </Menu.Item>
+            </Link>
+            <Link to="/library">
+              <Menu.Item as="a">
+                <Icon name="book" />
+                Library
+              </Menu.Item>
+            </Link>
+            <Link to="/issues">
+              <Menu.Item as="a">
+                <Icon name="dont" />
+                Issues
+              </Menu.Item>
+            </Link>
+            <Link to="/code">
+              <Menu.Item as="a">
+                <Icon name="code" />
+                Code
+              </Menu.Item>
+            </Link>
+          </Sidebar>
+
+          <Sidebar.Pusher>
+            <ApplicationViews />
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </div>
+    );
+  }
 }
