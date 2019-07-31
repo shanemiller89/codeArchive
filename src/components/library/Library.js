@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Header, Icon, Grid, Container, Button, Label } from "semantic-ui-react";
+import {
+  Header,
+  Icon,
+  Grid,
+  Container,
+  Button,
+  Label
+} from "semantic-ui-react";
 import LanguageCard from "./LanguageCard";
-
-const placeHolder = {
-  height: "250px",
-  width: "100%",
-  background: "lightgray"
-};
+import LanguageForm from "./LanguageForm";
 
 export default class Library extends Component {
   render() {
@@ -23,19 +25,12 @@ export default class Library extends Component {
         >
           <Header style={{ fontSize: "5em", color: "#15CA00" }}>Library</Header>
 
-          <Button primary as="div" labelPosition="right">
-            <Button style={{background: "#15CA00", color: "white"}} icon>
-              <Icon name="plus" />
-              Add
-            </Button>
-            <Label basic pointing="left">
-              Library
-            </Label>
-          </Button>
-
+          <LanguageForm
+            addLanguage={this.props.addLanguage}
+            currentUser={this.props.currentUser}
+          />
         </Container>
         <div className="language-container">
-
           <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
             <Icon name="file code outline" style={{ color: "#15CA00" }} />
             <Header.Content>
@@ -50,9 +45,9 @@ export default class Library extends Component {
             <Icon style={{ color: "#15CA00" }} name="file code outline" />
             Languages
           </Header> */}
-          <Grid style={{ margin: 20 }}>
+          <Grid fluid columns={4} style={{marginLeft: "25px", marginRight: "25px"}}>
             {this.props.languages.map(language => (
-              <LanguageCard language={language} />
+              <LanguageCard key={language.id} language={language} />
             ))}
           </Grid>
         </div>

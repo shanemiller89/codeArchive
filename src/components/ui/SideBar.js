@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import React, { Component, createRef } from "react";
+import { Button, Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ApplicationViews from "../../ApplicationViews";
 
@@ -9,10 +9,12 @@ import ApplicationViews from "../../ApplicationViews";
 
 const height = {
   marginTop: "45px",
-  height: "100vh"
+  height: "150vh"
 };
 export default class SideBar extends Component {
   state = { visible: false };
+
+  contextRef = createRef()
 
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
@@ -31,7 +33,7 @@ export default class SideBar extends Component {
             Hide sidebar
           </Button>
         </Button.Group>
-
+        <Sticky context={this.contextRef} pushing>
         <Sidebar.Pushable style={height} as={Segment}>
           <Sidebar
             as={Menu}
@@ -74,6 +76,7 @@ export default class SideBar extends Component {
             <ApplicationViews />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+        </Sticky>
       </div>
     );
   }

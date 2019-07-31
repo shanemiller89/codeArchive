@@ -14,9 +14,15 @@ export default class ApplicationViews extends Component {
     API.getAll("languages", `userId=${this.state.currentUser}`)
       .then(languages => newState.languages = languages)
       .then(() => this.setState(newState))
-      console.log(newState)
   }
 
+    addLanguage = (data) => {
+      API.post("languages", data)
+      .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
+      .then(languages => this.setState({
+        languages: languages
+      }))
+    }
 
   render() {
     return (
@@ -30,7 +36,7 @@ export default class ApplicationViews extends Component {
         <Route
           path="/library"
           render={props => {
-            return <Library {...props} languages={this.state.languages} />;
+            return <Library {...props} languages={this.state.languages} addLanguage={this.addLanguage} currentUser={this.state.currentUser} />;
           }}
         />
       </React.Fragment>
