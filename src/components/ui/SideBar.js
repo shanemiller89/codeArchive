@@ -3,6 +3,10 @@ import { Button, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ApplicationViews from "../../ApplicationViews";
 
+// TODO:
+// 1.Revisit this, find a way to make side bar stick or fixed
+// 2.Add Show/Hide Toggle
+
 const height = {
   marginTop: "45px",
   height: "100vh"

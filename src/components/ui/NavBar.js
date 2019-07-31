@@ -3,6 +3,11 @@ import { Menu, Icon } from "semantic-ui-react";
 import { logout } from '../authentication/userManager';
 import {withRouter} from "react-router-dom";
 
+// TODO:
+// 1.Add Link hover over logout
+// 2. Implement Username Display
+// 3.Fix Refresh to logout bug
+
 const archiveColor = {
   color: "#15CA00"
 };
