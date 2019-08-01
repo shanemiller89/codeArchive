@@ -34,6 +34,12 @@ export default class ApplicationViews extends Component {
     );
   };
 
+  updateLanguage = (editedData) => {
+    API.put("languages", editedData)
+    .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
+    .then(languages => this.setState({languages: languages}))
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -53,6 +59,7 @@ export default class ApplicationViews extends Component {
                 languages={this.state.languages}
                 addLanguage={this.addLanguage}
                 deleteLanguage={this.deleteLanguage}
+                updateLanguage={this.updateLanguage}
                 currentUser={this.state.currentUser}
               />
             );

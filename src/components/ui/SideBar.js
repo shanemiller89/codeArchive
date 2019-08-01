@@ -14,7 +14,7 @@ const height = {
 export default class SideBar extends Component {
   state = { visible: false };
 
-  contextRef = createRef()
+  // contextRef = createRef()
 
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
@@ -33,7 +33,7 @@ export default class SideBar extends Component {
             Hide sidebar
           </Button>
         </Button.Group>
-        <Sticky context={this.contextRef} pushing>
+        {/* <Sticky context={this.contextRef} pushing> */}
         <Sidebar.Pushable style={height} as={Segment}>
           <Sidebar
             as={Menu}
@@ -76,7 +76,7 @@ export default class SideBar extends Component {
             <ApplicationViews />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-        </Sticky>
+        {/* </Sticky> */}
       </div>
     );
   }
