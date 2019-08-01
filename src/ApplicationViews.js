@@ -71,10 +71,10 @@ export default class ApplicationViews extends Component {
           render={props => {
             let language = this.state.languages.find( language =>
               language.id === parseInt(props.match.params.languageId))
+              console.log("this is language", language)
             return (
               <LanguageLibrary
                 {...props}
-                language={language}
                 currentUser={this.state.currentUser}
               />
             );
