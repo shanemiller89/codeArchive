@@ -4,8 +4,6 @@ import {
   Icon,
   Grid,
   Container,
-  Button,
-  Label
 } from "semantic-ui-react";
 import LanguageCard from "./LanguageCard";
 import LanguageForm from "./LanguageForm";
@@ -15,13 +13,13 @@ export default class Library extends Component {
     return (
       <React.Fragment>
         <Container
-          fluid
           style={{
             background: "#E8E8E8",
             height: "20em",
             color: "#15CA00",
             padding: "1em"
           }}
+          fluid
         >
           <Header style={{ fontSize: "5em", color: "#15CA00" }}>Library</Header>
 
@@ -45,9 +43,9 @@ export default class Library extends Component {
             <Icon style={{ color: "#15CA00" }} name="file code outline" />
             Languages
           </Header> */}
-          <Grid fluid columns={4} style={{marginLeft: "25px", marginRight: "25px"}}>
+          <Grid columns={4} style={{marginLeft: "25px", marginRight: "25px"}} fluid >
             {this.props.languages.map(language => (
-              <LanguageCard key={language.id} language={language} deleteLanguage={this.props.deleteLanguage} />
+              <LanguageCard key={language.id} language={language} deleteLanguage={this.props.deleteLanguage} updateLanguage={this.props.updateLanguage} />
             ))}
           </Grid>
         </div>

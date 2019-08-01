@@ -11,8 +11,8 @@
   "languages": [
     {
       "title": "Javascript",
-      "link": "",
-      "imageURL": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavaScript-logo.png?alt=media&token=6108be08-abd3-428b-8c12-0a80dc0aca3d",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "imageURL": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript?alt=media&token=3cdd5434-5632-45f1-a441-3bb9663dcb4f",
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
     }

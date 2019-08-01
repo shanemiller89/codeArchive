@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Image, Grid, Dropdown, Confirm } from "semantic-ui-react";
+import LanguageEditForm from "./LanguageEditForm";
 
 // TODO:
 // 1.Get delete/Edit button menu to show on right side of title, not below
@@ -22,11 +23,7 @@ export default class Languages extends Component {
               <Card.Header>{this.props.language.title}</Card.Header>
               <Dropdown icon="list" floated="right">
                 <Dropdown.Menu position="right">
-                  <Dropdown.Item
-                    icon="pencil"
-                    description="Edit"
-                    // onClick=
-                  />
+                  <LanguageEditForm language={this.props.language} updateLanguage={this.props.updateLanguage} />
                   <Dropdown.Item
                     icon="trash alternate"
                     description="Delete"
