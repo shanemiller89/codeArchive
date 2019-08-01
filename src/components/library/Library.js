@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  Header,
-  Icon,
-  Grid,
-  Container,
-} from "semantic-ui-react";
+import { Header, Icon, Grid, Container } from "semantic-ui-react";
 import LanguageCard from "./LanguageCard";
 import LanguageForm from "./LanguageForm";
 
@@ -43,9 +38,18 @@ export default class Library extends Component {
             <Icon style={{ color: "#15CA00" }} name="file code outline" />
             Languages
           </Header> */}
-          <Grid columns={4} style={{marginLeft: "25px", marginRight: "25px"}} fluid >
+          <Grid
+            columns={4}
+            style={{ marginLeft: "25px", marginRight: "25px" }}
+            fluid
+          >
             {this.props.languages.map(language => (
-              <LanguageCard key={language.id} language={language} deleteLanguage={this.props.deleteLanguage} updateLanguage={this.props.updateLanguage} />
+                <LanguageCard
+                  key={language.id}
+                  language={language}
+                  deleteLanguage={this.props.deleteLanguage}
+                  updateLanguage={this.props.updateLanguage}
+                />
             ))}
           </Grid>
         </div>

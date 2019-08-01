@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Home from "./Home";
 import Library from "./components/library/Library";
 import API from "./modules/API";
+import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrary";
 
 export default class ApplicationViews extends Component {
   state = {
@@ -34,11 +35,11 @@ export default class ApplicationViews extends Component {
     );
   };
 
-  updateLanguage = (editedData) => {
+  updateLanguage = editedData => {
     API.put("languages", editedData)
-    .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
-    .then(languages => this.setState({languages: languages}))
-  }
+      .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
+      .then(languages => this.setState({ languages: languages }));
+  };
 
   render() {
     return (
@@ -51,7 +52,7 @@ export default class ApplicationViews extends Component {
           }}
         />
         <Route
-          path="/library"
+          exact path="/library"
           render={props => {
             return (
               <Library
@@ -60,6 +61,20 @@ export default class ApplicationViews extends Component {
                 addLanguage={this.addLanguage}
                 deleteLanguage={this.deleteLanguage}
                 updateLanguage={this.updateLanguage}
+                currentUser={this.state.currentUser}
+              />
+            );
+          }}
+        />
+        <Route
+          exact path="/library/language/:languageId(\d+)"
+          render={props => {
+            let language = this.state.languages.find( language =>
+              language.id === parseInt(props.match.params.languageId))
+            return (
+              <LanguageLibrary
+                {...props}
+                language={language}
                 currentUser={this.state.currentUser}
               />
             );

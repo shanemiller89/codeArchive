@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Card, Image, Grid, Dropdown, Confirm } from "semantic-ui-react";
 import LanguageEditForm from "./LanguageEditForm";
 
 // TODO:
 // 1.Get delete/Edit button menu to show on right side of title, not below
-
+// 2. Find better place for Link
 export default class Languages extends Component {
   state = {
     open: false
@@ -18,12 +19,17 @@ export default class Languages extends Component {
       <React.Fragment>
         <Grid.Column floated="left">
           <Card>
-            <Image src={this.props.language.imageURL} wrapped ui={false} />
+              <Image src={this.props.language.imageURL} wrapped ui={false} />
             <Card.Content>
+            <Link className="nav-link" to={`/library/language/${this.props.language.id}`}>
               <Card.Header>{this.props.language.title}</Card.Header>
+              </Link>
               <Dropdown icon="list" floated="right">
                 <Dropdown.Menu position="right">
-                  <LanguageEditForm language={this.props.language} updateLanguage={this.props.updateLanguage} />
+                  <LanguageEditForm
+                    language={this.props.language}
+                    updateLanguage={this.props.updateLanguage}
+                  />
                   <Dropdown.Item
                     icon="trash alternate"
                     description="Delete"
