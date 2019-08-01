@@ -59,6 +59,7 @@ export default class LanguageForm extends Component {
               </Label>
             </Button>
           }
+          style={{width: "30em"}}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
