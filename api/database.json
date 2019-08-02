@@ -8,28 +8,37 @@
       "id": "GbWhwHDmiKfml9XyKG36cFnysA62"
     }
   ],
-  "languages": [
+  "librarys": [
     {
       "title": "Javascript",
       "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "imageURL": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript?alt=media&token=3cdd5434-5632-45f1-a441-3bb9663dcb4f",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript?alt=media&token=3cdd5434-5632-45f1-a441-3bb9663dcb4f",
+      "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
     },
     {
-      "title": "Python",
-      "link": "http://python.com",
-      "imageURL": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPython?alt=media&token=62b88f08-1516-4422-82c8-9cff6a3810eb",
+      "title": "Visual Studio",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript?alt=media&token=3cdd5434-5632-45f1-a441-3bb9663dcb4f",
+      "libraryTypeId": 3,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
     }
   ],
-  "subLanguages": [],
-  "archives": [],
-  "videos": [],
-  "resources": [],
-  "notes": [],
-  "snippets": [],
-  "issues": [],
-  "codes": []
+  "libraryTypes": [
+    {
+      "type": "language",
+      "id": 1
+    },
+    {
+      "type": "sub-language",
+      "id": 2
+    },
+    {
+      "type": "tool",
+      "id": 3
+    }
+  ]
 }
+

@@ -19,12 +19,12 @@ export default class Languages extends Component {
       <React.Fragment>
         <Grid.Column floated="left">
           <Card>
-              <Image src={this.props.language.imageURL} wrapped ui={false} />
+              <Image src={this.props.language.image} wrapped ui={false} />
             <Card.Content>
-            <Link className="nav-link" to={`/library/language/${this.props.language.id}`}>
+            {/* <Link className="nav-link" to={`/library/language/${this.props.language.id}`}> */}
               <Card.Header>{this.props.language.title}</Card.Header>
-              </Link>
-              <Dropdown icon="list" floated="right">
+              {/* </Link> */}
+              {/* <Dropdown icon="list" floated="right">
                 <Dropdown.Menu position="right">
                   <LanguageEditForm
                     language={this.props.language}
@@ -47,7 +47,7 @@ export default class Languages extends Component {
                     }
                   />
                 </Dropdown.Menu>
-              </Dropdown>
+              </Dropdown> */}
             </Card.Content>
           </Card>
         </Grid.Column>

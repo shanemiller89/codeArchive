@@ -1,27 +1,41 @@
 import React, { Component } from "react";
 import { Header, Icon, Grid, Container } from "semantic-ui-react";
+import API from "../../modules/API"
 import LanguageCard from "./LanguageCard";
 import LanguageForm from "./LanguageForm";
 
 export default class Library extends Component {
+  state = {
+    currentUser: JSON.parse(localStorage.getItem("user")),
+    languages: []
+  }
+
+  componentDidMount() {
+    const newState = {};
+    API.getAll("librarys", `userId=${this.state.currentUser}&libraryTypeId=1&_expand=libraryType`)
+      .then(languages => (newState.languages = languages))
+      .then(() => this.setState(newState));
+      console.log(newState)
+  }
+
   render() {
     return (
       <React.Fragment>
         <Container
+            fluid
           style={{
             background: "#E8E8E8",
             height: "20em",
             color: "#15CA00",
             padding: "1em"
           }}
-          fluid
         >
           <Header style={{ fontSize: "5em", color: "#15CA00" }}>Library</Header>
 
-          <LanguageForm
+          {/* <LanguageForm
             addLanguage={this.props.addLanguage}
             currentUser={this.props.currentUser}
-          />
+          /> */}
         </Container>
         <div className="language-container">
           <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
@@ -39,11 +53,11 @@ export default class Library extends Component {
             Languages
           </Header> */}
           <Grid
+            fluid
             columns={4}
             style={{ marginLeft: "25px", marginRight: "25px" }}
-            fluid
           >
-            {this.props.languages.map(language => (
+            {this.state.languages.map(language => (
                 <LanguageCard
                   key={language.id}
                   language={language}
