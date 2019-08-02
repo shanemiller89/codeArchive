@@ -7,13 +7,18 @@ import API from "./modules/API";
 
 export default class ApplicationViews extends Component {
   state = {
-    currentUser: JSON.parse(localStorage.getItem("user"))
+    currentUser: JSON.parse(localStorage.getItem("user")),
+    languageLibraries: []
   };
-  // updateLanguage = editedData => {
-  //   API.put("languages", editedData)
-  //     .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
-  //     .then(languages => this.setState({ languages: languages }));
-  // };
+
+  componentDidMount() {
+    const newState = {};
+    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`)
+      .then(
+        languageLibraries => (newState.languageLibraries = languageLibraries)
+      )
+      .then(() => this.setState(newState));
+  }
 
   render() {
     return (
@@ -32,12 +37,13 @@ export default class ApplicationViews extends Component {
             return <Library {...props} />;
           }}
         />
-        {/* <Route
-          exact path="/library/language/:languageId(\d+)"
+        <Route
+          exact
+          path="/library/language/:languageLibraryId(\d+)"
           render={props => {
-            let language = this.state.languages.find( language =>
-              language.id === parseInt(props.match.params.languageId))
-              console.log("this is language", language)
+            this.state.languageLibraries.find(
+              language => language.id === parseInt(props.match.params.languageLibraryId)
+            );
             return (
               <LanguageLibrary
                 {...props}
@@ -45,7 +51,7 @@ export default class ApplicationViews extends Component {
               />
             );
           }}
-        /> */}
+        />
       </React.Fragment>
     );
   }

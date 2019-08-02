@@ -25,7 +25,7 @@ export default class LanguageForm extends Component {
 
   submit = () => {
     //will determine name of storage reference
-    const ref = this.storageRef.child(this.state.title);
+    const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
 
     return ref
       .put(this.state.image)

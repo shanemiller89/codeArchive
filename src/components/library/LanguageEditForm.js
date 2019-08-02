@@ -22,12 +22,12 @@ export default class LanguageEditForm extends Component {
     title: "",
     link: "",
     image: null,
-    libraryTypeId: 1,
+    libraryTypeId: null,
     userId: JSON.parse(localStorage.getItem("user"))
   };
 
   componentDidMount() {
-    API.get("librarys", this.props.language.id)
+    API.get("libraries", this.props.language.id)
     .then(language => {
       this.setState({
         title: language.title,
@@ -42,7 +42,7 @@ export default class LanguageEditForm extends Component {
 
 //   submit = () => {
 //     //will determine name of storage reference
-//     const ref = this.storageRef.child(this.state.title);
+//     const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
 
 //     return ref
 //       .put(this.state.image)

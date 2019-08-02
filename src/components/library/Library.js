@@ -6,7 +6,7 @@ import LanguageForm from "./LanguageForm";
 
 export default class Library extends Component {
   state = {
-    librarys: [],
+    languageLibraries: [],
     currentUser: JSON.parse(localStorage.getItem("user")),
   }
  
@@ -14,37 +14,37 @@ export default class Library extends Component {
   componentDidMount() {
    
     const newState = {};
-    API.getAll("librarys", `userId=${this.state.currentUser}&libraryTypeId=1`)
-      .then(librarys => (newState.librarys = librarys))
+    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`)
+      .then(languageLibraries => (newState.languageLibraries= languageLibraries))
       .then(() => this.setState(newState));
       console.log("where you go?", newState)
    
   }
 
   addLanguageLibrary = data => {
-    API.post("librarys", data)
-      .then(() => API.getAll("librarys", `userId=${this.state.currentUser}&libraryTypeId=1`))
-      .then(librarys =>
+    API.post("libraries", data)
+      .then(() => API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`))
+      .then(languageLibraries =>
         this.setState({
-          librarys: librarys
+          languageLibraries: languageLibraries
         })
       );
   };
 
     deleteLanguageLibrary = id => {
-    API.delete("librarys", id)
-    .then(() => API.getAll("librarys", `userId=${this.state.currentUser}&libraryTypeId=1`))
-    .then(librarys =>
+    API.delete("libraries", id)
+    .then(() => API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`))
+    .then(languageLibraries =>
       this.setState({
-        librarys: librarys
+        languageLibraries: languageLibraries
       })
     );
   };
   
     updateLanguageLibrary = editedData => {
-    API.put("librarys", editedData)
-      .then(() => API.getAll("librarys", `userId=${this.state.currentUser}&libraryTypeId=1`))
-      .then(librarys => this.setState({ librarys: librarys }));
+    API.put("libraries", editedData)
+      .then(() => API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`))
+      .then(languageLibraries => this.setState({ languageLibraries: languageLibraries }));
   };
 
 
@@ -90,7 +90,7 @@ export default class Library extends Component {
             columns={4}
             style={{ marginLeft: "25px", marginRight: "25px" }}
           >
-            {this.state.librarys.map(language => (
+            {this.state.languageLibraries.map(language => (
                 <LanguageCard
                   key={language.id}
                   language={language}

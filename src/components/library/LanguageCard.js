@@ -21,9 +21,9 @@ export default class Languages extends Component {
           <Card>
               <Image src={this.props.language.image} wrapped ui={false} />
             <Card.Content>
-            {/* <Link className="nav-link" to={`/library/language/${this.props.language.id}`}> */}
+            <Link className="nav-link" to={`/library/language/${this.props.language.id}`}>
               <Card.Header>{this.props.language.title}</Card.Header>
-              {/* </Link> */}
+              </Link>
               <Dropdown icon="list" floated="right">
                 <Dropdown.Menu position="right">
                   <LanguageEditForm
