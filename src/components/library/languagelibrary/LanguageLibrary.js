@@ -1,19 +1,22 @@
 import React, { Component } from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Segment, Image, Divider } from "semantic-ui-react";
 import API from "../../../modules/API";
-import SubLanguageForm from './SubLibraryForm'
+import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList"
+import SubLanguageForm from "./SubLibraryForm";
 
 export default class LanguageLibrary extends Component {
   state = {
-    language: {}
+    language: [],
+    subLanguages: []
   };
 
   componentDidMount() {
     const newState = {};
-    API.get("libraries", `${this.props.match.params.languageLibraryId}`)
-      .then(language => (newState.language = language))
+    // API.get("libraries", `${this.props.match.params.languageLibraryId}`)
+    //   .then(language => (newState.language = language))
+      API.getAll("subLanguageLibraries", `libraryId=${this.props.match.params.languageLibraryId}`)
+      .then(subLanguages => (newState.subLanguages = subLanguages))
       .then(() => this.setState(newState));
-      console.log(newState)
   }
 
   render() {
@@ -29,31 +32,47 @@ export default class LanguageLibrary extends Component {
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", color: "#15CA00" }}>{this.state.language.title}</Header>
-          <a href={this.state.language.link} rel="noopener noreferrer" target="_blank"><Header as="h2">Documentation</Header></a>
-        
-          {/* <SubLanguageForm /> */}
+          <Header style={{ fontSize: "5em", color: "#15CA00" }}>
+            {this.state.language.title}
+          </Header>
+          <a
+            href={this.state.language.link}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Header as="h2">Documentation</Header>
+          </a>
 
+          {/* <SubLanguageForm /> */}
         </Container>
+        {/* Sub-Languages */}
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
-            <Icon name="file code outline" style={{ color: "#15CA00" }} />
-            <Header.Content>
-              Sub-Libraries
-              <Header.Subheader>
-                Frameworks and Libraries related to this Language
-              </Header.Subheader>
-            </Header.Content>
-          </Header>
-          <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
-            <Icon name="archive" style={{ color: "#15CA00" }} />
-            <Header.Content>
-              Archives
-              <Header.Subheader>
-                Concepts and other information relating to this Language
-              </Header.Subheader>
-            </Header.Content>
-          </Header>
-          
+          <Icon name="file code outline" style={{ color: "#15CA00" }} />
+          <Header.Content>
+            Sub-Language Libraries
+            <Header.Subheader>
+              Frameworks and Libraries related to this Language
+            </Header.Subheader>
+          </Header.Content>
+        </Header>
+          <div>
+          {this.state.subLanguages.map(subLanguage => (
+                <SubLanguageLibraryList
+                  key={subLanguage.id}
+                  subLanguage={subLanguage}
+                />
+            ))}
+          </div>
+        {/* Archives */}
+        <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
+          <Icon name="archive" style={{ color: "#15CA00" }} />
+          <Header.Content>
+            Archives
+            <Header.Subheader>
+              Concepts and other information relating to this Language
+            </Header.Subheader>
+          </Header.Content>
+        </Header>
       </React.Fragment>
     );
   }

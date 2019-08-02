@@ -16,14 +16,6 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
-    },
-    {
-      "title": "Visual Studio",
-      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript?alt=media&token=3cdd5434-5632-45f1-a441-3bb9663dcb4f",
-      "libraryTypeId": 3,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 2
     }
   ],
   "libraryTypes": [
@@ -32,12 +24,18 @@
       "id": 1
     },
     {
-      "type": "sub-language",
-      "id": 2
-    },
-    {
       "type": "tool",
-      "id": 3
+      "id": 2
+    }
+  ],
+  "subLanguageLibraries": [
+    {
+      "title": "React JS",
+      "link": "https://reactjs.org/docs/getting-started.html",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FReact.js_logo-512.png?alt=media&token=c3f4287e-2231-40f2-a5f9-569855e8285d",
+      "libraryId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 2
     }
   ]
 }
