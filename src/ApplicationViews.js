@@ -7,17 +7,8 @@ import API from "./modules/API";
 
 export default class ApplicationViews extends Component {
   state = {
-    currentUser: JSON.parse(localStorage.getItem("user")),
+    currentUser: JSON.parse(localStorage.getItem("user"))
   };
-
-  // deleteLanguage = id => {
-  //   API.delete("languages", id).then(languages =>
-  //     this.setState({
-  //       languages: languages
-  //     })
-  //   );
-  // };
-
   // updateLanguage = editedData => {
   //   API.put("languages", editedData)
   //     .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
@@ -35,15 +26,10 @@ export default class ApplicationViews extends Component {
           }}
         />
         <Route
-          exact path="/library"
+          exact
+          path="/library"
           render={props => {
-            return (
-              <Library
-                {...props}
-                // deleteLanguage={this.deleteLanguage}
-                // updateLanguage={this.updateLanguage}
-              />
-            );
+            return <Library {...props} />;
           }}
         />
         {/* <Route

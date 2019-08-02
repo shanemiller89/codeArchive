@@ -26,10 +26,10 @@ export default class Languages extends Component {
               {/* </Link> */}
               <Dropdown icon="list" floated="right">
                 <Dropdown.Menu position="right">
-                  {/* <LanguageEditForm
+                  <LanguageEditForm
                     language={this.props.language}
-                    updateLanguage={this.props.updateLanguage}
-                  /> */}
+                    updateLanguageLibrary={this.props.updateLanguageLibrary}
+                  />
                   <Dropdown.Item
                     icon="trash alternate"
                     description="Delete"

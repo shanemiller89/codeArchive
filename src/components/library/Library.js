@@ -40,6 +40,13 @@ export default class Library extends Component {
       })
     );
   };
+  
+    updateLanguageLibrary = editedData => {
+    API.put("librarys", editedData)
+      .then(() => API.getAll("librarys", `userId=${this.state.currentUser}&libraryTypeId=1`))
+      .then(librarys => this.setState({ librarys: librarys }));
+  };
+
 
   render() {
     return (
@@ -88,7 +95,7 @@ export default class Library extends Component {
                   key={language.id}
                   language={language}
                   deleteLanguageLibrary={this.deleteLanguageLibrary}
-                  // updateLanguage={this.props.updateLanguage}
+                  updateLanguageLibrary={this.updateLanguageLibrary}
                 />
             ))}
           </Grid>
