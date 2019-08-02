@@ -10,16 +10,6 @@ export default class ApplicationViews extends Component {
     currentUser: JSON.parse(localStorage.getItem("user")),
   };
 
-  // addLanguage = data => {
-  //   API.post("languages", data)
-  //     .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
-  //     .then(languages =>
-  //       this.setState({
-  //         languages: languages
-  //       })
-  //     );
-  // };
-
   // deleteLanguage = id => {
   //   API.delete("languages", id).then(languages =>
   //     this.setState({
@@ -50,11 +40,8 @@ export default class ApplicationViews extends Component {
             return (
               <Library
                 {...props}
-                librarys={this.state.librarys}
-                // addLanguage={this.addLanguage}
                 // deleteLanguage={this.deleteLanguage}
                 // updateLanguage={this.updateLanguage}
-                currentUser={this.state.currentUser}
               />
             );
           }}
