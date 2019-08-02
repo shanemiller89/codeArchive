@@ -31,6 +31,16 @@ export default class Library extends Component {
       );
   };
 
+    deleteLanguageLibrary = id => {
+    API.delete("librarys", id)
+    .then(() => API.getAll("librarys", `userId=${this.state.currentUser}&libraryTypeId=1`))
+    .then(librarys =>
+      this.setState({
+        librarys: librarys
+      })
+    );
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -77,7 +87,7 @@ export default class Library extends Component {
                 <LanguageCard
                   key={language.id}
                   language={language}
-                  // deleteLanguage={this.props.deleteLanguage}
+                  deleteLanguageLibrary={this.deleteLanguageLibrary}
                   // updateLanguage={this.props.updateLanguage}
                 />
             ))}

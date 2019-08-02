@@ -17,8 +17,6 @@ export default {
         method: "DELETE"
     })
     .then(data => data.json())
-    .then(() => fetch(`${remoteURL}/${database}`))
-    .then(data => data.json())
   },
   post (database, newData) {
     return fetch(`${remoteURL}/${database}`, {

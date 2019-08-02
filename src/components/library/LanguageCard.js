@@ -24,12 +24,12 @@ export default class Languages extends Component {
             {/* <Link className="nav-link" to={`/library/language/${this.props.language.id}`}> */}
               <Card.Header>{this.props.language.title}</Card.Header>
               {/* </Link> */}
-              {/* <Dropdown icon="list" floated="right">
+              <Dropdown icon="list" floated="right">
                 <Dropdown.Menu position="right">
-                  <LanguageEditForm
+                  {/* <LanguageEditForm
                     language={this.props.language}
                     updateLanguage={this.props.updateLanguage}
-                  />
+                  /> */}
                   <Dropdown.Item
                     icon="trash alternate"
                     description="Delete"
@@ -43,11 +43,11 @@ export default class Languages extends Component {
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() =>
-                      this.props.deleteLanguage(this.props.language.id)
+                      this.props.deleteLanguageLibrary(this.props.language.id)
                     }
                   />
                 </Dropdown.Menu>
-              </Dropdown> */}
+              </Dropdown>
             </Card.Content>
           </Card>
         </Grid.Column>
