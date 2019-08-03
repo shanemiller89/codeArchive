@@ -2,42 +2,22 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Home from "./Home";
 import Library from "./components/library/Library";
+import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrary";
 import API from "./modules/API";
 
 export default class ApplicationViews extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
-    languages: []
+    languageLibraries: []
   };
+
   componentDidMount() {
     const newState = {};
-    API.getAll("languages", `userId=${this.state.currentUser}`)
-      .then(languages => (newState.languages = languages))
+    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`)
+      .then(
+        languageLibraries => (newState.languageLibraries = languageLibraries)
+      )
       .then(() => this.setState(newState));
-  }
-
-  addLanguage = data => {
-    API.post("languages", data)
-      .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
-      .then(languages =>
-        this.setState({
-          languages: languages
-        })
-      );
-  };
-
-  deleteLanguage = id => {
-    API.delete("languages", id).then(languages =>
-      this.setState({
-        languages: languages
-      })
-    );
-  };
-
-  updateLanguage = (editedData) => {
-    API.put("languages", editedData)
-    .then(() => API.getAll("languages", `userId=${this.state.currentUser}`))
-    .then(languages => this.setState({languages: languages}))
   }
 
   render() {
@@ -51,15 +31,22 @@ export default class ApplicationViews extends Component {
           }}
         />
         <Route
+          exact
           path="/library"
           render={props => {
+            return <Library {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/library/language/:languageLibraryId(\d+)"
+          render={props => {
+            this.state.languageLibraries.find(
+              language => language.id === parseInt(props.match.params.languageLibraryId)
+            );
             return (
-              <Library
+              <LanguageLibrary
                 {...props}
-                languages={this.state.languages}
-                addLanguage={this.addLanguage}
-                deleteLanguage={this.deleteLanguage}
-                updateLanguage={this.updateLanguage}
                 currentUser={this.state.currentUser}
               />
             );

@@ -1,0 +1,99 @@
+{
+    "users": [
+      {
+        "username": "shanemiller89",
+        "email": "shanemiller89@gmail.com",
+        "name": "Shane Miller",
+        "profile": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/profile_picture%2Fshanemiller89?alt=media&token=af77ffb4-f9f6-46f3-993d-d891ec764821",
+        "id": "GbWhwHDmiKfml9XyKG36cFnysA62"
+      }
+    ],
+    "languages": [
+      {
+        "title": "Javascript",
+        "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+        "imageURL": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript?alt=media&token=3cdd5434-5632-45f1-a441-3bb9663dcb4f",
+        "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+        "id": 1
+      },
+      {
+        "title": "Python",
+        "link": "http://python.com",
+        "imageURL": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPython?alt=media&token=89c63ae4-a109-4c56-95e8-a5d3df9b9e33",
+        "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+        "id": 2
+      }
+    ],
+    "subLanguages": [
+      {
+        "title": "React JS",
+        "link": "https://reactjs.org/docs/getting-started.html",
+        "imageURL": null,
+        "languageId": "1",
+        "id": 1
+      }
+    ],
+    "archives": [
+      {
+        "title": "map ()",
+        "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+        "languageId": "",
+        "subLanguageId": null,
+        "id": 1
+      }
+    ],
+    "videos": [
+      {
+        "title": "Map Method",
+        "link": "https://www.youtube.com/watch?v=hfYa4ugeyuc",
+        "imageURL": null,
+        "archiveId": 1,
+        "id": 1
+      }
+    ],
+    "resources": [
+      {
+        "title": "Simplify your JavaScript – Use .map(), .reduce(), and .filter()",
+        "link": "https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d",
+        "archiveId": 1,
+        "id": 1
+      }
+    ],
+    "notes": [
+      {
+        "title": "Defination",
+        "text": "Map does awesome stuff",
+        "imageURL": null,
+        "archiveId": 1,
+        "issueId": null,
+        "codeId": null,
+        "id": 1
+      }
+    ],
+    "snippets": [
+      {
+        "title": "Syntax",
+        "text": "Code Here",
+        "archiveId": "1",
+        "issueId": null,
+        "codeId": null,
+        "id": 1
+      }
+    ],
+    "issues": [
+      {
+        "title": "Json Deletes everything",
+        "keywords": ["JSON", "Javascript"],
+        "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+        "id": 1
+      }
+    ],
+    "codes": [
+      {
+        "title": "Basic Factory Function",
+        "keywords": ["Factory", "Javascript"],
+        "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+        "id": 1
+      }
+    ]
+  }

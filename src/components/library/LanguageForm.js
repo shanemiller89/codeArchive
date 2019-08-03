@@ -16,7 +16,8 @@ export default class LanguageForm extends Component {
   state = {
     title: "",
     link: "",
-    imageURL: null,
+    image: null,
+    libraryTypeId: 1,
     userId: this.props.currentUser
   };
 
@@ -24,16 +25,17 @@ export default class LanguageForm extends Component {
 
   submit = () => {
     //will determine name of storage reference
-    const ref = this.storageRef.child(this.state.title);
+    const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
 
     return ref
-      .put(this.state.imageURL)
+      .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
-      .then(iURL => {
-        return this.props.addLanguage({
+      .then(imageURL => {
+        return this.props.addLanguageLibrary({
           title: this.state.title,
           link: this.state.link,
-          imageURL: iURL,
+          image: imageURL,
+          libraryTypeId: 1,
           userId: this.props.currentUser
         });
       });
@@ -93,7 +95,7 @@ export default class LanguageForm extends Component {
                         fluid
                         placeholder="Image"
                         onChange={e =>
-                          this.setState({ imageURL: e.target.files[0] })
+                          this.setState({ image: e.target.files[0] })
                         }
                         type="file"
                         id="imageURL"

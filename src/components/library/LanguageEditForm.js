@@ -9,8 +9,8 @@ import {
   Grid,
   Dropdown
 } from "semantic-ui-react";
-// import * as firebase from "firebase/app";
-// import "firebase/storage";
+import * as firebase from "firebase/app";
+import "firebase/storage";
 import API from '../../modules/API'
 
 // TODO:
@@ -21,18 +21,20 @@ export default class LanguageEditForm extends Component {
   state = {
     title: "",
     link: "",
-    imageURL: null,
-    userId: this.props.currentUser
+    image: null,
+    libraryTypeId: null,
+    userId: JSON.parse(localStorage.getItem("user"))
   };
 
   componentDidMount() {
-    API.get("languages", this.props.language.id)
+    API.get("libraries", this.props.language.id)
     .then(language => {
       this.setState({
         title: language.title,
         link: language.link,
-        imageURL: language.imageURL,
-        userId: this.props.currentUser
+        image: language.image,
+        libraryTypeId: language.libraryTypeId,
+        userId: this.state.userId,
       });
     });
   }
@@ -40,16 +42,16 @@ export default class LanguageEditForm extends Component {
 
 //   submit = () => {
 //     //will determine name of storage reference
-//     const ref = this.storageRef.child(this.state.title);
+//     const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
 
 //     return ref
-//       .put(this.state.imageURL)
+//       .put(this.state.image)
 //       .then(data => data.ref.getDownloadURL())
 //       .then(iURL => {
 //         return this.props.addLanguage({
 //           title: this.state.title,
 //           link: this.state.link,
-//           imageURL: iURL,
+//           image: iURL,
 //           userId: this.props.currentUser
 //         });
 //       });
@@ -66,11 +68,12 @@ handleFieldChange = evt => {
     const editedLanguage = {
       title: this.state.title,
       link: this.state.link,
-      imageURL: this.state.imageURL,
-      userId: this.props.currentUser,
+      image: this.state.image,
+      libraryTypeId: this.state.libraryTypeId,
+      userId: this.state.userId,
       id: this.props.language.id
     };
-    this.props.updateLanguage(editedLanguage);
+    this.props.updateLanguageLibrary(editedLanguage);
   };
 
   render() {
@@ -120,11 +123,11 @@ handleFieldChange = evt => {
                         fluid
                         placeholder="Image"
                         onChange={e =>
-                          this.setState({ imageURL: e.target.files[0] })
+                          this.setState({ image: e.target.files[0] })
                         }
                         type="file"
-                        id="imageURL"
-                        value={this.state.imageURL}
+                        id="image"
+                        value={this.state.image}
                       /> */}
                       <Button primary fluid size="large" onClick={this.updateExistingEvent}>
                         Submit
