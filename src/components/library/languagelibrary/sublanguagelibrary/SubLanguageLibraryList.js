@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Segment,
   Image,
@@ -30,7 +31,10 @@ export default class SubLanguageLibraryList extends Component {
               <Image src={this.props.subLanguage.image} size="tiny" />
               </Grid.Column>
               <Grid.Column width={13} verticalAlign="middle">
+                {/* LINK */}
+              <Link to={`/library/language/sublanguage/${this.props.subLanguage.id}`}>
               <Header as="h2" style={{marginLeft: "1.5em"}}>{this.props.subLanguage.title}</Header>
+              </Link>
               </Grid.Column>
               <Grid.Column verticalAlign="middle">
               <Dropdown icon="list" floated="right" style={{fontSize: "1.75em"}}>
