@@ -63,7 +63,7 @@ handleFieldChange = evt => {
     this.setState(stateToChange);
   };
 
-  updateExistingEvent = evt => {
+  updateExistingLanguage = evt => {
     evt.preventDefault();
     const editedLanguage = {
       title: this.state.title,
@@ -129,7 +129,7 @@ handleFieldChange = evt => {
                         id="image"
                         value={this.state.image}
                       /> */}
-                      <Button primary fluid size="large" onClick={this.updateExistingEvent}>
+                      <Button primary fluid size="large" onClick={this.updateExistingLanguage}>
                         Submit
                       </Button>
                     </Segment>

@@ -22,7 +22,7 @@ export default class subLanguageLibraryEditForm extends Component {
     title: "",
     link: "",
     image: null,
-    libraryTypeId: null,
+    libraryId: null,
     userId: JSON.parse(localStorage.getItem("user"))
   };
 
@@ -63,17 +63,17 @@ handleFieldChange = evt => {
     this.setState(stateToChange);
   };
 
-  updateExistingEvent = evt => {
+  updateExistingSubLanguage = evt => {
     evt.preventDefault();
     const editedLanguage = {
       title: this.state.title,
       link: this.state.link,
       image: this.state.image,
-      libraryTypeId: this.state.libraryTypeId,
+      libraryId: this.state.libraryId,
       userId: this.state.userId,
-      id: this.props.language.id
+      id: this.props.subLanguage.id
     };
-    this.props.updateLanguageLibrary(editedLanguage);
+    this.props.updateSubLanguageLibrary(editedLanguage);
   };
 
   render() {
@@ -97,7 +97,7 @@ handleFieldChange = evt => {
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit Language
+              Edit Sub-Language
             </Header>
 
             <Modal.Description>
@@ -107,7 +107,7 @@ handleFieldChange = evt => {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Language"
+                        placeholder="Sub-Language"
                         onChange={this.handleFieldChange}
                         id="title"
                         value={this.state.title}
@@ -129,7 +129,7 @@ handleFieldChange = evt => {
                         id="image"
                         value={this.state.image}
                       /> */}
-                      <Button primary fluid size="large" onClick={this.updateExistingEvent}>
+                      <Button primary fluid size="large" onClick={this.updateExistingSubLanguage}>
                         Submit
                       </Button>
                     </Segment>
