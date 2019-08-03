@@ -21,7 +21,7 @@ export default class Languages extends Component {
           <Card style={{margin: "2.5em 4em"}}>
               <Image src={this.props.language.image} wrapped ui={false} />
             <Card.Content>
-            <Link className="nav-link" to={`/library/language/${this.props.language.id}`} style={{fontSize: "1.5em"}}>
+            <Link to={`/library/language/${this.props.language.id}`} style={{fontSize: "1.5em"}}>
               <Card.Header>{this.props.language.title}</Card.Header>
               </Link>
               <Dropdown icon="list" floated="right">
