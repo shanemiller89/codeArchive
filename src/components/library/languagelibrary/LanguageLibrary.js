@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Container, Header, Icon, Segment, Image, Divider } from "semantic-ui-react";
 import API from "../../../modules/API";
 import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList"
-import SubLanguageLibraryForm from "./SubLanguageLibraryForm";
+import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
 
 export default class LanguageLibrary extends Component {
   state = {
     language: [],
-    subLanguages: []
+    subLanguageLibraries: []
   };
 
   // TODO:Figure out why there is a render delay
@@ -17,10 +17,25 @@ export default class LanguageLibrary extends Component {
     API.get("libraries", `${this.props.match.params.languageLibraryId}`)
       .then(language => (newState.language = language))
       .then(() => this.setState(newState));
-      API.getAll("subLanguageLibraries", `libraryId=${this.props.match.params.languageLibraryId}`)
-      .then(subLanguages => (newState.subLanguages = subLanguages))
+      API.getAll("subLanguageLibraries", `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`)
+      .then(subLanguageLibraries => (newState.subLanguageLibraries = subLanguageLibraries))
       .then(() => this.setState(newState));
   }
+
+  addSubLanguageLibrary = data => {
+    API.post("subLanguageLibraries", data)
+      .then(() =>
+        API.getAll(
+          "subLanguageLibraries",
+          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+        )
+      )
+      .then(subLanguageLibraries =>
+        this.setState({
+          subLanguageLibraries: subLanguageLibraries
+        })
+      );
+  };
 
   render() {
     console.log("Are you here?", this.props.language);
@@ -46,7 +61,8 @@ export default class LanguageLibrary extends Component {
             <Header as="h1">Documentation</Header>
           </a>
           <br />
-          <SubLanguageLibraryForm />
+          {/* Add Sub Language Form */}
+          <SubLanguageLibraryForm languageId={this.state.language.id} currentUser={this.props.currentUser} addSubLanguageLibrary={this.addSubLanguageLibrary} />
         </Container>
         {/* Sub-Languages */}
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
@@ -59,7 +75,7 @@ export default class LanguageLibrary extends Component {
           </Header.Content>
         </Header>
           <div>
-          {this.state.subLanguages.map(subLanguage => (
+          {this.state.subLanguageLibraries.map(subLanguage => (
                 <SubLanguageLibraryList
                   key={subLanguage.id}
                   subLanguage={subLanguage}

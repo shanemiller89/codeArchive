@@ -9,7 +9,7 @@ import ApplicationViews from "../../ApplicationViews";
 
 const height = {
   marginTop: "45px",
-  height: "150vh"
+  minHeight: "100vh"
 };
 export default class SideBar extends Component {
   state = { visible: false };
@@ -72,7 +72,7 @@ export default class SideBar extends Component {
             </Link>
           </Sidebar>
 
-          <Sidebar.Pusher style={{ background: "#F5F5F5"}}>
+          <Sidebar.Pusher style={{ background: "#F5F5F5", minHeight: "100vh"}}>
             <ApplicationViews />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

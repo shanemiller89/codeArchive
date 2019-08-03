@@ -16,7 +16,8 @@ export default class SubLanguageLibraryForm extends Component {
   state = {
     title: "",
     link: "",
-    imageURL: null,
+    image: null,
+    libraryId: "",
     userId: this.props.currentUser
   };
 
@@ -27,14 +28,15 @@ export default class SubLanguageLibraryForm extends Component {
     const ref = this.storageRef.child(this.state.title);
 
     return ref
-      .put(this.state.imageURL)
+      .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
       .then(iURL => {
-        return this.props.addLanguage({
+        return this.props.addSubLanguageLibrary({
           title: this.state.title,
           link: this.state.link,
-          imageURL: iURL,
-          languageId: this.props.currentUser
+          image: iURL,
+          libraryId: this.props.languageId,
+          userId: this.props.currentUser
         });
       });
     // .then(() => this.props.history.push('/'));
@@ -93,10 +95,10 @@ export default class SubLanguageLibraryForm extends Component {
                         fluid
                         placeholder="Image"
                         onChange={e =>
-                          this.setState({ imageURL: e.target.files[0] })
+                          this.setState({ image: e.target.files[0] })
                         }
                         type="file"
-                        id="imageURL"
+                        id="image"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit
