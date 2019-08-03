@@ -1,13 +1,20 @@
 import React, { Component } from "react";
-import { Container, Header, Icon, Segment, Image, Divider } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Icon,
+  Segment,
+  Image,
+  Divider
+} from "semantic-ui-react";
 import API from "../../../modules/API";
-import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList"
-import SubLanguageForm from "./SubLibraryForm";
+import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList";
+import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
 
 export default class LanguageLibrary extends Component {
   state = {
     language: [],
-    subLanguages: []
+    subLanguageLibraries: []
   };
 
   // TODO:Figure out why there is a render delay
@@ -17,10 +24,67 @@ export default class LanguageLibrary extends Component {
     API.get("libraries", `${this.props.match.params.languageLibraryId}`)
       .then(language => (newState.language = language))
       .then(() => this.setState(newState));
-      API.getAll("subLanguageLibraries", `libraryId=${this.props.match.params.languageLibraryId}`)
-      .then(subLanguages => (newState.subLanguages = subLanguages))
+    API.getAll(
+      "subLanguageLibraries",
+      `userId=${this.props.currentUser}&libraryId=${
+        this.props.match.params.languageLibraryId
+      }`
+    )
+      .then(
+        subLanguageLibraries =>
+          (newState.subLanguageLibraries = subLanguageLibraries)
+      )
       .then(() => this.setState(newState));
   }
+
+  addSubLanguageLibrary = data => {
+    API.post("subLanguageLibraries", data)
+      .then(() =>
+        API.getAll(
+          "subLanguageLibraries",
+          `userId=${this.props.currentUser}&libraryId=${
+            this.props.match.params.languageLibraryId
+          }`
+        )
+      )
+      .then(subLanguageLibraries =>
+        this.setState({
+          subLanguageLibraries: subLanguageLibraries
+        })
+      );
+  };
+
+  deleteSubLanguageLibrary = id => {
+    API.delete("subLanguageLibraries", id)
+      .then(() =>
+        API.getAll(
+          "subLanguageLibraries",
+          `userId=${this.props.currentUser}&libraryId=${
+            this.props.match.params.languageLibraryId
+          }`
+        )
+      )
+      .then(subLanguageLibraries =>
+        this.setState({
+          subLanguageLibraries: subLanguageLibraries
+        })
+      );
+  };
+
+  updateSubLanguageLibrary = editedData => {
+    API.put("subLanguageLibraries", editedData)
+      .then(() =>
+        API.getAll(
+          "subLanguageLibraries",
+          `userId=${this.props.currentUser}&libraryId=${
+            this.props.match.params.languageLibraryId
+          }`
+        )
+      )
+      .then(subLanguageLibraries =>
+        this.setState({ subLanguageLibraries: subLanguageLibraries })
+      );
+  };
 
   render() {
     console.log("Are you here?", this.props.language);
@@ -45,8 +109,13 @@ export default class LanguageLibrary extends Component {
           >
             <Header as="h1">Documentation</Header>
           </a>
-
-          {/* <SubLanguageForm /> */}
+          <br />
+          {/* Add Sub Language Form */}
+          <SubLanguageLibraryForm
+            languageId={this.state.language.id}
+            currentUser={this.props.currentUser}
+            addSubLanguageLibrary={this.addSubLanguageLibrary}
+          />
         </Container>
         {/* Sub-Languages */}
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
@@ -58,14 +127,16 @@ export default class LanguageLibrary extends Component {
             </Header.Subheader>
           </Header.Content>
         </Header>
-          <div>
-          {this.state.subLanguages.map(subLanguage => (
-                <SubLanguageLibraryList
-                  key={subLanguage.id}
-                  subLanguage={subLanguage}
-                />
-            ))}
-          </div>
+        <div>
+          {this.state.subLanguageLibraries.map(subLanguage => (
+            <SubLanguageLibraryList
+              key={subLanguage.id}
+              subLanguage={subLanguage}
+              updateSubLanguageLibrary={this.updateSubLanguageLibrary}
+              deleteSubLanguageLibrary={this.deleteSubLanguageLibrary}
+            />
+          ))}
+        </div>
         {/* Archives */}
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="archive" style={{ color: "#15CA00" }} />

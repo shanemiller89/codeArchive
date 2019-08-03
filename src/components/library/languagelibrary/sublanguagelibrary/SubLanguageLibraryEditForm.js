@@ -11,29 +11,29 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from '../../modules/API'
+import API from '../../../../modules/API'
 
 // TODO:
 // 1.Handle image editing
 // 2.Write close Modal function
 
-export default class LanguageEditForm extends Component {
+export default class subLanguageLibraryEditForm extends Component {
   state = {
     title: "",
     link: "",
     image: null,
-    libraryTypeId: null,
+    libraryId: null,
     userId: JSON.parse(localStorage.getItem("user"))
   };
 
   componentDidMount() {
-    API.get("libraries", this.props.language.id)
-    .then(language => {
+    API.get("subLanguageLibraries", this.props.subLanguage.id)
+    .then(subLanguage => {
       this.setState({
-        title: language.title,
-        link: language.link,
-        image: language.image,
-        libraryTypeId: language.libraryTypeId,
+        title: subLanguage.title,
+        link: subLanguage.link,
+        image: subLanguage.image,
+        libraryId: subLanguage.libraryId,
         userId: this.state.userId,
       });
     });
@@ -63,17 +63,17 @@ handleFieldChange = evt => {
     this.setState(stateToChange);
   };
 
-  updateExistingLanguage = evt => {
+  updateExistingSubLanguage = evt => {
     evt.preventDefault();
     const editedLanguage = {
       title: this.state.title,
       link: this.state.link,
       image: this.state.image,
-      libraryTypeId: this.state.libraryTypeId,
+      libraryId: this.state.libraryId,
       userId: this.state.userId,
-      id: this.props.language.id
+      id: this.props.subLanguage.id
     };
-    this.props.updateLanguageLibrary(editedLanguage);
+    this.props.updateSubLanguageLibrary(editedLanguage);
   };
 
   render() {
@@ -97,7 +97,7 @@ handleFieldChange = evt => {
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit Language
+              Edit Sub-Language
             </Header>
 
             <Modal.Description>
@@ -107,7 +107,7 @@ handleFieldChange = evt => {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Language"
+                        placeholder="Sub-Language"
                         onChange={this.handleFieldChange}
                         id="title"
                         value={this.state.title}
@@ -129,7 +129,7 @@ handleFieldChange = evt => {
                         id="image"
                         value={this.state.image}
                       /> */}
-                      <Button primary fluid size="large" onClick={this.updateExistingLanguage}>
+                      <Button primary fluid size="large" onClick={this.updateExistingSubLanguage}>
                         Submit
                       </Button>
                     </Segment>

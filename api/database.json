@@ -19,8 +19,8 @@
     },
     {
       "title": "CSS",
-      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=61089adb-5b12-497f-a34d-2276b5a5dbd4",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=933eca36-4ab2-47c8-83d1-013981272684",
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
@@ -44,6 +44,14 @@
       "libraryId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
+    },
+    {
+      "title": "Angular JS",
+      "link": "angular.com",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FAngular%20JS?alt=media&token=c1d07780-e2e8-43a4-b25d-93e71ab9a248",
+      "libraryId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 3
     }
   ]
 }

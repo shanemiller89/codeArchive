@@ -18,10 +18,10 @@ export default class Languages extends Component {
     return (
       <React.Fragment>
         <Grid.Column floated="left">
-          <Card>
+          <Card style={{margin: "2.5em 4em"}}>
               <Image src={this.props.language.image} wrapped ui={false} />
             <Card.Content>
-            <Link className="nav-link" to={`/library/language/${this.props.language.id}`}>
+            <Link className="nav-link" to={`/library/language/${this.props.language.id}`} style={{fontSize: "1.5em"}}>
               <Card.Header>{this.props.language.title}</Card.Header>
               </Link>
               <Dropdown icon="list" floated="right">
