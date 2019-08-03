@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Header, Icon, Segment, Image, Divider } from "semantic-ui-react";
 import API from "../../../modules/API";
 import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList"
-import SubLanguageForm from "./SubLibraryForm";
+import SubLanguageLibraryForm from "./SubLanguageLibraryForm";
 
 export default class LanguageLibrary extends Component {
   state = {
@@ -45,8 +45,8 @@ export default class LanguageLibrary extends Component {
           >
             <Header as="h1">Documentation</Header>
           </a>
-
-          {/* <SubLanguageForm /> */}
+          <br />
+          <SubLanguageLibraryForm />
         </Container>
         {/* Sub-Languages */}
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
