@@ -10,10 +10,13 @@ export default class LanguageLibrary extends Component {
     subLanguages: []
   };
 
+  // TODO:Figure out why there is a render delay
+
   componentDidMount() {
     const newState = {};
-    // API.get("libraries", `${this.props.match.params.languageLibraryId}`)
-    //   .then(language => (newState.language = language))
+    API.get("libraries", `${this.props.match.params.languageLibraryId}`)
+      .then(language => (newState.language = language))
+      .then(() => this.setState(newState));
       API.getAll("subLanguageLibraries", `libraryId=${this.props.match.params.languageLibraryId}`)
       .then(subLanguages => (newState.subLanguages = subLanguages))
       .then(() => this.setState(newState));
@@ -40,7 +43,7 @@ export default class LanguageLibrary extends Component {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Header as="h2">Documentation</Header>
+            <Header as="h1">Documentation</Header>
           </a>
 
           {/* <SubLanguageForm /> */}
