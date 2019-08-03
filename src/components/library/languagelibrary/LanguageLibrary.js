@@ -37,6 +37,21 @@ export default class LanguageLibrary extends Component {
       );
   };
 
+  deleteSubLanguageLibrary = id => {
+    API.delete("subLanguageLibraries", id)
+      .then(() =>
+        API.getAll(
+          "subLanguageLibraries",
+          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+        )
+      )
+      .then(subLanguageLibraries =>
+        this.setState({
+          subLanguageLibraries: subLanguageLibraries
+        })
+      );
+  };
+
   render() {
     console.log("Are you here?", this.props.language);
     return (
@@ -79,6 +94,7 @@ export default class LanguageLibrary extends Component {
                 <SubLanguageLibraryList
                   key={subLanguage.id}
                   subLanguage={subLanguage}
+                  deleteSubLanguageLibrary={this.deleteSubLanguageLibrary}
                 />
             ))}
           </div>
