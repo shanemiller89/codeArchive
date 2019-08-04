@@ -100,10 +100,44 @@ export default class LanguageLibrary extends Component {
   // FOR CRUD OF LANGUAGE ARCHIVES //
 
   addArchive = data => {
-    API.post("archives", data)
+    API.post("archives", data);
   };
   addLibraryArchive = data => {
     API.post("libraryArchives", data)
+      .then(() =>
+        API.getAll(
+          "libraryArchives",
+          `_expand=archive&libraryId=${
+            this.props.match.params.languageLibraryId
+          }`
+        )
+      )
+      .then(languageArchives =>
+        this.setState({
+          languageArchives: languageArchives
+        })
+      );
+  };
+
+  deleteArchive = id => {
+    API.delete("archives", id)
+      .then(() =>
+        API.getAll(
+          "libraryArchives",
+          `_expand=archive&libraryId=${
+            this.props.match.params.languageLibraryId
+          }`
+        )
+      )
+      .then(languageArchives =>
+        this.setState({
+          languageArchives: languageArchives
+        })
+      );
+  };
+
+  updateArchive = editedData => {
+    API.put("archives", editedData)
       .then(() =>
         API.getAll(
           "libraryArchives",
@@ -192,8 +226,8 @@ export default class LanguageLibrary extends Component {
             <LibraryArchiveList
               key={archive.archive.id}
               archive={archive}
-              // updateSubLanguageLibrary={this.updateSubLanguageLibrary}
-              // deleteSubLanguageLibrary={this.deleteSubLanguageLibrary}
+              updateArchive={this.updateArchive}
+              deleteArchive={this.deleteArchive}
             />
           ))}
         </div>

@@ -63,7 +63,7 @@
   ],
   "archives": [
     {
-      "title": "Map ()",
+      "title": "map ( )",
       "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
       "id": 1
     },

@@ -9,6 +9,7 @@ import {
   Confirm
 
 } from "semantic-ui-react";
+import LibraryArchiveEditForm from "./LibraryArchiveEditForm";
 
 export default class LibraryArchivesList extends Component {
   state = {
@@ -36,10 +37,10 @@ export default class LibraryArchivesList extends Component {
               <Grid.Column verticalAlign="middle">
               <Dropdown icon="list" floated="right" style={{fontSize: "1.75em"}}>
                 <Dropdown.Menu direction="left">
-                  {/* <SubLanguageLibraryEditForm
-                    subLanguage={this.props.subLanguage}
-                    updateSubLanguageLibrary={this.props.updateSubLanguageLibrary}
-                  /> */}
+                  <LibraryArchiveEditForm
+                    archive={this.props.archive}
+                    updateArchive={this.props.updateArchive}
+                  />
                   <Dropdown.Item
                     icon="trash alternate"
                     description="Delete"
@@ -52,9 +53,9 @@ export default class LibraryArchivesList extends Component {
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}
-                    // onConfirm={() =>
-                    //   this.props.deleteSubLanguageLibrary(this.props.subLanguage.id)
-                    // }
+                    onConfirm={() =>
+                      this.props.deleteArchive(this.props.archive.archive.id)
+                    }
                   />
                 </Dropdown.Menu>
               </Dropdown>
