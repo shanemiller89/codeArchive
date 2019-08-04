@@ -45,7 +45,7 @@ class NavBar extends Component {
     this.setState({ user: null });
     logout();
     this.props.history.push("/")
-    window.location.reload();
+    // window.location.reload();
   }
 
 
