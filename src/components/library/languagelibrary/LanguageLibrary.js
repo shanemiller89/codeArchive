@@ -10,8 +10,8 @@ import {
 import API from "../../../modules/API";
 import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList";
 import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
-import LibraryArchiveList from "../../../widgets/archives/LibraryArchivesList";
-import LibraryArchiveForm from "../../../widgets/archives/LibraryArchiveForm";
+import LanguageArchiveList from "../../../widgets/archives/LanguageArchivesList";
+import LanguageArchiveForm from "../../../widgets/archives/LanguageArchiveForm";
 
 export default class LanguageLibrary extends Component {
   state = {
@@ -102,7 +102,7 @@ export default class LanguageLibrary extends Component {
   addArchive = data => {
     API.post("archives", data);
   };
-  addLibraryArchive = data => {
+  addLanguageArchive = data => {
     API.post("libraryArchives", data)
       .then(() =>
         API.getAll(
@@ -173,7 +173,13 @@ export default class LanguageLibrary extends Component {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Header as="h1">Documentation</Header>
+            <Header as="h1">
+              <Icon
+                name="linkify"
+                style={{ fontSize: "1em", color: "#15CA00" }}
+              />
+              <Header.Content>Documentation</Header.Content>
+            </Header>
           </a>
           <br />
           {/* Add Sub Language Form */}
@@ -185,10 +191,10 @@ export default class LanguageLibrary extends Component {
           <br />
           <br />
           {/* Add Language Archive Form */}
-          <LibraryArchiveForm
+          <LanguageArchiveForm
             languageId={this.state.language.id}
             addArchive={this.addArchive}
-            addLibraryArchive={this.addLibraryArchive}
+            addLanguageArchive={this.addLanguageArchive}
           />
         </Container>
         {/* Sub-Languages */}
@@ -223,7 +229,7 @@ export default class LanguageLibrary extends Component {
         </Header>
         <div>
           {this.state.languageArchives.map(archive => (
-            <LibraryArchiveList
+            <LanguageArchiveList
               key={archive.archive.id}
               archive={archive}
               updateArchive={this.updateArchive}

@@ -3,14 +3,16 @@ import { Route } from "react-router-dom";
 import Home from "./Home";
 import Library from "./components/library/Library";
 import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrary";
-import SubLanguageLibrary from "./components/library/languagelibrary/sublanguagelibrary/SubLanguageLibrary"
+import SubLanguageLibrary from "./components/library/languagelibrary/sublanguagelibrary/SubLanguageLibrary";
 import API from "./modules/API";
+import LanguageArchive from "./widgets/archives/LanguageArchive";
 
 export default class ApplicationViews extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     languageLibraries: [],
-    subLanguageLibraries: []
+    subLanguageLibraries: [],
+    languageArchives: []
   };
 
   componentDidMount() {
@@ -20,10 +22,14 @@ export default class ApplicationViews extends Component {
         languageLibraries => (newState.languageLibraries = languageLibraries)
       )
       .then(() => this.setState(newState));
-      API.getAll("subLanguageLibraries", `userId=${this.state.currentUser}`)
+    API.getAll("subLanguageLibraries", `userId=${this.state.currentUser}`)
       .then(
-        subLanguageLibraries => (newState.subLanguageLibraries = subLanguageLibraries)
+        subLanguageLibraries =>
+          (newState.subLanguageLibraries = subLanguageLibraries)
       )
+      .then(() => this.setState(newState));
+    API.getAll("libraryArchives", `_expand=archive`)
+      .then(languageArchives => (newState.languageArchives = languageArchives))
       .then(() => this.setState(newState));
   }
 
@@ -66,12 +72,30 @@ export default class ApplicationViews extends Component {
           render={props => {
             this.state.subLanguageLibraries.find(
               subLanguage =>
-                subLanguage.id === parseInt(props.match.params.subLanguageLibraryId)
+                subLanguage.id ===
+                parseInt(props.match.params.subLanguageLibraryId)
             );
             return (
               <SubLanguageLibrary
                 {...props}
                 currentUser={this.state.currentUser}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/library/language/archive/:languageArchiveId(\d+)"
+          render={props => {
+            this.state.languageArchives.find(
+              languageArchive =>
+                languageArchive.archive.id ===
+                parseInt(props.match.params.subLanguageLibraryId)
+            );
+            return (
+              <LanguageArchive
+                {...props}
+                // languageArchive={this.state.languageArchive}
               />
             );
           }}

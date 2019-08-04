@@ -7,42 +7,41 @@ import {
   Form,
   Segment,
   Grid,
-  Label
+  Dropdown
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-
-export default class LibraryArchiveForm extends Component {
+import API from "../../modules/API"
+export default class LanguageArchiveEditForm extends Component {
   state = {
     title: "",
     link: "",
-    libraryId: null,
-    archiveId: null,
-    id: Math.floor(Math.random() * 99999)  
-
   };
 
-//   assignArchiveId = () => {
-//     const id = Math.floor(Math.random() * 99999);
-//     this.setState({id: id}) 
-//   }
+  componentDidMount() {
+    API.get("archives", this.props.archive.archive.id)
+    .then(archive => {
+      this.setState({
+        title: archive.title,
+        link: archive.link,
+      });
+    });
+  }
 
-  submit = () => {
-    // this.assignArchiveId()
-    const archive = {
+handleFieldChange = evt => {
+    const stateToChange = {};
+    stateToChange[evt.target.id] = evt.target.value;
+    this.setState(stateToChange);
+  };
+
+  updateExistingArchive = evt => {
+    evt.preventDefault();
+    const editedArchive = {
       title: this.state.title,
       link: this.state.link,
-      id: this.state.id
+      id: this.props.archive.archive.id
     };
-    const libraryArchive = {
-        libraryId: this.props.languageId,
-        archiveId: this.state.id
-    }
-    this.props.addArchive(archive)
-    this.props.addLibraryArchive(libraryArchive)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.props.updateArchive(editedArchive);
   };
 
   // TODO:
@@ -53,15 +52,10 @@ export default class LibraryArchiveForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-            <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
-                <Icon name="plus" />
-                Add
-              </Button>
-              <Label basic pointing="left">
-                Archive
-              </Label>
-            </Button>
+            <Dropdown.Item
+            icon="pencil"
+            description="Edit"
+          />
           }
           style={{ width: "30em" }}
         >
@@ -74,7 +68,7 @@ export default class LibraryArchiveForm extends Component {
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add A New Archive
+              Edit Existing Archive
             </Header>
 
             <Modal.Description>
@@ -84,17 +78,17 @@ export default class LibraryArchiveForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Name of Archive"
-                        onChange={e => this.setState({ title: e.target.value })}
+                        value={this.state.title}
+                        onChange={this.handleFieldChange}
                         id="title"
                       />
                       <Form.Input
                         fluid
-                        placeholder="Intial Documentation URL (optional)"
-                        onChange={e => this.setState({ link: e.target.value })}
+                        value={this.state.link}
+                        onChange={this.handleFieldChange}
                         id="link"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <Button primary fluid size="large" onClick={this.updateExistingArchive}>
                         Submit
                       </Button>
                     </Segment>
