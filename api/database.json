@@ -53,20 +53,46 @@
       "id": 2
     },
     {
-      "title": "Angular JS",
-      "link": "angular.com",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FAngular%20JS?alt=media&token=c1d07780-e2e8-43a4-b25d-93e71ab9a248",
-      "libraryId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 3
-    },
-    {
       "title": "Semantic UI",
       "link": "http://python.com",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FSemantic%20UI?alt=media&token=3be438a3-0af5-44c1-85a7-6b727933c74f",
       "libraryId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 4
+    }
+  ],
+  "archives": [
+    {
+      "title": "map ( )",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+      "id": 1
+    },
+    {
+      "title": "border-radius",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+      "id": 2
+    },
+    {
+      "title": "Local Scope",
+      "link": "",
+      "id": 18069
+    }
+  ],
+  "libraryArchives": [
+    {
+      "libraryId": 1,
+      "archiveId": 1,
+      "id": 1
+    },
+    {
+      "libraryId": 2,
+      "archiveId": 2,
+      "id": 2
+    },
+    {
+      "libraryId": 1,
+      "archiveId": 18069,
+      "id": 3
     }
   ]
 }

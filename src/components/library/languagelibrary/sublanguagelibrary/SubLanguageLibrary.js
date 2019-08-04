@@ -43,7 +43,13 @@ export default class SubLanguageLibrary extends Component {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Header as="h1">Documentation</Header>
+            <Header as="h1">
+              <Icon
+                name="linkify"
+                style={{ fontSize: "1em", color: "#15CA00" }}
+              />
+              <Header.Content>Documentation</Header.Content>
+            </Header>
           </a>
           <br />
         </Container>
