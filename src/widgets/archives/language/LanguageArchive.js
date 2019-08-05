@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Container, Header, Icon, List, Card } from "semantic-ui-react";
+import { Container, Header, Icon, List, Card, Grid } from "semantic-ui-react";
 import API from "../../../modules/API";
 import BookmarksList from "../resources/language/BookmarksList";
 import LanguageBookmarkForm from "../resources/language/LanguageBookmarkForm";
 import LanguageVideoCard from "../resources/language/LanguageVideoCard";
 import LanguageVideoForm from "../resources/language/LanguageVideoForm";
+import LanguageNoteSegment from "../records/language/LanguageNoteSegment";
+import LanguageNoteForm from "../records/language/LanguageNoteForm";
 
 export default class LanguageArchive extends Component {
   state = {
@@ -26,9 +28,7 @@ export default class LanguageArchive extends Component {
       "records",
       `archiveId=${this.props.match.params.languageArchiveId}&recordTypeId=1`
     )
-      .then(
-        languageNotes => (newState.languageNotes = languageNotes)
-      )
+      .then(languageNotes => (newState.languageNotes = languageNotes))
       .then(() => this.setState(newState));
     // Get All bookmarks //
     API.getAll(
@@ -39,7 +39,7 @@ export default class LanguageArchive extends Component {
         languageBookmarks => (newState.languageBookmarks = languageBookmarks)
       )
       .then(() => this.setState(newState));
-      // Get All videos //
+    // Get All videos //
     API.getAll(
       "resources",
       `archiveId=${this.props.match.params.languageArchiveId}&resourceTypeId=2`
@@ -48,6 +48,55 @@ export default class LanguageArchive extends Component {
       .then(() => this.setState(newState));
   }
 
+  // FOR CRUD OF NOTE //
+  addLanguageNote = data => {
+    API.post("records", data)
+      .then(() =>
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&recordTypeId=1`
+        )
+      )
+      .then(languageNotes =>
+        this.setState({
+          languageNotes: languageNotes
+        })
+      );
+  };
+  deleteLanguageNote = id => {
+    API.delete("records", id)
+      .then(() =>
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&recordTypeId=1`
+        )
+      )
+      .then(languageNotes =>
+        this.setState({
+          languageNotes: languageNotes
+        })
+      );
+  };
+  updateLanguageNote = editedData => {
+    API.put("records", editedData)
+      .then(() =>
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&recordTypeId=1`
+        )
+      )
+      .then(languageNotes =>
+        this.setState({
+          languageNotes: languageNotes
+        })
+      );
+  };
   // FOR CRUD OF BOOKMARK //
   addLanguageBookmark = data => {
     API.post("resources", data)
@@ -176,14 +225,30 @@ export default class LanguageArchive extends Component {
               <Header.Content>Documentation</Header.Content>
             </Header>
           </a>
-          {/* <br /> */}
-          {/* Add Sub Language Form */}
-
+          <br />
+          {/* Add Archive Form */}
+          <LanguageNoteForm
+            archiveId={this.archiveId}
+            addLanguageNote={this.addLanguageNote}
+          />
           {/* <br />
           <br /> */}
           {/* Add Language Archive Form */}
         </Container>
-        {/* Resources */}
+        <br />
+        {/* Notes and Snippets */}
+        {/* <Grid columns> */}
+        {this.state.languageNotes.map(note => (
+          <LanguageNoteSegment
+            key={note.id}
+            note={note}
+            deleteLanguageNote={this.deleteLanguageNote}
+            updateLanguageNote={this.updateLanguageNote}
+          />
+        ))}
+        {/* </Grid> */}
+        <br />
+        {/* Bookmarks */}
         <div>
           <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
             <Icon name="bookmark" style={{ color: "#15CA00" }} />
@@ -216,9 +281,9 @@ export default class LanguageArchive extends Component {
             <Icon name="video" style={{ color: "#15CA00" }} />
             <Header.Content>
               Videos
-              <LanguageVideoForm 
-              archiveId={this.archiveId}
-              addLanguageVideo={this.addLanguageVideo}
+              <LanguageVideoForm
+                archiveId={this.archiveId}
+                addLanguageVideo={this.addLanguageVideo}
               />
               <Header.Subheader>
                 All videos relating to this Archive
