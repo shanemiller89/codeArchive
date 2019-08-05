@@ -94,5 +94,53 @@
       "archiveId": 18069,
       "id": 3
     }
+  ],
+  "resources": [
+    {
+      "title": "Medium Article: Map, Reduce, and Filter",
+      "link": "https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d",
+      "description": "Breaks down uses of Javascript Array methods, including map",
+      "image": null,
+      "archiveId": 1,
+      "resourceTypeId": 1,
+      "id": 1
+    },
+    {
+      "title": "Medium Article: Map, Reduce, and Filter",
+      "link": "https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d",
+      "description": "Breaks down uses of Javascript Array methods, including map",
+      "image": null,
+      "archiveId": 2,
+      "resourceTypeId": 1,
+      "id": 2
+    },
+    {
+      "title": "",
+      "link": "",
+      "description": "",
+      "image": "",
+      "archiveId": 1,
+      "resourceTypeId": 2,
+      "id": 3
+    },
+    {
+      "title": "Map in JavaScript",
+      "link": "https://www.geeksforgeeks.org/map-in-javascript/",
+      "description": "GeekforGeek article about Map",
+      "image": null,
+      "archiveId": "1",
+      "resourceTypeId": 1,
+      "id": 5
+    }
+  ],
+  "resourceTypes": [
+    {
+      "type": "bookmark",
+      "id": 1
+    },
+    {
+      "type": "video",
+      "id": 2
+    }
   ]
 }
