@@ -9,6 +9,7 @@ import LanguageVideoForm from "../resources/language/LanguageVideoForm";
 export default class LanguageArchive extends Component {
   state = {
     languageArchive: [],
+    languageNotes: [],
     languageBookmarks: [],
     languageVideos: []
   };
@@ -20,6 +21,15 @@ export default class LanguageArchive extends Component {
     API.get("archives", `${this.props.match.params.languageArchiveId}`)
       .then(languageArchive => (newState.languageArchive = languageArchive))
       .then(() => this.setState(newState));
+    // Get ALl Notes //
+    API.getAll(
+      "records",
+      `archiveId=${this.props.match.params.languageArchiveId}&recordTypeId=1`
+    )
+      .then(
+        languageNotes => (newState.languageNotes = languageNotes)
+      )
+      .then(() => this.setState(newState));
     // Get All bookmarks //
     API.getAll(
       "resources",
@@ -29,13 +39,13 @@ export default class LanguageArchive extends Component {
         languageBookmarks => (newState.languageBookmarks = languageBookmarks)
       )
       .then(() => this.setState(newState));
+      // Get All videos //
     API.getAll(
       "resources",
       `archiveId=${this.props.match.params.languageArchiveId}&resourceTypeId=2`
     )
       .then(languageVideos => (newState.languageVideos = languageVideos))
       .then(() => this.setState(newState));
-    // Get All Videos //
   }
 
   // FOR CRUD OF BOOKMARK //
