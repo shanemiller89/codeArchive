@@ -12,34 +12,28 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class LanguageArchiveForm extends Component {
+export default class LanguageVideoForm extends Component {
   state = {
     title: "",
     link: "",
-    libraryId: null,
-    archiveId: null,
-    id: Math.floor(Math.random() * 99999)  
+    description: "",
+    image: "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
+    archiveId: this.props.archiveId,
+    resourceTypeId: 2,
 
   };
 
-//   assignArchiveId = () => {
-//     const id = Math.floor(Math.random() * 99999);
-//     this.setState({id: id}) 
-//   }
-
   submit = () => {
-    // this.assignArchiveId()
-    const archive = {
+    const video = {
       title: this.state.title,
       link: this.state.link,
-      id: this.state.id
+      description: this.state.description,
+      image: this.state.image,
+      archiveId: this.state.archiveId,
+      resourceTypeId: this.state.resourceTypeId,
+
     };
-    const libraryArchive = {
-        libraryId: this.props.languageId,
-        archiveId: this.state.id
-    }
-    this.props.addArchive(archive)
-    this.props.addLanguageArchive(libraryArchive)
+    this.props.addLanguageVideo(video)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -53,14 +47,8 @@ export default class LanguageArchiveForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-            <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
-                <Icon name="plus" />
-                Add
-              </Button>
-              <Label basic pointing="left">
-                Archive
-              </Label>
+          <Button style={{ background: "#15CA00", color: "white", marginLeft: "35.2em", borderRadius: "100%" }} size="mini" icon>
+            <Icon name="plus" />
             </Button>
           }
           style={{ width: "30em" }}
@@ -69,12 +57,12 @@ export default class LanguageArchiveForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="file code outline"
+                  name="video"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add A New Archive
+              Add A New Video
             </Header>
 
             <Modal.Description>
@@ -84,15 +72,21 @@ export default class LanguageArchiveForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Name of Archive"
+                        placeholder="Name of Video"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
                       <Form.Input
                         fluid
-                        placeholder="Intial Documentation URL (optional)"
+                        placeholder="URL of Resource"
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
+                      />
+                    <Form.Input
+                        fluid
+                        placeholder="Description (optional)"
+                        onChange={e => this.setState({ description: e.target.value })}
+                        id="description"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

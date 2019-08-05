@@ -75,7 +75,7 @@
     {
       "title": "Local Scope",
       "link": "",
-      "id": 18069
+      "id": 3
     }
   ],
   "libraryArchives": [
@@ -91,7 +91,7 @@
     },
     {
       "libraryId": 1,
-      "archiveId": 18069,
+      "archiveId": 3,
       "id": 3
     }
   ],
@@ -106,31 +106,31 @@
       "id": 1
     },
     {
-      "title": "Medium Article: Map, Reduce, and Filter",
-      "link": "https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d",
-      "description": "Breaks down uses of Javascript Array methods, including map",
-      "image": null,
-      "archiveId": 2,
-      "resourceTypeId": 1,
-      "id": 2
-    },
-    {
-      "title": "",
-      "link": "",
-      "description": "",
-      "image": "",
+      "title": "Javascript Array Map Method",
+      "link": "https://www.youtube.com/watch?v=hfYa4ugeyuc&t=25s",
+      "description": "All Arrays in JavaScript have a map method which allows us to loop through every element in the original array, perform some action and then generate a new Array based on our actions.",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e ",
       "archiveId": 1,
       "resourceTypeId": 2,
-      "id": 3
+      "id": 2
     },
     {
       "title": "Map in JavaScript",
       "link": "https://www.geeksforgeeks.org/map-in-javascript/",
-      "description": "GeekforGeek article about Map",
+      "description": "Geek for Geek article",
       "image": null,
       "archiveId": "1",
       "resourceTypeId": 1,
-      "id": 5
+      "id": 3
+    },
+    {
+      "title": "Python",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "description": "test x sfsd sdv sdvdfsdfsdfsff af fsdfrd fsdf f ",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
+      "archiveId": "1",
+      "resourceTypeId": 2,
+      "id": 4
     }
   ],
   "resourceTypes": [

@@ -12,28 +12,24 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class LanguageBookmarkForm extends Component {
+export default class LanguageArchiveForm extends Component {
   state = {
     title: "",
     link: "",
-    description: "",
-    image: null,
-    archiveId: this.props.archiveId,
-    resourceTypeId: 1,
-
+    libraryId: null,
+    archiveId: null,
   };
 
   submit = () => {
-    const bookmark = {
+    const archive = {
       title: this.state.title,
       link: this.state.link,
-      description: this.state.description,
-      image: this.state.image,
-      archiveId: this.state.archiveId,
-      resourceTypeId: this.state.resourceTypeId,
-
     };
-    this.props.addLanguageBookmark(bookmark)
+    this.props.addArchive(archive)
+    .then(newArchive => 
+      this.props.addLanguageArchive({libraryId: this.props.languageId, archiveId: newArchive.id})
+      )
+    
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -47,8 +43,14 @@ export default class LanguageBookmarkForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-          <Button style={{ background: "#15CA00", color: "white", marginLeft: "30em", borderRadius: "100%" }} size="mini" icon>
-            <Icon name="plus" />
+            <Button primary as="div" labelPosition="right">
+              <Button style={{ background: "#15CA00", color: "white" }} icon>
+                <Icon name="plus" />
+                Add
+              </Button>
+              <Label basic pointing="left">
+                Archive
+              </Label>
             </Button>
           }
           style={{ width: "30em" }}
@@ -57,12 +59,12 @@ export default class LanguageBookmarkForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="file code outline"
+                  name="archive"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add A New Bookmark
+              Add A New Archive
             </Header>
 
             <Modal.Description>
@@ -72,21 +74,15 @@ export default class LanguageBookmarkForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Name of Website or Article"
+                        placeholder="Name of Archive"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
                       <Form.Input
                         fluid
-                        placeholder="URL of Resource"
+                        placeholder="Intial Documentation URL (optional)"
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
-                      />
-                    <Form.Input
-                        fluid
-                        placeholder="Description (optional)"
-                        onChange={e => this.setState({ description: e.target.value })}
-                        id="description"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit
