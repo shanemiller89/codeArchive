@@ -23,14 +23,6 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
-    },
-    {
-      "title": "CSS",
-      "link": "http://python.com",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=fb15c37f-5764-4590-bc84-c87ba00c4862",
-      "libraryTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 2
     }
   ],
   "libraryTypes": [
@@ -51,14 +43,6 @@
       "libraryId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
-    },
-    {
-      "title": "Semantic UI",
-      "link": "http://python.com",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FSemantic%20UI?alt=media&token=3be438a3-0af5-44c1-85a7-6b727933c74f",
-      "libraryId": 2,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 4
     }
   ],
   "archives": [
@@ -83,11 +67,6 @@
       "libraryId": 1,
       "archiveId": 1,
       "id": 1
-    },
-    {
-      "libraryId": 2,
-      "archiveId": 2,
-      "id": 2
     },
     {
       "libraryId": 1,
@@ -142,6 +121,14 @@
       "archiveId": 1,
       "recordTypeId": 1,
       "id": 1
+    },
+    {
+      "title": "Problem",
+      "text": "This is a note.\n\nIt's about a problem.",
+      "image": null,
+      "archiveId": "1",
+      "recordTypeId": 1,
+      "id": 2
     }
   ],
   "recordTypes": [
