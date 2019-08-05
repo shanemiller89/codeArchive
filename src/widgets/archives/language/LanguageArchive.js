@@ -104,6 +104,38 @@ export default class LanguageArchive extends Component {
         })
       );
   };
+  deleteLanguageVideo = id => {
+    API.delete("resources", id)
+      .then(() =>
+        API.getAll(
+          "resources",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&resourceTypeId=2`
+        )
+      )
+      .then(languageVideos =>
+        this.setState({
+          languageVideos: languageVideos
+        })
+      );
+  };
+  updateLanguageVideo = editedData => {
+    API.put("resources", editedData)
+      .then(() =>
+        API.getAll(
+          "resources",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&resourceTypeId=2`
+        )
+      )
+      .then(languageVideos =>
+        this.setState({
+          languageVideos: languageVideos
+        })
+      );
+  };
 
   render() {
     return (
@@ -183,13 +215,13 @@ export default class LanguageArchive extends Component {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          <Card.Group itemsPerRow={3}>
+          <Card.Group itemsPerRow={2}>
             {this.state.languageVideos.map(video => (
               <LanguageVideoCard
                 key={video.id}
                 video={video}
-                // deleteLanguageLibrary={this.deleteLanguageLibrary}
-                // updateLanguageLibrary={this.updateLanguageLibrary}
+                deleteLanguageVideo={this.deleteLanguageVideo}
+                updateLanguageVideo={this.updateLanguageVideo}
               />
             ))}
           </Card.Group>

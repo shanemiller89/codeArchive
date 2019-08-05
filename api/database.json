@@ -109,7 +109,7 @@
       "title": "Javascript Array Map Method",
       "link": "https://www.youtube.com/watch?v=hfYa4ugeyuc&t=25s",
       "description": "All Arrays in JavaScript have a map method which allows us to loop through every element in the original array, perform some action and then generate a new Array based on our actions.",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e ",
+      "image": "http://i3.ytimg.com/vi/hfYa4ugeyuc/hqdefault.jpg",
       "archiveId": 1,
       "resourceTypeId": 2,
       "id": 2
@@ -122,15 +122,6 @@
       "archiveId": "1",
       "resourceTypeId": 1,
       "id": 3
-    },
-    {
-      "title": "Python",
-      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "description": "test x sfsd sdv sdvdfsdfsdfsff af fsdfrd fsdf f ",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
-      "archiveId": "1",
-      "resourceTypeId": 2,
-      "id": 4
     }
   ],
   "resourceTypes": [

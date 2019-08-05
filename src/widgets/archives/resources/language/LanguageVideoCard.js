@@ -1,17 +1,51 @@
 import React, { Component } from "react";
-import { Card, Grid, Image } from "semantic-ui-react";
+import { Card, Grid, Image, Dropdown, Confirm } from "semantic-ui-react";
+import LanguageVideoEditForm from "./LanguageVideoEditForm"
 
 export default class LanguageVideoCard extends Component {
+  state = {
+    open: false
+  };
+
+  open = () => this.setState({ open: true });
+  close = () => this.setState({ open: false });
+
   render() {
     return (
       <React.Fragment>
         <Grid.Column floated="left">
-          <Card style={{margin: "2.5em 4em", width: "32em"}}>
+          <Card style={{margin: "2.5em 4em", width: "45em"}}>
             <Card.Content>
-              <Image src={this.props.video.image} floated="left" size="tiny" />
+              <Image src={this.props.video.image} floated="left" size="small" />
+              <Card.Header>
             <a href={this.props.video.link} style={{fontSize: "1em"}}>
-              <Card.Header>{this.props.video.title}</Card.Header>
+              {this.props.video.title}
               </a>
+              <Dropdown icon="list" style={{fontSize: ".75em", marginLeft: "1em"}}>
+                <Dropdown.Menu>
+                  <LanguageVideoEditForm
+                    video={this.props.video}
+                    updateLanguageVideo={this.props.updateLanguageVideo}
+                  />
+                  <Dropdown.Item
+                    icon="trash alternate"
+                    description="Delete"
+                    onClick={this.open}
+                  />
+                  <Confirm
+                    size="mini"
+                    header="Delete Library"
+                    content="Are you sure you want to delete this library?"
+                    confirmButton="Yes"
+                    open={this.state.open}
+                    onCancel={this.close}
+                    onConfirm={() =>
+                      this.props.deleteLanguageVideo(this.props.video.id)
+                    }
+                  />
+                </Dropdown.Menu>
+              </Dropdown>
+              </Card.Header>
               <Card.Meta>
                   {this.props.video.description}
               </Card.Meta>
