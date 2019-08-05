@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import {
   Segment,
   Header,
@@ -9,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import LanguageNoteEditForm from "./LanguageNoteEditForm";
 
-export default class LanguageNoteSegment extends Component {
+export default class LanguageSnippetSegment extends Component {
   state = {
     open: false
   };
@@ -22,12 +24,12 @@ export default class LanguageNoteSegment extends Component {
       <React.Fragment>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
-            <Icon name="sticky note" style={{ color: "#15CA00" }} />
+            <Icon name="code" style={{ color: "#15CA00" }} />
           </Header>
           <Segment style={{ width: "80%" }}>
             <Header as="h1">
-              {this.props.note.title}
-              <Dropdown
+              {this.props.snippet.title}
+              {/* <Dropdown
                 icon="list"
                 style={{ fontSize: ".75em", marginLeft: "1em" }}
               >
@@ -53,12 +55,11 @@ export default class LanguageNoteSegment extends Component {
                     }
                   />
                 </Dropdown.Menu>
-              </Dropdown>
+              </Dropdown> */}
             </Header>
-            <div style={{ whiteSpace: "pre" }}>{this.props.note.text}</div>
-            {this.props.note.image === !null ? (
-              <Image src={this.props.note.title} />
-            ) : null}
+            <SyntaxHighlighter language="javascript" style={dark} showLineNumbers={true}>
+              {this.props.snippet.text}
+            </SyntaxHighlighter>
           </Segment>
         </div>
       </React.Fragment>

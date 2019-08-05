@@ -7,11 +7,14 @@ import LanguageVideoCard from "../resources/language/LanguageVideoCard";
 import LanguageVideoForm from "../resources/language/LanguageVideoForm";
 import LanguageNoteSegment from "../records/language/LanguageNoteSegment";
 import LanguageNoteForm from "../records/language/LanguageNoteForm";
+import LanguageSnippetSegment from "../records/language/LanguageSnippetSegement"
+import LanguageSnippetForm from "../records/language/LanguageSnippetForm";
 
 export default class LanguageArchive extends Component {
   state = {
     languageArchive: [],
     languageNotes: [],
+    languageSnippets: [],
     languageBookmarks: [],
     languageVideos: []
   };
@@ -29,6 +32,13 @@ export default class LanguageArchive extends Component {
       `archiveId=${this.props.match.params.languageArchiveId}&recordTypeId=1`
     )
       .then(languageNotes => (newState.languageNotes = languageNotes))
+      .then(() => this.setState(newState));
+    // Get All Snippets //
+    API.getAll(
+      "records",
+      `archiveId=${this.props.match.params.languageArchiveId}&recordTypeId=2`
+    )
+      .then(languageSnippets => (newState.languageSnippets = languageSnippets))
       .then(() => this.setState(newState));
     // Get All bookmarks //
     API.getAll(
@@ -97,6 +107,24 @@ export default class LanguageArchive extends Component {
         })
       );
   };
+  // FOR CRUD SNIPPETS //
+  addLanguageSnippet = data => {
+    API.post("records", data)
+      .then(() =>
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&recordTypeId=2`
+        )
+      )
+      .then(languageSnippets =>
+        this.setState({
+          languageSnippets: languageSnippets
+        })
+      );
+  };
+
   // FOR CRUD OF BOOKMARK //
   addLanguageBookmark = data => {
     API.post("resources", data)
@@ -226,14 +254,18 @@ export default class LanguageArchive extends Component {
             </Header>
           </a>
           <br />
-          {/* Add Archive Form */}
+          {/* Add Note Form */}
           <LanguageNoteForm
             archiveId={this.archiveId}
             addLanguageNote={this.addLanguageNote}
           />
-          {/* <br />
-          <br /> */}
-          {/* Add Language Archive Form */}
+          <br />
+          <br />
+          {/* Add Code Snippet Form */}
+          <LanguageSnippetForm 
+          archiveId={this.archiveId}
+          addLanguageSnippet={this.addLanguageSnippet}
+          />
         </Container>
         <br />
         {/* Notes and Snippets */}
@@ -242,6 +274,14 @@ export default class LanguageArchive extends Component {
           <LanguageNoteSegment
             key={note.id}
             note={note}
+            deleteLanguageNote={this.deleteLanguageNote}
+            updateLanguageNote={this.updateLanguageNote}
+          />
+        ))}
+        {this.state.languageSnippets.map(snippet => (
+          <LanguageSnippetSegment
+            key={snippet.id}
+            snippet={snippet}
             deleteLanguageNote={this.deleteLanguageNote}
             updateLanguageNote={this.updateLanguageNote}
           />
