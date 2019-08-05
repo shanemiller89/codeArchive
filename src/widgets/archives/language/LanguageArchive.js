@@ -124,6 +124,38 @@ export default class LanguageArchive extends Component {
         })
       );
   };
+  deleteLanguageSnippet = id => {
+    API.delete("records", id)
+      .then(() =>
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&recordTypeId=2`
+        )
+      )
+      .then(languageSnippets =>
+        this.setState({
+          languageSnippets: languageSnippets
+        })
+      );
+  };
+  updateLanguageSnippet = editedData => {
+    API.put("records", editedData)
+      .then(() =>
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&recordTypeId=2`
+        )
+      )
+      .then(languageSnippets =>
+        this.setState({
+          languageSnippets: languageSnippets
+        })
+      );
+  };
 
   // FOR CRUD OF BOOKMARK //
   addLanguageBookmark = data => {
@@ -282,8 +314,8 @@ export default class LanguageArchive extends Component {
           <LanguageSnippetSegment
             key={snippet.id}
             snippet={snippet}
-            deleteLanguageNote={this.deleteLanguageNote}
-            updateLanguageNote={this.updateLanguageNote}
+            deleteLanguageSnippet={this.deleteLanguageSnippet}
+            updateLanguageSnippet={this.updateLanguageSnippet}
           />
         ))}
         {/* </Grid> */}

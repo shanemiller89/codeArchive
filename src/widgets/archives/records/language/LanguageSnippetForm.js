@@ -17,7 +17,7 @@ export default class LanguageSnippetForm extends Component {
     title: "",
     text: "",
     image: null,
-    archiveId: this.props.archiveId,
+    archiveId: parseInt(this.props.archiveId),
     recordTypeId: 2,
   };
 

@@ -44,7 +44,7 @@ export default class LanguageNoteSegment extends Component {
                   <Confirm
                     size="mini"
                     header="Delete Library"
-                    content="Are you sure you want to delete this library?"
+                    content="Are you sure you want to delete this note?"
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}

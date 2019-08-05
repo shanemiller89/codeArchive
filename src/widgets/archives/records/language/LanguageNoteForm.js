@@ -17,7 +17,7 @@ export default class LanguageNoteForm extends Component {
     title: "",
     text: "",
     image: null,
-    archiveId: this.props.archiveId,
+    archiveId: parseInt(this.props.archiveId),
     recordTypeId: 1,
     disabled: true,
     checked: false

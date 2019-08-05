@@ -9,7 +9,7 @@ import {
   Dropdown,
   Confirm
 } from "semantic-ui-react";
-import LanguageNoteEditForm from "./LanguageNoteEditForm";
+import LanguageSnippetEditForm from "./LanguageSnippetEditForm";
 
 export default class LanguageSnippetSegment extends Component {
   state = {
@@ -29,14 +29,14 @@ export default class LanguageSnippetSegment extends Component {
           <Segment style={{ width: "80%" }}>
             <Header as="h1">
               {this.props.snippet.title}
-              {/* <Dropdown
+              <Dropdown
                 icon="list"
                 style={{ fontSize: ".75em", marginLeft: "1em" }}
               >
                 <Dropdown.Menu>
-                  <LanguageNoteEditForm
-                    noteId={this.props.note.id}
-                    updateLanguageNote={this.props.updateLanguageNote}
+                  <LanguageSnippetEditForm
+                    snippetId={this.props.snippet.id}
+                    updateLanguageSnippet={this.props.updateLanguageSnippet}
                   />
                   <Dropdown.Item
                     icon="trash alternate"
@@ -46,16 +46,16 @@ export default class LanguageSnippetSegment extends Component {
                   <Confirm
                     size="mini"
                     header="Delete Library"
-                    content="Are you sure you want to delete this library?"
+                    content="Are you sure you want to delete this code snippet?"
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() =>
-                      this.props.deleteLanguageNote(this.props.note.id)
+                      this.props.deleteLanguageSnippet(this.props.snippet.id)
                     }
                   />
                 </Dropdown.Menu>
-              </Dropdown> */}
+              </Dropdown>
             </Header>
             <SyntaxHighlighter language="javascript" style={dark} showLineNumbers={true}>
               {this.props.snippet.text}

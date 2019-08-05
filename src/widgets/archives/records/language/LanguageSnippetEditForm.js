@@ -13,67 +13,39 @@ import * as firebase from "firebase/app";
 import "firebase/storage";
 import API from "../../../../modules/API"
 
-export default class LanguageNoteEditForm extends Component {
+export default class LanguageSnippetEditForm extends Component {
   state = {
     title: "",
     text: "",
     image: null,
     archiveId: "",
-    recordTypeId: "",
-    disabled: true,
-    checked: false
+    recordTypeId: 2,
   };
 
   componentDidMount() {
-    API.get("records", this.props.noteId)
-    .then(note => {
+    API.get("records", this.props.snippetId)
+    .then(snippet => {
       this.setState({
-        title: note.title,
-        text: note.text,
-        image: note.image,
-        archiveId: note.archiveId,
-        recordTypeId: note.recordTypeId,
+        title: snippet.title,
+        text: snippet.text,
+        image: snippet.image,
+        archiveId: snippet.archiveId,
+        recordTypeId: snippet.recordTypeId,
       });
     });
   }
 
-  checkedToggle = () => {
-    this.setState({ checked: !this.state.checked, disabled: !this.state.disabled });
-  }
-
-  storageRef = firebase.storage().ref("archive_images");
-
-  submitWithImage = () => {
-    //will determine name of storage reference
-    const ref = this.storageRef.child(`${this.state.title}-${this.state.archiveId}`);
-
-    return ref
-      .put(this.state.image)
-      .then(data => data.ref.getDownloadURL())
-      .then(imageURL => {
-        return this.props.updateLanguageNote({
-          title: this.state.title,
-          text: this.state.text,
-          image: imageURL,
-          archiveId:this.state.archiveId,
-          recordTypeId: this.state.recordTypeId,
-          id: this.props.noteId
-        });
-      });
-    // .then(() => this.props.history.push('/'));
-  };
-
   submit = () => {
-    const editedNote = {
+    const editedSnippet = {
         title: this.state.title,
         text: this.state.text,
         image: this.state.image,
         archiveId:this.state.archiveId,
         recordTypeId: this.state.recordTypeId,
-        id: this.props.noteId
+        id: this.props.snippetId
 
     };
-    this.props.updateLanguageNote(editedNote)
+    this.props.updateLanguageSnippet(editedSnippet)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -98,12 +70,12 @@ export default class LanguageNoteEditForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="sticky note"
+                  name="code"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit an Existing Archive Note
+              Edit an Existing Archive Code Snippet
             </Header>
 
             <Modal.Description>
@@ -113,34 +85,19 @@ export default class LanguageNoteEditForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
+                        placeholder="Title of snippet (What is the snippet about?)"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                         value={this.state.title}
                       />
                       <Form.TextArea
                         fluid
+                        placeholder="Insert Code"
                         onChange={e => this.setState({ text: e.target.value })}
                         id="text"
                         value={this.state.text}
                       />
-                      <Form.Checkbox
-                      fluid
-                      width={10}
-                      label="Do you want add or replace existing image?"
-                      checked={this.state.checked}
-                      onChange={this.checkedToggle}
-                      />
-                      <Form.Input
-                        fluid
-                        placeholder="Image"
-                        onChange={e =>
-                          this.setState({ image: e.target.files[0] })
-                        }
-                        type="file"
-                        id="imageURL"
-                        disabled={this.state.disabled}
-                      />
-                      <Button primary fluid size="large" onClick={this.state.disabled ? this.submit : this.submitWithImage}>
+                      <Button primary fluid size="large" onClick={this.submit}>
                         Submit
                       </Button>
                     </Segment>
