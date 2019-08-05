@@ -10,7 +10,7 @@ export default class LanguageArchive extends Component {
     languageBookmarks: []
   };
 
-  archiveId = this.props.match.params.languageArchiveId
+  archiveId = this.props.match.params.languageArchiveId;
 
   componentDidMount() {
     const newState = {};
@@ -44,6 +44,39 @@ export default class LanguageArchive extends Component {
         })
       );
   };
+  deleteLanguageBookmark = id => {
+    API.delete("resources", id)
+      .then(() =>
+        API.getAll(
+          "resources",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&resourceTypeId=1`
+        )
+      )
+      .then(languageBookmarks =>
+        this.setState({
+          languageBookmarks: languageBookmarks
+        })
+      );
+  };
+  updateLanguageBookmark = editedData => {
+    API.put("resources", editedData)
+      .then(() =>
+        API.getAll(
+          "resources",
+          `archiveId=${
+            this.props.match.params.languageArchiveId
+          }&resourceTypeId=1`
+        )
+      )
+      .then(languageBookmarks =>
+        this.setState({
+          languageBookmarks: languageBookmarks
+        })
+      );
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -85,7 +118,11 @@ export default class LanguageArchive extends Component {
           <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
             <Icon name="bookmark" style={{ color: "#15CA00" }} />
             <Header.Content>
-              Bookmarks <LanguageBookmarkForm archiveId={this.archiveId} addLanguageBookmark={this.addLanguageBookmark}/>
+              Bookmarks{" "}
+              <LanguageBookmarkForm
+                archiveId={this.archiveId}
+                addLanguageBookmark={this.addLanguageBookmark}
+              />
               <Header.Subheader>
                 All websites, articles, or documentation relating to this
                 Archive
@@ -97,8 +134,8 @@ export default class LanguageArchive extends Component {
               <BookmarksList
                 key={bookmark.id}
                 bookmark={bookmark}
-                // deleteLanguageLibrary={this.deleteLanguageLibrary}
-                // updateLanguageLibrary={this.updateLanguageLibrary}
+                deleteLanguageBookmark={this.deleteLanguageBookmark}
+                updateLanguageBookmark={this.updateLanguageBookmark}
               />
             ))}
           </List>
