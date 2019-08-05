@@ -75,7 +75,7 @@
     {
       "title": "Local Scope",
       "link": "",
-      "id": 18069
+      "id": 3
     }
   ],
   "libraryArchives": [
@@ -91,8 +91,47 @@
     },
     {
       "libraryId": 1,
-      "archiveId": 18069,
+      "archiveId": 3,
       "id": 3
+    }
+  ],
+  "resources": [
+    {
+      "title": "Medium Article: Map, Reduce, and Filter",
+      "link": "https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d",
+      "description": "Breaks down uses of Javascript Array methods, including map.",
+      "image": null,
+      "archiveId": 1,
+      "resourceTypeId": 1,
+      "id": 1
+    },
+    {
+      "title": "Javascript Array Map Method",
+      "link": "https://www.youtube.com/watch?v=hfYa4ugeyuc&t=25s",
+      "description": "All Arrays in JavaScript have a map method which allows us to loop through every element in the original array, perform some action and then generate a new Array based on our actions.",
+      "image": "http://i3.ytimg.com/vi/hfYa4ugeyuc/hqdefault.jpg",
+      "archiveId": 1,
+      "resourceTypeId": 2,
+      "id": 2
+    },
+    {
+      "title": "Map in JavaScript",
+      "link": "https://www.geeksforgeeks.org/map-in-javascript/",
+      "description": "Geek for Geek article",
+      "image": null,
+      "archiveId": "1",
+      "resourceTypeId": 1,
+      "id": 3
+    }
+  ],
+  "resourceTypes": [
+    {
+      "type": "bookmark",
+      "id": 1
+    },
+    {
+      "type": "video",
+      "id": 2
     }
   ]
 }

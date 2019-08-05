@@ -7,39 +7,48 @@ import {
   Form,
   Segment,
   Grid,
-  Label
+  Dropdown
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
+import API from "../../../../modules/API"
 
-export default class LanguageArchiveForm extends Component {
+export default class LanguageVideoForm extends Component {
   state = {
     title: "",
     link: "",
-    libraryId: null,
-    archiveId: null,
-    id: Math.floor(Math.random() * 99999)  
-
+    description: "",
+    image: "",
+    archiveId: "",
+    resourceTypeId: "",
   };
 
-//   assignArchiveId = () => {
-//     const id = Math.floor(Math.random() * 99999);
-//     this.setState({id: id}) 
-//   }
+  componentDidMount() {
+    API.get("resources", this.props.video.id)
+    .then(video => {
+      this.setState({
+        title: video.title,
+        link: video.link,
+        description: video.description,
+        image: video.image,
+        archiveId: video.archiveId,
+        resourceTypeId: video.resourceTypeId,
+      });
+    });
+  }
 
   submit = () => {
-    // this.assignArchiveId()
-    const archive = {
+    const editedVideo = {
       title: this.state.title,
       link: this.state.link,
-      id: this.state.id
+      description: this.state.description,
+      image: this.state.image,
+      archiveId: this.state.archiveId,
+      resourceTypeId: this.state.resourceTypeId,
+      id: this.props.video.id
+
     };
-    const libraryArchive = {
-        libraryId: this.props.languageId,
-        archiveId: this.state.id
-    }
-    this.props.addArchive(archive)
-    this.props.addLanguageArchive(libraryArchive)
+    this.props.updateLanguageVideo(editedVideo)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -53,15 +62,10 @@ export default class LanguageArchiveForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-            <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
-                <Icon name="plus" />
-                Add
-              </Button>
-              <Label basic pointing="left">
-                Archive
-              </Label>
-            </Button>
+            <Dropdown.Item
+            icon="pencil"
+            description="Edit"
+          />
           }
           style={{ width: "30em" }}
         >
@@ -69,12 +73,12 @@ export default class LanguageArchiveForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="file code outline"
+                  name="video"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add A New Archive
+              Add A New Video
             </Header>
 
             <Modal.Description>
@@ -84,15 +88,22 @@ export default class LanguageArchiveForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Name of Archive"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
+                        value={this.state.title}
                       />
                       <Form.Input
                         fluid
-                        placeholder="Intial Documentation URL (optional)"
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
+                        value={this.state.link}
+                      />
+                    <Form.Input
+                        fluid
+                        placeholder="Description (optional)"
+                        onChange={e => this.setState({ description: e.target.value })}
+                        id="description"
+                        value={this.state.description}
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

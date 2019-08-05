@@ -11,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from "../../modules/API"
+import API from "../../../modules/API"
 export default class LanguageArchiveEditForm extends Component {
   state = {
     title: "",
@@ -63,7 +63,7 @@ handleFieldChange = evt => {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="file code outline"
+                  name="archive"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />

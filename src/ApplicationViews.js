@@ -5,7 +5,7 @@ import Library from "./components/library/Library";
 import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrary";
 import SubLanguageLibrary from "./components/library/languagelibrary/sublanguagelibrary/SubLanguageLibrary";
 import API from "./modules/API";
-import LanguageArchive from "./widgets/archives/LanguageArchive";
+import LanguageArchive from "./widgets/archives/language/LanguageArchive";
 
 export default class ApplicationViews extends Component {
   state = {

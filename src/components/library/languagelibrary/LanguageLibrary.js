@@ -10,8 +10,8 @@ import {
 import API from "../../../modules/API";
 import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList";
 import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
-import LanguageArchiveList from "../../../widgets/archives/LanguageArchivesList";
-import LanguageArchiveForm from "../../../widgets/archives/LanguageArchiveForm";
+import LanguageArchiveList from "../../../widgets/archives/language/LanguageArchivesList";
+import LanguageArchiveForm from "../../../widgets/archives/language/LanguageArchiveForm";
 
 export default class LanguageLibrary extends Component {
   state = {
@@ -100,7 +100,7 @@ export default class LanguageLibrary extends Component {
   // FOR CRUD OF LANGUAGE ARCHIVES //
 
   addArchive = data => {
-    API.post("archives", data);
+    return API.post("archives", data);
   };
   addLanguageArchive = data => {
     API.post("libraryArchives", data)
