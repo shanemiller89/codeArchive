@@ -98,7 +98,7 @@
       "link": "https://www.geeksforgeeks.org/map-in-javascript/",
       "description": "Geek for Geek article",
       "image": null,
-      "archiveId": "1",
+      "archiveId": 1,
       "resourceTypeId": 1,
       "id": 3
     }
@@ -123,12 +123,20 @@
       "id": 1
     },
     {
-      "title": "Problem",
-      "text": "This is a note.\n\nIt's about a problem.",
+      "title": "Syntax",
+      "text": "var new_array = arr.map(function callback(currentValue[, index[, array]]) {\n    // Return element for new_array\n}[, thisArg])",
       "image": null,
-      "archiveId": "1",
-      "recordTypeId": 1,
-      "id": 2
+      "archiveId": 1,
+      "recordTypeId": 2,
+      "id": 26516161
+    },
+    {
+      "title": "Example",
+      "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]",
+      "image": null,
+      "archiveId": 1,
+      "recordTypeId": 2,
+      "id": 395165161
     }
   ],
   "recordTypes": [
@@ -138,7 +146,7 @@
     },
     {
       "type": "snippet",
-      "id": 1
+      "id": 2
     }
   ]
 }
