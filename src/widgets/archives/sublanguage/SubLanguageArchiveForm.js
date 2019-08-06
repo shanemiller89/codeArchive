@@ -12,25 +12,24 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class LanguageSnippetForm extends Component {
+export default class SubLanguageArchiveForm extends Component {
   state = {
     title: "",
-    text: "",
-    image: null,
-    archiveId: parseInt(this.props.archiveId),
-    recordTypeId: 2,
+    link: "",
+    libraryId: null,
+    archiveId: null,
   };
 
   submit = () => {
-    const snippet = {
-        title: this.state.title,
-        text: this.state.text,
-        image: this.state.image,
-        archiveId:this.state.archiveId,
-        recordTypeId: this.state.recordTypeId,
-
+    const archive = {
+      title: this.state.title,
+      link: this.state.link,
     };
-    this.props.addLanguageSnippet(snippet)
+    this.props.addArchive(archive)
+    .then(newArchive => 
+      this.props.addSubLanguageArchive({subLanguageLibraryId: this.props.subLanguageId, archiveId: newArchive.id})
+      )
+    
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -50,22 +49,22 @@ export default class LanguageSnippetForm extends Component {
                 Add
               </Button>
               <Label basic pointing="left">
-                Archive Code Snippet
+                Archive
               </Label>
             </Button>
           }
-          style={{ width: "45em" }}
+          style={{ width: "30em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="code"
+                  name="archive"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add a new Archive Code Snippet
+              Add A New Archive
             </Header>
 
             <Modal.Description>
@@ -75,16 +74,15 @@ export default class LanguageSnippetForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Title of snippet (What is the snippet about?)"
+                        placeholder="Name of Archive"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
-                      <Form.TextArea
+                      <Form.Input
                         fluid
-                        rows="10"
-                        placeholder="Insert Code"
-                        onChange={e => this.setState({ text: e.target.value })}
-                        id="text"
+                        placeholder="Intial Documentation URL (optional)"
+                        onChange={e => this.setState({ link: e.target.value })}
+                        id="link"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

@@ -8,7 +8,8 @@ import ApplicationViews from "../../ApplicationViews";
 // 2.Add Show/Hide Toggle
 
 const height = {
-  marginTop: "45px",
+  marginTop: "5.5em",
+  marginLeft: "-1px",
   minHeight: "100vh"
 };
 export default class SideBar extends Component {
@@ -16,8 +17,7 @@ export default class SideBar extends Component {
 
   // contextRef = createRef()
 
-  handleHideClick = () => this.setState({ visible: false });
-  handleShowClick = () => this.setState({ visible: true });
+  toggle = () => this.setState({ visible: !this.state.visible });
   handleSidebarHide = () => this.setState({ visible: false });
 
   render() {
@@ -25,14 +25,6 @@ export default class SideBar extends Component {
 
     return (
       <div>
-        <Button.Group>
-          <Button disabled={visible} onClick={this.handleShowClick}>
-            Show sidebar
-          </Button>
-          <Button disabled={!visible} onClick={this.handleHideClick}>
-            Hide sidebar
-          </Button>
-        </Button.Group>
         {/* <Sticky context={this.contextRef} pushing> */}
         <Sidebar.Pushable style={height} as={Segment}>
           <Sidebar
@@ -40,9 +32,9 @@ export default class SideBar extends Component {
             animation="push"
             icon="labeled"
             inverted
-            onHide={this.handleSidebarHide}
+            // onHide={this.handleSidebarHide}
             vertical
-            visible={true}
+            visible={visible}
             width="thin"
             size="huge"
           >
@@ -71,8 +63,8 @@ export default class SideBar extends Component {
               </Menu.Item>
             </Link>
           </Sidebar>
-
           <Sidebar.Pusher style={{ background: "#F5F5F5", minHeight: "100vh"}}>
+          <Button attached="top" onClick={this.toggle} icon="exchange" style={{background: "#1b1c1d", color: "lightgray"}}></Button>
             <ApplicationViews />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

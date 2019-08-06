@@ -11,44 +11,37 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from "../../../../modules/API"
-
-export default class LanguageSnippetEditForm extends Component {
+import API from "../../../modules/API"
+export default class SubLanguageArchiveEditForm extends Component {
   state = {
     title: "",
-    text: "",
-    image: null,
-    archiveId: "",
-    recordTypeId: 2,
+    link: "",
   };
 
   componentDidMount() {
-    API.get("records", this.props.snippetId)
-    .then(snippet => {
+    API.get("archives", this.props.archive.archive.id)
+    .then(archive => {
       this.setState({
-        title: snippet.title,
-        text: snippet.text,
-        image: snippet.image,
-        archiveId: snippet.archiveId,
-        recordTypeId: snippet.recordTypeId,
+        title: archive.title,
+        link: archive.link,
       });
     });
   }
 
-  submit = () => {
-    const editedSnippet = {
-        title: this.state.title,
-        text: this.state.text,
-        image: this.state.image,
-        archiveId:this.state.archiveId,
-        recordTypeId: this.state.recordTypeId,
-        id: this.props.snippetId
+handleFieldChange = evt => {
+    const stateToChange = {};
+    stateToChange[evt.target.id] = evt.target.value;
+    this.setState(stateToChange);
+  };
 
+  updateExistingArchive = evt => {
+    evt.preventDefault();
+    const editedArchive = {
+      title: this.state.title,
+      link: this.state.link,
+      id: this.props.archive.archive.id
     };
-    this.props.updateLanguageSnippet(editedSnippet)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.props.updateArchive(editedArchive);
   };
 
   // TODO:
@@ -64,18 +57,18 @@ export default class LanguageSnippetEditForm extends Component {
             description="Edit"
           />
           }
-          style={{ width: "45em" }}
+          style={{ width: "30em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="code"
+                  name="archive"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit an Existing Archive Code Snippet
+              Edit Existing Archive
             </Header>
 
             <Modal.Description>
@@ -85,20 +78,17 @@ export default class LanguageSnippetEditForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Title of snippet (What is the snippet about?)"
-                        onChange={e => this.setState({ title: e.target.value })}
-                        id="title"
                         value={this.state.title}
+                        onChange={this.handleFieldChange}
+                        id="title"
                       />
-                      <Form.TextArea
+                      <Form.Input
                         fluid
-                        rows="10"
-                        placeholder="Insert Code"
-                        onChange={e => this.setState({ text: e.target.value })}
-                        id="text"
-                        value={this.state.text}
+                        value={this.state.link}
+                        onChange={this.handleFieldChange}
+                        id="link"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <Button primary fluid size="large" onClick={this.updateExistingArchive}>
                         Submit
                       </Button>
                     </Segment>
