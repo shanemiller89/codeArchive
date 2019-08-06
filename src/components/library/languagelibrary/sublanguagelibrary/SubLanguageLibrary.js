@@ -12,6 +12,7 @@ import API from "../../../../modules/API";
 export default class SubLanguageLibrary extends Component {
   state = {
     subLanguage: [],
+    languageArchives: []
   };
 
   // TODO:Figure out why there is a render delay

@@ -54,7 +54,7 @@ export default class LanguageSnippetForm extends Component {
               </Label>
             </Button>
           }
-          style={{ width: "40em" }}
+          style={{ width: "45em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
@@ -81,6 +81,7 @@ export default class LanguageSnippetForm extends Component {
                       />
                       <Form.TextArea
                         fluid
+                        rows="10"
                         placeholder="Insert Code"
                         onChange={e => this.setState({ text: e.target.value })}
                         id="text"
