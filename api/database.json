@@ -45,6 +45,37 @@
       "id": 2
     }
   ],
+  "logs": [
+    {
+      "keywords": [
+        "Data",
+        "JSON",
+        "Javascript"
+      ],
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 1
+    },
+    {
+      "keywords": [
+        "Code",
+        "Javascript"
+      ],
+      "logTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 2
+    }
+  ],
+  "logTypes": [
+    {
+      "type": "issue",
+      "id": 1
+    },
+    {
+      "type": "code",
+      "id": 2
+    }
+  ],
   "archives": [
     {
       "title": "map ( )",
@@ -60,6 +91,21 @@
       "title": "State",
       "link": "http://python.com",
       "id": 3
+    },
+    {
+      "title": "Literally Anything",
+      "link": "",
+      "id": 5
+    },
+    {
+      "title": "Fetch",
+      "link": "",
+      "id": 6
+    },
+    {
+      "title": "Factory Function",
+      "link": "",
+      "id": 7
     }
   ],
   "libraryArchives": [
@@ -78,6 +124,19 @@
     {
       "subLanguageLibraryId": 2,
       "archiveId": 3,
+      "id": 1
+    }
+  ],
+  "logArchives": [
+    {
+      "logId": 1,
+      "archiveId": 6,
+      "id": 1
+    },
+    {
+      "logId": 2,
+      "archiveId": 7,
+      "id": 2
     }
   ],
   "resources": [
@@ -107,6 +166,24 @@
       "archiveId": 1,
       "resourceTypeId": 1,
       "id": 3
+    },
+    {
+      "title": "xdsdf",
+      "link": "dfsdfdsf",
+      "description": "dsfsdfsdf",
+      "image": null,
+      "archiveId": "5",
+      "resourceTypeId": 1,
+      "id": 4
+    },
+    {
+      "title": "xddxfszf",
+      "link": "zsdDSsd",
+      "description": "zsdzsd",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
+      "archiveId": "5",
+      "resourceTypeId": 2,
+      "id": 5
     }
   ],
   "resourceTypes": [
@@ -134,15 +211,31 @@
       "image": null,
       "archiveId": 1,
       "recordTypeId": 2,
-      "id": 26516161
+      "id": 2
     },
     {
       "title": "Example",
-      "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]",
+      "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]\n",
       "image": null,
       "archiveId": 1,
       "recordTypeId": 2,
-      "id": 395165161
+      "id": 3
+    },
+    {
+      "title": "Example",
+      "text": "let = harry\n\nconsole.log(\"harry\")",
+      "image": null,
+      "archiveId": 1,
+      "recordTypeId": 2,
+      "id": 4
+    },
+    {
+      "title": "Python",
+      "text": "",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FPython-5?alt=media&token=2e8d1a7f-772a-4cb7-9467-bbe24866ffbd",
+      "archiveId": 5,
+      "recordTypeId": 1,
+      "id": 5
     }
   ],
   "recordTypes": [

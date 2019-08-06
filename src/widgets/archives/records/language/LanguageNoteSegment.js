@@ -56,8 +56,8 @@ export default class LanguageNoteSegment extends Component {
               </Dropdown>
             </Header>
             <div style={{ whiteSpace: "pre" }}>{this.props.note.text}</div>
-            {this.props.note.image === !null ? (
-              <Image src={this.props.note.title} />
+            {this.props.note.image !== null ? (
+              <Image src={this.props.note.image} alt={this.props.note.title}/>
             ) : null}
           </Segment>
         </div>

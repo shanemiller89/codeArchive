@@ -18,7 +18,7 @@ export default class LanguageVideoForm extends Component {
     link: "",
     description: "",
     image: "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
-    archiveId: this.props.archiveId,
+    archiveId: parseInt(this.props.archiveId),
     resourceTypeId: 2,
 
   };

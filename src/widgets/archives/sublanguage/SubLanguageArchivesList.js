@@ -33,7 +33,7 @@ export default class SubLanguageArchivesList extends Component {
               <Grid.Column width={13} verticalAlign="middle">
                 {/* LINK */}
                 <Link
-                  to={`/library/language/archive/${
+                  to={`/library/archive/${
                     this.props.archive.archive.id
                   }`}
                 >
