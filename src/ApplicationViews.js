@@ -6,6 +6,7 @@ import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrar
 import SubLanguageLibrary from "./components/library/languagelibrary/sublanguagelibrary/SubLanguageLibrary";
 import API from "./modules/API";
 import LanguageArchive from "./widgets/archives/language/LanguageArchive";
+import IssuesLog from "./components/issues/IssuesLog";
 
 export default class ApplicationViews extends Component {
   state = {
@@ -85,7 +86,14 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/library/language/archive/:languageArchiveId(\d+)"
+          path="/issues"
+          render={props => {
+            return <IssuesLog {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/library/archive/:languageArchiveId(\d+)"
           render={props => {
             this.state.languageArchives.find(
               languageArchive =>

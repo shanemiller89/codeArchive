@@ -12,44 +12,17 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class LanguageNoteForm extends Component {
+export default class SnippetForm extends Component {
   state = {
     title: "",
     text: "",
     image: null,
     archiveId: parseInt(this.props.archiveId),
-    recordTypeId: 1,
-    disabled: true,
-    checked: false
-  };
-
-  checkedToggle = () => {
-    this.setState({ checked: !this.state.checked, disabled: !this.state.disabled });
-  }
-
-  storageRef = firebase.storage().ref("archive_images");
-
-  submitWithImage = () => {
-    //will determine name of storage reference
-    const ref = this.storageRef.child(`${this.state.title}-${this.state.archiveId}`);
-
-    return ref
-      .put(this.state.image)
-      .then(data => data.ref.getDownloadURL())
-      .then(imageURL => {
-        return this.props.addLanguageNote({
-          title: this.state.title,
-          text: this.state.text,
-          image: imageURL,
-          archiveId:this.state.archiveId,
-          recordTypeId: this.state.recordTypeId,
-        });
-      });
-    // .then(() => this.props.history.push('/'));
+    recordTypeId: 2,
   };
 
   submit = () => {
-    const note = {
+    const snippet = {
         title: this.state.title,
         text: this.state.text,
         image: this.state.image,
@@ -57,7 +30,7 @@ export default class LanguageNoteForm extends Component {
         recordTypeId: this.state.recordTypeId,
 
     };
-    this.props.addLanguageNote(note)
+    this.props.addLanguageSnippet(snippet)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -77,7 +50,7 @@ export default class LanguageNoteForm extends Component {
                 Add
               </Button>
               <Label basic pointing="left">
-                Archive Note
+                Archive Code Snippet
               </Label>
             </Button>
           }
@@ -87,12 +60,12 @@ export default class LanguageNoteForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="sticky note"
+                  name="code"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add a new Archive Note
+              Add a new Archive Code Snippet
             </Header>
 
             <Modal.Description>
@@ -102,35 +75,18 @@ export default class LanguageNoteForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Title of note (What is the note about?)"
+                        placeholder="Title of snippet (What is the snippet about?)"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
                       <Form.TextArea
                         fluid
                         rows="10"
-                        placeholder="Insert Text for Note"
+                        placeholder="Insert Code"
                         onChange={e => this.setState({ text: e.target.value })}
                         id="text"
                       />
-                      <Form.Checkbox
-                      fluid
-                      width={8}
-                      label="Do you want to include an Image?"
-                      checked={this.state.checked}
-                      onChange={this.checkedToggle}
-                      />
-                      <Form.Input
-                        fluid
-                        placeholder="Image"
-                        onChange={e =>
-                          this.setState({ image: e.target.files[0] })
-                        }
-                        type="file"
-                        id="imageURL"
-                        disabled={this.state.disabled}
-                      />
-                      <Button primary fluid size="large" onClick={this.state.disabled ? this.submit : this.submitWithImage}>
+                      <Button primary fluid size="large" onClick={this.submit}>
                         Submit
                       </Button>
                     </Segment>

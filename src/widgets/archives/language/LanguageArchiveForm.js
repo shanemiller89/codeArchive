@@ -15,21 +15,17 @@ import "firebase/storage";
 export default class LanguageArchiveForm extends Component {
   state = {
     title: "",
-    link: "",
+    keywords: [],
     libraryId: null,
     archiveId: null,
   };
 
   submit = () => {
-    const archive = {
+    const issue = {
       title: this.state.title,
-      link: this.state.link,
+      keywords: this.state.keywords,
     };
-    this.props.addArchive(archive)
-    .then(newArchive => 
-      this.props.addLanguageArchive({libraryId: this.props.languageId, archiveId: newArchive.id})
-      )
-    
+    this.props.addIssue(issue)  
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -74,15 +70,15 @@ export default class LanguageArchiveForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Name of Archive"
+                        placeholder="Issue Title"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
                       <Form.Input
                         fluid
-                        placeholder="Intial Documentation URL (optional)"
-                        onChange={e => this.setState({ link: e.target.value })}
-                        id="link"
+                        placeholder="Keywords for search functionality"
+                        onChange={e => this.setState({ keywords: e.target.value })}
+                        id="keywords"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

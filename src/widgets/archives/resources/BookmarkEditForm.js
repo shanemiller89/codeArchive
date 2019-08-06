@@ -11,9 +11,9 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from "../../../../modules/API"
+import API from "../../../modules/API"
 
-export default class LanguageVideoForm extends Component {
+export default class BookmarkEditForm extends Component {
   state = {
     title: "",
     link: "",
@@ -24,31 +24,30 @@ export default class LanguageVideoForm extends Component {
   };
 
   componentDidMount() {
-    API.get("resources", this.props.video.id)
-    .then(video => {
+    API.get("resources", this.props.bookmark.id)
+    .then(bookmark => {
       this.setState({
-        title: video.title,
-        link: video.link,
-        description: video.description,
-        image: video.image,
-        archiveId: video.archiveId,
-        resourceTypeId: video.resourceTypeId,
+        title: bookmark.title,
+        link: bookmark.link,
+        description: bookmark.description,
+        image: bookmark.image,
+        archiveId: bookmark.archiveId,
+        resourceTypeId: bookmark.resourceTypeId,
       });
     });
   }
 
   submit = () => {
-    const editedVideo = {
+    const editedBookmark = {
       title: this.state.title,
       link: this.state.link,
       description: this.state.description,
       image: this.state.image,
       archiveId: this.state.archiveId,
       resourceTypeId: this.state.resourceTypeId,
-      id: this.props.video.id
-
+      id: this.props.bookmark.id
     };
-    this.props.updateLanguageVideo(editedVideo)
+    this.props.updateLanguageBookmark(editedBookmark)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -73,12 +72,12 @@ export default class LanguageVideoForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="video"
+                  name="bookmark"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add A New Video
+              Edit A Existing Bookmark
             </Header>
 
             <Modal.Description>

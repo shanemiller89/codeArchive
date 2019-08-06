@@ -11,41 +11,44 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from "../../../../modules/API"
+import API from "../../../modules/API"
 
-export default class LanguageSnippetEditForm extends Component {
+export default class VideoEditForm extends Component {
   state = {
     title: "",
-    text: "",
-    image: null,
+    link: "",
+    description: "",
+    image: "",
     archiveId: "",
-    recordTypeId: 2,
+    resourceTypeId: "",
   };
 
   componentDidMount() {
-    API.get("records", this.props.snippetId)
-    .then(snippet => {
+    API.get("resources", this.props.video.id)
+    .then(video => {
       this.setState({
-        title: snippet.title,
-        text: snippet.text,
-        image: snippet.image,
-        archiveId: snippet.archiveId,
-        recordTypeId: snippet.recordTypeId,
+        title: video.title,
+        link: video.link,
+        description: video.description,
+        image: video.image,
+        archiveId: video.archiveId,
+        resourceTypeId: video.resourceTypeId,
       });
     });
   }
 
   submit = () => {
-    const editedSnippet = {
-        title: this.state.title,
-        text: this.state.text,
-        image: this.state.image,
-        archiveId:this.state.archiveId,
-        recordTypeId: this.state.recordTypeId,
-        id: this.props.snippetId
+    const editedVideo = {
+      title: this.state.title,
+      link: this.state.link,
+      description: this.state.description,
+      image: this.state.image,
+      archiveId: this.state.archiveId,
+      resourceTypeId: this.state.resourceTypeId,
+      id: this.props.video.id
 
     };
-    this.props.updateLanguageSnippet(editedSnippet)
+    this.props.updateLanguageVideo(editedVideo)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -64,18 +67,18 @@ export default class LanguageSnippetEditForm extends Component {
             description="Edit"
           />
           }
-          style={{ width: "45em" }}
+          style={{ width: "30em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="code"
+                  name="video"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit an Existing Archive Code Snippet
+              Add A New Video
             </Header>
 
             <Modal.Description>
@@ -85,18 +88,22 @@ export default class LanguageSnippetEditForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Title of snippet (What is the snippet about?)"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                         value={this.state.title}
                       />
-                      <Form.TextArea
+                      <Form.Input
                         fluid
-                        rows="10"
-                        placeholder="Insert Code"
-                        onChange={e => this.setState({ text: e.target.value })}
-                        id="text"
-                        value={this.state.text}
+                        onChange={e => this.setState({ link: e.target.value })}
+                        id="link"
+                        value={this.state.link}
+                      />
+                    <Form.Input
+                        fluid
+                        placeholder="Description (optional)"
+                        onChange={e => this.setState({ description: e.target.value })}
+                        id="description"
+                        value={this.state.description}
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

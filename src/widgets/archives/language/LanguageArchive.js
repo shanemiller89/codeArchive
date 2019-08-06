@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Container, Header, Icon, List, Card, Grid } from "semantic-ui-react";
 import API from "../../../modules/API";
-import BookmarksList from "../resources/language/BookmarksList";
-import LanguageBookmarkForm from "../resources/language/LanguageBookmarkForm";
-import LanguageVideoCard from "../resources/language/LanguageVideoCard";
-import LanguageVideoForm from "../resources/language/LanguageVideoForm";
-import LanguageNoteSegment from "../records/language/LanguageNoteSegment";
-import LanguageNoteForm from "../records/language/LanguageNoteForm";
-import LanguageSnippetSegment from "../records/language/LanguageSnippetSegement"
-import LanguageSnippetForm from "../records/language/LanguageSnippetForm";
+import BookmarksList from "../resources/BookmarksList";
+import BookmarkForm from "../resources/BookmarkForm";
+import VideoCard from "../resources/VideoCard";
+import VideoForm from "../resources/VideoForm";
+import NoteSegment from "../records/NoteSegment";
+import NoteForm from "../records/NoteForm";
+import SnippetSegment from "../records/SnippetSegment"
+import SnippetForm from "../records/SnippetForm";
 
 export default class LanguageArchive extends Component {
   state = {
@@ -287,14 +287,14 @@ export default class LanguageArchive extends Component {
           </a>
           <br />
           {/* Add Note Form */}
-          <LanguageNoteForm
+          <NoteForm
             archiveId={this.archiveId}
             addLanguageNote={this.addLanguageNote}
           />
           <br />
           <br />
           {/* Add Code Snippet Form */}
-          <LanguageSnippetForm 
+          <SnippetForm 
           archiveId={this.archiveId}
           addLanguageSnippet={this.addLanguageSnippet}
           />
@@ -303,7 +303,7 @@ export default class LanguageArchive extends Component {
         {/* Notes and Snippets */}
         {/* <Grid columns> */}
         {this.state.languageNotes.map(note => (
-          <LanguageNoteSegment
+          <NoteSegment
             key={note.id}
             note={note}
             deleteLanguageNote={this.deleteLanguageNote}
@@ -311,7 +311,7 @@ export default class LanguageArchive extends Component {
           />
         ))}
         {this.state.languageSnippets.map(snippet => (
-          <LanguageSnippetSegment
+          <SnippetSegment
             key={snippet.id}
             snippet={snippet}
             deleteLanguageSnippet={this.deleteLanguageSnippet}
@@ -326,7 +326,7 @@ export default class LanguageArchive extends Component {
             <Icon name="bookmark" style={{ color: "#15CA00" }} />
             <Header.Content>
               Bookmarks
-              <LanguageBookmarkForm
+              <BookmarkForm
                 archiveId={this.archiveId}
                 addLanguageBookmark={this.addLanguageBookmark}
               />
@@ -353,7 +353,7 @@ export default class LanguageArchive extends Component {
             <Icon name="video" style={{ color: "#15CA00" }} />
             <Header.Content>
               Videos
-              <LanguageVideoForm
+              <VideoForm
                 archiveId={this.archiveId}
                 addLanguageVideo={this.addLanguageVideo}
               />
@@ -364,7 +364,7 @@ export default class LanguageArchive extends Component {
           </Header>
           <Card.Group itemsPerRow={2}>
             {this.state.languageVideos.map(video => (
-              <LanguageVideoCard
+              <VideoCard
                 key={video.id}
                 video={video}
                 deleteLanguageVideo={this.deleteLanguageVideo}
@@ -373,6 +373,8 @@ export default class LanguageArchive extends Component {
             ))}
           </Card.Group>
         </div>
+        <br />
+        <br />
       </React.Fragment>
     );
   }
