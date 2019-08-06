@@ -47,20 +47,15 @@
   ],
   "logs": [
     {
-      "keywords": [
-        "Data",
-        "JSON",
-        "Javascript"
-      ],
+      "title": "Fetch",
+      "keywordId": 1,
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
     },
     {
-      "keywords": [
-        "Code",
-        "Javascript"
-      ],
+      "title": "Factory Function",
+      "keywordId": 1,
       "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
@@ -73,6 +68,12 @@
     },
     {
       "type": "code",
+      "id": 2
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "Javascript",
       "id": 2
     }
   ],

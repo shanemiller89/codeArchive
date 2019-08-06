@@ -12,25 +12,28 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class LanguageSnippetForm extends Component {
+export default class VideoForm extends Component {
   state = {
     title: "",
-    text: "",
-    image: null,
+    link: "",
+    description: "",
+    image: "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
     archiveId: parseInt(this.props.archiveId),
-    recordTypeId: 2,
+    resourceTypeId: 2,
+
   };
 
   submit = () => {
-    const snippet = {
-        title: this.state.title,
-        text: this.state.text,
-        image: this.state.image,
-        archiveId:this.state.archiveId,
-        recordTypeId: this.state.recordTypeId,
+    const video = {
+      title: this.state.title,
+      link: this.state.link,
+      description: this.state.description,
+      image: this.state.image,
+      archiveId: this.state.archiveId,
+      resourceTypeId: this.state.resourceTypeId,
 
     };
-    this.props.addLanguageSnippet(snippet)
+    this.props.addLanguageVideo(video)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -44,28 +47,22 @@ export default class LanguageSnippetForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-            <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
-                <Icon name="plus" />
-                Add
-              </Button>
-              <Label basic pointing="left">
-                Archive Code Snippet
-              </Label>
+          <Button style={{ background: "#15CA00", color: "white", marginLeft: "35.2em", borderRadius: "100%" }} size="mini" icon>
+            <Icon name="plus" />
             </Button>
           }
-          style={{ width: "45em" }}
+          style={{ width: "30em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="code"
+                  name="video"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add a new Archive Code Snippet
+              Add A New Video
             </Header>
 
             <Modal.Description>
@@ -75,16 +72,21 @@ export default class LanguageSnippetForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Title of snippet (What is the snippet about?)"
+                        placeholder="Name of Video"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
-                      <Form.TextArea
+                      <Form.Input
                         fluid
-                        rows="10"
-                        placeholder="Insert Code"
-                        onChange={e => this.setState({ text: e.target.value })}
-                        id="text"
+                        placeholder="URL of Resource"
+                        onChange={e => this.setState({ link: e.target.value })}
+                        id="link"
+                      />
+                    <Form.Input
+                        fluid
+                        placeholder="Description (optional)"
+                        onChange={e => this.setState({ description: e.target.value })}
+                        id="description"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import {
   Segment,
   Header,
@@ -9,9 +7,9 @@ import {
   Dropdown,
   Confirm
 } from "semantic-ui-react";
-import LanguageSnippetEditForm from "./LanguageSnippetEditForm";
+import NoteEditForm from "./NoteEditForm";
 
-export default class LanguageSnippetSegment extends Component {
+export default class NoteSegment extends Component {
   state = {
     open: false
   };
@@ -24,19 +22,19 @@ export default class LanguageSnippetSegment extends Component {
       <React.Fragment>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
-            <Icon name="code" style={{ color: "#15CA00" }} />
+            <Icon name="sticky note" style={{ color: "#15CA00" }} />
           </Header>
           <Segment style={{ width: "80%" }}>
             <Header as="h1">
-              {this.props.snippet.title}
+              {this.props.note.title}
               <Dropdown
                 icon="list"
                 style={{ fontSize: ".75em", marginLeft: "1em" }}
               >
                 <Dropdown.Menu>
-                  <LanguageSnippetEditForm
-                    snippetId={this.props.snippet.id}
-                    updateLanguageSnippet={this.props.updateLanguageSnippet}
+                  <NoteEditForm
+                    noteId={this.props.note.id}
+                    updateLanguageNote={this.props.updateLanguageNote}
                   />
                   <Dropdown.Item
                     icon="trash alternate"
@@ -46,20 +44,21 @@ export default class LanguageSnippetSegment extends Component {
                   <Confirm
                     size="mini"
                     header="Delete Library"
-                    content="Are you sure you want to delete this code snippet?"
+                    content="Are you sure you want to delete this note?"
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() =>
-                      this.props.deleteLanguageSnippet(this.props.snippet.id)
+                      this.props.deleteLanguageNote(this.props.note.id)
                     }
                   />
                 </Dropdown.Menu>
               </Dropdown>
             </Header>
-            <SyntaxHighlighter language="javascript" style={dark} showLineNumbers={true}>
-              {this.props.snippet.text}
-            </SyntaxHighlighter>
+            <div style={{ whiteSpace: "pre" }}>{this.props.note.text}</div>
+            {this.props.note.image !== null ? (
+              <Image src={this.props.note.image} alt={this.props.note.title}/>
+            ) : null}
           </Segment>
         </div>
       </React.Fragment>

@@ -12,28 +12,25 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class LanguageBookmarkForm extends Component {
+export default class SnippetForm extends Component {
   state = {
     title: "",
-    link: "",
-    description: "",
+    text: "",
     image: null,
     archiveId: parseInt(this.props.archiveId),
-    resourceTypeId: 1,
-
+    recordTypeId: 2,
   };
 
   submit = () => {
-    const bookmark = {
-      title: this.state.title,
-      link: this.state.link,
-      description: this.state.description,
-      image: this.state.image,
-      archiveId: this.state.archiveId,
-      resourceTypeId: this.state.resourceTypeId,
+    const snippet = {
+        title: this.state.title,
+        text: this.state.text,
+        image: this.state.image,
+        archiveId:this.state.archiveId,
+        recordTypeId: this.state.recordTypeId,
 
     };
-    this.props.addLanguageBookmark(bookmark)
+    this.props.addLanguageSnippet(snippet)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
@@ -47,22 +44,28 @@ export default class LanguageBookmarkForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-          <Button style={{ background: "#15CA00", color: "white", marginLeft: "30em", borderRadius: "100%" }} size="mini" icon>
-            <Icon name="plus" />
+            <Button primary as="div" labelPosition="right">
+              <Button style={{ background: "#15CA00", color: "white" }} icon>
+                <Icon name="plus" />
+                Add
+              </Button>
+              <Label basic pointing="left">
+                Archive Code Snippet
+              </Label>
             </Button>
           }
-          style={{ width: "30em" }}
+          style={{ width: "45em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="bookmark"
+                  name="code"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add A New Bookmark
+              Add a new Archive Code Snippet
             </Header>
 
             <Modal.Description>
@@ -72,21 +75,16 @@ export default class LanguageBookmarkForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        placeholder="Name of Website or Article"
+                        placeholder="Title of snippet (What is the snippet about?)"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
-                      <Form.Input
+                      <Form.TextArea
                         fluid
-                        placeholder="URL of Resource"
-                        onChange={e => this.setState({ link: e.target.value })}
-                        id="link"
-                      />
-                    <Form.Input
-                        fluid
-                        placeholder="Description (optional)"
-                        onChange={e => this.setState({ description: e.target.value })}
-                        id="description"
+                        rows="10"
+                        placeholder="Insert Code"
+                        onChange={e => this.setState({ text: e.target.value })}
+                        id="text"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

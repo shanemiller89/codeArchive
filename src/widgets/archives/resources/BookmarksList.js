@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { List, Dropdown, Confirm } from "semantic-ui-react";
-import LanguageBookmarkEditForm from "./LanguageBookmarkEditForm";
+import BookmarkEditForm from "./BookmarkEditForm";
 
 export default class BookmarksList extends Component {
   state = {
@@ -26,7 +26,7 @@ export default class BookmarksList extends Component {
               </a>
               <Dropdown icon="list" floated="right">
                 <Dropdown.Menu position="right">
-                  <LanguageBookmarkEditForm
+                  <BookmarkEditForm
                     bookmark={this.props.bookmark}
                     updateLanguageBookmark={this.props.updateLanguageBookmark}
                   />

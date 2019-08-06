@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Card, Grid, Image, Dropdown, Confirm } from "semantic-ui-react";
-import LanguageVideoEditForm from "./LanguageVideoEditForm"
+import VideoEditForm from "./VideoEditForm"
 
-export default class LanguageVideoCard extends Component {
+export default class VideoCard extends Component {
   state = {
     open: false
   };
@@ -23,7 +23,7 @@ export default class LanguageVideoCard extends Component {
               </a>
               <Dropdown icon="list" style={{fontSize: ".75em", marginLeft: "1em"}}>
                 <Dropdown.Menu>
-                  <LanguageVideoEditForm
+                  <VideoEditForm
                     video={this.props.video}
                     updateLanguageVideo={this.props.updateLanguageVideo}
                   />
