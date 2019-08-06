@@ -8,21 +8,94 @@ import {
   Divider
 } from "semantic-ui-react";
 import API from "../../../../modules/API";
+import SubLanguageArchiveList from "../../../../widgets/archives/sublanguage/SubLanguageArchivesList";
+import SubLanguageArchiveForm from "../../../../widgets/archives/sublanguage/SubLanguageArchiveForm"
 
 export default class SubLanguageLibrary extends Component {
   state = {
     subLanguage: [],
-    languageArchives: []
+    subLanguageArchives: []
   };
 
   // TODO:Figure out why there is a render delay
 
   componentDidMount() {
     const newState = {};
-    API.get("subLanguageLibraries", `${this.props.match.params.subLanguageLibraryId}`)
+    API.get(
+      "subLanguageLibraries",
+      `${this.props.match.params.subLanguageLibraryId}`
+    )
       .then(subLanguage => (newState.subLanguage = subLanguage))
       .then(() => this.setState(newState));
+    // ALL SUB LANGUAGE ARCHIVES //
+    API.getAll(
+      "subLibraryArchives",
+      `_expand=archive&subLanguageLibraryId=${
+        this.props.match.params.subLanguageLibraryId
+      }`
+    )
+      .then(
+        subLanguageArchives =>
+          (newState.subLanguageArchives = subLanguageArchives)
+      )
+      .then(() => this.setState(newState));
   }
+
+  // CRUD FOR SUB LANGUAGE ARCHIVE //
+
+  addArchive = data => {
+    return API.post("archives", data);
+  };
+  addSubLanguageArchive = data => {
+    API.post("subLibraryArchives", data)
+      .then(() =>
+        API.getAll(
+          "subLibraryArchives",
+          `_expand=archive&subLanguageLibraryId=${
+            this.props.match.params.subLanguageLibraryId
+          }`
+        )
+      )
+      .then(subLanguageArchives =>
+        this.setState({
+          subLanguageArchives: subLanguageArchives
+        })
+      );
+  };
+
+  deleteArchive = id => {
+    API.delete("archives", id)
+      .then(() =>
+        API.getAll(
+          "subLibraryArchives",
+          `_expand=archive&subLanguageLibraryId=${
+            this.props.match.params.subLanguageLibraryId
+          }`
+        )
+      )
+      .then(subLanguageArchives =>
+        this.setState({
+          subLanguageArchives: subLanguageArchives
+        })
+      );
+  };
+
+  updateArchive = editedData => {
+    API.put("archives", editedData)
+      .then(() =>
+        API.getAll(
+          "subLibraryArchives",
+          `_expand=archive&subLanguageLibraryId=${
+            this.props.match.params.subLanguageLibraryId
+          }`
+        )
+      )
+      .then(subLanguageArchives =>
+        this.setState({
+          subLanguageArchives: subLanguageArchives
+        })
+      );
+  };
 
   render() {
     return (
@@ -53,6 +126,11 @@ export default class SubLanguageLibrary extends Component {
             </Header>
           </a>
           <br />
+          <SubLanguageArchiveForm
+            subLanguageId={this.state.subLanguage.id}
+            addArchive={this.addArchive}
+            addSubLanguageArchive={this.addSubLanguageArchive}
+          />
         </Container>
         {/* Archives */}
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
@@ -64,6 +142,16 @@ export default class SubLanguageLibrary extends Component {
             </Header.Subheader>
           </Header.Content>
         </Header>
+        <div>
+          {this.state.subLanguageArchives.map(archive => (
+            <SubLanguageArchiveList
+              key={archive.archive.id}
+              archive={archive}
+              updateArchive={this.updateArchive}
+              deleteArchive={this.deleteArchive}
+            />
+          ))}
+        </div>
       </React.Fragment>
     );
   }

@@ -8,7 +8,7 @@ import {
   Dropdown,
   Confirm
 } from "semantic-ui-react";
-import SubLanguageArchiveEditForm from "./SubLanguageArchiveEditForm";
+import SubLanguageArchiveEditForm from "./SubLanguageArchiveEditForm" 
 
 export default class SubLanguageArchivesList extends Component {
   state = {
