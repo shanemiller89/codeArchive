@@ -52,19 +52,14 @@
       "id": 1
     },
     {
-      "title": "border-radius",
-      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
-      "id": 2
-    },
-    {
       "title": "Local Scope",
       "link": "",
-      "id": 3
+      "id": 2
     },
     {
       "title": "State",
       "link": "http://python.com",
-      "id": 4
+      "id": 3
     }
   ],
   "libraryArchives": [
@@ -75,15 +70,14 @@
     },
     {
       "libraryId": 1,
-      "archiveId": 3,
-      "id": 3
+      "archiveId": 2,
+      "id": 2
     }
   ],
   "subLibraryArchives": [
     {
       "subLanguageLibraryId": 2,
-      "archiveId": 4,
-      "id": 1
+      "archiveId": 3,
     }
   ],
   "resources": [
