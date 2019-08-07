@@ -91,7 +91,7 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/library/archive/:ArchiveId(\d+)"
+          path="/library-archive/:ArchiveId(\d+)"
           render={props => {
             this.state.languageArchives.find(
               languageArchive =>
@@ -115,7 +115,7 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/log-archive/:ArchiveId(\d+)"
+          path="/issue-log-archive/:ArchiveId(\d+)"
           render={props => {
             this.state.logArchives.find(
               logArchive =>
