@@ -53,6 +53,13 @@
       "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
+    },
+    {
+      "title": "Fetch Call Undefined",
+      "reference": "API",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 3
     }
   ],
   "logTypes": [
@@ -84,18 +91,18 @@
     },
     {
       "title": "State",
-      "link": "http://python.com",
-      "id": 3
-    },
-    {
-      "title": "Literally Anything",
       "link": "",
-      "id": 5
+      "id": 3
     },
     {
       "title": "Factory Function",
       "link": "",
       "id": 7
+    },
+    {
+      "title": "Fetch Call Undefined",
+      "link": "",
+      "id": 8
     }
   ],
   "libraryArchives": [
@@ -122,6 +129,11 @@
       "logId": 2,
       "archiveId": 7,
       "id": 2
+    },
+    {
+      "logId": 3,
+      "archiveId": 8,
+      "id": 3
     }
   ],
   "resources": [
@@ -151,24 +163,6 @@
       "archiveId": 1,
       "resourceTypeId": 1,
       "id": 3
-    },
-    {
-      "title": "xdsdf",
-      "link": "dfsdfdsf",
-      "description": "dsfsdfsdf",
-      "image": null,
-      "archiveId": "5",
-      "resourceTypeId": 1,
-      "id": 4
-    },
-    {
-      "title": "xddxfszf",
-      "link": "zsdDSsd",
-      "description": "zsdzsd",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
-      "archiveId": "5",
-      "resourceTypeId": 2,
-      "id": 5
     }
   ],
   "resourceTypes": [
@@ -205,14 +199,6 @@
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 3
-    },
-    {
-      "title": "Python",
-      "text": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FPython-5?alt=media&token=2e8d1a7f-772a-4cb7-9467-bbe24866ffbd",
-      "archiveId": 5,
-      "recordTypeId": 1,
-      "id": 5
     }
   ],
   "recordTypes": [

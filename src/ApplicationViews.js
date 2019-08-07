@@ -7,7 +7,7 @@ import SubLanguageLibrary from "./components/library/languagelibrary/sublanguage
 import API from "./modules/API";
 import LanguageArchive from "./widgets/archives/language/LanguageArchive";
 import IssuesLog from "./components/issues/IssuesLog";
-import IssueArchive from "./widgets/archives/logs/IssueArchive";
+import LogArchive from "./widgets/archives/logs/LogArchive";
 
 export default class ApplicationViews extends Component {
   state = {
@@ -91,12 +91,12 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/library/archive/:languageArchiveId(\d+)"
+          path="/library/archive/:ArchiveId(\d+)"
           render={props => {
             this.state.languageArchives.find(
               languageArchive =>
                 languageArchive.archive.id ===
-                parseInt(props.match.params.subLanguageLibraryId)
+                parseInt(props.match.params.ArchiveId)
             );
             return (
               <LanguageArchive
@@ -115,14 +115,14 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/issues/archive/:issueArchiveId(\d+)"
+          path="/log-archive/:ArchiveId(\d+)"
           render={props => {
             this.state.logArchives.find(
-              issueArchive =>
-              issueArchive.archive.id === parseInt(props.match.params.issueArchiveId)
+              logArchive =>
+              logArchive.archive.id === parseInt(props.match.params.ArchiveId)
             );
             return (
-              <IssueArchive
+              <LanguageArchive
                 {...props}
                 // languageArchive={this.state.languageArchive}
               />

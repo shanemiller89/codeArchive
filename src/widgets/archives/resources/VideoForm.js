@@ -33,7 +33,7 @@ export default class VideoForm extends Component {
       resourceTypeId: this.state.resourceTypeId,
 
     };
-    this.props.addLanguageVideo(video)
+    this.props.addVideo(video)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//

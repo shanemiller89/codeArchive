@@ -45,7 +45,7 @@ export default class SnippetEditForm extends Component {
         id: this.props.snippetId
 
     };
-    this.props.updateLanguageSnippet(editedSnippet)
+    this.props.updateSnippet(editedSnippet)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//

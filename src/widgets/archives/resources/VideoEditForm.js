@@ -48,7 +48,7 @@ export default class VideoEditForm extends Component {
       id: this.props.video.id
 
     };
-    this.props.updateLanguageVideo(editedVideo)
+    this.props.updateVideo(editedVideo)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//

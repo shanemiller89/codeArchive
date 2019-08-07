@@ -33,7 +33,7 @@ export default class IssueList extends Component {
               <Grid.Column width={7} verticalAlign="middle">
                 {/* LINK */}
                 <Link
-                  to={`/issues/archive/${this.props.issueArchive.archive.id}`}
+                  to={`/log-archive/${this.props.issueArchive.archive.id}`}
                 >
                   <Header as="h2">
                     {this.props.issueArchive.archive.title}

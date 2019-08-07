@@ -34,7 +34,7 @@ export default class NoteSegment extends Component {
                 <Dropdown.Menu>
                   <NoteEditForm
                     noteId={this.props.note.id}
-                    updateLanguageNote={this.props.updateLanguageNote}
+                    updateNote={this.props.updateNote}
                   />
                   <Dropdown.Item
                     icon="trash alternate"
@@ -49,7 +49,7 @@ export default class NoteSegment extends Component {
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() =>
-                      this.props.deleteLanguageNote(this.props.note.id)
+                      this.props.deleteNote(this.props.note.id)
                     }
                   />
                 </Dropdown.Menu>

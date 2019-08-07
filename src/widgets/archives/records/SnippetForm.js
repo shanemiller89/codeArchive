@@ -30,7 +30,7 @@ export default class SnippetForm extends Component {
         recordTypeId: this.state.recordTypeId,
 
     };
-    this.props.addLanguageSnippet(snippet)
+    this.props.addSnippet(snippet)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//

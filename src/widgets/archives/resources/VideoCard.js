@@ -25,7 +25,7 @@ export default class VideoCard extends Component {
                 <Dropdown.Menu>
                   <VideoEditForm
                     video={this.props.video}
-                    updateLanguageVideo={this.props.updateLanguageVideo}
+                    updateVideo={this.props.updateVideo}
                   />
                   <Dropdown.Item
                     icon="trash alternate"
@@ -40,7 +40,7 @@ export default class VideoCard extends Component {
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() =>
-                      this.props.deleteLanguageVideo(this.props.video.id)
+                      this.props.deleteVideo(this.props.video.id)
                     }
                   />
                 </Dropdown.Menu>

@@ -28,7 +28,7 @@ export default class BookmarksList extends Component {
                 <Dropdown.Menu position="right">
                   <BookmarkEditForm
                     bookmark={this.props.bookmark}
-                    updateLanguageBookmark={this.props.updateLanguageBookmark}
+                    updateBookmark={this.props.updateBookmark}
                   />
                   <Dropdown.Item
                     icon="trash alternate"
@@ -43,7 +43,7 @@ export default class BookmarksList extends Component {
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() =>
-                      this.props.deleteLanguageBookmark(this.props.bookmark.id)
+                      this.props.deleteBookmark(this.props.bookmark.id)
                     }
                   />
                 </Dropdown.Menu>

@@ -37,7 +37,7 @@ export default class NoteForm extends Component {
       .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
       .then(imageURL => {
-        return this.props.addLanguageNote({
+        return this.props.addNote({
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
@@ -52,12 +52,12 @@ export default class NoteForm extends Component {
     const note = {
         title: this.state.title,
         text: this.state.text,
-        image: this.state.image,
+        image: null,
         archiveId:this.state.archiveId,
         recordTypeId: this.state.recordTypeId,
 
     };
-    this.props.addLanguageNote(note)
+    this.props.addNote(note)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//

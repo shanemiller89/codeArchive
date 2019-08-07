@@ -12,249 +12,253 @@ import SnippetForm from "../records/SnippetForm";
 
 export default class LanguageArchive extends Component {
   state = {
-    languageArchive: [],
-    languageNotes: [],
-    languageSnippets: [],
-    languageBookmarks: [],
-    languageVideos: []
+    Archive: [],
+    Notes: [],
+    Snippets: [],
+    Bookmarks: [],
+    Videos: []
   };
 
-  archiveId = this.props.match.params.languageArchiveId;
+  archiveId = this.props.match.params.ArchiveId;
 
   componentDidMount() {
     const newState = {};
-    API.get("archives", `${this.props.match.params.languageArchiveId}`)
-      .then(languageArchive => (newState.languageArchive = languageArchive))
+    API.get("archives", `${this.props.match.params.ArchiveId}`)
+      .then(Archive => (newState.Archive = Archive))
       .then(() => this.setState(newState));
     // Get ALl Notes //
     API.getAll(
       "records",
-      `archiveId=${this.props.match.params.languageArchiveId}&recordTypeId=1`
+      `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=1`
     )
-      .then(languageNotes => (newState.languageNotes = languageNotes))
+      .then(Notes => (newState.Notes = Notes))
       .then(() => this.setState(newState));
     // Get All Snippets //
     API.getAll(
       "records",
-      `archiveId=${this.props.match.params.languageArchiveId}&recordTypeId=2`
+      `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=2`
     )
-      .then(languageSnippets => (newState.languageSnippets = languageSnippets))
+      .then(Snippets => (newState.Snippets = Snippets))
       .then(() => this.setState(newState));
     // Get All bookmarks //
     API.getAll(
       "resources",
-      `archiveId=${this.props.match.params.languageArchiveId}&resourceTypeId=1`
+      `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
     )
       .then(
-        languageBookmarks => (newState.languageBookmarks = languageBookmarks)
+        Bookmarks => (newState.Bookmarks = Bookmarks)
       )
       .then(() => this.setState(newState));
     // Get All videos //
     API.getAll(
       "resources",
-      `archiveId=${this.props.match.params.languageArchiveId}&resourceTypeId=2`
+      `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
     )
-      .then(languageVideos => (newState.languageVideos = languageVideos))
+      .then(Videos => (newState.Videos = Videos))
       .then(() => this.setState(newState));
   }
 
   // FOR CRUD OF NOTE //
-  addLanguageNote = data => {
+  addNote = data => {
     API.post("records", data)
       .then(() =>
         API.getAll(
           "records",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&recordTypeId=1`
         )
       )
-      .then(languageNotes =>
+      .then(Notes =>
         this.setState({
-          languageNotes: languageNotes
+          Notes: Notes
         })
       );
   };
-  deleteLanguageNote = id => {
+  deleteNote = id => {
     API.delete("records", id)
       .then(() =>
         API.getAll(
           "records",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&recordTypeId=1`
         )
       )
-      .then(languageNotes =>
+      .then(Notes =>
         this.setState({
-          languageNotes: languageNotes
+          Notes: Notes
         })
       );
   };
-  updateLanguageNote = editedData => {
+  updateNote = editedData => {
     API.put("records", editedData)
       .then(() =>
         API.getAll(
           "records",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&recordTypeId=1`
         )
       )
-      .then(languageNotes =>
+      .then(Notes =>
         this.setState({
-          languageNotes: languageNotes
+          Notes: Notes
         })
       );
   };
   // FOR CRUD SNIPPETS //
-  addLanguageSnippet = data => {
+  addSnippet = data => {
     API.post("records", data)
       .then(() =>
         API.getAll(
           "records",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&recordTypeId=2`
         )
       )
-      .then(languageSnippets =>
+      .then(Snippets =>
         this.setState({
-          languageSnippets: languageSnippets
+          Snippets: Snippets
         })
       );
   };
-  deleteLanguageSnippet = id => {
+  deleteSnippet = id => {
     API.delete("records", id)
       .then(() =>
         API.getAll(
           "records",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&recordTypeId=2`
         )
       )
-      .then(languageSnippets =>
+      .then(Snippets =>
         this.setState({
-          languageSnippets: languageSnippets
+          Snippets: Snippets
         })
       );
   };
-  updateLanguageSnippet = editedData => {
+  updateSnippet = editedData => {
     API.put("records", editedData)
       .then(() =>
         API.getAll(
           "records",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&recordTypeId=2`
         )
       )
-      .then(languageSnippets =>
+      .then(Snippets =>
         this.setState({
-          languageSnippets: languageSnippets
+          Snippets: Snippets
         })
       );
   };
 
   // FOR CRUD OF BOOKMARK //
-  addLanguageBookmark = data => {
+  addBookmark = data => {
     API.post("resources", data)
       .then(() =>
         API.getAll(
           "resources",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&resourceTypeId=1`
         )
       )
-      .then(languageBookmarks =>
+      .then(Bookmarks =>
         this.setState({
-          languageBookmarks: languageBookmarks
+          Bookmarks: Bookmarks
         })
       );
   };
-  deleteLanguageBookmark = id => {
+  deleteBookmark = id => {
     API.delete("resources", id)
       .then(() =>
         API.getAll(
           "resources",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&resourceTypeId=1`
         )
       )
-      .then(languageBookmarks =>
+      .then(Bookmarks =>
         this.setState({
-          languageBookmarks: languageBookmarks
+          Bookmarks: Bookmarks
         })
       );
   };
-  updateLanguageBookmark = editedData => {
+  updateBookmark = editedData => {
     API.put("resources", editedData)
       .then(() =>
         API.getAll(
           "resources",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&resourceTypeId=1`
         )
       )
-      .then(languageBookmarks =>
+      .then(Bookmarks =>
         this.setState({
-          languageBookmarks: languageBookmarks
+          Bookmarks: Bookmarks
         })
       );
   };
   // CRUD FOR VIDEOS
-  addLanguageVideo = data => {
+  addVideo = data => {
     API.post("resources", data)
       .then(() =>
         API.getAll(
           "resources",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&resourceTypeId=2`
         )
       )
-      .then(languageVideos =>
+      .then(Videos =>
         this.setState({
-          languageVideos: languageVideos
+          Videos: Videos
         })
       );
   };
-  deleteLanguageVideo = id => {
+  deleteVideo = id => {
     API.delete("resources", id)
       .then(() =>
         API.getAll(
           "resources",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&resourceTypeId=2`
         )
       )
-      .then(languageVideos =>
+      .then(Videos =>
         this.setState({
-          languageVideos: languageVideos
+          Videos: Videos
         })
       );
   };
-  updateLanguageVideo = editedData => {
+  updateVideo = editedData => {
     API.put("resources", editedData)
       .then(() =>
         API.getAll(
           "resources",
           `archiveId=${
-            this.props.match.params.languageArchiveId
+            this.props.match.params.ArchiveId
           }&resourceTypeId=2`
         )
       )
-      .then(languageVideos =>
+      .then(Videos =>
         this.setState({
-          languageVideos: languageVideos
+          Videos: Videos
         })
       );
   };
+
+  // {this.props.note.image !== null ? (
+  //   <Image src={this.props.note.image} alt={this.props.note.title}/>
+  // ) : null}
 
   render() {
     return (
@@ -269,11 +273,12 @@ export default class LanguageArchive extends Component {
           fluid
         >
           <Header style={{ fontSize: "5em", color: "#15CA00" }}>
-            {this.state.languageArchive.title}
+            {this.state.Archive.title}
           </Header>
           {/* Main Documentation Link */}
+          {this.state.Archive.link !== "" ?
           <a
-            href={this.state.languageArchive.link}
+            href={this.state.Archive.link}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -284,38 +289,39 @@ export default class LanguageArchive extends Component {
               />
               <Header.Content>Documentation</Header.Content>
             </Header>
-          </a>
+          </a> : null
+          }
           <br />
           {/* Add Note Form */}
           <NoteForm
             archiveId={this.archiveId}
-            addLanguageNote={this.addLanguageNote}
+            addNote={this.addNote}
           />
           <br />
           <br />
           {/* Add Code Snippet Form */}
           <SnippetForm 
           archiveId={this.archiveId}
-          addLanguageSnippet={this.addLanguageSnippet}
+          addSnippet={this.addSnippet}
           />
         </Container>
         <br />
         {/* Notes and Snippets */}
         {/* <Grid columns> */}
-        {this.state.languageNotes.map(note => (
+        {this.state.Notes.map(note => (
           <NoteSegment
             key={note.id}
             note={note}
-            deleteLanguageNote={this.deleteLanguageNote}
-            updateLanguageNote={this.updateLanguageNote}
+            deleteNote={this.deleteNote}
+            updateNote={this.updateNote}
           />
         ))}
-        {this.state.languageSnippets.map(snippet => (
+        {this.state.Snippets.map(snippet => (
           <SnippetSegment
             key={snippet.id}
             snippet={snippet}
-            deleteLanguageSnippet={this.deleteLanguageSnippet}
-            updateLanguageSnippet={this.updateLanguageSnippet}
+            deleteSnippet={this.deleteSnippet}
+            updateSnippet={this.updateSnippet}
           />
         ))}
         {/* </Grid> */}
@@ -328,7 +334,7 @@ export default class LanguageArchive extends Component {
               Bookmarks
               <BookmarkForm
                 archiveId={this.archiveId}
-                addLanguageBookmark={this.addLanguageBookmark}
+                addBookmark={this.addBookmark}
               />
               <Header.Subheader>
                 All websites, articles, or documentation relating to this
@@ -337,17 +343,18 @@ export default class LanguageArchive extends Component {
             </Header.Content>
           </Header>
           <List>
-            {this.state.languageBookmarks.map(bookmark => (
+            {this.state.Bookmarks.map(bookmark => (
               <BookmarksList
                 key={bookmark.id}
                 bookmark={bookmark}
-                deleteLanguageBookmark={this.deleteLanguageBookmark}
-                updateLanguageBookmark={this.updateLanguageBookmark}
+                deleteBookmark={this.deleteBookmark}
+                updateBookmark={this.updateBookmark}
               />
             ))}
           </List>
         </div>
         {/* Videos */}
+        {/* {this.props.location.pathname.indexOf(`/log-archive/${this.props.match.params.ArchiveId}`) ? */}
         <div>
           <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
             <Icon name="video" style={{ color: "#15CA00" }} />
@@ -355,7 +362,7 @@ export default class LanguageArchive extends Component {
               Videos
               <VideoForm
                 archiveId={this.archiveId}
-                addLanguageVideo={this.addLanguageVideo}
+                addVideo={this.addVideo}
               />
               <Header.Subheader>
                 All videos relating to this Archive
@@ -363,16 +370,18 @@ export default class LanguageArchive extends Component {
             </Header.Content>
           </Header>
           <Card.Group itemsPerRow={2}>
-            {this.state.languageVideos.map(video => (
+            {this.state.Videos.map(video => (
               <VideoCard
                 key={video.id}
                 video={video}
-                deleteLanguageVideo={this.deleteLanguageVideo}
-                updateLanguageVideo={this.updateLanguageVideo}
+                deleteVideo={this.deleteVideo}
+                updateVideo={this.updateVideo}
               />
             ))}
           </Card.Group>
         </div>
+        {/* : null
+        } */}
         <br />
         <br />
       </React.Fragment>

@@ -36,7 +36,7 @@ export default class SnippetSegment extends Component {
                 <Dropdown.Menu>
                   <SnippetEditForm
                     snippetId={this.props.snippet.id}
-                    updateLanguageSnippet={this.props.updateLanguageSnippet}
+                    updateSnippet={this.props.updateSnippet}
                   />
                   <Dropdown.Item
                     icon="trash alternate"
@@ -51,7 +51,7 @@ export default class SnippetSegment extends Component {
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() =>
-                      this.props.deleteLanguageSnippet(this.props.snippet.id)
+                      this.props.deleteSnippet(this.props.snippet.id)
                     }
                   />
                 </Dropdown.Menu>

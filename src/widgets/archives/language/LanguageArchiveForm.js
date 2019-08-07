@@ -15,7 +15,7 @@ import "firebase/storage";
 export default class LanguageArchiveForm extends Component {
   state = {
     title: "",
-    keywords: [],
+    link: "",
     libraryId: null,
     archiveId: null,
   };
@@ -79,9 +79,9 @@ export default class LanguageArchiveForm extends Component {
                       />
                       <Form.Input
                         fluid
-                        placeholder="Keywords for search functionality"
-                        onChange={e => this.setState({ keywords: e.target.value })}
-                        id="keywords"
+                        placeholder="Documentation URL (optional)"
+                        onChange={e => this.setState({ link: e.target.value })}
+                        id="link"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

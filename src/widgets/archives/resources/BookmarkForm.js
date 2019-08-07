@@ -33,7 +33,7 @@ export default class BookmarkForm extends Component {
       resourceTypeId: this.state.resourceTypeId,
 
     };
-    this.props.addLanguageBookmark(bookmark)
+    this.props.addBookmark(bookmark)
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
