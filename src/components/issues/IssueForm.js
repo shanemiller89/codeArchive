@@ -15,17 +15,29 @@ import "firebase/storage";
 export default class IssueForm extends Component {
   state = {
     title: "",
-    keywords: "",
+    reference: "",
+    logTypeId: 1,
+    userId: JSON.parse(localStorage.getItem("user")),
+    newIssueId: ""
   };
 
   submit = () => {
     const issue = {
       title: this.state.title,
-      keywords: this.state.keywords,
+      reference: this.state.reference,
+      logTypeId: this.state.logTypeId,
+      userId: this.state.userId
     };
-    this.props.addArchive(issue)
+    this.props.addIssue(issue)
+    .then(newIssue => this.setState({newIssueId: newIssue.id}))
+    .then(() => this.props.addArchive({title: this.state.title, link: ""}))
+    .then(newArchive =>
+      this.props.addIssueArchive({logId: this.state.newIssueId, archiveId: newArchive.id})
+      )
+
+
     // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    // --This toggle will close the Modal upon click --//
   };
 
   // TODO:
@@ -73,9 +85,9 @@ export default class IssueForm extends Component {
                       />
                       <Form.Input
                         fluid
-                        placeholder="Enter Keywords for searching"
-                        onChange={e => this.setState({ keywords: e.target.value })}
-                        id="keywords"
+                        placeholder="Language, Program or Reference related to Issue"
+                        onChange={e => this.setState({ reference: e.target.value })}
+                        id="reference"
                       />
                       <Button primary fluid size="large" onClick={this.submit}>
                         Submit

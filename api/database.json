@@ -47,15 +47,9 @@
   ],
   "logs": [
     {
-      "title": "Fetch",
-      "keywordId": 1,
-      "logTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 1
-    },
-    {
       "title": "Factory Function",
-      "keywordId": 1,
+      "reference": "Javascript",
+      "keywordId": 2,
       "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
@@ -99,11 +93,6 @@
       "id": 5
     },
     {
-      "title": "Fetch",
-      "link": "",
-      "id": 6
-    },
-    {
       "title": "Factory Function",
       "link": "",
       "id": 7
@@ -129,11 +118,6 @@
     }
   ],
   "logArchives": [
-    {
-      "logId": 1,
-      "archiveId": 6,
-      "id": 1
-    },
     {
       "logId": 2,
       "archiveId": 7,
@@ -221,14 +205,6 @@
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 3
-    },
-    {
-      "title": "Example",
-      "text": "let = harry\n\nconsole.log(\"harry\")",
-      "image": null,
-      "archiveId": 1,
-      "recordTypeId": 2,
-      "id": 4
     },
     {
       "title": "Python",
