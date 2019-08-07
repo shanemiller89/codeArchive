@@ -7,13 +7,15 @@ import SubLanguageLibrary from "./components/library/languagelibrary/sublanguage
 import API from "./modules/API";
 import LanguageArchive from "./widgets/archives/language/LanguageArchive";
 import IssuesLog from "./components/issues/IssuesLog";
+import IssueArchive from "./widgets/archives/logs/IssueArchive";
 
 export default class ApplicationViews extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     languageLibraries: [],
     subLanguageLibraries: [],
-    languageArchives: []
+    languageArchives: [],
+    issueLogs: []
   };
 
   componentDidMount() {
@@ -31,6 +33,9 @@ export default class ApplicationViews extends Component {
       .then(() => this.setState(newState));
     API.getAll("libraryArchives", `_expand=archive`)
       .then(languageArchives => (newState.languageArchives = languageArchives))
+      .then(() => this.setState(newState));
+    API.getAll("logs", `userId=${this.state.currentUser}&logTypeId=1`)
+      .then(issueLogs => (newState.issueLogs = issueLogs))
       .then(() => this.setState(newState));
   }
 
@@ -86,13 +91,6 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/issues"
-          render={props => {
-            return <IssuesLog {...props} />;
-          }}
-        />
-        <Route
-          exact
           path="/library/archive/:languageArchiveId(\d+)"
           render={props => {
             this.state.languageArchives.find(
@@ -102,6 +100,29 @@ export default class ApplicationViews extends Component {
             );
             return (
               <LanguageArchive
+                {...props}
+                // languageArchive={this.state.languageArchive}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/issues"
+          render={props => {
+            return <IssuesLog {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/issues/archive/:issueLogId(\d+)"
+          render={props => {
+            this.state.issueLogs.find(
+              issueLog =>
+                issueLog.id === parseInt(props.match.params.issueLogId)
+            );
+            return (
+              <IssueArchive
                 {...props}
                 // languageArchive={this.state.languageArchive}
               />

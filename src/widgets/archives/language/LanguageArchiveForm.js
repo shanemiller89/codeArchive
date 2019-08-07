@@ -21,11 +21,14 @@ export default class LanguageArchiveForm extends Component {
   };
 
   submit = () => {
-    const issue = {
+    const archive = {
       title: this.state.title,
-      keywords: this.state.keywords,
+      link: this.state.link,
     };
-    this.props.addIssue(issue)  
+    this.props.addArchive(archive)
+    .then(newArchive => 
+      this.props.addLanguageArchive({libraryId: this.props.languageId, archiveId: newArchive.id})
+      )
 
     // this.toggle();
     //--This toggle will close the Modal upon click --//
