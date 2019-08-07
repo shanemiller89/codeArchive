@@ -72,12 +72,6 @@
       "id": 2
     }
   ],
-  "keywords": [
-    {
-      "keyword": "Javascript",
-      "id": 2
-    }
-  ],
   "archives": [
     {
       "title": "map ( )",
@@ -199,6 +193,22 @@
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 3
+    },
+    {
+      "title": "Useage",
+      "text": "For Creating multiple objects of the same type. A good example would be creating a \"Pizza Making\" factory function that creates different types of pizzas based on the parameters entered for the function.",
+      "image": null,
+      "archiveId": 7,
+      "recordTypeId": 1,
+      "id": 4
+    },
+    {
+      "title": "Code",
+      "text": "function createJelly() {\n  return {\n    type: 'jelly',\n    colour: 'red',\n    scoops: 3\n  };\n}",
+      "image": null,
+      "archiveId": 7,
+      "recordTypeId": 2,
+      "id": 5
     }
   ],
   "recordTypes": [

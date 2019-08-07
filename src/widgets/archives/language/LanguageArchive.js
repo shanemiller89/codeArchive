@@ -7,7 +7,7 @@ import VideoCard from "../resources/VideoCard";
 import VideoForm from "../resources/VideoForm";
 import NoteSegment from "../records/NoteSegment";
 import NoteForm from "../records/NoteForm";
-import SnippetSegment from "../records/SnippetSegment"
+import SnippetSegment from "../records/SnippetSegment";
 import SnippetForm from "../records/SnippetForm";
 
 export default class LanguageArchive extends Component {
@@ -45,9 +45,7 @@ export default class LanguageArchive extends Component {
       "resources",
       `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
     )
-      .then(
-        Bookmarks => (newState.Bookmarks = Bookmarks)
-      )
+      .then(Bookmarks => (newState.Bookmarks = Bookmarks))
       .then(() => this.setState(newState));
     // Get All videos //
     API.getAll(
@@ -64,9 +62,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&recordTypeId=1`
+          `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=1`
         )
       )
       .then(Notes =>
@@ -80,9 +76,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&recordTypeId=1`
+          `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=1`
         )
       )
       .then(Notes =>
@@ -96,9 +90,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&recordTypeId=1`
+          `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=1`
         )
       )
       .then(Notes =>
@@ -113,9 +105,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&recordTypeId=2`
+          `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=2`
         )
       )
       .then(Snippets =>
@@ -129,9 +119,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&recordTypeId=2`
+          `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=2`
         )
       )
       .then(Snippets =>
@@ -145,9 +133,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&recordTypeId=2`
+          `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=2`
         )
       )
       .then(Snippets =>
@@ -163,9 +149,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "resources",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&resourceTypeId=1`
+          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
         )
       )
       .then(Bookmarks =>
@@ -179,9 +163,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "resources",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&resourceTypeId=1`
+          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
         )
       )
       .then(Bookmarks =>
@@ -195,9 +177,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "resources",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&resourceTypeId=1`
+          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
         )
       )
       .then(Bookmarks =>
@@ -212,9 +192,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "resources",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&resourceTypeId=2`
+          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
         )
       )
       .then(Videos =>
@@ -228,9 +206,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "resources",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&resourceTypeId=2`
+          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
         )
       )
       .then(Videos =>
@@ -244,9 +220,7 @@ export default class LanguageArchive extends Component {
       .then(() =>
         API.getAll(
           "resources",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&resourceTypeId=2`
+          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
         )
       )
       .then(Videos =>
@@ -276,33 +250,30 @@ export default class LanguageArchive extends Component {
             {this.state.Archive.title}
           </Header>
           {/* Main Documentation Link */}
-          {this.state.Archive.link !== "" ?
-          <a
-            href={this.state.Archive.link}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Header as="h1">
-              <Icon
-                name="linkify"
-                style={{ fontSize: "1em", color: "#15CA00" }}
-              />
-              <Header.Content>Documentation</Header.Content>
-            </Header>
-          </a> : null
-          }
+          {this.state.Archive.link !== "" ? (
+            <a
+              href={this.state.Archive.link}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Header as="h1">
+                <Icon
+                  name="linkify"
+                  style={{ fontSize: "1em", color: "#15CA00" }}
+                />
+                <Header.Content>Documentation</Header.Content>
+              </Header>
+            </a>
+          ) : null}
           <br />
           {/* Add Note Form */}
-          <NoteForm
-            archiveId={this.archiveId}
-            addNote={this.addNote}
-          />
+          <NoteForm archiveId={this.archiveId} addNote={this.addNote} />
           <br />
           <br />
           {/* Add Code Snippet Form */}
-          <SnippetForm 
-          archiveId={this.archiveId}
-          addSnippet={this.addSnippet}
+          <SnippetForm
+            archiveId={this.archiveId}
+            addSnippet={this.addSnippet}
           />
         </Container>
         <br />
@@ -327,61 +298,66 @@ export default class LanguageArchive extends Component {
         {/* </Grid> */}
         <br />
         {/* Bookmarks */}
-        <div>
-          <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
-            <Icon name="bookmark" style={{ color: "#15CA00" }} />
-            <Header.Content>
-              Bookmarks
-              <BookmarkForm
-                archiveId={this.archiveId}
-                addBookmark={this.addBookmark}
-              />
-              <Header.Subheader>
-                All websites, articles, or documentation relating to this
-                Archive
-              </Header.Subheader>
-            </Header.Content>
-          </Header>
-          <List>
-            {this.state.Bookmarks.map(bookmark => (
-              <BookmarksList
-                key={bookmark.id}
-                bookmark={bookmark}
-                deleteBookmark={this.deleteBookmark}
-                updateBookmark={this.updateBookmark}
-              />
-            ))}
-          </List>
-        </div>
+        {this.props.location.pathname.indexOf(
+          `/code-log-archive/${this.props.match.params.ArchiveId}`
+        ) ? (
+          <div>
+            <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
+              <Icon name="bookmark" style={{ color: "#15CA00" }} />
+              <Header.Content>
+                Bookmarks
+                <BookmarkForm
+                  archiveId={this.archiveId}
+                  addBookmark={this.addBookmark}
+                />
+                <Header.Subheader>
+                  All websites, articles, or documentation relating to this
+                  Archive
+                </Header.Subheader>
+              </Header.Content>
+            </Header>
+            <List>
+              {this.state.Bookmarks.map(bookmark => (
+                <BookmarksList
+                  key={bookmark.id}
+                  bookmark={bookmark}
+                  deleteBookmark={this.deleteBookmark}
+                  updateBookmark={this.updateBookmark}
+                />
+              ))}
+            </List>
+          </div>
+        ) : null}
         {/* Videos */}
-        {/* {this.props.location.pathname.indexOf(`/log-archive/${this.props.match.params.ArchiveId}`) ? */}
-        <div>
-          <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
-            <Icon name="video" style={{ color: "#15CA00" }} />
-            <Header.Content>
-              Videos
-              <VideoForm
-                archiveId={this.archiveId}
-                addVideo={this.addVideo}
-              />
-              <Header.Subheader>
-                All videos relating to this Archive
-              </Header.Subheader>
-            </Header.Content>
-          </Header>
-          <Card.Group itemsPerRow={2}>
-            {this.state.Videos.map(video => (
-              <VideoCard
-                key={video.id}
-                video={video}
-                deleteVideo={this.deleteVideo}
-                updateVideo={this.updateVideo}
-              />
-            ))}
-          </Card.Group>
-        </div>
-        {/* : null
-        } */}
+        {this.props.location.pathname.indexOf(
+          `/code-log-archive/${this.props.match.params.ArchiveId}`
+        ) ? (
+          <div>
+            <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
+              <Icon name="video" style={{ color: "#15CA00" }} />
+              <Header.Content>
+                Videos
+                <VideoForm
+                  archiveId={this.archiveId}
+                  addVideo={this.addVideo}
+                />
+                <Header.Subheader>
+                  All videos relating to this Archive
+                </Header.Subheader>
+              </Header.Content>
+            </Header>
+            <Card.Group itemsPerRow={2}>
+              {this.state.Videos.map(video => (
+                <VideoCard
+                  key={video.id}
+                  video={video}
+                  deleteVideo={this.deleteVideo}
+                  updateVideo={this.updateVideo}
+                />
+              ))}
+            </Card.Group>
+          </div>
+        ) : null}
         <br />
         <br />
       </React.Fragment>

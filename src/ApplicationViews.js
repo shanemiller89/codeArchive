@@ -7,7 +7,7 @@ import SubLanguageLibrary from "./components/library/languagelibrary/sublanguage
 import API from "./modules/API";
 import LanguageArchive from "./widgets/archives/language/LanguageArchive";
 import IssuesLog from "./components/issues/IssuesLog";
-import LogArchive from "./widgets/archives/logs/LogArchive";
+import CodeLog from "./components/code/CodeLog";
 
 export default class ApplicationViews extends Component {
   state = {
@@ -119,14 +119,27 @@ export default class ApplicationViews extends Component {
           render={props => {
             this.state.logArchives.find(
               logArchive =>
-              logArchive.archive.id === parseInt(props.match.params.ArchiveId)
+                logArchive.archive.id === parseInt(props.match.params.ArchiveId)
             );
-            return (
-              <LanguageArchive
-                {...props}
-                // languageArchive={this.state.languageArchive}
-              />
+            return <LanguageArchive {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/code"
+          render={props => {
+            return <CodeLog {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/code-log-archive/:ArchiveId(\d+)"
+          render={props => {
+            this.state.logArchives.find(
+              logArchive =>
+                logArchive.archive.id === parseInt(props.match.params.ArchiveId)
             );
+            return <LanguageArchive {...props} />;
           }}
         />
       </React.Fragment>

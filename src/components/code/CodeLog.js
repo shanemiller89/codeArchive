@@ -1,36 +1,32 @@
 import React, { Component } from "react";
 import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
-import IssuesList from "./IssuesList";
-import IssueForm from "./IssueForm";
+import CodeList from "./CodeList";
+import CodeForm from "./CodeForm";
 
 // TODO: Refactor of Edit and Delete needed to edit and delete associated Archive
 
-export default class IssuesLog extends Component {
+export default class CodeLog extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
-    issueLogs: [],
     logArchives: []
   };
 
   componentDidMount() {
     const newState = {};
-    API.getAll("logs", `userId=${this.state.currentUser}&logTypeId=1`)
-      .then(issueLogs => (newState.issueLogs = issueLogs))
-      .then(() => this.setState(newState));
     API.getAll("logArchives", `_expand=archive&_expand=log`)
       .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
   }
 
-  // ADD ISSUE //
-  addIssue = data => {
+  // ADD CODE //
+  addCode = data => {
     return API.post("logs", data);
   };
   addArchive = data => {
     return API.post("archives", data);
   };
-  addIssueArchive = data => {
+  addCodeArchive = data => {
     API.post("logArchives", data)
       .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
       .then(logArchives =>
@@ -39,10 +35,9 @@ export default class IssuesLog extends Component {
         })
       );
   };
-  // DELETE ISSUE //
-  deleteIssue = (id1, id2) => {
-    API.delete("logs", id1)
-    .then(() => this.deleteArchive(id2))
+  // DELETE CODE //
+  deleteCode = (id1, id2) => {
+    API.delete("logs", id1).then(() => this.deleteArchive(id2));
   };
   deleteArchive = id => {
     API.delete("archives", id)
@@ -54,20 +49,19 @@ export default class IssuesLog extends Component {
       );
   };
 
-  // UPDATE ISSUE //
-  updateIssue = (editedData1, editedData2) => {
-    API.put("logs", editedData1)
-    .then(() => this.updateArchive(editedData2))
+  // UPDATE CODE //
+  updateCode = (editedData1, editedData2) => {
+    API.put("logs", editedData1).then(() => this.updateArchive(editedData2));
   };
   updateArchive = editedData => {
     API.put("archives", editedData)
-    .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
-    .then(logArchives =>
-      this.setState({
-        logArchives: logArchives
-      })
-    );
-  }
+      .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
+      .then(logArchives =>
+        this.setState({
+          logArchives: logArchives
+        })
+      );
+  };
 
   render() {
     return (
@@ -82,19 +76,19 @@ export default class IssuesLog extends Component {
           fluid
         >
           <Header style={{ fontSize: "5em", color: "#15CA00" }}>
-            Issues Log
+            Code Log
           </Header>
-          {/* Add Issue Form */}
-          <IssueForm
-            addIssue={this.addIssue}
+          {/* Add Code Form */}
+          <CodeForm
+            addCode={this.addCode}
             addArchive={this.addArchive}
-            addIssueArchive={this.addIssueArchive}
+            addCodeArchive={this.addCodeArchive}
           />
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
-          <Icon name="dont" style={{ color: "#15CA00" }} />
+          <Icon name="code" style={{ color: "#15CA00" }} />
           <Header.Content>
-            Issue Archives
+            Code Archives
             <Header.Subheader>
               Logs of Errors and the solutions to them
             </Header.Subheader>
@@ -103,16 +97,16 @@ export default class IssuesLog extends Component {
         <div>
           {this.state.logArchives
             .filter(
-              issueArchive =>
-                (issueArchive.log.logTypeId === 1) &
-                (issueArchive.log.userId === this.state.currentUser)
+              codeArchive =>
+                (codeArchive.log.logTypeId === 2) &
+                (codeArchive.log.userId === this.state.currentUser)
             )
-            .map(issueArchive => (
-              <IssuesList
-                key={issueArchive.archive.id}
-                issueArchive={issueArchive}
-                updateIssue={this.updateIssue}
-                deleteIssue={this.deleteIssue}
+            .map(codeArchive => (
+              <CodeList
+                key={codeArchive.archive.id}
+                codeArchive={codeArchive}
+                updateCode={this.updateCode}
+                deleteCode={this.deleteCode}
               />
             ))}
         </div>
