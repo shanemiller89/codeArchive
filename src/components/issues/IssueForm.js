@@ -30,7 +30,7 @@ export default class IssueForm extends Component {
     };
     this.props.addIssue(issue)
     .then(newIssue => this.setState({newIssueId: newIssue.id}))
-    .then(() => this.props.addArchive({title: this.state.title, link: null}))
+    .then(() => this.props.addArchive({title: this.state.title, link: ""}))
     .then(newArchive =>
       this.props.addIssueArchive({logId: this.state.newIssueId, archiveId: newArchive.id})
       )

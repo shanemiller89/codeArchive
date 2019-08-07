@@ -15,7 +15,7 @@ export default class ApplicationViews extends Component {
     languageLibraries: [],
     subLanguageLibraries: [],
     languageArchives: [],
-    issueLogs: []
+    logArchives: []
   };
 
   componentDidMount() {
@@ -34,8 +34,8 @@ export default class ApplicationViews extends Component {
     API.getAll("libraryArchives", `_expand=archive`)
       .then(languageArchives => (newState.languageArchives = languageArchives))
       .then(() => this.setState(newState));
-    API.getAll("logs", `userId=${this.state.currentUser}&logTypeId=1`)
-      .then(issueLogs => (newState.issueLogs = issueLogs))
+    API.getAll("logArchives", `_expand=archive`)
+      .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
   }
 
@@ -115,11 +115,11 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/issues/archive/:issueLogId(\d+)"
+          path="/issues/archive/:issueArchiveId(\d+)"
           render={props => {
-            this.state.issueLogs.find(
-              issueLog =>
-                issueLog.id === parseInt(props.match.params.issueLogId)
+            this.state.logArchives.find(
+              issueArchive =>
+              issueArchive.archive.id === parseInt(props.match.params.issueArchiveId)
             );
             return (
               <IssueArchive

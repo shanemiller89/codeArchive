@@ -18,7 +18,9 @@ export default class IssueEditForm extends Component {
     title: "",
     reference: "",
     logTypeId: "",
-    userId: ""
+    userId: "",
+    issueId: "",
+    archiveId: ""
   };
 
   componentDidMount() {
@@ -32,6 +34,8 @@ export default class IssueEditForm extends Component {
       });
     });
   }
+
+
 // Update Existing Log //
   submit = () => {
     const editedIssue = {
@@ -40,8 +44,13 @@ export default class IssueEditForm extends Component {
       logTypeId: this.state.logTypeId,
       userId: this.state.userId,
       id: this.props.issueId
+    }
+    const editedArchive = {
+      title: this.state.title,
+      link: "",
+      id: this.props.archiveId
     };
-    this.props.updateIssue(editedIssue)
+    this.props.updateIssue(editedIssue, editedArchive)
     // this.toggle();
     //--This toggle will close the Modal upon click --//
   };

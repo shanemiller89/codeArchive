@@ -8,7 +8,7 @@ import {
   Dropdown,
   Confirm
 } from "semantic-ui-react";
-import IssueEditForm from "./IssueEditForm"
+import IssueEditForm from "./IssueEditForm";
 
 export default class IssueList extends Component {
   state = {
@@ -33,16 +33,14 @@ export default class IssueList extends Component {
               <Grid.Column width={7} verticalAlign="middle">
                 {/* LINK */}
                 <Link
-                  to={`/issues/archive/${
-                    this.props.issue.id
-                  }`}
+                  to={`/issues/archive/${this.props.issueArchive.archive.id}`}
                 >
-                <Header as="h2">
-                  {this.props.issue.title}
-                  <Header.Subheader>
-                    {this.props.issue.reference}
-                  </Header.Subheader>
-                </Header>
+                  <Header as="h2">
+                    {this.props.issueArchive.archive.title}
+                    <Header.Subheader>
+                      {this.props.issueArchive.log.reference}
+                    </Header.Subheader>
+                  </Header>
                 </Link>
               </Grid.Column>
               <Grid.Column verticalAlign="middle" width={6} />
@@ -50,7 +48,8 @@ export default class IssueList extends Component {
                 <Dropdown icon="list" style={{ fontSize: "1.75em" }}>
                   <Dropdown.Menu direction="left">
                     <IssueEditForm
-                      issueId={this.props.issue.id}
+                      issueId={this.props.issueArchive.log.id}
+                      archiveId={this.props.issueArchive.archive.id}
                       updateIssue={this.props.updateIssue}
                     />
                     <Dropdown.Item
@@ -66,7 +65,8 @@ export default class IssueList extends Component {
                       open={this.state.open}
                       onCancel={this.close}
                       onConfirm={() =>
-                        this.props.deleteIssue(this.props.issue.id)
+                        this.props
+                          .deleteIssue(this.props.issueArchive.log.id, this.props.issueArchive.archive.id)
                       }
                     />
                   </Dropdown.Menu>
