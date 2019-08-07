@@ -18,36 +18,47 @@ export default class Languages extends Component {
     return (
       <React.Fragment>
         <Grid.Column floated="left">
-          <Card style={{margin: "2.5em 4em"}}>
-              <Image src={this.props.language.image} wrapped ui={false} />
+          <Card style={{ margin: "2.5em 4em" }}>
+            <Image src={this.props.language.image} wrapped ui={false} />
             <Card.Content>
-            <Link to={`/library/language/${this.props.language.id}`} style={{fontSize: "1.5em"}}>
-              <Card.Header>{this.props.language.title}</Card.Header>
-              </Link>
-              <Dropdown icon="list" floated="right">
-                <Dropdown.Menu position="right">
-                  <LanguageEditForm
-                    language={this.props.language}
-                    updateLanguageLibrary={this.props.updateLanguageLibrary}
-                  />
-                  <Dropdown.Item
-                    icon="trash alternate"
-                    description="Delete"
-                    onClick={this.open}
-                  />
-                  <Confirm
-                    size="mini"
-                    header="Delete Library"
-                    content="Are you sure you want to delete this library?"
-                    confirmButton="Yes"
-                    open={this.state.open}
-                    onCancel={this.close}
-                    onConfirm={() =>
-                      this.props.deleteLanguageLibrary(this.props.language.id)
-                    }
-                  />
-                </Dropdown.Menu>
-              </Dropdown>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <div>
+                  <Link
+                    to={`/library/language/${this.props.language.id}`}
+                    style={{ fontSize: "1.5em" }}
+                  >
+                    <Card.Header>{this.props.language.title}</Card.Header>
+                  </Link>
+                </div>
+                <div>
+                  <Dropdown icon="list" floated="right">
+                    <Dropdown.Menu position="right">
+                      <LanguageEditForm
+                        language={this.props.language}
+                        updateLanguageLibrary={this.props.updateLanguageLibrary}
+                      />
+                      <Dropdown.Item
+                        icon="trash alternate"
+                        description="Delete"
+                        onClick={this.open}
+                      />
+                      <Confirm
+                        size="mini"
+                        header="Delete Library"
+                        content="Are you sure you want to delete this library?"
+                        confirmButton="Yes"
+                        open={this.state.open}
+                        onCancel={this.close}
+                        onConfirm={() =>
+                          this.props.deleteLanguageLibrary(
+                            this.props.language.id
+                          )
+                        }
+                      />
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </div>
             </Card.Content>
           </Card>
         </Grid.Column>
