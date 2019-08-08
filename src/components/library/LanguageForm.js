@@ -18,8 +18,14 @@ export default class LanguageForm extends Component {
     link: "",
     image: null,
     libraryTypeId: 1,
-    userId: this.props.currentUser
+    userId: this.props.currentUser,
+    openForm: false
   };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
+  };
+
 
   storageRef = firebase.storage().ref("library_profiles");
 
@@ -60,6 +66,7 @@ export default class LanguageForm extends Component {
               </Label>
             </Button>
           }
+          open={this.state.openForm}
           style={{ width: "30em" }}
         >
           <Modal.Content>
