@@ -23,6 +23,14 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
+    },
+    {
+      "title": "CSS",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=414016a6-e472-4ca4-a9a3-3251f748a055",
+      "libraryTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 2
     }
   ],
   "libraryTypes": [
@@ -43,6 +51,14 @@
       "libraryId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
+    },
+    {
+      "title": "Semantic UI",
+      "link": "https://semantic-ui.com/introduction/getting-started.html",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FSemantic%20UI?alt=media&token=b3e1e062-b95a-4af8-9411-93e93bc9ee12",
+      "libraryId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 3
     }
   ],
   "logs": [
@@ -60,6 +76,13 @@
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 3
+    },
+    {
+      "title": "Fetch ALL Call and Set STATE",
+      "reference": "React JS",
+      "logTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 4
     }
   ],
   "logTypes": [
@@ -97,6 +120,16 @@
       "title": "Fetch Call Undefined",
       "link": "",
       "id": 8
+    },
+    {
+      "title": "Selectors",
+      "link": "https://www.w3schools.com/cssref/css_selectors.asp",
+      "id": 9
+    },
+    {
+      "title": "Fetch ALL Call and Set STATE",
+      "link": "",
+      "id": 10
     }
   ],
   "libraryArchives": [
@@ -109,6 +142,11 @@
       "libraryId": 1,
       "archiveId": 2,
       "id": 2
+    },
+    {
+      "libraryId": 2,
+      "archiveId": 9,
+      "id": 3
     }
   ],
   "subLibraryArchives": [
@@ -128,6 +166,11 @@
       "logId": 3,
       "archiveId": 8,
       "id": 3
+    },
+    {
+      "logId": 4,
+      "archiveId": 10,
+      "id": 4
     }
   ],
   "resources": [
@@ -157,6 +200,24 @@
       "archiveId": 1,
       "resourceTypeId": 1,
       "id": 3
+    },
+    {
+      "title": "W3 School",
+      "link": "https://www.w3schools.com/cssref/trysel.asp",
+      "description": "Testing Module for testing out different Selectors",
+      "image": null,
+      "archiveId": 9,
+      "resourceTypeId": 1,
+      "id": 4
+    },
+    {
+      "title": "CSS SELECTORS MADE EASY ",
+      "link": "https://www.youtube.com/watch?v=dcCCOiQ1ZuM",
+      "description": "You won't get far in web dev without understanding CSS selectors, and they aren't hard at all!",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
+      "archiveId": 9,
+      "resourceTypeId": 2,
+      "id": 5
     }
   ],
   "resourceTypes": [
@@ -209,6 +270,30 @@
       "archiveId": 7,
       "recordTypeId": 2,
       "id": 5
+    },
+    {
+      "title": "Hover Selector",
+      "text": ":hover",
+      "image": null,
+      "archiveId": 9,
+      "recordTypeId": 2,
+      "id": 6
+    },
+    {
+      "title": "Definition",
+      "text": "In CSS, selectors are patterns used to select the element(s) you want to style.",
+      "image": null,
+      "archiveId": 9,
+      "recordTypeId": 1,
+      "id": 7
+    },
+    {
+      "title": "Example Code",
+      "text": "    API.getAll(\"users\", `id=${this.state.currentUser}`)\n      .then(userInfo => (newState.userInfo = userInfo))\n      .then(() => this.setState(newState));",
+      "image": null,
+      "archiveId": 10,
+      "recordTypeId": 2,
+      "id": 8
     }
   ],
   "recordTypes": [
