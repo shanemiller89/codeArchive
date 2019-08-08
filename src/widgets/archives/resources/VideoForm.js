@@ -17,10 +17,15 @@ export default class VideoForm extends Component {
     title: "",
     link: "",
     description: "",
-    image: "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
     archiveId: parseInt(this.props.archiveId),
     resourceTypeId: 2,
+    openForm: false
+  };
 
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   submit = () => {
@@ -30,37 +35,38 @@ export default class VideoForm extends Component {
       description: this.state.description,
       image: this.state.image,
       archiveId: this.state.archiveId,
-      resourceTypeId: this.state.resourceTypeId,
-
+      resourceTypeId: this.state.resourceTypeId
     };
-    this.props.addVideo(video)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.props.addVideo(video);
+    this.toggle();
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
       <React.Fragment>
         <Modal
           trigger={
-          <Button style={{ background: "#15CA00", color: "white", marginLeft: "35.2em", borderRadius: "100%" }} size="mini" icon>
-            <Icon name="plus" />
+            <Button
+              style={{
+                background: "#15CA00",
+                color: "white",
+                marginLeft: "35.2em",
+                borderRadius: "100%"
+              }}
+              size="mini"
+              icon
+              onClick={this.toggle}
+            >
+              <Icon name="plus" />
             </Button>
           }
+          open={this.state.openForm}
           style={{ width: "30em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
               <div>
-                <Icon
-                  name="video"
-                  size="large"
-                  style={{ color: "#15CA00" }}
-                />
+                <Icon name="video" size="large" style={{ color: "#15CA00" }} />
               </div>
               Add A New Video
             </Header>
@@ -82,15 +88,22 @@ export default class VideoForm extends Component {
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
-                    <Form.TextArea
+                      <Form.TextArea
                         fluid
                         placeholder="Description (optional)"
-                        onChange={e => this.setState({ description: e.target.value })}
+                        onChange={e =>
+                          this.setState({ description: e.target.value })
+                        }
                         id="description"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

@@ -15,8 +15,6 @@ const height = {
 export default class SideBar extends Component {
   state = { visible: false };
 
-  // contextRef = createRef()
-
   toggle = () => this.setState({ visible: !this.state.visible });
   handleSidebarHide = () => this.setState({ visible: false });
 
@@ -25,14 +23,12 @@ export default class SideBar extends Component {
 
     return (
       <div>
-        {/* <Sticky context={this.contextRef} pushing> */}
         <Sidebar.Pushable style={height} as={Segment}>
           <Sidebar
             as={Menu}
             animation="push"
             icon="labeled"
             inverted
-            // onHide={this.handleSidebarHide}
             vertical
             visible={visible}
             width="thin"
@@ -66,9 +62,11 @@ export default class SideBar extends Component {
           <Sidebar.Pusher style={{ background: "#F5F5F5", minHeight: "100vh"}}>
           <Button attached="top" onClick={this.toggle} icon="exchange" style={{background: "#1b1c1d", color: "lightgray"}}></Button>
             <ApplicationViews />
+            <br />
+            <br />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-        {/* </Sticky> */}
+
       </div>
     );
   }

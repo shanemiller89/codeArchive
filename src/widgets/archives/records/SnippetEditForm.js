@@ -20,6 +20,11 @@ export default class SnippetEditForm extends Component {
     image: null,
     archiveId: "",
     recordTypeId: 2,
+    openForm: false
+  };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   componentDidMount() {
@@ -46,13 +51,8 @@ export default class SnippetEditForm extends Component {
 
     };
     this.props.updateSnippet(editedSnippet)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.toggle();
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
@@ -62,8 +62,10 @@ export default class SnippetEditForm extends Component {
             <Dropdown.Item
             icon="pencil"
             description="Edit"
+            onClick={this.toggle}
           />
           }
+          open={this.state.openForm}
           style={{ width: "45em" }}
         >
           <Modal.Content>
@@ -98,9 +100,14 @@ export default class SnippetEditForm extends Component {
                         id="text"
                         value={this.state.text}
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "15em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "15em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

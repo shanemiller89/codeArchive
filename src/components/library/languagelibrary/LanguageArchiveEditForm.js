@@ -16,7 +16,13 @@ export default class LanguageArchiveEditForm extends Component {
   state = {
     title: "",
     link: "",
+    openForm: false
   };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
+  };
+
 
   componentDidMount() {
     API.get("archives", this.props.archive.archive.id)
@@ -34,7 +40,7 @@ handleFieldChange = evt => {
     this.setState(stateToChange);
   };
 
-  updateExistingArchive = evt => {
+  submit = evt => {
     evt.preventDefault();
     const editedArchive = {
       title: this.state.title,
@@ -42,6 +48,7 @@ handleFieldChange = evt => {
       id: this.props.archive.archive.id
     };
     this.props.updateArchive(editedArchive);
+    this.toggle()
   };
 
   // TODO:
@@ -55,8 +62,10 @@ handleFieldChange = evt => {
             <Dropdown.Item
             icon="pencil"
             description="Edit"
+            onClick={this.toggle}
           />
           }
+          open={this.state.openForm}
           style={{ width: "30em" }}
         >
           <Modal.Content>
@@ -88,9 +97,14 @@ handleFieldChange = evt => {
                         onChange={this.handleFieldChange}
                         id="link"
                       />
-                      <Button primary fluid size="large" onClick={this.updateExistingArchive}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

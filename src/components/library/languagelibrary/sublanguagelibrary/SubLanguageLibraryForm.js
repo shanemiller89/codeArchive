@@ -18,7 +18,12 @@ export default class SubLanguageLibraryForm extends Component {
     link: "",
     image: null,
     libraryId: "",
-    userId: this.props.currentUser
+    userId: this.props.currentUser,
+    openForm: false
+  };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   storageRef = firebase.storage().ref("sub_library_profiles");
@@ -38,8 +43,8 @@ export default class SubLanguageLibraryForm extends Component {
           libraryId: this.props.languageId,
           userId: this.props.currentUser
         });
-      });
-    // .then(() => this.props.history.push('/'));
+      })
+      .then(() => this.toggle());
   };
 
   // TODO:
@@ -51,7 +56,7 @@ export default class SubLanguageLibraryForm extends Component {
         <Modal
           trigger={
             <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
+              <Button style={{ background: "#15CA00", color: "white" }} icon onClick={this.toggle}>
                 <Icon name="plus" />
                 Add
               </Button>
@@ -60,6 +65,7 @@ export default class SubLanguageLibraryForm extends Component {
               </Label>
             </Button>
           }
+          open={this.state.openForm}
           style={{ width: "30em" }}
         >
           <Modal.Content>
@@ -100,9 +106,14 @@ export default class SubLanguageLibraryForm extends Component {
                         type="file"
                         id="image"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

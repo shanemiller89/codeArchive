@@ -21,7 +21,12 @@ export default class NoteEditForm extends Component {
     archiveId: "",
     recordTypeId: "",
     disabled: true,
-    checked: false
+    checked: false,
+    openForm: false
+  };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   componentDidMount() {
@@ -59,8 +64,8 @@ export default class NoteEditForm extends Component {
           recordTypeId: this.state.recordTypeId,
           id: this.props.noteId
         });
-      });
-    // .then(() => this.props.history.push('/'));
+      })
+    .then(() => this.toggle());
   };
 
   submit = () => {
@@ -74,13 +79,8 @@ export default class NoteEditForm extends Component {
 
     };
     this.props.updateNote(editedNote)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.toggle();
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
@@ -90,8 +90,10 @@ export default class NoteEditForm extends Component {
             <Dropdown.Item
             icon="pencil"
             description="Edit"
+            onClick={this.toggle}
           />
           }
+          open={this.state.openForm}
           style={{ width: "45em" }}
         >
           <Modal.Content>
@@ -141,9 +143,39 @@ export default class NoteEditForm extends Component {
                         id="imageURL"
                         disabled={this.state.disabled}
                       />
-                      <Button primary fluid size="large" onClick={this.state.disabled ? this.submit : this.submitWithImage}>
-                        Submit
-                      </Button>
+                   <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly"
+                        }}
+                      >
+                        <Button
+                          style={{
+                            background: "red",
+                            color: "white",
+                            width: "15em"
+                          }}
+                          size="large"
+                          onClick={this.toggle}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          style={{
+                            background: "#15CA00",
+                            color: "white",
+                            width: "15em"
+                          }}
+                          size="large"
+                          onClick={
+                            this.state.disabled
+                              ? this.submit
+                              : this.submitWithImage
+                          }
+                        >
+                          Submit
+                        </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

@@ -25,7 +25,12 @@ export default class subLanguageLibraryEditForm extends Component {
     libraryId: "",
     userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
-    checked: false
+    checked: false,
+    openForm: false
+  };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   componentDidMount() {
@@ -69,7 +74,8 @@ export default class subLanguageLibraryEditForm extends Component {
           userId: this.state.userId,
           id: this.props.subLanguage.id
         });
-      });
+      })
+      .then(() => this.toggle());
   };
 
   handleFieldChange = evt => {
@@ -89,13 +95,21 @@ export default class subLanguageLibraryEditForm extends Component {
       id: this.props.subLanguage.id
     };
     this.props.updateSubLanguageLibrary(editedLanguage);
+    this.toggle();
   };
 
   render() {
     return (
       <React.Fragment>
         <Modal
-          trigger={<Dropdown.Item icon="pencil" description="Edit" />}
+          trigger={
+            <Dropdown.Item
+              icon="pencil"
+              description="Edit"
+              onClick={this.toggle}
+            />
+          }
+          open={this.state.openForm}
           style={{ width: "36em" }}
         >
           <Modal.Content>
@@ -146,18 +160,39 @@ export default class subLanguageLibraryEditForm extends Component {
                         id="imageURL"
                         disabled={this.state.disabled}
                       />
-                      <Button
-                        primary
-                        fluid
-                        size="large"
-                        onClick={
-                          this.state.disabled
-                            ? this.submit
-                            : this.submitWithImage
-                        }
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly"
+                        }}
                       >
-                        Submit
-                      </Button>
+                        <Button
+                          style={{
+                            background: "red",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={this.toggle}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          style={{
+                            background: "#15CA00",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={
+                            this.state.disabled
+                              ? this.submit
+                              : this.submitWithImage
+                          }
+                        >
+                          Submit
+                        </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

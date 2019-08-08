@@ -20,7 +20,11 @@ export default class BookmarkForm extends Component {
     image: null,
     archiveId: parseInt(this.props.archiveId),
     resourceTypeId: 1,
+    openForm: false
+  };
 
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   submit = () => {
@@ -34,23 +38,19 @@ export default class BookmarkForm extends Component {
 
     };
     this.props.addBookmark(bookmark)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.toggle();
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
       <React.Fragment>
         <Modal
           trigger={
-          <Button style={{ background: "#15CA00", color: "white", marginLeft: "30em", borderRadius: "100%" }} size="mini" icon>
+          <Button style={{ background: "#15CA00", color: "white", marginLeft: "30em", borderRadius: "100%" }} size="mini" icon onClick={this.toggle}>
             <Icon name="plus" />
             </Button>
           }
+          open={this.state.openForm}
           style={{ width: "30em" }}
         >
           <Modal.Content>
@@ -88,9 +88,14 @@ export default class BookmarkForm extends Component {
                         onChange={e => this.setState({ description: e.target.value })}
                         id="description"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

@@ -19,7 +19,13 @@ export default class SnippetForm extends Component {
     image: null,
     archiveId: parseInt(this.props.archiveId),
     recordTypeId: 2,
+    openForm: false
   };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
+  };
+
 
   submit = () => {
     const snippet = {
@@ -31,13 +37,9 @@ export default class SnippetForm extends Component {
 
     };
     this.props.addSnippet(snippet)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.toggle();
   };
 
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
@@ -45,7 +47,7 @@ export default class SnippetForm extends Component {
         <Modal
           trigger={
             <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
+              <Button style={{ background: "#15CA00", color: "white" }} icon onClick={this.toggle}>
                 <Icon name="plus" />
                 Add
               </Button>
@@ -54,6 +56,7 @@ export default class SnippetForm extends Component {
               </Label>
             </Button>
           }
+          open={this.state.openForm}
           style={{ width: "45em" }}
         >
           <Modal.Content>
@@ -86,9 +89,14 @@ export default class SnippetForm extends Component {
                         onChange={e => this.setState({ text: e.target.value })}
                         id="text"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "15em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "15em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>
