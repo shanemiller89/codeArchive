@@ -7,41 +7,31 @@ import {
   Form,
   Segment,
   Grid,
-  Dropdown
+  Label
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from "../../../modules/API"
-export default class SubLanguageArchiveEditForm extends Component {
+
+export default class LanguageArchiveForm extends Component {
   state = {
     title: "",
     link: "",
+    libraryId: null,
+    archiveId: null,
   };
 
-  componentDidMount() {
-    API.get("archives", this.props.archive.archive.id)
-    .then(archive => {
-      this.setState({
-        title: archive.title,
-        link: archive.link,
-      });
-    });
-  }
-
-handleFieldChange = evt => {
-    const stateToChange = {};
-    stateToChange[evt.target.id] = evt.target.value;
-    this.setState(stateToChange);
-  };
-
-  updateExistingArchive = evt => {
-    evt.preventDefault();
-    const editedArchive = {
+  submit = () => {
+    const archive = {
       title: this.state.title,
       link: this.state.link,
-      id: this.props.archive.archive.id
     };
-    this.props.updateArchive(editedArchive);
+    this.props.addArchive(archive)
+    .then(newArchive => 
+      this.props.addLanguageArchive({libraryId: this.props.languageId, archiveId: newArchive.id})
+      )
+
+    // this.toggle();
+    //--This toggle will close the Modal upon click --//
   };
 
   // TODO:
@@ -52,10 +42,15 @@ handleFieldChange = evt => {
       <React.Fragment>
         <Modal
           trigger={
-            <Dropdown.Item
-            icon="pencil"
-            description="Edit"
-          />
+            <Button primary as="div" labelPosition="right">
+              <Button style={{ background: "#15CA00", color: "white" }} icon>
+                <Icon name="plus" />
+                Add
+              </Button>
+              <Label basic pointing="left">
+                Archive
+              </Label>
+            </Button>
           }
           style={{ width: "30em" }}
         >
@@ -68,7 +63,7 @@ handleFieldChange = evt => {
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit Existing Archive
+              Add A New Archive
             </Header>
 
             <Modal.Description>
@@ -78,17 +73,17 @@ handleFieldChange = evt => {
                     <Segment>
                       <Form.Input
                         fluid
-                        value={this.state.title}
-                        onChange={this.handleFieldChange}
+                        placeholder="Name of Archive"
+                        onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
                       <Form.Input
                         fluid
-                        value={this.state.link}
-                        onChange={this.handleFieldChange}
+                        placeholder="Documentation URL (optional)"
+                        onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
-                      <Button primary fluid size="large" onClick={this.updateExistingArchive}>
+                      <Button primary fluid size="large" onClick={this.submit}>
                         Submit
                       </Button>
                     </Segment>

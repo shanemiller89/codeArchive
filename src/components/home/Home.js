@@ -7,11 +7,10 @@ import {
   Segment,
   Grid,
   Divider,
-  Icon,
-  Search,
-  Button
+  Icon
 } from "semantic-ui-react";
-import API from "./modules/API";
+import API from "../../modules/API";
+import EditProfileImageForm from "./EditProfileImageForm";
 
 export default class Home extends Component {
   state = {
@@ -25,6 +24,18 @@ export default class Home extends Component {
       .then(userInfo => (newState.userInfo = userInfo))
       .then(() => this.setState(newState));
   }
+
+  updateProfile = editedData => {
+    API.put("users", editedData)
+      .then(() =>
+      API.getAll("users", `id=${this.state.currentUser}`)
+      )
+      .then(userInfo =>
+        this.setState({
+          userInfo: userInfo
+        })
+      );
+  };
 
   render() {
     return (
@@ -54,7 +65,8 @@ export default class Home extends Component {
                 <div>
                   {this.state.userInfo.map(userInfo => (
                     <div key={userInfo.id}>
-                      <Image src={userInfo.profile} size="medium" circular style={{margin: "0 auto"}} />
+                      <Image src={userInfo.profile} size="medium" circular style={{margin: "1em auto"}} />
+                      <EditProfileImageForm userInfo={userInfo} updateProfile={this.updateProfile}/>
                       <h2>
                         Username:{" "}
                         <span style={{ color: "#15CA00" }}>

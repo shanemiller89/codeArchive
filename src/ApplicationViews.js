@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./components/home/Home";
 import Library from "./components/library/Library";
 import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrary";
 import SubLanguageLibrary from "./components/library/languagelibrary/sublanguagelibrary/SubLanguageLibrary";
 import API from "./modules/API";
-import LanguageArchive from "./widgets/archives/language/LanguageArchive";
+import Archive from "./widgets/archives/Archive";
 import IssuesLog from "./components/issues/IssuesLog";
 import CodeLog from "./components/code/CodeLog";
 
@@ -98,12 +98,7 @@ export default class ApplicationViews extends Component {
                 languageArchive.archive.id ===
                 parseInt(props.match.params.ArchiveId)
             );
-            return (
-              <LanguageArchive
-                {...props}
-                // languageArchive={this.state.languageArchive}
-              />
-            );
+            return <Archive {...props} />;
           }}
         />
         <Route
@@ -121,7 +116,7 @@ export default class ApplicationViews extends Component {
               logArchive =>
                 logArchive.archive.id === parseInt(props.match.params.ArchiveId)
             );
-            return <LanguageArchive {...props} />;
+            return <Archive {...props} />;
           }}
         />
         <Route
@@ -139,7 +134,7 @@ export default class ApplicationViews extends Component {
               logArchive =>
                 logArchive.archive.id === parseInt(props.match.params.ArchiveId)
             );
-            return <LanguageArchive {...props} />;
+            return <Archive {...props} />;
           }}
         />
       </React.Fragment>

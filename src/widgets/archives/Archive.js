@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Container, Header, Icon, List, Card, Grid } from "semantic-ui-react";
-import API from "../../../modules/API";
-import BookmarksList from "../resources/BookmarksList";
-import BookmarkForm from "../resources/BookmarkForm";
-import VideoCard from "../resources/VideoCard";
-import VideoForm from "../resources/VideoForm";
-import NoteSegment from "../records/NoteSegment";
-import NoteForm from "../records/NoteForm";
-import SnippetSegment from "../records/SnippetSegment";
-import SnippetForm from "../records/SnippetForm";
+import API from "../../modules/API";
+import BookmarksList from "./resources/BookmarksList";
+import BookmarkForm from "./resources/BookmarkForm";
+import VideoCard from "./resources/VideoCard";
+import VideoForm from "./resources/VideoForm";
+import NoteSegment from "./records/NoteSegment";
+import NoteForm from "./records/NoteForm";
+import SnippetSegment from "./records/SnippetSegment";
+import SnippetForm from "./records/SnippetForm";
 
-export default class LanguageArchive extends Component {
+export default class Archive extends Component {
   state = {
     Archive: [],
     Notes: [],
@@ -240,7 +240,7 @@ export default class LanguageArchive extends Component {
         <Container
           style={{
             background: "#E8E8E8",
-            height: "20em",
+            height: "22em",
             color: "#15CA00",
             padding: "1em"
           }}

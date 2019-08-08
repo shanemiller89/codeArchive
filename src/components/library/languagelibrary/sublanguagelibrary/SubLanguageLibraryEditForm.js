@@ -11,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from '../../../../modules/API'
+import API from "../../../../modules/API";
 
 // TODO:
 // 1.Handle image editing
@@ -21,49 +21,64 @@ export default class subLanguageLibraryEditForm extends Component {
   state = {
     title: "",
     link: "",
-    image: null,
-    libraryId: null,
-    userId: JSON.parse(localStorage.getItem("user"))
+    image: "",
+    libraryId: "",
+    userId: JSON.parse(localStorage.getItem("user")),
+    disabled: true,
+    checked: false
   };
 
   componentDidMount() {
-    API.get("subLanguageLibraries", this.props.subLanguage.id)
-    .then(subLanguage => {
-      this.setState({
-        title: subLanguage.title,
-        link: subLanguage.link,
-        image: subLanguage.image,
-        libraryId: subLanguage.libraryId,
-        userId: this.state.userId,
-      });
-    });
+    API.get("subLanguageLibraries", this.props.subLanguage.id).then(
+      subLanguage => {
+        this.setState({
+          title: subLanguage.title,
+          link: subLanguage.link,
+          image: subLanguage.image,
+          libraryId: subLanguage.libraryId,
+          userId: this.state.userId
+        });
+      }
+    );
   }
-//   storageRef = firebase.storage().ref("library_profiles");
 
-//   submit = () => {
-//     //will determine name of storage reference
-//     const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
+  checkedToggle = () => {
+    this.setState({
+      checked: !this.state.checked,
+      disabled: !this.state.disabled
+    });
+  };
 
-//     return ref
-//       .put(this.state.image)
-//       .then(data => data.ref.getDownloadURL())
-//       .then(iURL => {
-//         return this.props.addLanguage({
-//           title: this.state.title,
-//           link: this.state.link,
-//           image: iURL,
-//           userId: this.props.currentUser
-//         });
-//       });
-//   };
+  storageRef = firebase.storage().ref("library_profiles");
 
-handleFieldChange = evt => {
+  submitWithImage = () => {
+    //will determine name of storage reference
+    const ref = this.storageRef.child(
+      `${this.state.title}-${this.state.userId}`
+    );
+
+    return ref
+      .put(this.state.image)
+      .then(data => data.ref.getDownloadURL())
+      .then(iURL => {
+        return this.props.updateSubLanguageLibrary({
+          title: this.state.title,
+          link: this.state.link,
+          image: iURL,
+          libraryId: this.state.libraryId,
+          userId: this.state.userId,
+          id: this.props.subLanguage.id
+        });
+      });
+  };
+
+  handleFieldChange = evt => {
     const stateToChange = {};
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
   };
 
-  updateExistingSubLanguage = evt => {
+  submit = evt => {
     evt.preventDefault();
     const editedLanguage = {
       title: this.state.title,
@@ -80,13 +95,8 @@ handleFieldChange = evt => {
     return (
       <React.Fragment>
         <Modal
-          trigger={
-            <Dropdown.Item
-            icon="pencil"
-            description="Edit"
-          />
-          }
-          style={{ width: "30em" }}
+          trigger={<Dropdown.Item icon="pencil" description="Edit" />}
+          style={{ width: "36em" }}
         >
           <Modal.Content>
             <Header size="huge" textAlign="center">
@@ -119,17 +129,33 @@ handleFieldChange = evt => {
                         id="link"
                         value={this.state.link}
                       />
-                      {/* <Form.Input
+                      <Form.Checkbox
+                        fluid
+                        width={10}
+                        label="Do you want to replace existing image?"
+                        checked={this.state.checked}
+                        onChange={this.checkedToggle}
+                      />
+                      <Form.Input
                         fluid
                         placeholder="Image"
                         onChange={e =>
                           this.setState({ image: e.target.files[0] })
                         }
                         type="file"
-                        id="image"
-                        value={this.state.image}
-                      /> */}
-                      <Button primary fluid size="large" onClick={this.updateExistingSubLanguage}>
+                        id="imageURL"
+                        disabled={this.state.disabled}
+                      />
+                      <Button
+                        primary
+                        fluid
+                        size="large"
+                        onClick={
+                          this.state.disabled
+                            ? this.submit
+                            : this.submitWithImage
+                        }
+                      >
                         Submit
                       </Button>
                     </Segment>
