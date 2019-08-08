@@ -3,8 +3,8 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../modules/API";
 import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList";
 import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
-import LanguageArchiveList from "../../../widgets/archives/language/LanguageArchivesList";
-import LanguageArchiveForm from "../../../widgets/archives/language/LanguageArchiveForm";
+import LanguageArchiveList from "./LanguageArchivesList";
+import LanguageArchiveForm from "./LanguageArchiveForm";
 
 export default class LanguageLibrary extends Component {
   state = {

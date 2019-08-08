@@ -98,7 +98,7 @@ export default class VideoEditForm extends Component {
                         id="link"
                         value={this.state.link}
                       />
-                    <Form.Input
+                    <Form.TextArea
                         fluid
                         placeholder="Description (optional)"
                         onChange={e => this.setState({ description: e.target.value })}

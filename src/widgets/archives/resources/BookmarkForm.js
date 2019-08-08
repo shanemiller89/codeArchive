@@ -82,7 +82,7 @@ export default class BookmarkForm extends Component {
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
-                    <Form.Input
+                    <Form.TextArea
                         fluid
                         placeholder="Description (optional)"
                         onChange={e => this.setState({ description: e.target.value })}

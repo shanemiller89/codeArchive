@@ -8,8 +8,8 @@ import {
   Divider
 } from "semantic-ui-react";
 import API from "../../../../modules/API";
-import SubLanguageArchiveList from "../../../../widgets/archives/sublanguage/SubLanguageArchivesList";
-import SubLanguageArchiveForm from "../../../../widgets/archives/sublanguage/SubLanguageArchiveForm"
+import SubLanguageArchiveList from "./SubLanguageArchivesList";
+import SubLanguageArchiveForm from "./SubLanguageArchiveForm"
 
 export default class SubLanguageLibrary extends Component {
   state = {
