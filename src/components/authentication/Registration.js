@@ -60,7 +60,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <Modal trigger={<Button>Sign Up</Button>} centered={false}>
+      <Modal trigger={<Button style={{ background: "#15CA00", color: "white" }}>Sign Up</Button>} centered={false}>
         <Modal.Content>
           <Header size="huge" textAlign="center">
             <div>
@@ -122,7 +122,7 @@ export default class Register extends Component {
                         this.setState({ profile: e.target.files[0] })
                       }
                     />
-                    <Button primary fluid size="large" onClick={this.submit}>
+                    <Button style={{ background: "#15CA00", color: "white" }} fluid size="large" onClick={this.submit}>
                       Register
                     </Button>
                   </Segment>

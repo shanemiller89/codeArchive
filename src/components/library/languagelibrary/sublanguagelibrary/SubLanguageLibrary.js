@@ -109,7 +109,8 @@ export default class SubLanguageLibrary extends Component {
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", color: "#15CA00" }}>
+          <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+            <Icon style={{ color: "#15CA00" }} name="file code outline" />
             {this.state.subLanguage.title}
           </Header>
           <a

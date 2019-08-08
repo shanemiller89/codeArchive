@@ -81,8 +81,9 @@ export default class IssuesLog extends Component {
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", color: "#15CA00" }}>
-            Issues Log
+          <Header style={{ fontSize: "5em", marginTop: ".1em"}}>
+            <Icon style={{color: "#15CA00"}} name="dont" />
+            Issue Log
           </Header>
           {/* Add Issue Form */}
           <IssueForm

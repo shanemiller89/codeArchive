@@ -12,7 +12,7 @@ export default class NavBar extends Component {
 
   render() {
     return (
-      <Menu borderless size="huge">
+      <Menu borderless size="huge" inverted>
         <Menu.Item header as="h2">
           <Icon name="database" style={archiveColor} size="large" />
           code.<span style={archiveColor}>Archive</span>

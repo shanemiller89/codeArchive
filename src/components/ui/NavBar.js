@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Icon } from "semantic-ui-react";
+import { Menu, Icon, Image } from "semantic-ui-react";
 import { logout } from '../authentication/userManager';
 import {withRouter} from "react-router-dom";
 import API from '../../modules/API'
@@ -59,7 +59,7 @@ class NavBar extends Component {
 
         <Menu.Menu position="right">
           <Menu.Item header as="h3">
-            <Icon name="user circle" size="big" />
+          {this.state.username.map(username => <Image src={username.profile} size="mini" circular />)}
           </Menu.Item>
           <Menu.Item>
             <div style={flexbox}>
