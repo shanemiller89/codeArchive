@@ -47,7 +47,7 @@ export default class Home extends Component {
 
         <Segment placeholder style={{marginTop: "5em"}}>
           <Grid columns={2} stackable textAlign="center">
-            <Divider vertical />
+            <Divider vertical><Icon name="database" /></Divider>
 
             <Grid.Row verticalAlign="middle">
               <Grid.Column>
@@ -72,7 +72,7 @@ export default class Home extends Component {
               <Header style={{ fontSize: "4em", color: "#15CA00" }}>Stats</Header>
             <List>
               <List.Icon name="chart pie" />
-              <List.Content>
+              <List.Content >
                 <List.Header>Total Libraries:</List.Header>
                 <List.Description>0</List.Description>
               </List.Content>

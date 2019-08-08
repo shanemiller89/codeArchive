@@ -70,12 +70,16 @@ export default class Library extends Component {
           fluid
           style={{
             background: "#E8E8E8",
-            height: "20em",
+            height: "14em",
             color: "#15CA00",
             padding: "1em"
           }}
         >
-          <Header style={{ fontSize: "5em", color: "#15CA00" }}>Library</Header>
+          <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+            <Icon style={{color: "#15CA00"}} name="book" />
+            Library
+          </Header>
+
           {/* Add Language Form */}
           <LanguageForm
             addLanguageLibrary={this.addLanguageLibrary}
@@ -93,13 +97,10 @@ export default class Library extends Component {
               </Header.Subheader>
             </Header.Content>
           </Header>
-
           {/* <Header as="h1" icon style={{ marginLeft: 20, marginTop: 20 }}>
             <Icon style={{ color: "#15CA00" }} name="file code outline" />
             Languages
           </Header> */}
-          {/* <Grid style={{ marginLeft: "25px", marginRight: "25px" }}>
-            <Grid.Row columns={4} > */}
             <Card.Group itemsPerRow={4}>
               {this.state.languageLibraries.map(language => (
                 <LanguageCard
@@ -110,8 +111,6 @@ export default class Library extends Component {
                 />
               ))}
               </Card.Group>
-            {/* </Grid.Row>
-          </Grid> */}
         </div>
       </React.Fragment>
     );

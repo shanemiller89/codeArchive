@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Icon,
-  Segment,
-  Image,
-  Divider
-} from "semantic-ui-react";
+import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../modules/API";
 import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList";
 import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
@@ -159,13 +152,14 @@ export default class LanguageLibrary extends Component {
         <Container
           style={{
             background: "#E8E8E8",
-            height: "25em",
+            height: "22em",
             color: "#15CA00",
             padding: "1em"
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", color: "#15CA00" }}>
+          <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+            <Icon style={{ color: "#15CA00" }} name="file code outline" />
             {this.state.language.title}
           </Header>
           <a

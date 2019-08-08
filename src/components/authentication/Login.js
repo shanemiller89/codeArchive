@@ -37,7 +37,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <Modal trigger={<Button>Login</Button>} centered={false}>
+      <Modal trigger={<Button style={{ background: "#15CA00", color: "white" }}>Login</Button>} centered={false}>
 
         <Modal.Content>
 
@@ -71,7 +71,7 @@ export default class Login extends Component {
                       type="password"
                       onChange={(e) => this.setState({ password: e.target.value })}
                     />
-                    <Button primary fluid size="large" onClick={this.submit}>
+                    <Button style={{ background: "#15CA00", color: "white" }} fluid size="large" onClick={this.submit}>
                       Login
                     </Button>
                   </Segment>

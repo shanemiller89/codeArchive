@@ -75,7 +75,8 @@ export default class CodeLog extends Component {
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", color: "#15CA00" }}>
+          <Header style={{ fontSize: "5em", marginTop: ".1em"}}>
+            <Icon style={{color: "#15CA00", marginRight: ".25em"}} name="code" />
             Code Log
           </Header>
           {/* Add Code Form */}

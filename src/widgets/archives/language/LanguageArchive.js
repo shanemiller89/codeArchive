@@ -240,13 +240,14 @@ export default class LanguageArchive extends Component {
         <Container
           style={{
             background: "#E8E8E8",
-            height: "25em",
+            height: "20em",
             color: "#15CA00",
             padding: "1em"
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", color: "#15CA00" }}>
+          <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+            <Icon style={{ color: "#15CA00" }} name="archive" />
             {this.state.Archive.title}
           </Header>
           {/* Main Documentation Link */}
