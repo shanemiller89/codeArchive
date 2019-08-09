@@ -23,14 +23,6 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
-    },
-    {
-      "title": "CSS",
-      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=414016a6-e472-4ca4-a9a3-3251f748a055",
-      "libraryTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 2
     }
   ],
   "libraryTypes": [
@@ -51,21 +43,12 @@
       "libraryId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
-    },
-    {
-      "title": "Semantic UI",
-      "link": "https://semantic-ui.com/introduction/getting-started.html",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FSemantic%20UI?alt=media&token=b3e1e062-b95a-4af8-9411-93e93bc9ee12",
-      "libraryId": 2,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 3
     }
   ],
   "logs": [
     {
       "title": "Factory Function",
       "reference": "Javascript",
-      "keywordId": 2,
       "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
@@ -142,11 +125,6 @@
       "libraryId": 1,
       "archiveId": 2,
       "id": 2
-    },
-    {
-      "libraryId": 2,
-      "archiveId": 9,
-      "id": 3
     }
   ],
   "subLibraryArchives": [

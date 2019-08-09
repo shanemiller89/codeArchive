@@ -21,6 +21,11 @@ export default class BookmarkEditForm extends Component {
     image: "",
     archiveId: "",
     resourceTypeId: "",
+    openForm: false
+  };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   componentDidMount() {
@@ -34,7 +39,7 @@ export default class BookmarkEditForm extends Component {
         archiveId: bookmark.archiveId,
         resourceTypeId: bookmark.resourceTypeId,
       });
-    });
+    })
   }
 
   submit = () => {
@@ -48,13 +53,8 @@ export default class BookmarkEditForm extends Component {
       id: this.props.bookmark.id
     };
     this.props.updateBookmark(editedBookmark)
-
-    // this.toggle();
-    //--This toggle will close the Modal upon click --//
+    this.toggle();
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
@@ -64,8 +64,10 @@ export default class BookmarkEditForm extends Component {
             <Dropdown.Item
             icon="pencil"
             description="Edit"
+            onClick={this.toggle}
           />
           }
+          open={this.state.openForm}
           style={{ width: "30em" }}
         >
           <Modal.Content>
@@ -104,9 +106,14 @@ export default class BookmarkEditForm extends Component {
                         id="description"
                         value={this.state.description}
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

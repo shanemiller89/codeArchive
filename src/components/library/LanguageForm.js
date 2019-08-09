@@ -26,12 +26,13 @@ export default class LanguageForm extends Component {
     this.setState({ openForm: !this.state.openForm });
   };
 
-
   storageRef = firebase.storage().ref("library_profiles");
 
   submit = () => {
     //will determine name of storage reference
-    const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
+    const ref = this.storageRef.child(
+      `${this.state.title}-${this.state.userId}`
+    );
 
     return ref
       .put(this.state.image)
@@ -44,12 +45,9 @@ export default class LanguageForm extends Component {
           libraryTypeId: 1,
           userId: this.props.currentUser
         });
-      });
-    // .then(() => this.props.history.push('/'));
+      })
+      .then(() => this.toggle());
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
@@ -57,7 +55,11 @@ export default class LanguageForm extends Component {
         <Modal
           trigger={
             <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
+              <Button
+                style={{ background: "#15CA00", color: "white" }}
+                icon
+                onClick={this.toggle}
+              >
                 <Icon name="plus" />
                 Add
               </Button>
@@ -107,9 +109,14 @@ export default class LanguageForm extends Component {
                         type="file"
                         id="imageURL"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

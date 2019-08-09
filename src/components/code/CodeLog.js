@@ -4,8 +4,6 @@ import API from "../../modules/API";
 import CodeList from "./CodeList";
 import CodeForm from "./CodeForm";
 
-// TODO: Refactor of Edit and Delete needed to edit and delete associated Archive
-
 export default class CodeLog extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
