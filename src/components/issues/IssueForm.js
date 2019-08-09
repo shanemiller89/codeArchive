@@ -18,7 +18,12 @@ export default class IssueForm extends Component {
     reference: "",
     logTypeId: 1,
     userId: JSON.parse(localStorage.getItem("user")),
-    newIssueId: ""
+    newIssueId: "",
+    openForm: false
+  };
+
+  toggle = () => {
+    this.setState({ openForm: !this.state.openForm });
   };
 
   submit = () => {
@@ -34,14 +39,8 @@ export default class IssueForm extends Component {
     .then(newArchive =>
       this.props.addIssueArchive({logId: this.state.newIssueId, archiveId: newArchive.id})
       )
-
-
-    // this.toggle();
-    // --This toggle will close the Modal upon click --//
+    this.toggle();
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
 
   render() {
     return (
@@ -49,7 +48,7 @@ export default class IssueForm extends Component {
         <Modal
           trigger={
             <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon>
+              <Button style={{ background: "#15CA00", color: "white" }} icon onClick={this.toggle}>
                 <Icon name="plus" />
                 Add
               </Button>
@@ -58,6 +57,7 @@ export default class IssueForm extends Component {
               </Label>
             </Button>
           }
+          open={this.state.openForm}
           style={{ width: "30em" }}
         >
           <Modal.Content>
@@ -89,9 +89,14 @@ export default class IssueForm extends Component {
                         onChange={e => this.setState({ reference: e.target.value })}
                         id="reference"
                       />
-                      <Button primary fluid size="large" onClick={this.submit}>
+                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
+                        Cancel
+                      </Button>
+                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
                         Submit
                       </Button>
+                      </div>
                     </Segment>
                   </Form>
                 </Grid.Column>

@@ -49,7 +49,6 @@
     {
       "title": "Factory Function",
       "reference": "Javascript",
-      "keywordId": 2,
       "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
@@ -114,11 +113,6 @@
       "title": "Fetch ALL Call and Set STATE",
       "link": "",
       "id": 10
-    },
-    {
-      "title": "Python",
-      "link": "http://python.com",
-      "id": 11
     }
   ],
   "libraryArchives": [
@@ -131,11 +125,6 @@
       "libraryId": 1,
       "archiveId": 2,
       "id": 2
-    },
-    {
-      "libraryId": 1,
-      "archiveId": 11,
-      "id": 3
     }
   ],
   "subLibraryArchives": [
