@@ -272,6 +272,14 @@
       "archiveId": 10,
       "recordTypeId": 2,
       "id": 8
+    },
+    {
+      "title": "Map Diagram",
+      "text": "",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FMap%20Diagram-1?alt=media&token=609b5623-3df6-49c0-a213-454774882e7e",
+      "archiveId": 1,
+      "recordTypeId": 1,
+      "id": 9
     }
   ],
   "recordTypes": [

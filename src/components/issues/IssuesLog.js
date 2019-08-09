@@ -3,6 +3,7 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import IssuesList from "./IssuesList";
 import IssueForm from "./IssueForm";
+import IssuesSearchBar from "./IssuesSearchBar";
 
 export default class IssuesLog extends Component {
   state = {
@@ -89,6 +90,13 @@ export default class IssuesLog extends Component {
             addArchive={this.addArchive}
             addIssueArchive={this.addIssueArchive}
           />
+          <br />
+          <br />
+          <br />
+          {/* {this.state.issueLogs.map(log => ( */}
+
+          <IssuesSearchBar />
+          {/* ))} */}
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="dont" style={{ color: "#15CA00" }} />
