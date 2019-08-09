@@ -13,9 +13,6 @@ import * as firebase from "firebase/app";
 import "firebase/storage";
 import API from "../../modules/API";
 
-// TODO:
-// 2.Write close Modal function
-
 export default class LanguageEditForm extends Component {
   state = {
     title: "",

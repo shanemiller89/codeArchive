@@ -15,7 +15,6 @@ import API from "../../../../modules/API";
 
 // TODO:
 // 1.Handle image editing
-// 2.Write close Modal function
 
 export default class subLanguageLibraryEditForm extends Component {
   state = {

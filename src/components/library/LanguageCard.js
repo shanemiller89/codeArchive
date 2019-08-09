@@ -4,7 +4,6 @@ import { Card, Image, Grid, Dropdown, Confirm } from "semantic-ui-react";
 import LanguageEditForm from "./LanguageEditForm";
 
 // TODO:
-// 1.Get delete/Edit button menu to show on right side of title, not below
 // 2. Find better place for Link
 export default class Languages extends Component {
   state = {

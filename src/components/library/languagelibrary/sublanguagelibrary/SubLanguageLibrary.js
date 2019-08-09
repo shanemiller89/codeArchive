@@ -17,8 +17,6 @@ export default class SubLanguageLibrary extends Component {
     subLanguageArchives: []
   };
 
-  // TODO:Figure out why there is a render delay
-
   componentDidMount() {
     const newState = {};
     API.get(

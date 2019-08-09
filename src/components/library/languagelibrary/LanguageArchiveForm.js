@@ -37,9 +37,6 @@ export default class LanguageArchiveForm extends Component {
     this.toggle();
   };
 
-  // TODO:
-  // 1.Add toggle to close Modal
-
   render() {
     return (
       <React.Fragment>

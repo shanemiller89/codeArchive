@@ -4,8 +4,6 @@ import API from "../../modules/API";
 import IssuesList from "./IssuesList";
 import IssueForm from "./IssueForm";
 
-// TODO: Refactor of Edit and Delete needed to edit and delete associated Archive
-
 export default class IssuesLog extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),

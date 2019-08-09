@@ -23,9 +23,6 @@ const flexbox = {
     flexDirection: "column"
 }
 
-// let username = ""
-// username =  JSON.parse(username)
-
 class NavBar extends Component {
   state = { 
     activeItem: "", 
@@ -47,7 +44,6 @@ class NavBar extends Component {
     this.props.history.push("/")
     window.location.reload();
   }
-
 
   render() {
     return (

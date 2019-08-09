@@ -15,7 +15,7 @@ import { register } from "./userManager";
 
 // TODO:
 // 1.Form Validation
-//2. MAKE PROFILE OPTIONAL!
+//2. MAKE PROFILE  PIC OPTIONAL!
 
 const archiveColor = {
   color: "#15CA00"

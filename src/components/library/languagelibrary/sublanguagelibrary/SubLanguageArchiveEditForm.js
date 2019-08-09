@@ -49,10 +49,7 @@ handleFieldChange = evt => {
     this.props.updateArchive(editedArchive);
     this.toggle()
   };
-
-  // TODO:
-  // 1.Add toggle to close Modal
-
+  
   render() {
     return (
       <React.Fragment>
