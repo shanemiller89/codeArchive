@@ -9,6 +9,7 @@ export default class IssuesLog extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     issueLogs: [],
+    searchLogs: [],
     logArchives: []
   };
 
@@ -17,6 +18,7 @@ export default class IssuesLog extends Component {
     API.getAll("logs", `userId=${this.state.currentUser}&logTypeId=1`)
       .then(issueLogs => (newState.issueLogs = issueLogs))
       .then(() => this.setState(newState));
+      console.log(newState)
     API.getAll("logArchives", `_expand=archive&_expand=log`)
       .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
@@ -93,10 +95,13 @@ export default class IssuesLog extends Component {
           <br />
           <br />
           <br />
-          {/* {this.state.issueLogs.map(log => ( */}
+          {/* {this.state.issueLogs.map(issueLogs => (
+              // this.setState(({searchLogs: issueLogs}))
+              console.log(issueLogs)
+            ))} */}
 
-          <IssuesSearchBar />
-          {/* ))} */}
+            <IssuesSearchBar />
+
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="dont" style={{ color: "#15CA00" }} />

@@ -96,6 +96,13 @@
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 6
+    },
+    {
+      "title": "Test",
+      "reference": "These are all key words",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 7
     }
   ],
   "logTypes": [
@@ -153,6 +160,11 @@
       "title": "Taco",
       "link": "",
       "id": 12
+    },
+    {
+      "title": "Test",
+      "link": "",
+      "id": 13
     }
   ],
   "libraryArchives": [
@@ -199,6 +211,11 @@
       "logId": 6,
       "archiveId": 12,
       "id": 6
+    },
+    {
+      "logId": 7,
+      "archiveId": 13,
+      "id": 7
     }
   ],
   "resources": [
