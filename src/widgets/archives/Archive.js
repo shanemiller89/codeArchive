@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Container, Header, Icon, List, Card, Grid } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Icon,
+  List,
+  Card,
+  Grid,
+  Segment
+} from "semantic-ui-react";
 import API from "../../modules/API";
 import BookmarksList from "./resources/BookmarksList";
 import BookmarkForm from "./resources/BookmarkForm";
@@ -13,10 +21,9 @@ import SnippetForm from "./records/SnippetForm";
 export default class Archive extends Component {
   state = {
     Archive: [],
-    Notes: [],
-    Snippets: [],
     Bookmarks: [],
-    Videos: []
+    Videos: [],
+    NotesAndSnippets: []
   };
 
   archiveId = this.props.match.params.ArchiveId;
@@ -26,20 +33,11 @@ export default class Archive extends Component {
     API.get("archives", `${this.props.match.params.ArchiveId}`)
       .then(Archive => (newState.Archive = Archive))
       .then(() => this.setState(newState));
-    // Get ALl Notes //
-    API.getAll(
-      "records",
-      `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=1`
-    )
-      .then(Notes => (newState.Notes = Notes))
-      .then(() => this.setState(newState));
-    // Get All Snippets //
-    API.getAll(
-      "records",
-      `archiveId=${this.props.match.params.ArchiveId}&recordTypeId=2`
-    )
-      .then(Snippets => (newState.Snippets = Snippets))
-      .then(() => this.setState(newState));
+    // Get ALl Notes and Snippets //
+    API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+      .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
+      .then(() => this.setState(newState))
+      .then(() => console.log(this.state.NotesAndSnippets))
     // Get All bookmarks //
     API.getAll(
       "resources",
@@ -279,24 +277,29 @@ export default class Archive extends Component {
         </Container>
         <br />
         {/* Notes and Snippets */}
-        {/* <Grid columns> */}
-        {this.state.Notes.map(note => (
-          <NoteSegment
-            key={note.id}
-            note={note}
-            deleteNote={this.deleteNote}
-            updateNote={this.updateNote}
-          />
-        ))}
-        {this.state.Snippets.map(snippet => (
-          <SnippetSegment
-            key={snippet.id}
-            snippet={snippet}
-            deleteSnippet={this.deleteSnippet}
-            updateSnippet={this.updateSnippet}
-          />
-        ))}
-        {/* </Grid> */}
+        <Segment.Group>
+          )
+          {this.state.NotesAndSnippets.filter(
+            NotesAndSnippets => NotesAndSnippets.recordTypeId === 1
+          ).map(note => (
+            <NoteSegment
+              key={note.id}
+              note={note}
+              deleteNote={this.deleteNote}
+              updateNote={this.updateNote}
+            />
+          ))}
+          {this.state.NotesAndSnippets.filter(
+            NotesAndSnippets => NotesAndSnippets.recordTypeId === 2
+          ).map(snippet => (
+            <SnippetSegment
+              key={snippet.id}
+              snippet={snippet}
+              deleteSnippet={this.deleteSnippet}
+              updateSnippet={this.updateSnippet}
+            />
+          ))}
+        </Segment.Group>
         <br />
         {/* Bookmarks */}
         {this.props.location.pathname.indexOf(

@@ -4,7 +4,6 @@ import API from "../../modules/API";
 import CodeList from "./CodeList";
 import CodeForm from "./CodeForm";
 import CodeSearchBar from "./CodeSearchBar"
-import "CodeSearchBar.css";
 
 export default class CodeLog extends Component {
   state = {
