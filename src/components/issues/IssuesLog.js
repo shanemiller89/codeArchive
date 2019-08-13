@@ -3,12 +3,13 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import IssuesList from "./IssuesList";
 import IssueForm from "./IssueForm";
+import IssuesSearchBar from "./IssuesSearchBar";
 
 export default class IssuesLog extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     issueLogs: [],
-    logArchives: []
+    logArchives: [],
   };
 
   componentDidMount() {
@@ -16,6 +17,7 @@ export default class IssuesLog extends Component {
     API.getAll("logs", `userId=${this.state.currentUser}&logTypeId=1`)
       .then(issueLogs => (newState.issueLogs = issueLogs))
       .then(() => this.setState(newState));
+      console.log(newState)
     API.getAll("logArchives", `_expand=archive&_expand=log`)
       .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
@@ -89,6 +91,16 @@ export default class IssuesLog extends Component {
             addArchive={this.addArchive}
             addIssueArchive={this.addIssueArchive}
           />
+          <br />
+          <br />
+          <br />
+          {/* {this.state.issueLogs.map(issueLogs => (
+              // this.setState(({searchLogs: issueLogs}))
+              console.log(issueLogs)
+            ))} */}
+
+            <IssuesSearchBar/>
+
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="dont" style={{ color: "#15CA00" }} />

@@ -3,6 +3,7 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import CodeList from "./CodeList";
 import CodeForm from "./CodeForm";
+import CodeSearchBar from "./CodeSearchBar"
 
 export default class CodeLog extends Component {
   state = {
@@ -73,8 +74,11 @@ export default class CodeLog extends Component {
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", marginTop: ".1em"}}>
-            <Icon style={{color: "#15CA00", marginRight: ".25em"}} name="code" />
+          <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+            <Icon
+              style={{ color: "#15CA00", marginRight: ".25em" }}
+              name="code"
+            />
             Code Log
           </Header>
           {/* Add Code Form */}
@@ -83,6 +87,12 @@ export default class CodeLog extends Component {
             addArchive={this.addArchive}
             addCodeArchive={this.addCodeArchive}
           />
+          <br />
+          <br />
+          <br />
+          {/* {this.state.issueLogs.map(log => ( */}
+            <CodeSearchBar />
+          {/* ))} */}
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="code" style={{ color: "#15CA00" }} />
