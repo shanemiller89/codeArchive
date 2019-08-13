@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { Link, withRouter } from "react-router-dom";
 import React, { Component } from "react";
-import { Search, Grid, Header } from "semantic-ui-react";
+import { Search, Grid, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import "./CodeSearchBar.css";
 
@@ -68,8 +68,11 @@ class CodeSearchBar extends Component {
           style={{ textDecoration: "none" }}
         >
         <Header as="h2">
+        <Icon name="search" style={{ color: "#15CA00" }} />
+        <Header.Content>
           {title}
           <Header.Subheader>{reference}</Header.Subheader>
+          </Header.Content>
         </Header>
         </Link>
       </span>

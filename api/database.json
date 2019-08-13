@@ -66,6 +66,27 @@
       "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 4
+    },
+    {
+      "title": "Test Issue 1",
+      "reference": "Javascript, React JS",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 5
+    },
+    {
+      "title": "Test Issue 2",
+      "reference": "Java",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 6
+    },
+    {
+      "title": "Test Issue 3",
+      "reference": "API, Javascript",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 7
     }
   ],
   "logTypes": [
@@ -113,6 +134,21 @@
       "title": "Fetch ALL Call and Set STATE",
       "link": "",
       "id": 10
+    },
+    {
+      "title": "Test Issue 1",
+      "link": "",
+      "id": 11
+    },
+    {
+      "title": "Test Issue 2",
+      "link": "",
+      "id": 12
+    },
+    {
+      "title": "Test Issue 3",
+      "link": "",
+      "id": 13
     }
   ],
   "libraryArchives": [
@@ -149,6 +185,21 @@
       "logId": 4,
       "archiveId": 10,
       "id": 4
+    },
+    {
+      "logId": 5,
+      "archiveId": 11,
+      "id": 5
+    },
+    {
+      "logId": 6,
+      "archiveId": 12,
+      "id": 6
+    },
+    {
+      "logId": 7,
+      "archiveId": 13,
+      "id": 7
     }
   ],
   "resources": [
