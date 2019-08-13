@@ -37,7 +37,6 @@ export default class Archive extends Component {
     API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
       .then(() => this.setState(newState))
-      .then(() => console.log(this.state.NotesAndSnippets))
     // Get All bookmarks //
     API.getAll(
       "resources",

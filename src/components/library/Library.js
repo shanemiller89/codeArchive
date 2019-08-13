@@ -17,7 +17,6 @@ export default class Library extends Component {
         languageLibraries => (newState.languageLibraries = languageLibraries)
       )
       .then(() => this.setState(newState));
-    console.log("where you go?", newState);
   }
 
   addLanguageLibrary = data => {
