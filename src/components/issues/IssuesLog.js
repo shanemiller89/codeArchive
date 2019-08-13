@@ -9,8 +9,7 @@ export default class IssuesLog extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     issueLogs: [],
-    searchLogs: [],
-    logArchives: []
+    logArchives: [],
   };
 
   componentDidMount() {
@@ -100,7 +99,7 @@ export default class IssuesLog extends Component {
               console.log(issueLogs)
             ))} */}
 
-            <IssuesSearchBar />
+            <IssuesSearchBar/>
 
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>

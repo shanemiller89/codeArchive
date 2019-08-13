@@ -13,19 +13,26 @@ export default class IssuesSearchBar extends Component {
     isLoading: false,
     results: [],
     value: "",
-    issueLogs: [],
-    // searchLog: _.times(5, () => ({
-    //     title: this.state.issueLogs.title,
-    //     reference: this.state.issueLogs.reference
-    //   }))
+    issue: []
   };
-  
+
   componentDidMount() {
     const newState = {};
-    API.getAll("logs", `userId=${this.state.currentUser}&logTypeId=1`)
-      .then(issueLogs => (newState.issueLogs = issueLogs))
+
+    API.getAll("logArchives", `_expand=archive&_expand=log`)
+      .then(logArchives =>
+        logArchives.filter(
+          issueArchives =>
+            (issueArchives.log.logTypeId === 1) &
+            (issueArchives.log.userId === this.state.currentUser)
+        ).map( issue => ({
+          title: issue.archive.title,
+          reference: issue.log.reference,
+          archiveId: issue.archive.id
+        }))
+      )
+      .then(issue => (newState.issue= issue))
       .then(() => this.setState(newState));
-      console.log("search", newState)
   }
 
   handleResultSelect = (e, { result }) =>
@@ -43,13 +50,25 @@ export default class IssuesSearchBar extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(this.state.issueLogs, isMatch)
+        results: _.filter(this.state.issue, isMatch)
       });
     }, 300);
   };
 
   render() {
     const { isLoading, value, results } = this.state;
+    const resultRender = ({ title, reference, archiveId }) => (
+      <span key="title">
+        <Link
+          to={`/issue-log-archive/${archiveId}`}
+          style={{ textDecoration: "none" }}
+        >
+          <h1>{title} </h1>
+          {reference}
+        </Link>
+      </span>
+    );
+    console.log("issue", this.state.issue);
 
     return (
       <Grid>
@@ -64,21 +83,10 @@ export default class IssuesSearchBar extends Component {
             placeholder="Search by Reference"
             results={results}
             value={value}
+            resultRenderer={resultRender}
             {...this.props}
           />
         </Grid.Column>
-        {/* <Grid.Column width={10}>
-          <Segment>
-            <Header>State</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(this.state, null, 2)}
-            </pre>
-            <Header>Options</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(this.state.issueLogs, null, 2)}
-            </pre>
-          </Segment>
-        </Grid.Column> */}
       </Grid>
     );
   }

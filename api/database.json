@@ -23,14 +23,6 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
-    },
-    {
-      "title": "CSS",
-      "link": "http://css.com",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=860e6525-6054-4f44-bb27-694f60746584",
-      "libraryTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 2
     }
   ],
   "libraryTypes": [
@@ -51,14 +43,6 @@
       "libraryId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
-    },
-    {
-      "title": "Semantic UI React",
-      "link": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FSemantic%20UI%20React?alt=media&token=dbcb3ccf-fb54-48c3-a180-c6b8d4dbd7fb",
-      "libraryId": 2,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 4
     }
   ],
   "logs": [
@@ -84,25 +68,18 @@
       "id": 4
     },
     {
-      "title": "404 not found Fetch put method",
-      "reference": "API, JSX, React",
+      "title": "New Issue",
+      "reference": "lol",
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 5
     },
     {
-      "title": "Taco",
-      "reference": "zxczxcxzczc",
+      "title": "test",
+      "reference": "Test",
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 6
-    },
-    {
-      "title": "Test",
-      "reference": "These are all key words",
-      "logTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 7
     }
   ],
   "logTypes": [
@@ -117,7 +94,7 @@
   ],
   "archives": [
     {
-      "title": ".map ( )",
+      "title": "map ( )",
       "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
       "id": 1
     },
@@ -152,19 +129,14 @@
       "id": 10
     },
     {
-      "title": "404 not found Fetch put method",
+      "title": "New Issue",
       "link": "",
       "id": 11
     },
     {
-      "title": "Taco",
+      "title": "test",
       "link": "",
       "id": 12
-    },
-    {
-      "title": "Test",
-      "link": "",
-      "id": 13
     }
   ],
   "libraryArchives": [
@@ -211,11 +183,6 @@
       "logId": 6,
       "archiveId": 12,
       "id": 6
-    },
-    {
-      "logId": 7,
-      "archiveId": 13,
-      "id": 7
     }
   ],
   "resources": [
@@ -263,24 +230,6 @@
       "archiveId": 9,
       "resourceTypeId": 2,
       "id": 5
-    },
-    {
-      "title": "yftyftytfy",
-      "link": "drdyfy",
-      "description": "ftyrydr",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
-      "archiveId": 1,
-      "resourceTypeId": 2,
-      "id": 6
-    },
-    {
-      "title": "Slack",
-      "link": "https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array",
-      "description": "Why is processing a sorted array faster than processing an unsorted array?",
-      "image": null,
-      "archiveId": 8,
-      "resourceTypeId": 1,
-      "id": 7
     }
   ],
   "resourceTypes": [
@@ -357,30 +306,6 @@
       "archiveId": 10,
       "recordTypeId": 2,
       "id": 8
-    },
-    {
-      "title": "Map Diagram",
-      "text": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FMap%20Diagram-1?alt=media&token=609b5623-3df6-49c0-a213-454774882e7e",
-      "archiveId": 1,
-      "recordTypeId": 1,
-      "id": 9
-    },
-    {
-      "title": "Desription",
-      "text": "This is the problem",
-      "image": null,
-      "archiveId": 8,
-      "recordTypeId": 1,
-      "id": 11
-    },
-    {
-      "title": "Error",
-      "text": "//Solution\n\nThis was the error message",
-      "image": null,
-      "archiveId": 8,
-      "recordTypeId": 2,
-      "id": 12
     }
   ],
   "recordTypes": [
