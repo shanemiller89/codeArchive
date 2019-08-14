@@ -4,6 +4,7 @@ import Home from "./components/home/Home";
 import Library from "./components/library/Library";
 import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrary";
 import SubLanguageLibrary from "./components/library/languagelibrary/sublanguagelibrary/SubLanguageLibrary";
+import ToolLibrary from "./components/library/toollibrary/ToolLibrary"
 import API from "./modules/API";
 import Archive from "./widgets/archives/Archive";
 import IssuesLog from "./components/issues/IssuesLog";
@@ -13,6 +14,7 @@ export default class ApplicationViews extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     languageLibraries: [],
+    toolLibraries: [],
     subLanguageLibraries: [],
     languageArchives: [],
     logArchives: []
@@ -31,6 +33,11 @@ export default class ApplicationViews extends Component {
           (newState.subLanguageLibraries = subLanguageLibraries)
       )
       .then(() => this.setState(newState));
+      API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=2`)
+        .then(
+          toolLibraries => (newState.toolLibraries = toolLibraries)
+        )
+        .then(() => this.setState(newState));
     API.getAll("libraryArchives", `_expand=archive`)
       .then(languageArchives => (newState.languageArchives = languageArchives))
       .then(() => this.setState(newState));
@@ -83,6 +90,23 @@ export default class ApplicationViews extends Component {
             );
             return (
               <SubLanguageLibrary
+                {...props}
+                currentUser={this.state.currentUser}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/library/tool/:toolLibraryId(\d+)"
+          render={props => {
+            this.state.toolLibraries.find(
+              tool =>
+                tool.id === parseInt(props.match.params.toolLibraryId)
+            );
+            return (
+              
+              <ToolLibrary
                 {...props}
                 currentUser={this.state.currentUser}
               />
