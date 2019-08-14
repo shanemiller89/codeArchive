@@ -26,11 +26,19 @@
     },
     {
       "title": "Visual Studio Code",
-      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript!-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=a149ecd8-993d-45d2-b918-c8d5c76cbed1",
+      "link": "https://code.visualstudio.com/docs",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FVisual%20Studio%20Code-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=98b7108b-7dfc-4659-a10d-2e61aa3c27c4",
       "libraryTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
+    },
+    {
+      "title": "Postman",
+      "link": "https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPostman-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=4dd6d469-51ce-409f-b75b-dc07beafd9be",
+      "libraryTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 3
     }
   ],
   "libraryTypes": [
