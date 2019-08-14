@@ -23,6 +23,22 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
+    },
+    {
+      "title": "Visual Studio Code",
+      "link": "https://code.visualstudio.com/docs",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FVisual%20Studio%20Code-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=98b7108b-7dfc-4659-a10d-2e61aa3c27c4",
+      "libraryTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 2
+    },
+    {
+      "title": "Postman",
+      "link": "https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPostman-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=4dd6d469-51ce-409f-b75b-dc07beafd9be",
+      "libraryTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 3
     }
   ],
   "libraryTypes": [
@@ -68,18 +84,25 @@
       "id": 4
     },
     {
-      "title": "New Issue",
-      "reference": "lol",
+      "title": "Test Issue 1",
+      "reference": "Javascript, React JS",
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 5
     },
     {
-      "title": "test",
-      "reference": "Test",
+      "title": "Test Issue 2",
+      "reference": "Java",
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 6
+    },
+    {
+      "title": "Test Issue 3",
+      "reference": "API, Javascript",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 7
     }
   ],
   "logTypes": [
@@ -129,14 +152,19 @@
       "id": 10
     },
     {
-      "title": "New Issue",
+      "title": "Test Issue 1",
       "link": "",
       "id": 11
     },
     {
-      "title": "test",
+      "title": "Test Issue 2",
       "link": "",
       "id": 12
+    },
+    {
+      "title": "Test Issue 3",
+      "link": "",
+      "id": 13
     }
   ],
   "libraryArchives": [
@@ -183,6 +211,11 @@
       "logId": 6,
       "archiveId": 12,
       "id": 6
+    },
+    {
+      "logId": 7,
+      "archiveId": 13,
+      "id": 7
     }
   ],
   "resources": [

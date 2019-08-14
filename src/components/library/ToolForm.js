@@ -13,12 +13,12 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class LanguageForm extends Component {
+export default class ToolForm extends Component {
   state = {
     title: "",
     link: "",
     image: null,
-    libraryTypeId: 1,
+    libraryTypeId: 2,
     userId: this.props.currentUser,
     openForm: false
   };
@@ -39,11 +39,11 @@ export default class LanguageForm extends Component {
       .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
       .then(imageURL => {
-        return this.props.addLanguageLibrary({
+        return this.props.addToolLibrary({
           title: this.state.title,
           link: this.state.link,
           image: imageURL,
-          libraryTypeId: 1,
+          libraryTypeId: 2,
           userId: this.props.currentUser
         });
       })
@@ -65,7 +65,7 @@ export default class LanguageForm extends Component {
                 Add
               </Button>
               <Label basic pointing="left">
-                Language Library
+                Tool Library
               </Label>
             </Button>
           }
@@ -76,12 +76,12 @@ export default class LanguageForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="file code outline"
+                  name="cogs"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Add A New Language
+              Add A New Tool
             </Header>
 
             <Modal.Description>
@@ -92,7 +92,7 @@ export default class LanguageForm extends Component {
                       {/* <div style={{display: "flex"}}> */}
                       <Form.Input
                         fluid
-                        placeholder="Language"
+                        placeholder="Tool"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />

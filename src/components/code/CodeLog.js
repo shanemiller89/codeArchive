@@ -90,9 +90,7 @@ export default class CodeLog extends Component {
           <br />
           <br />
           <br />
-          {/* {this.state.issueLogs.map(log => ( */}
             <CodeSearchBar />
-          {/* ))} */}
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="code" style={{ color: "#15CA00" }} />

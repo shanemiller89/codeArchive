@@ -1,13 +1,13 @@
 import _ from "lodash";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import React, { Component } from "react";
-import { Search, Grid, Header, Segment } from "semantic-ui-react";
+import { Search, Grid, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import "./IssuesSearchBar.css";
 
 // const initialState = { isLoading: false, results: [], value: '' }
 
-export default class IssuesSearchBar extends Component {
+class IssuesSearchBar extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     isLoading: false,
@@ -21,22 +21,26 @@ export default class IssuesSearchBar extends Component {
 
     API.getAll("logArchives", `_expand=archive&_expand=log`)
       .then(logArchives =>
-        logArchives.filter(
-          issueArchives =>
-            (issueArchives.log.logTypeId === 1) &
-            (issueArchives.log.userId === this.state.currentUser)
-        ).map( issue => ({
-          title: issue.archive.title,
-          reference: issue.log.reference,
-          archiveId: issue.archive.id
-        }))
+        logArchives
+          .filter(
+            issueArchives =>
+              (issueArchives.log.logTypeId === 1) &
+              (issueArchives.log.userId === this.state.currentUser)
+          )
+          .map(issue => ({
+            title: issue.archive.title,
+            reference: issue.log.reference,
+            archiveId: issue.archive.id
+          }))
       )
-      .then(issue => (newState.issue= issue))
+      .then(issue => (newState.issue = issue))
       .then(() => this.setState(newState));
   }
 
   handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.title });
+    this.setState({ value: result.id }, () =>
+      this.props.history.push(`/issue-log-archive/${result.archiveId}`)
+    );
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
@@ -63,12 +67,16 @@ export default class IssuesSearchBar extends Component {
           to={`/issue-log-archive/${archiveId}`}
           style={{ textDecoration: "none" }}
         >
-          <h1>{title} </h1>
-          {reference}
+        <Header as="h2">
+        <Icon name="search" style={{ color: "#15CA00" }} />
+        <Header.Content>
+          {title}
+          <Header.Subheader>{reference}</Header.Subheader>
+          </Header.Content>
+        </Header>
         </Link>
       </span>
     );
-    console.log("issue", this.state.issue);
 
     return (
       <Grid>
@@ -91,3 +99,5 @@ export default class IssuesSearchBar extends Component {
     );
   }
 }
+
+export default withRouter(IssuesSearchBar);
