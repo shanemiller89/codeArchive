@@ -23,6 +23,14 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 1
+    },
+    {
+      "title": "Visual Studio Code",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FJavascript!-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=a149ecd8-993d-45d2-b918-c8d5c76cbed1",
+      "libraryTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 2
     }
   ],
   "libraryTypes": [
