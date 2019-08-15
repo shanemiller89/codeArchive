@@ -33,7 +33,7 @@ export default class Archive extends Component {
     API.get("archives", `${this.props.match.params.ArchiveId}`)
       .then(Archive => (newState.Archive = Archive))
       .then(() => this.setState(newState));
-    // Get ALl Notes and Snippets //
+    // Get ALl Notes and Snippets JOE SHEP //
     API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
       .then(() => this.setState(newState))
@@ -227,10 +227,6 @@ export default class Archive extends Component {
       );
   };
 
-  // {this.props.note.image !== null ? (
-  //   <Image src={this.props.note.image} alt={this.props.note.title}/>
-  // ) : null}
-
   render() {
     return (
       <React.Fragment>
@@ -275,8 +271,8 @@ export default class Archive extends Component {
           />
         </Container>
         <br />
-        {/* Notes and Snippets */}
-        <Segment.Group>
+        {/* Notes and Snippets JOE SHEP */}
+        {/* <Segment.Group> */}
           {this.state.NotesAndSnippets.filter(
             NotesAndSnippets => NotesAndSnippets.recordTypeId === 1
           ).map(note => (
@@ -297,7 +293,7 @@ export default class Archive extends Component {
               updateSnippet={this.updateSnippet}
             />
           ))}
-        </Segment.Group>
+        {/* </Segment.Group> */}
         <br />
         {/* Bookmarks */}
         {this.props.location.pathname.indexOf(
