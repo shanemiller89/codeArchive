@@ -23,7 +23,7 @@ export default class Tools extends Component {
               <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div>
                   <Link
-                    to={`/library/language/${this.props.tool.id}`}
+                    to={`/library/tool/${this.props.tool.id}`}
                     style={{ fontSize: "1.5em" }}
                   >
                     <Card.Header>{this.props.tool.title}</Card.Header>

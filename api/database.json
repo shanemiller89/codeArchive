@@ -39,6 +39,22 @@
       "libraryTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 3
+    },
+    {
+      "title": "CSS",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=1e4cba86-7cbb-49ff-a474-2d37bd6977cf",
+      "libraryTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 4
+    },
+    {
+      "title": "Python",
+      "link": "https://docs.python.org/3/",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPython-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=4ad7bd3a-d7e8-4237-8bbc-c398b1fdcd14",
+      "libraryTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 5
     }
   ],
   "libraryTypes": [
@@ -165,6 +181,11 @@
       "title": "Test Issue 3",
       "link": "",
       "id": 13
+    },
+    {
+      "title": "Keyboard Shortcuts",
+      "link": "",
+      "id": 14
     }
   ],
   "libraryArchives": [
@@ -177,6 +198,11 @@
       "libraryId": 1,
       "archiveId": 2,
       "id": 2
+    },
+    {
+      "libraryId": 2,
+      "archiveId": 14,
+      "id": 3
     }
   ],
   "subLibraryArchives": [
@@ -339,6 +365,14 @@
       "archiveId": 10,
       "recordTypeId": 2,
       "id": 8
+    },
+    {
+      "title": "",
+      "text": "",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2F-14?alt=media&token=fe48919e-8049-4b0b-a6a4-b2eb2e4701d5",
+      "archiveId": 14,
+      "recordTypeId": 1,
+      "id": 9
     }
   ],
   "recordTypes": [
