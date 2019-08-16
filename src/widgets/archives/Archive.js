@@ -17,6 +17,7 @@ import NoteSegment from "./records/NoteSegment";
 import NoteForm from "./records/NoteForm";
 import SnippetSegment from "./records/SnippetSegment";
 import SnippetForm from "./records/SnippetForm";
+import NotesAndSnippetsList from "./records/NotesAndSnippetsList";
 
 export default class Archive extends Component {
   state = {
@@ -36,7 +37,7 @@ export default class Archive extends Component {
     // Get ALl Notes and Snippets JOE SHEP //
     API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
-      .then(() => this.setState(newState))
+      .then(() => this.setState(newState));
     // Get All bookmarks //
     API.getAll(
       "resources",
@@ -57,10 +58,7 @@ export default class Archive extends Component {
   addNote = data => {
     API.post("records", data)
       .then(() =>
-        API.getAll(
-          "records",
-          `archiveId=${this.props.match.params.ArchiveId}`
-        )
+        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       )
       .then(NotesAndSnippets =>
         this.setState({
@@ -71,74 +69,59 @@ export default class Archive extends Component {
   deleteNote = id => {
     API.delete("records", id)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   updateNote = editedData => {
     API.put("records", editedData)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   // FOR CRUD SNIPPETS //
   addSnippet = data => {
     API.post("records", data)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   deleteSnippet = id => {
     API.delete("records", id)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   updateSnippet = editedData => {
     API.put("records", editedData)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
 
   // FOR CRUD OF BOOKMARK //
   addBookmark = data => {
@@ -272,8 +255,14 @@ export default class Archive extends Component {
         </Container>
         <br />
         {/* Notes and Snippets JOE SHEP */}
-        {/* <Segment.Group> */}
-          {this.state.NotesAndSnippets.filter(
+        <NotesAndSnippetsList
+          NotesAndSnippets={this.state.NotesAndSnippets}
+          deleteNote={this.deleteNote}
+          updateNote={this.updateNote}
+          deleteSnippet={this.deleteSnippet}
+          updateSnippet={this.updateSnippet}
+        />
+        {/* {this.state.NotesAndSnippets.filter(
             NotesAndSnippets => NotesAndSnippets.recordTypeId === 1
           ).map(note => (
             <NoteSegment
@@ -292,8 +281,7 @@ export default class Archive extends Component {
               deleteSnippet={this.deleteSnippet}
               updateSnippet={this.updateSnippet}
             />
-          ))}
-        {/* </Segment.Group> */}
+          ))} */}
         <br />
         {/* Bookmarks */}
         {this.props.location.pathname.indexOf(
