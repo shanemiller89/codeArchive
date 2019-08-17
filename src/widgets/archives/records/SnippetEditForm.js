@@ -18,6 +18,7 @@ export default class SnippetEditForm extends Component {
     title: "",
     text: "",
     image: null,
+    order: null,
     archiveId: "",
     recordTypeId: 2,
     openForm: false
@@ -34,6 +35,7 @@ export default class SnippetEditForm extends Component {
         title: snippet.title,
         text: snippet.text,
         image: snippet.image,
+        order: snippet.order,
         archiveId: snippet.archiveId,
         recordTypeId: snippet.recordTypeId,
       });
@@ -45,6 +47,7 @@ export default class SnippetEditForm extends Component {
         title: this.state.title,
         text: this.state.text,
         image: this.state.image,
+        order: this.state.order,
         archiveId:this.state.archiveId,
         recordTypeId: this.state.recordTypeId,
         id: this.props.snippetId

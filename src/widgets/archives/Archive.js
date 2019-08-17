@@ -17,6 +17,7 @@ import NoteSegment from "./records/NoteSegment";
 import NoteForm from "./records/NoteForm";
 import SnippetSegment from "./records/SnippetSegment";
 import SnippetForm from "./records/SnippetForm";
+import NotesAndSnippetsList from "./records/NotesAndSnippetsList";
 
 export default class Archive extends Component {
   state = {
@@ -33,10 +34,13 @@ export default class Archive extends Component {
     API.get("archives", `${this.props.match.params.ArchiveId}`)
       .then(Archive => (newState.Archive = Archive))
       .then(() => this.setState(newState));
-    // Get ALl Notes and Snippets //
-    API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+    // Get ALl Notes and Snippets JOE SHEP //
+    API.getAll(
+      "records",
+      `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+    )
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
-      .then(() => this.setState(newState))
+      .then(() => this.setState(newState));
     // Get All bookmarks //
     API.getAll(
       "resources",
@@ -59,7 +63,9 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.match.params.ArchiveId}`
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
         )
       )
       .then(NotesAndSnippets =>
@@ -71,74 +77,84 @@ export default class Archive extends Component {
   deleteNote = id => {
     API.delete("records", id)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   updateNote = editedData => {
     API.put("records", editedData)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   // FOR CRUD SNIPPETS //
   addSnippet = data => {
     API.post("records", data)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   deleteSnippet = id => {
     API.delete("records", id)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
   updateSnippet = editedData => {
     API.put("records", editedData)
       .then(() =>
-      API.getAll(
-        "records",
-        `archiveId=${this.props.match.params.ArchiveId}`
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
-    )
-    .then(NotesAndSnippets =>
-      this.setState({
-        NotesAndSnippets: NotesAndSnippets
-      })
-    );
-};
+      .then(NotesAndSnippets =>
+        this.setState({
+          NotesAndSnippets: NotesAndSnippets
+        })
+      );
+  };
 
   // FOR CRUD OF BOOKMARK //
   addBookmark = data => {
@@ -227,10 +243,6 @@ export default class Archive extends Component {
       );
   };
 
-  // {this.props.note.image !== null ? (
-  //   <Image src={this.props.note.image} alt={this.props.note.title}/>
-  // ) : null}
-
   render() {
     return (
       <React.Fragment>
@@ -265,19 +277,30 @@ export default class Archive extends Component {
           ) : null}
           <br />
           {/* Add Note Form */}
-          <NoteForm archiveId={this.archiveId} addNote={this.addNote} />
+          <NoteForm
+            archiveId={this.archiveId}
+            addNote={this.addNote}
+            arrayLength={this.state.NotesAndSnippets.length}
+          />
           <br />
           <br />
           {/* Add Code Snippet Form */}
           <SnippetForm
             archiveId={this.archiveId}
             addSnippet={this.addSnippet}
+            arrayLength={this.state.NotesAndSnippets.length}
           />
         </Container>
         <br />
-        {/* Notes and Snippets */}
-        <Segment.Group>
-          {this.state.NotesAndSnippets.filter(
+        {/* Notes and Snippets JOE SHEP */}
+        <NotesAndSnippetsList
+          NotesAndSnippets={this.state.NotesAndSnippets}
+          deleteNote={this.deleteNote}
+          updateNote={this.updateNote}
+          deleteSnippet={this.deleteSnippet}
+          updateSnippet={this.updateSnippet}
+        />
+        {/* {this.state.NotesAndSnippets.filter(
             NotesAndSnippets => NotesAndSnippets.recordTypeId === 1
           ).map(note => (
             <NoteSegment
@@ -296,8 +319,7 @@ export default class Archive extends Component {
               deleteSnippet={this.deleteSnippet}
               updateSnippet={this.updateSnippet}
             />
-          ))}
-        </Segment.Group>
+          ))} */}
         <br />
         {/* Bookmarks */}
         {this.props.location.pathname.indexOf(

@@ -8,9 +8,8 @@ import {
   Confirm
 } from "semantic-ui-react";
 import NoteEditForm from "./NoteEditForm";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; 
-
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 
 export default class NoteSegment extends Component {
   state = {
@@ -18,15 +17,41 @@ export default class NoteSegment extends Component {
     isOpen: false
   };
 
+  MoveUp = () => {
+    const editedNote = {
+      title: this.props.note.title,
+      text: this.props.note.text,
+      image: this.props.note.image,
+      order: this.props.note.order - 1,
+      archiveId: this.props.note.archiveId,
+      recordTypeId: this.props.note.recordTypeId,
+      id: this.props.note.id
+    };
+    this.props.updateNote(editedNote);
+  };
+
+  MoveDown = () => {
+    const editedNote = {
+      title: this.props.note.title,
+      text: this.props.note.text,
+      image: this.props.note.image,
+      order: this.props.note.order + 1,
+      archiveId: this.props.note.archiveId,
+      recordTypeId: this.props.note.recordTypeId,
+      id: this.props.note.id
+    };
+    this.props.updateNote(editedNote);
+  };
+
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
 
-popupImage = (link) => {
-  window.open(`${link}`,'popup','width=600,height=600'); return false;
-}
+  popupImage = link => {
+    window.open(`${link}`, "popup", "width=600,height=600");
+    return false;
+  };
 
   render() {
-
     const { isOpen } = this.state;
 
     return (
@@ -39,7 +64,7 @@ popupImage = (link) => {
             <Header as="h1">
               {this.props.note.title}
               <Dropdown
-                icon="list"
+                icon="bars"
                 style={{ fontSize: ".75em", marginLeft: "1em" }}
               >
                 <Dropdown.Menu>
@@ -54,19 +79,36 @@ popupImage = (link) => {
                   />
                   <Confirm
                     size="mini"
-                    header="Delete Library"
+                    header="Delete Note"
                     content="Are you sure you want to delete this note?"
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}
                     onConfirm={() => this.props.deleteNote(this.props.note.id)}
                   />
+                  {this.props.note.order <= 1 ? null : (
+                    <Dropdown.Item
+                      icon="sort amount up"
+                      description="Move Up"
+                      onClick={this.MoveUp}
+                    />
+                  )}
+                  {/* <Dropdown.Item
+                    icon="sort amount up"
+                    description="Move Up"
+                    onClick={this.MoveUp}
+                  /> */}
+                  <Dropdown.Item
+                    icon="sort amount down"
+                    description="Move Down"
+                    onClick={this.MoveDown}
+                  />
                 </Dropdown.Menu>
               </Dropdown>
             </Header>
             <div style={{ whiteSpace: "pre" }}>{this.props.note.text}</div>
             {this.props.note.image !== null ? (
-                <div>
+              <div>
                 <Image
                   src={this.props.note.image}
                   alt={this.props.note.title}
@@ -80,7 +122,7 @@ popupImage = (link) => {
                     onCloseRequest={() => this.setState({ isOpen: false })}
                   />
                 )}
-                </div>
+              </div>
             ) : null}
           </Segment>
         </div>

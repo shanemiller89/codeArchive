@@ -31,30 +31,6 @@
       "libraryTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
-    },
-    {
-      "title": "Postman",
-      "link": "https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPostman-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=4dd6d469-51ce-409f-b75b-dc07beafd9be",
-      "libraryTypeId": 2,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 3
-    },
-    {
-      "title": "CSS",
-      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=1e4cba86-7cbb-49ff-a474-2d37bd6977cf",
-      "libraryTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 4
-    },
-    {
-      "title": "Python",
-      "link": "https://docs.python.org/3/",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPython-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=4ad7bd3a-d7e8-4237-8bbc-c398b1fdcd14",
-      "libraryTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 5
     }
   ],
   "libraryTypes": [
@@ -93,32 +69,25 @@
       "id": 3
     },
     {
-      "title": "Fetch ALL Call and Set STATE",
-      "reference": "React JS",
-      "logTypeId": 2,
+      "title": "New Issue",
+      "reference": "New Issue",
+      "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 4
     },
     {
-      "title": "Test Issue 1",
-      "reference": "Javascript, React JS",
-      "logTypeId": 1,
+      "title": "Tesr",
+      "reference": "",
+      "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 5
     },
     {
-      "title": "Test Issue 2",
-      "reference": "Java",
-      "logTypeId": 1,
+      "title": "Fetch Call",
+      "reference": "Javascript, fetch, API",
+      "logTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 6
-    },
-    {
-      "title": "Test Issue 3",
-      "reference": "API, Javascript",
-      "logTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 7
     }
   ],
   "logTypes": [
@@ -138,16 +107,6 @@
       "id": 1
     },
     {
-      "title": "Local Scope",
-      "link": "",
-      "id": 2
-    },
-    {
-      "title": "State",
-      "link": "",
-      "id": 3
-    },
-    {
       "title": "Factory Function",
       "link": "",
       "id": 7
@@ -158,34 +117,29 @@
       "id": 8
     },
     {
-      "title": "Selectors",
-      "link": "https://www.w3schools.com/cssref/css_selectors.asp",
-      "id": 9
-    },
-    {
-      "title": "Fetch ALL Call and Set STATE",
-      "link": "",
-      "id": 10
-    },
-    {
-      "title": "Test Issue 1",
-      "link": "",
-      "id": 11
-    },
-    {
-      "title": "Test Issue 2",
-      "link": "",
-      "id": 12
-    },
-    {
-      "title": "Test Issue 3",
-      "link": "",
-      "id": 13
-    },
-    {
       "title": "Keyboard Shortcuts",
       "link": "",
       "id": 14
+    },
+    {
+      "title": "State",
+      "link": "",
+      "id": 15
+    },
+    {
+      "title": "New Issue",
+      "link": "",
+      "id": 16
+    },
+    {
+      "title": "Tesr",
+      "link": "",
+      "id": 17
+    },
+    {
+      "title": "Fetch Call",
+      "link": "",
+      "id": 18
     }
   ],
   "libraryArchives": [
@@ -193,11 +147,6 @@
       "libraryId": 1,
       "archiveId": 1,
       "id": 1
-    },
-    {
-      "libraryId": 1,
-      "archiveId": 2,
-      "id": 2
     },
     {
       "libraryId": 2,
@@ -208,7 +157,7 @@
   "subLibraryArchives": [
     {
       "subLanguageLibraryId": 2,
-      "archiveId": 3,
+      "archiveId": 15,
       "id": 1
     }
   ],
@@ -225,23 +174,18 @@
     },
     {
       "logId": 4,
-      "archiveId": 10,
+      "archiveId": 16,
       "id": 4
     },
     {
       "logId": 5,
-      "archiveId": 11,
+      "archiveId": 17,
       "id": 5
     },
     {
       "logId": 6,
-      "archiveId": 12,
+      "archiveId": 18,
       "id": 6
-    },
-    {
-      "logId": 7,
-      "archiveId": 13,
-      "id": 7
     }
   ],
   "resources": [
@@ -273,22 +217,13 @@
       "id": 3
     },
     {
-      "title": "W3 School",
-      "link": "https://www.w3schools.com/cssref/trysel.asp",
-      "description": "Testing Module for testing out different Selectors",
-      "image": null,
-      "archiveId": 9,
-      "resourceTypeId": 1,
-      "id": 4
-    },
-    {
-      "title": "CSS SELECTORS MADE EASY ",
-      "link": "https://www.youtube.com/watch?v=dcCCOiQ1ZuM",
-      "description": "You won't get far in web dev without understanding CSS selectors, and they aren't hard at all!",
+      "title": "",
+      "link": "",
+      "description": "",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
-      "archiveId": 9,
+      "archiveId": 1,
       "resourceTypeId": 2,
-      "id": 5
+      "id": 4
     }
   ],
   "resourceTypes": [
@@ -306,6 +241,7 @@
       "title": "Definition",
       "text": "The map() method creates a new array with the results of calling a provided function on every element in the calling array.",
       "image": null,
+      "order": 1,
       "archiveId": 1,
       "recordTypeId": 1,
       "id": 1
@@ -314,6 +250,7 @@
       "title": "Syntax",
       "text": "var new_array = arr.map(function callback(currentValue[, index[, array]]) {\n    // Return element for new_array\n}[, thisArg])",
       "image": null,
+      "order": 2,
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 2
@@ -322,6 +259,7 @@
       "title": "Example",
       "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]\n",
       "image": null,
+      "order": 3,
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 3
@@ -330,6 +268,7 @@
       "title": "Useage",
       "text": "For Creating multiple objects of the same type. A good example would be creating a \"Pizza Making\" factory function that creates different types of pizzas based on the parameters entered for the function.",
       "image": null,
+      "order": 1,
       "archiveId": 7,
       "recordTypeId": 1,
       "id": 4
@@ -338,41 +277,55 @@
       "title": "Code",
       "text": "function createJelly() {\n  return {\n    type: 'jelly',\n    colour: 'red',\n    scoops: 3\n  };\n}",
       "image": null,
+      "order": 2,
       "archiveId": 7,
       "recordTypeId": 2,
       "id": 5
     },
     {
-      "title": "Hover Selector",
-      "text": ":hover",
-      "image": null,
-      "archiveId": 9,
-      "recordTypeId": 2,
-      "id": 6
-    },
-    {
-      "title": "Definition",
-      "text": "In CSS, selectors are patterns used to select the element(s) you want to style.",
-      "image": null,
-      "archiveId": 9,
-      "recordTypeId": 1,
-      "id": 7
-    },
-    {
-      "title": "Example Code",
-      "text": "    API.getAll(\"users\", `id=${this.state.currentUser}`)\n      .then(userInfo => (newState.userInfo = userInfo))\n      .then(() => this.setState(newState));",
-      "image": null,
-      "archiveId": 10,
-      "recordTypeId": 2,
-      "id": 8
-    },
-    {
-      "title": "",
+      "title": "Linux",
       "text": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2F-14?alt=media&token=fe48919e-8049-4b0b-a6a4-b2eb2e4701d5",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FLinux-14?alt=media&token=e28a196e-ae06-48cf-b8c6-8222d11dc728",
+      "order": 1,
       "archiveId": 14,
       "recordTypeId": 1,
       "id": 9
+    },
+    {
+      "title": "Diagram",
+      "text": "",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FDiagram-1?alt=media&token=58da1f9f-b43b-40d3-b97f-6c5fef4c9c71",
+      "order": 4,
+      "archiveId": 1,
+      "recordTypeId": 1,
+      "id": 10
+    },
+    {
+      "title": "New Note",
+      "text": "",
+      "image": null,
+      "order": 1,
+      "archiveId": 16,
+      "recordTypeId": 1,
+      "id": 11
+    },
+    {
+      "title": "Note 1",
+      "text": "",
+      "image": null,
+      "order": 1,
+      "archiveId": 17,
+      "recordTypeId": 1,
+      "id": 12
+    },
+    {
+      "title": "Note 2",
+      "text": "",
+      "image": null,
+      "order": 2,
+      "archiveId": 17,
+      "recordTypeId": 1,
+      "id": 13
     }
   ],
   "recordTypes": [

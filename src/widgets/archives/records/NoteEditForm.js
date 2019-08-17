@@ -18,6 +18,7 @@ export default class NoteEditForm extends Component {
     title: "",
     text: "",
     image: null,
+    order: null,
     archiveId: "",
     recordTypeId: "",
     disabled: true,
@@ -36,6 +37,7 @@ export default class NoteEditForm extends Component {
         title: note.title,
         text: note.text,
         image: note.image,
+        order: note.order,
         archiveId: note.archiveId,
         recordTypeId: note.recordTypeId,
       });
@@ -60,6 +62,7 @@ export default class NoteEditForm extends Component {
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
+          order: this.state.order,
           archiveId:this.state.archiveId,
           recordTypeId: this.state.recordTypeId,
           id: this.props.noteId
@@ -73,6 +76,7 @@ export default class NoteEditForm extends Component {
         title: this.state.title,
         text: this.state.text,
         image: this.state.image,
+        order: this.state.order,
         archiveId:this.state.archiveId,
         recordTypeId: this.state.recordTypeId,
         id: this.props.noteId
