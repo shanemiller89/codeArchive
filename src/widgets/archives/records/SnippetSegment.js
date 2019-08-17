@@ -21,7 +21,7 @@ export default class SnippetSegment extends Component {
       title: this.props.snippet.title,
       text: this.props.snippet.text,
       image: this.props.snippet.image,
-      order: this.props.snippet.order - 2,
+      order: this.props.snippet.order - 1,
       archiveId: this.props.snippet.archiveId,
       recordTypeId: this.props.snippet.recordTypeId,
       id: this.props.snippet.id
@@ -34,7 +34,7 @@ export default class SnippetSegment extends Component {
       title: this.props.snippet.title,
       text: this.props.snippet.text,
       image: this.props.snippet.image,
-      order: this.props.snippet.order + 2,
+      order: this.props.snippet.order + 1,
       archiveId: this.props.snippet.archiveId,
       recordTypeId: this.props.snippet.recordTypeId,
       id: this.props.snippet.id
@@ -80,11 +80,18 @@ export default class SnippetSegment extends Component {
                       this.props.deleteSnippet(this.props.snippet.id)
                     }
                   />
-                  <Dropdown.Item
+                  {this.props.snippet.order <= 1 ? null : (
+                    <Dropdown.Item
+                      icon="sort amount up"
+                      description="Move Up"
+                      onClick={this.MoveUp}
+                    />
+                  )}
+                  {/* <Dropdown.Item
                     icon="sort amount up"
                     description="Move Up"
                     onClick={this.MoveUp}
-                  />
+                  /> */}
                   <Dropdown.Item
                     icon="sort amount down"
                     description="Move Down"

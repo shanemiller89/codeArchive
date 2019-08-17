@@ -14,7 +14,7 @@ import "react-image-lightbox/style.css";
 export default class NoteSegment extends Component {
   state = {
     open: false,
-    isOpen: false,
+    isOpen: false
   };
 
   MoveUp = () => {
@@ -86,11 +86,18 @@ export default class NoteSegment extends Component {
                     onCancel={this.close}
                     onConfirm={() => this.props.deleteNote(this.props.note.id)}
                   />
-                  <Dropdown.Item
+                  {this.props.note.order <= 1 ? null : (
+                    <Dropdown.Item
+                      icon="sort amount up"
+                      description="Move Up"
+                      onClick={this.MoveUp}
+                    />
+                  )}
+                  {/* <Dropdown.Item
                     icon="sort amount up"
                     description="Move Up"
                     onClick={this.MoveUp}
-                  />
+                  /> */}
                   <Dropdown.Item
                     icon="sort amount down"
                     description="Move Down"
