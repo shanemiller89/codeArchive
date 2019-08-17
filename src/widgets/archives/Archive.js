@@ -35,7 +35,7 @@ export default class Archive extends Component {
       .then(Archive => (newState.Archive = Archive))
       .then(() => this.setState(newState));
     // Get ALl Notes and Snippets JOE SHEP //
-    API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+    API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`)
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
       .then(() => this.setState(newState));
     // Get All bookmarks //

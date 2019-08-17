@@ -306,6 +306,7 @@
       "title": "Definition",
       "text": "The map() method creates a new array with the results of calling a provided function on every element in the calling array.",
       "image": null,
+      "order": 1,
       "archiveId": 1,
       "recordTypeId": 1,
       "id": 1
@@ -314,6 +315,7 @@
       "title": "Syntax",
       "text": "var new_array = arr.map(function callback(currentValue[, index[, array]]) {\n    // Return element for new_array\n}[, thisArg])",
       "image": null,
+      "order": 3,
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 2
@@ -322,6 +324,7 @@
       "title": "Example",
       "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]\n",
       "image": null,
+      "order": 2,
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 3
@@ -330,6 +333,7 @@
       "title": "Useage",
       "text": "For Creating multiple objects of the same type. A good example would be creating a \"Pizza Making\" factory function that creates different types of pizzas based on the parameters entered for the function.",
       "image": null,
+      "order": 4,
       "archiveId": 7,
       "recordTypeId": 1,
       "id": 4
@@ -338,6 +342,7 @@
       "title": "Code",
       "text": "function createJelly() {\n  return {\n    type: 'jelly',\n    colour: 'red',\n    scoops: 3\n  };\n}",
       "image": null,
+      "order": 6,
       "archiveId": 7,
       "recordTypeId": 2,
       "id": 5
@@ -346,6 +351,7 @@
       "title": "Hover Selector",
       "text": ":hover",
       "image": null,
+      "order": 5,
       "archiveId": 9,
       "recordTypeId": 2,
       "id": 6
@@ -354,6 +360,7 @@
       "title": "Definition",
       "text": "In CSS, selectors are patterns used to select the element(s) you want to style.",
       "image": null,
+      "order": 7,
       "archiveId": 9,
       "recordTypeId": 1,
       "id": 7
@@ -362,6 +369,7 @@
       "title": "Example Code",
       "text": "    API.getAll(\"users\", `id=${this.state.currentUser}`)\n      .then(userInfo => (newState.userInfo = userInfo))\n      .then(() => this.setState(newState));",
       "image": null,
+      "order": 8,
       "archiveId": 10,
       "recordTypeId": 2,
       "id": 8
@@ -370,6 +378,7 @@
       "title": "",
       "text": "",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2F-14?alt=media&token=fe48919e-8049-4b0b-a6a4-b2eb2e4701d5",
+      "order": 1,
       "archiveId": 14,
       "recordTypeId": 1,
       "id": 9
