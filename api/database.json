@@ -215,15 +215,6 @@
       "archiveId": 1,
       "resourceTypeId": 1,
       "id": 3
-    },
-    {
-      "title": "",
-      "link": "",
-      "description": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
-      "archiveId": 1,
-      "resourceTypeId": 2,
-      "id": 4
     }
   ],
   "resourceTypes": [

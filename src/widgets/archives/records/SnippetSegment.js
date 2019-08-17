@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import {
   Segment,
   Header,
   Icon,
-  Image,
+  Button,
+  Popup,
   Dropdown,
   Confirm
 } from "semantic-ui-react";
 import SnippetEditForm from "./SnippetEditForm";
+import copy from "copy-to-clipboard";
 
 export default class SnippetSegment extends Component {
   state = {
@@ -53,12 +55,21 @@ export default class SnippetSegment extends Component {
             <Icon name="code" style={{ color: "#15CA00" }} />
           </Header>
           <Segment style={{ width: "80%" }}>
-            <Header as="h1">
-              {this.props.snippet.title}
-              <Dropdown
-                icon="bars"
-                style={{ fontSize: ".75em", marginLeft: "1em" }}
-              >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <Header as="h1">{this.props.snippet.title}</Header>
+              <div>
+              <Popup content='Copy Code' trigger={              <Button
+              icon="copy"
+                onClick={() => copy(this.props.snippet.text)}
+                style={{ border: "none", background: "none", fontSize: "1.5em" }}
+              />} />
+              <Dropdown icon="bars" style={{ fontSize: "1.5em" }}>
                 <Dropdown.Menu>
                   <SnippetEditForm
                     snippetId={this.props.snippet.id}
@@ -99,10 +110,11 @@ export default class SnippetSegment extends Component {
                   />
                 </Dropdown.Menu>
               </Dropdown>
-            </Header>
+              </div>
+            </div>
             <SyntaxHighlighter
               language="javascript"
-              style={dark}
+              style={atomDark}
               showLineNumbers={true}
             >
               {this.props.snippet.text}
