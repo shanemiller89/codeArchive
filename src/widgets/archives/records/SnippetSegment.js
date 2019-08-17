@@ -16,6 +16,32 @@ export default class SnippetSegment extends Component {
     open: false
   };
 
+  MoveUp = () => {
+    const editedSnippet = {
+      title: this.props.snippet.title,
+      text: this.props.snippet.text,
+      image: this.props.snippet.image,
+      order: this.props.snippet.order - 2,
+      archiveId: this.props.snippet.archiveId,
+      recordTypeId: this.props.snippet.recordTypeId,
+      id: this.props.snippet.id
+    };
+    this.props.updateSnippet(editedSnippet);
+  };
+
+  MoveDown = () => {
+    const editedSnippet = {
+      title: this.props.snippet.title,
+      text: this.props.snippet.text,
+      image: this.props.snippet.image,
+      order: this.props.snippet.order + 2,
+      archiveId: this.props.snippet.archiveId,
+      recordTypeId: this.props.snippet.recordTypeId,
+      id: this.props.snippet.id
+    };
+    this.props.updateSnippet(editedSnippet);
+  };
+
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
 
@@ -30,7 +56,7 @@ export default class SnippetSegment extends Component {
             <Header as="h1">
               {this.props.snippet.title}
               <Dropdown
-                icon="list"
+                icon="bars"
                 style={{ fontSize: ".75em", marginLeft: "1em" }}
               >
                 <Dropdown.Menu>
@@ -45,7 +71,7 @@ export default class SnippetSegment extends Component {
                   />
                   <Confirm
                     size="mini"
-                    header="Delete Library"
+                    header="Delete Snippet"
                     content="Are you sure you want to delete this code snippet?"
                     confirmButton="Yes"
                     open={this.state.open}
@@ -54,10 +80,24 @@ export default class SnippetSegment extends Component {
                       this.props.deleteSnippet(this.props.snippet.id)
                     }
                   />
+                  <Dropdown.Item
+                    icon="sort amount up"
+                    description="Move Up"
+                    onClick={this.MoveUp}
+                  />
+                  <Dropdown.Item
+                    icon="sort amount down"
+                    description="Move Down"
+                    onClick={this.MoveDown}
+                  />
                 </Dropdown.Menu>
               </Dropdown>
             </Header>
-            <SyntaxHighlighter language="javascript" style={dark} showLineNumbers={true}>
+            <SyntaxHighlighter
+              language="javascript"
+              style={dark}
+              showLineNumbers={true}
+            >
               {this.props.snippet.text}
             </SyntaxHighlighter>
           </Segment>

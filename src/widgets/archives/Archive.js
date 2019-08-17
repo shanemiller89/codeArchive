@@ -35,7 +35,10 @@ export default class Archive extends Component {
       .then(Archive => (newState.Archive = Archive))
       .then(() => this.setState(newState));
     // Get ALl Notes and Snippets JOE SHEP //
-    API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`)
+    API.getAll(
+      "records",
+      `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+    )
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
       .then(() => this.setState(newState));
     // Get All bookmarks //
@@ -58,7 +61,12 @@ export default class Archive extends Component {
   addNote = data => {
     API.post("records", data)
       .then(() =>
-        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
       .then(NotesAndSnippets =>
         this.setState({
@@ -69,7 +77,12 @@ export default class Archive extends Component {
   deleteNote = id => {
     API.delete("records", id)
       .then(() =>
-        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
       .then(NotesAndSnippets =>
         this.setState({
@@ -80,7 +93,12 @@ export default class Archive extends Component {
   updateNote = editedData => {
     API.put("records", editedData)
       .then(() =>
-        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
       .then(NotesAndSnippets =>
         this.setState({
@@ -92,7 +110,12 @@ export default class Archive extends Component {
   addSnippet = data => {
     API.post("records", data)
       .then(() =>
-        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
       .then(NotesAndSnippets =>
         this.setState({
@@ -103,7 +126,12 @@ export default class Archive extends Component {
   deleteSnippet = id => {
     API.delete("records", id)
       .then(() =>
-        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
       .then(NotesAndSnippets =>
         this.setState({
@@ -114,7 +142,12 @@ export default class Archive extends Component {
   updateSnippet = editedData => {
     API.put("records", editedData)
       .then(() =>
-        API.getAll("records", `archiveId=${this.props.match.params.ArchiveId}`)
+        API.getAll(
+          "records",
+          `archiveId=${
+            this.props.match.params.ArchiveId
+          }&_sort=order&_order=asc`
+        )
       )
       .then(NotesAndSnippets =>
         this.setState({
@@ -244,13 +277,18 @@ export default class Archive extends Component {
           ) : null}
           <br />
           {/* Add Note Form */}
-          <NoteForm archiveId={this.archiveId} addNote={this.addNote} />
+          <NoteForm
+            archiveId={this.archiveId}
+            addNote={this.addNote}
+            arrayLength={this.state.NotesAndSnippets.length}
+          />
           <br />
           <br />
           {/* Add Code Snippet Form */}
           <SnippetForm
             archiveId={this.archiveId}
             addSnippet={this.addSnippet}
+            arrayLength={this.state.NotesAndSnippets.length}
           />
         </Container>
         <br />

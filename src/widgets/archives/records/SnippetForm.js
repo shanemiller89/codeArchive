@@ -32,6 +32,7 @@ export default class SnippetForm extends Component {
         title: this.state.title,
         text: this.state.text,
         image: this.state.image,
+        order: this.props.arrayLength + 1,
         archiveId:this.state.archiveId,
         recordTypeId: this.state.recordTypeId,
 

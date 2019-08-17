@@ -12,6 +12,8 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
+
+
 export default class NoteForm extends Component {
   state = {
     title: "",
@@ -46,6 +48,7 @@ export default class NoteForm extends Component {
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
+          order: this.props.arrayLength + 1,
           archiveId:this.state.archiveId,
           recordTypeId: this.state.recordTypeId,
         });
@@ -58,6 +61,7 @@ export default class NoteForm extends Component {
         title: this.state.title,
         text: this.state.text,
         image: null,
+        order: this.props.arrayLength + 1,
         archiveId:this.state.archiveId,
         recordTypeId: this.state.recordTypeId,
 
@@ -67,6 +71,9 @@ export default class NoteForm extends Component {
   };
 
   render() {
+
+    console.log("Array Length", this.props.arrayLength)
+
     return (
       <React.Fragment>
         <Modal
