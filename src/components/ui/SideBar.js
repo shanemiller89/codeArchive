@@ -54,6 +54,12 @@ export default class SideBar extends Component {
                 Code
               </Menu.Item>
             </Link>
+            <Link to="/articles">
+              <Menu.Item>
+                <Icon name="newspaper" />
+                Articles
+              </Menu.Item>
+            </Link>
           </Sidebar>
           <Sidebar.Pusher style={{ background: "#F5F5F5", minHeight: "100vh"}}>
             <ApplicationViews />
