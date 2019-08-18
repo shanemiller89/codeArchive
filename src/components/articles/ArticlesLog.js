@@ -3,6 +3,7 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import ArticleSegment from "./ArticleSegment";
 import ArticleForm from "./ArticleForm";
+import ArticleSearchBar from "./ArticleSearchBar";
 
 export default class ArticlesLog extends Component {
   state = {
@@ -54,7 +55,7 @@ export default class ArticlesLog extends Component {
         <Container
           style={{
             background: "#E8E8E8",
-            height: "20em",
+            height: "18em",
             color: "#15CA00",
             padding: "1em"
           }}
@@ -68,6 +69,9 @@ export default class ArticlesLog extends Component {
             Article Log
           </Header>
           <ArticleForm addArticle={this.addArticle} />
+          <br />
+          <br />
+          <ArticleSearchBar articles={this.state.articles}/>
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="newspaper" style={{ color: "#15CA00" }} />
