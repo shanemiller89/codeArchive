@@ -16,7 +16,7 @@ export default class SideBar extends Component {
   state = { visible: false };
 
   toggle = () => this.setState({ visible: !this.state.visible });
-  handleSidebarHide = () => this.setState({ visible: false });
+  // handleSidebarHide = () => this.setState({ visible: false });
 
   render() {
     const { visible } = this.state;

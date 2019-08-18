@@ -21,7 +21,7 @@ export default class VideoCard extends Component {
             <a href={this.props.video.link} style={{fontSize: "1em"}}>
               {this.props.video.title}
               </a>
-              <Dropdown icon="list" style={{fontSize: ".75em", marginLeft: "1em"}}>
+              <Dropdown icon="bars" style={{fontSize: "1em", marginLeft: "1em"}}>
                 <Dropdown.Menu>
                   <VideoEditForm
                     video={this.props.video}

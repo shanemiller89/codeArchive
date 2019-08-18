@@ -16,7 +16,7 @@ export default class BookmarksList extends Component {
         <List.Item style={{ marginLeft: "6em" }}>
           <List.Icon name="linkify" />
           <List.Content>
-            <List.Header>
+            <List.Header as="h3">
               <a
                 href={this.props.bookmark.link}
                 rel="noopener noreferrer"
@@ -24,7 +24,7 @@ export default class BookmarksList extends Component {
               >
                 {this.props.bookmark.title}
               </a>
-              <Dropdown icon="list" floated="right">
+              <Dropdown icon="bars" floated="right" style={{marginLeft: ".5em"}}>
                 <Dropdown.Menu position="right">
                   <BookmarkEditForm
                     bookmark={this.props.bookmark}

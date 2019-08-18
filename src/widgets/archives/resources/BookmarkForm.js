@@ -46,8 +46,14 @@ export default class BookmarkForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-          <Button style={{ background: "#15CA00", color: "white", marginLeft: "30em", borderRadius: "100%" }} size="mini" icon onClick={this.toggle}>
-            <Icon name="plus" />
+            <Button primary as="div" labelPosition="right" size="tiny" style={{marginLeft: "27em",}}>
+              <Button style={{ background: "#15CA00", color: "white" }} icon size="tiny" onClick={this.toggle}>
+                <Icon name="plus" />
+                Add
+              </Button>
+              <Label basic pointing="left">
+                Bookmark
+              </Label>
             </Button>
           }
           open={this.state.openForm}

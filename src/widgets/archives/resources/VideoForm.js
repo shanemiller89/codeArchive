@@ -46,18 +46,14 @@ export default class VideoForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-            <Button
-              style={{
-                background: "#15CA00",
-                color: "white",
-                marginLeft: "35.2em",
-                borderRadius: "100%"
-              }}
-              size="mini"
-              icon
-              onClick={this.toggle}
-            >
-              <Icon name="plus" />
+            <Button primary as="div" labelPosition="right" size="tiny" style={{marginLeft: "31.5em"}}>
+              <Button style={{ background: "#15CA00", color: "white" }} icon size="tiny" onClick={this.toggle}>
+                <Icon name="plus" />
+                Add
+              </Button>
+              <Label basic pointing="left">
+                Video
+              </Label>
             </Button>
           }
           open={this.state.openForm}

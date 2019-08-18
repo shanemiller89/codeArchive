@@ -45,7 +45,7 @@ export default class IssueList extends Component {
               </Grid.Column>
               <Grid.Column verticalAlign="middle" width={6} />
               <Grid.Column verticalAlign="middle">
-                <Dropdown icon="list" style={{ fontSize: "1.75em" }}>
+                <Dropdown icon="bars" style={{ fontSize: "1.75em" }}>
                   <Dropdown.Menu direction="left">
                     <IssueEditForm
                       issueId={this.props.issueArchive.log.id}

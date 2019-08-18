@@ -23,6 +23,7 @@ export default class NoteSegment extends Component {
       text: this.props.note.text,
       image: this.props.note.image,
       order: this.props.note.order - 1,
+      language: this.props.snippet.language,
       archiveId: this.props.note.archiveId,
       recordTypeId: this.props.note.recordTypeId,
       id: this.props.note.id
@@ -36,6 +37,7 @@ export default class NoteSegment extends Component {
       text: this.props.note.text,
       image: this.props.note.image,
       order: this.props.note.order + 1,
+      language: this.props.snippet.language,
       archiveId: this.props.note.archiveId,
       recordTypeId: this.props.note.recordTypeId,
       id: this.props.note.id
@@ -61,11 +63,18 @@ export default class NoteSegment extends Component {
             <Icon name="sticky note" style={{ color: "#15CA00" }} />
           </Header>
           <Segment style={{ width: "80%" }}>
-            <Header as="h1">
-              {this.props.note.title}
+          <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <Header as="h1">{this.props.note.title}</Header>
+              <div>
               <Dropdown
                 icon="bars"
-                style={{ fontSize: ".75em", marginLeft: "1em" }}
+                style={{ fontSize: "1.5em" }}
               >
                 <Dropdown.Menu>
                   <NoteEditForm
@@ -105,7 +114,8 @@ export default class NoteSegment extends Component {
                   />
                 </Dropdown.Menu>
               </Dropdown>
-            </Header>
+              </div>
+            </div>
             <div style={{ whiteSpace: "pre" }}>{this.props.note.text}</div>
             {this.props.note.image !== null ? (
               <div>

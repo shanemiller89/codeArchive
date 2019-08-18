@@ -67,27 +67,6 @@
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 3
-    },
-    {
-      "title": "New Issue",
-      "reference": "New Issue",
-      "logTypeId": 1,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 4
-    },
-    {
-      "title": "Tesr",
-      "reference": "",
-      "logTypeId": 2,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 5
-    },
-    {
-      "title": "Fetch Call",
-      "reference": "Javascript, fetch, API",
-      "logTypeId": 2,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 6
     }
   ],
   "logTypes": [
@@ -125,21 +104,6 @@
       "title": "State",
       "link": "",
       "id": 15
-    },
-    {
-      "title": "New Issue",
-      "link": "",
-      "id": 16
-    },
-    {
-      "title": "Tesr",
-      "link": "",
-      "id": 17
-    },
-    {
-      "title": "Fetch Call",
-      "link": "",
-      "id": 18
     }
   ],
   "libraryArchives": [
@@ -171,21 +135,6 @@
       "logId": 3,
       "archiveId": 8,
       "id": 3
-    },
-    {
-      "logId": 4,
-      "archiveId": 16,
-      "id": 4
-    },
-    {
-      "logId": 5,
-      "archiveId": 17,
-      "id": 5
-    },
-    {
-      "logId": 6,
-      "archiveId": 18,
-      "id": 6
     }
   ],
   "resources": [
@@ -232,6 +181,7 @@
       "title": "Definition",
       "text": "The map() method creates a new array with the results of calling a provided function on every element in the calling array.",
       "image": null,
+      "language": null,
       "order": 1,
       "archiveId": 1,
       "recordTypeId": 1,
@@ -241,6 +191,7 @@
       "title": "Syntax",
       "text": "var new_array = arr.map(function callback(currentValue[, index[, array]]) {\n    // Return element for new_array\n}[, thisArg])",
       "image": null,
+      "language": "javascript",
       "order": 2,
       "archiveId": 1,
       "recordTypeId": 2,
@@ -250,6 +201,7 @@
       "title": "Example",
       "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]\n",
       "image": null,
+      "language": "javascript",
       "order": 3,
       "archiveId": 1,
       "recordTypeId": 2,
@@ -259,6 +211,7 @@
       "title": "Useage",
       "text": "For Creating multiple objects of the same type. A good example would be creating a \"Pizza Making\" factory function that creates different types of pizzas based on the parameters entered for the function.",
       "image": null,
+      "language": null,
       "order": 1,
       "archiveId": 7,
       "recordTypeId": 1,
@@ -268,6 +221,7 @@
       "title": "Code",
       "text": "function createJelly() {\n  return {\n    type: 'jelly',\n    colour: 'red',\n    scoops: 3\n  };\n}",
       "image": null,
+      "language": "javascript",
       "order": 2,
       "archiveId": 7,
       "recordTypeId": 2,
@@ -277,6 +231,7 @@
       "title": "Linux",
       "text": "",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FLinux-14?alt=media&token=e28a196e-ae06-48cf-b8c6-8222d11dc728",
+      "language": null,
       "order": 1,
       "archiveId": 14,
       "recordTypeId": 1,
@@ -286,37 +241,11 @@
       "title": "Diagram",
       "text": "",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FDiagram-1?alt=media&token=58da1f9f-b43b-40d3-b97f-6c5fef4c9c71",
+      "language": null,
       "order": 4,
       "archiveId": 1,
       "recordTypeId": 1,
       "id": 10
-    },
-    {
-      "title": "New Note",
-      "text": "",
-      "image": null,
-      "order": 1,
-      "archiveId": 16,
-      "recordTypeId": 1,
-      "id": 11
-    },
-    {
-      "title": "Note 1",
-      "text": "",
-      "image": null,
-      "order": 1,
-      "archiveId": 17,
-      "recordTypeId": 1,
-      "id": 12
-    },
-    {
-      "title": "Note 2",
-      "text": "",
-      "image": null,
-      "order": 2,
-      "archiveId": 17,
-      "recordTypeId": 1,
-      "id": 13
     }
   ],
   "recordTypes": [
