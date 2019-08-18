@@ -116,7 +116,7 @@ export default class NoteSegment extends Component {
               </Dropdown>
               </div>
             </div>
-            <div style={{ whiteSpace: "pre" }}>{this.props.note.text}</div>
+            <div style={{ whiteSpace: "pre-wrap" }}>{this.props.note.text}</div>
             {this.props.note.image !== null ? (
               <div>
                 <Image

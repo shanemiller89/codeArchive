@@ -79,6 +79,24 @@
       "id": 2
     }
   ],
+  "articles": [
+    {
+      "title": "Goodbye PCs, it's been nice knowing you. Hello, desktop as a service",
+      "synopsis": "We'll still have PCs on our desks, but with the rise of desktop-as-a-service and software-as-a-service, we're returning to smart-terminals and time-sharing services.",
+      "link": "https://www.zdnet.com/article/good-bye-pcs-its-been-nice-knowing-you/",
+      "reference": "PCs, desktop, DaaS",
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 1
+    },
+    {
+      "title": "9 Reasons Why You Should Keep Learning Machine Learning",
+      "synopsis": "Google says “Machine Learning is the future,” and the future of Machine Learning is going to be very bright. As humans become more addicted to machines, we’re witnesses to a new revolution that’s taking over the world, and that is going to be the future of Machine Learning...",
+      "link": "https://hackernoon.com/9-reasons-why-you-should-keep-learning-machine-learning-7n7h307n",
+      "reference": "Machine Learning, AI",
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 2
+    }
+  ],
   "archives": [
     {
       "title": "map ( )",

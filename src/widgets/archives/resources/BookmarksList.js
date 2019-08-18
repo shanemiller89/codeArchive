@@ -14,7 +14,7 @@ export default class BookmarksList extends Component {
     return (
       <React.Fragment>
         <List.Item style={{ marginLeft: "6em" }}>
-          <List.Icon name="linkify" />
+          <List.Icon style={{color: "#15CA00"}} name="linkify" />
           <List.Content>
             <List.Header as="h3">
               <a
