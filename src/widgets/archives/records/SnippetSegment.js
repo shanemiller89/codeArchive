@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import {
   Segment,
   Header,
   Icon,
-  Image,
+  Button,
+  Popup,
   Dropdown,
   Confirm
 } from "semantic-ui-react";
 import SnippetEditForm from "./SnippetEditForm";
+import copy from "copy-to-clipboard";
 
 export default class SnippetSegment extends Component {
   state = {
@@ -22,6 +24,7 @@ export default class SnippetSegment extends Component {
       text: this.props.snippet.text,
       image: this.props.snippet.image,
       order: this.props.snippet.order - 1,
+      language: this.props.snippet.language,
       archiveId: this.props.snippet.archiveId,
       recordTypeId: this.props.snippet.recordTypeId,
       id: this.props.snippet.id
@@ -35,6 +38,7 @@ export default class SnippetSegment extends Component {
       text: this.props.snippet.text,
       image: this.props.snippet.image,
       order: this.props.snippet.order + 1,
+      language: this.props.snippet.language,
       archiveId: this.props.snippet.archiveId,
       recordTypeId: this.props.snippet.recordTypeId,
       id: this.props.snippet.id
@@ -53,56 +57,77 @@ export default class SnippetSegment extends Component {
             <Icon name="code" style={{ color: "#15CA00" }} />
           </Header>
           <Segment style={{ width: "80%" }}>
-            <Header as="h1">
-              {this.props.snippet.title}
-              <Dropdown
-                icon="bars"
-                style={{ fontSize: ".75em", marginLeft: "1em" }}
-              >
-                <Dropdown.Menu>
-                  <SnippetEditForm
-                    snippetId={this.props.snippet.id}
-                    updateSnippet={this.props.updateSnippet}
-                  />
-                  <Dropdown.Item
-                    icon="trash alternate"
-                    description="Delete"
-                    onClick={this.open}
-                  />
-                  <Confirm
-                    size="mini"
-                    header="Delete Snippet"
-                    content="Are you sure you want to delete this code snippet?"
-                    confirmButton="Yes"
-                    open={this.state.open}
-                    onCancel={this.close}
-                    onConfirm={() =>
-                      this.props.deleteSnippet(this.props.snippet.id)
-                    }
-                  />
-                  {this.props.snippet.order <= 1 ? null : (
-                    <Dropdown.Item
-                      icon="sort amount up"
-                      description="Move Up"
-                      onClick={this.MoveUp}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <Header as="h1">{this.props.snippet.title}</Header>
+              <div>
+                <Popup
+                  content="Copy Code"
+                  position="left center"
+                  inverted
+                  trigger={
+                    <Button
+                      icon="copy"
+                      onClick={() => copy(this.props.snippet.text)}
+                      style={{
+                        border: "none",
+                        background: "none",
+                        fontSize: "1.5em"
+                      }}
                     />
-                  )}
-                  {/* <Dropdown.Item
+                  }
+                />
+                <Dropdown icon="bars" style={{ fontSize: "1.5em" }}>
+                  <Dropdown.Menu>
+                    <SnippetEditForm
+                      snippetId={this.props.snippet.id}
+                      updateSnippet={this.props.updateSnippet}
+                    />
+                    <Dropdown.Item
+                      icon="trash alternate"
+                      description="Delete"
+                      onClick={this.open}
+                    />
+                    <Confirm
+                      size="mini"
+                      header="Delete Snippet"
+                      content="Are you sure you want to delete this code snippet?"
+                      confirmButton="Yes"
+                      open={this.state.open}
+                      onCancel={this.close}
+                      onConfirm={() =>
+                        this.props.deleteSnippet(this.props.snippet.id)
+                      }
+                    />
+                    {this.props.snippet.order <= 1 ? null : (
+                      <Dropdown.Item
+                        icon="sort amount up"
+                        description="Move Up"
+                        onClick={this.MoveUp}
+                      />
+                    )}
+                    {/* <Dropdown.Item
                     icon="sort amount up"
                     description="Move Up"
                     onClick={this.MoveUp}
                   /> */}
-                  <Dropdown.Item
-                    icon="sort amount down"
-                    description="Move Down"
-                    onClick={this.MoveDown}
-                  />
-                </Dropdown.Menu>
-              </Dropdown>
-            </Header>
+                    <Dropdown.Item
+                      icon="sort amount down"
+                      description="Move Down"
+                      onClick={this.MoveDown}
+                    />
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            </div>
             <SyntaxHighlighter
-              language="javascript"
-              style={dark}
+              language={this.props.snippet.language}
+              style={atomDark}
               showLineNumbers={true}
             >
               {this.props.snippet.text}

@@ -37,7 +37,7 @@ export default class SubLanguageLibraryList extends Component {
               </Link>
               </Grid.Column>
               <Grid.Column verticalAlign="middle">
-              <Dropdown icon="list" floated="right" style={{fontSize: "1.75em"}}>
+              <Dropdown icon="bars" floated="right" style={{fontSize: "1.75em"}}>
                 <Dropdown.Menu direction="left">
                   <SubLanguageLibraryEditForm
                     subLanguage={this.props.subLanguage}

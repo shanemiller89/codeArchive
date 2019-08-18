@@ -30,7 +30,7 @@ export default class Languages extends Component {
                   </Link>
                 </div>
                 <div>
-                  <Dropdown icon="list" floated="right">
+                  <Dropdown icon="bars" floated="right">
                     <Dropdown.Menu position="right">
                       <LanguageEditForm
                         language={this.props.language}

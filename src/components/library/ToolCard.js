@@ -30,7 +30,7 @@ export default class Tools extends Component {
                   </Link>
                 </div>
                 <div>
-                  <Dropdown icon="list" floated="right">
+                  <Dropdown icon="bars" floated="right">
                     <Dropdown.Menu position="right">
                       <ToolEditForm
                         tool={this.props.tool}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "copy-to-clipboard": "^3.2.0",
     "firebase": "^6.3.3",
     "lodash": "^4.17.15",
     "react": "^16.8.6",

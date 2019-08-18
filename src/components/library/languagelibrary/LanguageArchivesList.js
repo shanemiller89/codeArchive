@@ -44,7 +44,7 @@ export default class LanguageArchivesList extends Component {
               </Grid.Column>
               <Grid.Column verticalAlign="middle">
                 <Dropdown
-                  icon="list"
+                  icon="bars"
                   floated="right"
                   style={{ fontSize: "1.75em" }}
                 >

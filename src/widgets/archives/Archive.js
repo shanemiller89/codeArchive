@@ -1,21 +1,11 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Icon,
-  List,
-  Card,
-  Grid,
-  Segment
-} from "semantic-ui-react";
+import { Container, Header, Icon, List, Card } from "semantic-ui-react";
 import API from "../../modules/API";
 import BookmarksList from "./resources/BookmarksList";
 import BookmarkForm from "./resources/BookmarkForm";
 import VideoCard from "./resources/VideoCard";
 import VideoForm from "./resources/VideoForm";
-import NoteSegment from "./records/NoteSegment";
 import NoteForm from "./records/NoteForm";
-import SnippetSegment from "./records/SnippetSegment";
 import SnippetForm from "./records/SnippetForm";
 import NotesAndSnippetsList from "./records/NotesAndSnippetsList";
 
@@ -329,11 +319,15 @@ export default class Archive extends Component {
             <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
               <Icon name="bookmark" style={{ color: "#15CA00" }} />
               <Header.Content>
-                Bookmarks
-                <BookmarkForm
-                  archiveId={this.archiveId}
-                  addBookmark={this.addBookmark}
-                />
+                <div style ={{display: "flex", alignItems: "flex-end"}}>
+                  Bookmarks
+                  <div>
+                    <BookmarkForm
+                      archiveId={this.archiveId}
+                      addBookmark={this.addBookmark}
+                    />
+                  </div>
+                </div>
                 <Header.Subheader>
                   All websites, articles, or documentation relating to this
                   Archive
@@ -360,11 +354,15 @@ export default class Archive extends Component {
             <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
               <Icon name="video" style={{ color: "#15CA00" }} />
               <Header.Content>
+              <div style ={{display: "flex", alignItems: "flex-end"}}>
                 Videos
+                <div>
                 <VideoForm
                   archiveId={this.archiveId}
                   addVideo={this.addVideo}
                 />
+                </div>
+                </div>
                 <Header.Subheader>
                   All videos relating to this Archive
                 </Header.Subheader>

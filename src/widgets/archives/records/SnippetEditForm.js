@@ -13,6 +13,21 @@ import * as firebase from "firebase/app";
 import "firebase/storage";
 import API from "../../../modules/API"
 
+const options = [
+  { key: "df", text: 'No Highlight', value: 'text'},
+  { key: 'bash', text: 'Bash', value: 'bash' },
+  { key: 'c#', text: 'C#', value: 'csharp' },
+  { key: 'css', text: 'CSS', value: 'css' },
+  { key: 'django', text: 'Django', value: 'django' },
+  { key: 'html', text: 'HTML, XML', value: 'xml' },
+  { key: 'js', text: 'JavaScript', value: 'javascript' },
+  { key: 'jsx', text: 'JSX', value: 'jsx' },
+  { key: 'json', text: 'JSON', value: 'json' },
+  { key: 'md', text: 'MarkDown', value: 'markdown' },
+  { key: 'python', text: 'Python', value: 'python' },
+  
+]
+
 export default class SnippetEditForm extends Component {
   state = {
     title: "",
@@ -21,12 +36,16 @@ export default class SnippetEditForm extends Component {
     order: null,
     archiveId: "",
     recordTypeId: 2,
-    openForm: false
+    openForm: false,
+    value: [],
   };
 
   toggle = () => {
     this.setState({ openForm: !this.state.openForm });
   };
+
+    // For some reason, I need this for select to work//
+    handleChange = (e, { value }) => this.setState({ value })
 
   componentDidMount() {
     API.get("records", this.props.snippetId)
@@ -35,6 +54,7 @@ export default class SnippetEditForm extends Component {
         title: snippet.title,
         text: snippet.text,
         image: snippet.image,
+        value: snippet.language,
         order: snippet.order,
         archiveId: snippet.archiveId,
         recordTypeId: snippet.recordTypeId,
@@ -47,6 +67,7 @@ export default class SnippetEditForm extends Component {
         title: this.state.title,
         text: this.state.text,
         image: this.state.image,
+        language: this.state.value,
         order: this.state.order,
         archiveId:this.state.archiveId,
         recordTypeId: this.state.recordTypeId,
@@ -94,7 +115,14 @@ export default class SnippetEditForm extends Component {
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                         value={this.state.title}
-                      />
+                      />                      <Form.Select
+                      fluid
+                      options={options}
+                      value={this.state.value}
+                      onChange={this.handleChange}
+                      id="language"
+                    />
+
                       <Form.TextArea
                         fluid
                         rows="10"
