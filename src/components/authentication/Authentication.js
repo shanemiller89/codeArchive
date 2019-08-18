@@ -39,39 +39,35 @@ export default class Authentication extends Component {
               color: "white"
             }}
           >
-            Witty Tagline Here
+            All your resources . All in one place
           </p>
         </header>
         <Segment style={{ padding: "8em 0em" }} vertical>
           <Grid container stackable verticalAlign="middle">
             <Grid.Row>
               <Grid.Column width={8}>
-                <Header as="h3" style={{ fontSize: "2em" }}>
-                  Lorem Ipsum Header
+                <Header as="h2" style={{ fontSize: "2em", color: "#15CA00" }}>
+                  Archive all your Resources
                 </Header>
                 <p style={{ fontSize: "1.33em" }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque vitae enim libero. Ut blandit ex lectus, eget
-                  laoreet erat porttitor sit amet. Suspendisse posuere malesuada
-                  malesuada. Cras pellentesque magna id mattis gravida. Fusce id
-                  est mauris. Donec suscipit semper efficitur. Class aptent
-                  taciti sociosqu ad litora torquent per conubia nostra, per
-                  inceptos himenaeos. Aliquam erat volutpat.
+                 <strong>code.<span style={{color: "#15CA00"}}>Archive</span></strong> allows the software developer to archive and organize all of their informational
+                 resources in a centralized location, in an organized fashion. Separate your resources through Libraries by Language, Tools, and Sub-Languages.
+                 Then archive different concepts, and other related information in archives associated with those libraries.
                 </p>
-                <Header as="h3" style={{ fontSize: "2em" }}>
-                  Lorem Ipsum Header
+                <Header as="h2" style={{ fontSize: "2em", color: "#15CA00" }}>
+                  Save useful Code and more...
                 </Header>
                 <p style={{ fontSize: "1.33em" }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque vitae enim libero. Ut blandit ex lectus, eget
-                  laoreet erat porttitor sit amet.
+                    More than just resources, the software developer needs to be able to save useful code, or issues they've encountered. 
+                    <strong> code.<span style={{color: "#15CA00"}}>Archive</span></strong> lets you accomplish just that. Never dig through old projects, or Stack Overflow
+                    for that one forum post again. Now you can save it all right here.
                 </p>
               </Grid.Column>
               <Grid.Column floated="right" width={6}>
                 <Icon
                   bordered
                   rounded
-                  style={{ fontSize: "20em" }}
+                  style={{ fontSize: "20em", boxShadow: "none", color: "#15CA00" }}
                   name="archive"
                 />
               </Grid.Column>

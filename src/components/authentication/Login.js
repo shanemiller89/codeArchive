@@ -77,7 +77,7 @@ export default class Login extends Component {
                   </Segment>
                 </Form>
                 <Message>
-                  Don't have an Account? <a href="#">Sign Up</a>
+                  Don't have an Account? Be Sure to Register!
                 </Message>
               </Grid.Column>
             </Grid>
