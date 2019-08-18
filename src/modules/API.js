@@ -35,6 +35,11 @@ export default {
       },
       body: JSON.stringify(editedItem)
     }).then(data => data.json());
+  },
+  getGoogle(query, key) {
+    return fetch(`https://www.googleapis.com/customsearch/v1?q=${query}&cx=007869700174917727814%3Awkw-90jpq8q&num=5&key=${key}`)
+    .then( data => data.json() )
   }
+  
 
 }

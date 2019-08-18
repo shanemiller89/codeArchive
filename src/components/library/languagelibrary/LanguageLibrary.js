@@ -112,6 +112,10 @@ export default class LanguageLibrary extends Component {
       );
   };
 
+  addGoogleBookmark = data => {
+    API.post("resources", data)
+  }
+
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
@@ -189,6 +193,7 @@ export default class LanguageLibrary extends Component {
             languageId={this.state.language.id}
             addArchive={this.addArchive}
             addLanguageArchive={this.addLanguageArchive}
+            addGoogleBookmark={this.addGoogleBookmark}
           />
         </Container>
         {/* Sub-Languages */}

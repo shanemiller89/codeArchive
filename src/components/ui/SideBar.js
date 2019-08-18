@@ -66,6 +66,8 @@ export default class SideBar extends Component {
             <br />
             <br />
             <br />
+            <br />
+            <br />
             <Footer />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
