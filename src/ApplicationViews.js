@@ -4,11 +4,12 @@ import Home from "./components/home/Home";
 import Library from "./components/library/Library";
 import LanguageLibrary from "./components/library/languagelibrary/LanguageLibrary";
 import SubLanguageLibrary from "./components/library/languagelibrary/sublanguagelibrary/SubLanguageLibrary";
-import ToolLibrary from "./components/library/toollibrary/ToolLibrary"
+import ToolLibrary from "./components/library/toollibrary/ToolLibrary";
 import API from "./modules/API";
 import Archive from "./widgets/archives/Archive";
 import IssuesLog from "./components/issues/IssuesLog";
 import CodeLog from "./components/code/CodeLog";
+import ArticlesLog from "./components/articles/ArticlesLog"
 
 export default class ApplicationViews extends Component {
   state = {
@@ -33,11 +34,9 @@ export default class ApplicationViews extends Component {
           (newState.subLanguageLibraries = subLanguageLibraries)
       )
       .then(() => this.setState(newState));
-      API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=2`)
-        .then(
-          toolLibraries => (newState.toolLibraries = toolLibraries)
-        )
-        .then(() => this.setState(newState));
+    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=2`)
+      .then(toolLibraries => (newState.toolLibraries = toolLibraries))
+      .then(() => this.setState(newState));
     API.getAll("libraryArchives", `_expand=archive`)
       .then(languageArchives => (newState.languageArchives = languageArchives))
       .then(() => this.setState(newState));
@@ -101,15 +100,10 @@ export default class ApplicationViews extends Component {
           path="/library/tool/:toolLibraryId(\d+)"
           render={props => {
             this.state.toolLibraries.find(
-              tool =>
-                tool.id === parseInt(props.match.params.toolLibraryId)
+              tool => tool.id === parseInt(props.match.params.toolLibraryId)
             );
             return (
-              
-              <ToolLibrary
-                {...props}
-                currentUser={this.state.currentUser}
-              />
+              <ToolLibrary {...props} currentUser={this.state.currentUser} />
             );
           }}
         />
@@ -159,6 +153,13 @@ export default class ApplicationViews extends Component {
                 logArchive.archive.id === parseInt(props.match.params.ArchiveId)
             );
             return <Archive {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/articles"
+          render={props => {
+            return <ArticlesLog {...props} />;
           }}
         />
       </React.Fragment>

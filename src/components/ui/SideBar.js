@@ -2,6 +2,7 @@ import React, { Component, createRef } from "react";
 import { Button, Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ApplicationViews from "../../ApplicationViews";
+import Footer from "./Footer";
 
 // TODO:
 // 1.Revisit this, find a way to make side bar stick or fixed
@@ -13,13 +14,8 @@ const height = {
   minHeight: "100vh"
 };
 export default class SideBar extends Component {
-  state = { visible: false };
-
-  toggle = () => this.setState({ visible: !this.state.visible });
-  // handleSidebarHide = () => this.setState({ visible: false });
 
   render() {
-    const { visible } = this.state;
 
     return (
       <div>
@@ -30,7 +26,7 @@ export default class SideBar extends Component {
             icon="labeled"
             inverted
             vertical
-            visible={visible}
+            visible={this.props.visible}
             width="thin"
             size="huge"
           >
@@ -58,12 +54,19 @@ export default class SideBar extends Component {
                 Code
               </Menu.Item>
             </Link>
+            <Link to="/articles">
+              <Menu.Item>
+                <Icon name="newspaper" />
+                Articles
+              </Menu.Item>
+            </Link>
           </Sidebar>
           <Sidebar.Pusher style={{ background: "#F5F5F5", minHeight: "100vh"}}>
-          <Button attached="top" onClick={this.toggle} icon="exchange" style={{background: "#1b1c1d", color: "lightgray"}}></Button>
             <ApplicationViews />
             <br />
             <br />
+            <br />
+            <Footer />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 

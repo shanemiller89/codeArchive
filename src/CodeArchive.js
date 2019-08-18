@@ -3,7 +3,7 @@ import Authentication from './components/authentication/Authentication';
 import {getUserFromLocalStorage, logout } from './components/authentication/userManager';
 // import ApplicationViews from './ApplicationViews'
 import NavBar from './components/ui/NavBar'
-import SideBar from './components/ui/SideBar'
+
 
 export default class CodeArchive extends Component {
 
@@ -26,7 +26,6 @@ export default class CodeArchive extends Component {
             return(
             <React.Fragment>
               <NavBar />
-              <SideBar />
               {/* <ApplicationViews isAuthenticated={this.state.authenticated} /> */}
             </React.Fragment>
             )
