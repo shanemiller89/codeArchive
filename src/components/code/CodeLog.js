@@ -97,7 +97,7 @@ export default class CodeLog extends Component {
           <Header.Content>
             Code Archives
             <Header.Subheader>
-              Logs of Errors and the solutions to them
+              Logs of Code useful repeat use
             </Header.Subheader>
           </Header.Content>
         </Header>
