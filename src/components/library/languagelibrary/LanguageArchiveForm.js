@@ -45,7 +45,8 @@ export default class LanguageArchiveForm extends Component {
           libraryId: this.props.languageId,
           archiveId: newArchive.id
         })
-        API.getGoogle(this.state.title, API_KEY)
+        const searchTerm = `${this.props.languageTitle} ${this.state.title}`
+        API.getGoogle(searchTerm, API_KEY)
         .then(searchData => {
           searchData.items.map(item => {
             const bookmark = {

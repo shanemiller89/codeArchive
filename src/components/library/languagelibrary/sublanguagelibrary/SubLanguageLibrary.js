@@ -61,6 +61,10 @@ export default class SubLanguageLibrary extends Component {
       );
   };
 
+  addGoogleBookmark = data => {
+    API.post("resources", data)
+  }
+
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
@@ -127,8 +131,10 @@ export default class SubLanguageLibrary extends Component {
           <br />
           <SubLanguageArchiveForm
             subLanguageId={this.state.subLanguage.id}
+            subLanguageTitle={this.state.subLanguage.title}
             addArchive={this.addArchive}
             addSubLanguageArchive={this.addSubLanguageArchive}
+            addGoogleBookmark={this.addGoogleBookmark}
           />
         </Container>
         {/* Archives */}

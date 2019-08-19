@@ -46,6 +46,10 @@ export default class ToolLibrary extends Component {
       );
   };
 
+  addGoogleBookmark = data => {
+    API.post("resources", data)
+  }
+
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
@@ -113,8 +117,10 @@ export default class ToolLibrary extends Component {
           {/* Add Tool Archive Form */}
           <ToolArchiveForm
             toolId={this.state.tool.id}
+            toolTitle={this.state.tool.title}
             addArchive={this.addArchive}
             addToolArchive={this.addToolArchive}
+            addGoogleBookmark={this.addGoogleBookmark}
           />
         </Container>
         {/* Archives */}

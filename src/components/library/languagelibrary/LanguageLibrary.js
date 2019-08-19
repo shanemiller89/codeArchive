@@ -191,6 +191,7 @@ export default class LanguageLibrary extends Component {
           {/* Add Language Archive Form */}
           <LanguageArchiveForm
             languageId={this.state.language.id}
+            languageTitle={this.state.language.title}
             addArchive={this.addArchive}
             addLanguageArchive={this.addLanguageArchive}
             addGoogleBookmark={this.addGoogleBookmark}
