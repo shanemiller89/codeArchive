@@ -9,8 +9,6 @@ import {
   Grid,
   Label
 } from "semantic-ui-react";
-import * as firebase from "firebase/app";
-import "firebase/storage";
 import API from "../../../../modules/API";
 import { API_KEY } from "../../../../modules/API_Key";
 

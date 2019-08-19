@@ -9,8 +9,6 @@ import {
   Grid,
   Label
 } from "semantic-ui-react";
-import * as firebase from "firebase/app";
-import "firebase/storage";
 
 export default class IssueForm extends Component {
   state = {

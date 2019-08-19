@@ -31,6 +31,14 @@
       "libraryTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
+    },
+    {
+      "title": "CSS",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FCSS-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=801c318d-538c-455a-a108-117f7781232e",
+      "libraryTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 3
     }
   ],
   "libraryTypes": [
@@ -67,6 +75,13 @@
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 3
+    },
+    {
+      "title": "Python",
+      "reference": "Stuff",
+      "logTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 4
     }
   ],
   "logTypes": [
@@ -146,9 +161,24 @@
       "id": 15
     },
     {
+      "title": "Selectors",
+      "link": "",
+      "id": 17
+    },
+    {
+      "title": "menu",
+      "link": "",
+      "id": 19
+    },
+    {
+      "title": "Python",
+      "link": "",
+      "id": 20
+    },
+    {
       "title": "State",
       "link": "",
-      "id": 16
+      "id": 21
     }
   ],
   "libraryArchives": [
@@ -166,12 +196,22 @@
       "libraryId": 1,
       "archiveId": 15,
       "id": 4
+    },
+    {
+      "libraryId": 3,
+      "archiveId": 17,
+      "id": 5
+    },
+    {
+      "libraryId": 3,
+      "archiveId": 19,
+      "id": 7
     }
   ],
   "subLibraryArchives": [
     {
       "subLanguageLibraryId": 2,
-      "archiveId": 16,
+      "archiveId": 21,
       "id": 1
     }
   ],
@@ -185,6 +225,11 @@
       "logId": 3,
       "archiveId": 8,
       "id": 3
+    },
+    {
+      "logId": 4,
+      "archiveId": 20,
+      "id": 4
     }
   ],
   "resources": [
@@ -261,49 +306,139 @@
       "id": 8
     },
     {
+      "title": "CSS Selectors Reference",
+      "link": "https://www.w3schools.com/cssref/css_selectors.asp",
+      "description": "CSS Selectors. In CSS, selectors are patterns used to select the element(s) you \nwant to style. Use our CSS Selector Tester to demonstrate the different selectors.",
+      "image": null,
+      "archiveId": 17,
+      "resourceTypeId": 1,
+      "id": 14
+    },
+    {
+      "title": "CSS Selectors - Learn web development | MDN",
+      "link": "https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors",
+      "description": "Mar 18, 2019 ... In CSS, selectors are used to target the HTML elements on our web pages that \nwe want to style. There are a wide variety of CSS selectors ...",
+      "image": null,
+      "archiveId": 17,
+      "resourceTypeId": 1,
+      "id": 15
+    },
+    {
+      "title": "CSS Selectors | HTML Dog",
+      "link": "https://htmldog.com/references/css/selectors/",
+      "description": "element, Type selector. Matches an element. p { color: red } /* matches \nparagraphs */ .class, Class selector. Matches the value of a class attribute. .\nwarning ...",
+      "image": null,
+      "archiveId": 17,
+      "resourceTypeId": 1,
+      "id": 16
+    },
+    {
+      "title": "CSS selectors - CSS: Cascading Style Sheets | MDN",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors",
+      "description": "Mar 27, 2019 ... CSS selectors define the elements to which a set of CSS rules apply.",
+      "image": null,
+      "archiveId": 17,
+      "resourceTypeId": 1,
+      "id": 17
+    },
+    {
+      "title": "Understanding CSS Selectors - Frontend Weekly - Medium",
+      "link": "https://medium.com/front-end-weekly/understanding-css-selectors-1c03267e7cd2",
+      "description": "Jan 7, 2019 ... If you want to be good at styling web pages then you should learn CSS selectors. \nI learned Id, Class, descendant selectors and I thought I was ...",
+      "image": null,
+      "archiveId": 17,
+      "resourceTypeId": 1,
+      "id": 18
+    },
+    {
+      "title": "CSS Navigation Bar",
+      "link": "https://www.w3schools.com/css/css_navbar.asp",
+      "description": "Having easy-to-use navigation is important for any web site. With CSS you can \ntransform boring HTML menus into good-looking navigation bars.",
+      "image": null,
+      "archiveId": 19,
+      "resourceTypeId": 1,
+      "id": 19
+    },
+    {
+      "title": "100 Great CSS Menu Tutorials | The JotForm Blog",
+      "link": "https://www.jotform.com/blog/100-great-css-menu-tutorials/",
+      "description": "CSS is of course the perfect language for designing beautiful navigation menus. \nIt can be applied to any type of website and is very flexible. Don't be alarmed if ...",
+      "image": null,
+      "archiveId": 19,
+      "resourceTypeId": 1,
+      "id": 20
+    },
+    {
+      "title": "How To Create a Vertical Menu",
+      "link": "https://www.w3schools.com/howto/howto_css_vertical_menu.asp",
+      "description": "Well organized and easy to understand Web building tutorials with lots of \nexamples of how to use HTML, CSS, JavaScript, SQL, PHP, Python, Bootstrap, \nJava ...",
+      "image": null,
+      "archiveId": 19,
+      "resourceTypeId": 1,
+      "id": 21
+    },
+    {
+      "title": "CSS MenuMaker | HTML, CSS, & jQuery Menus",
+      "link": "http://cssmenumaker.com/",
+      "description": "Make Awesome Menus. Build & download HTML, CSS, & jQuery menus for \ndesktop & mobile websites. Start Building. 65+ Menu Themes to Choose From.",
+      "image": null,
+      "archiveId": 19,
+      "resourceTypeId": 1,
+      "id": 22
+    },
+    {
+      "title": "How To Create a Responsive Top Navigation Menu",
+      "link": "https://www.w3schools.com/howto/howto_js_topnav_responsive.asp",
+      "description": "Resize the browser window to see how the responsive navigation menu works: ... \ncdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">",
+      "image": null,
+      "archiveId": 19,
+      "resourceTypeId": 1,
+      "id": 23
+    },
+    {
       "title": "State and Lifecycle – React",
       "link": "https://reactjs.org/docs/state-and-lifecycle.html",
       "description": "This page introduces the concept of state and lifecycle in a React component. \nYou can find a detailed component API reference here. Consider the ticking clock\n ...",
       "image": null,
-      "archiveId": 16,
+      "archiveId": 21,
       "resourceTypeId": 1,
-      "id": 9
-    },
-    {
-      "title": "Component State – React",
-      "link": "https://reactjs.org/docs/faq-state.html",
-      "description": "setState() schedules an update to a component's state object. ... for further \nreading on when to use props vs state : Props vs State · ReactJS: Props vs. State\n ...",
-      "image": null,
-      "archiveId": 16,
-      "resourceTypeId": 1,
-      "id": 10
+      "id": 24
     },
     {
       "title": "ReactJS | State in React - GeeksforGeeks",
       "link": "https://www.geeksforgeeks.org/reactjs-state-react/",
       "description": "In the previous article on ReactJS | Components, we got to know that React \nComponents can be broadly classified into Functional and Class Components.",
       "image": null,
-      "archiveId": 16,
+      "archiveId": 21,
       "resourceTypeId": 1,
-      "id": 11
+      "id": 25
+    },
+    {
+      "title": "Component State – React",
+      "link": "https://reactjs.org/docs/faq-state.html",
+      "description": "setState() schedules an update to a component's state object. ... for further \nreading on when to use props vs state : Props vs State · ReactJS: Props vs. State\n ...",
+      "image": null,
+      "archiveId": 21,
+      "resourceTypeId": 1,
+      "id": 26
     },
     {
       "title": "ReactJS - State",
       "link": "https://www.tutorialspoint.com/reactjs/reactjs_state.htm",
       "description": "State is the place where the data comes from. We should always try to make our \nstate as simple as possible and minimize the number of stateful components.",
       "image": null,
-      "archiveId": 16,
+      "archiveId": 21,
       "resourceTypeId": 1,
-      "id": 12
+      "id": 27
     },
     {
       "title": "Understanding the Fundamentals of State in React - The Andela ...",
       "link": "https://medium.com/the-andela-way/understanding-the-fundamentals-of-state-in-react-79c711be677f",
       "description": "Jun 11, 2018 ... It is worth mentioning that state in React is immutable, that is to say, state ... Inside \nsrc/index.js , there's a simple class component that renders ...",
       "image": null,
-      "archiveId": 16,
+      "archiveId": 21,
       "resourceTypeId": 1,
-      "id": 13
+      "id": 28
     }
   ],
   "resourceTypes": [
@@ -321,8 +456,8 @@
       "title": "Definition",
       "text": "The map() method creates a new array with the results of calling a provided function on every element in the calling array.",
       "image": null,
-      "language": null,
       "order": 1,
+      "language": null,
       "archiveId": 1,
       "recordTypeId": 1,
       "id": 1
@@ -331,8 +466,8 @@
       "title": "Syntax",
       "text": "var new_array = arr.map(function callback(currentValue[, index[, array]]) {\n    // Return element for new_array\n}[, thisArg])",
       "image": null,
-      "language": "javascript",
       "order": 2,
+      "language": "javascript",
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 2
@@ -341,8 +476,8 @@
       "title": "Example",
       "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]\n",
       "image": null,
+      "order": 1,
       "language": "javascript",
-      "order": 3,
       "archiveId": 1,
       "recordTypeId": 2,
       "id": 3
@@ -386,6 +521,16 @@
       "archiveId": 1,
       "recordTypeId": 1,
       "id": 10
+    },
+    {
+      "title": "Simple Selectors",
+      "text": "/* All p elements are red */\np {\n  color: red;\n}\n\n/* All div elements are blue */\ndiv {\n  color: blue;\n}",
+      "image": null,
+      "language": "css",
+      "order": 1,
+      "archiveId": 17,
+      "recordTypeId": 2,
+      "id": 11
     }
   ],
   "recordTypes": [

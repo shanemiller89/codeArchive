@@ -74,8 +74,6 @@ export default class NoteForm extends Component {
 
   render() {
 
-    console.log("Array Length", this.props.arrayLength)
-
     return (
       <React.Fragment>
         <Modal

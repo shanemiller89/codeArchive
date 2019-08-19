@@ -6,8 +6,7 @@ import {
   Icon,
   Form,
   Segment,
-  Grid,
-  Label
+  Grid
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";

@@ -4,10 +4,10 @@ import { logout } from "../authentication/userManager";
 import { withRouter } from "react-router-dom";
 import SideBar from "./SideBar";
 import API from "../../modules/API";
+import "./UI.css"
 
 // TODO:
 // 1.Add Link hover over logout
-// 2. Implement Username Display
 // 3.Fix Refresh to logout bug
 
 const archiveColor = {
@@ -34,7 +34,6 @@ class NavBar extends Component {
   };
 
   toggle = () => {
-    console.log("I've been clicked");
     this.setState({ visible: !this.state.visible });
   };
 
@@ -62,7 +61,7 @@ class NavBar extends Component {
       <React.Fragment>
         <Menu borderless size="huge" fixed="top" stackable inverted>
           <Menu.Item>
-            <Icon name="bars" size="large" onClick={this.toggle} />
+            <Icon className="link" name="bars" size="large" onClick={this.toggle} />
           </Menu.Item>
           <Menu.Item header as="h2">
             <Icon name="database" style={archiveColor} size="large" />
@@ -80,20 +79,16 @@ class NavBar extends Component {
                 <span style={usernameDisplay}>
                   {this.state.username.map(username => username.username)}
                 </span>
-                <span onClick={this.logUserOut}>Logout</span>
+                <span className="link" onClick={this.logUserOut}>Logout</span>
               </div>
             </Menu.Item>
             <Menu.Item vertical>
-              {/* <div style={{ display: "flex", flexDirection: "column", alignItems: "center"}}> */}
                 <Icon
+                  className="link"
                   name="angle double up"
                   size="big"
                   onClick={this.toTop}
                 />
-                {/* <span style={{ fontSize: ".8em", marginTop: ".1em" }}>
-                  Top
-                </span> */}
-              {/* </div> */}
             </Menu.Item>
           </Menu.Menu>
         </Menu>

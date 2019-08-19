@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LoginNavBar from "./LoginNavBar";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import { Segment, Grid, Header, Icon, Image } from "semantic-ui-react";
+import { Segment, Grid, Header, Icon } from "semantic-ui-react";
 
 export default class Authentication extends Component {
   render() {

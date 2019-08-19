@@ -23,7 +23,7 @@ export default class NoteSegment extends Component {
       text: this.props.note.text,
       image: this.props.note.image,
       order: this.props.note.order - 1,
-      language: this.props.snippet.language,
+      language: this.props.note.language,
       archiveId: this.props.note.archiveId,
       recordTypeId: this.props.note.recordTypeId,
       id: this.props.note.id
@@ -37,7 +37,7 @@ export default class NoteSegment extends Component {
       text: this.props.note.text,
       image: this.props.note.image,
       order: this.props.note.order + 1,
-      language: this.props.snippet.language,
+      language: this.props.note.language,
       archiveId: this.props.note.archiveId,
       recordTypeId: this.props.note.recordTypeId,
       id: this.props.note.id
@@ -102,11 +102,6 @@ export default class NoteSegment extends Component {
                       onClick={this.MoveUp}
                     />
                   )}
-                  {/* <Dropdown.Item
-                    icon="sort amount up"
-                    description="Move Up"
-                    onClick={this.MoveUp}
-                  /> */}
                   <Dropdown.Item
                     icon="sort amount down"
                     description="Move Down"

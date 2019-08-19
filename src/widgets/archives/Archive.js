@@ -24,7 +24,7 @@ export default class Archive extends Component {
     API.get("archives", `${this.props.match.params.ArchiveId}`)
       .then(Archive => (newState.Archive = Archive))
       .then(() => this.setState(newState));
-    // Get ALl Notes and Snippets JOE SHEP //
+    // Get ALl Notes and Snippets //
     API.getAll(
       "records",
       `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
@@ -282,7 +282,7 @@ export default class Archive extends Component {
           />
         </Container>
         <br />
-        {/* Notes and Snippets JOE SHEP */}
+        {/* Notes and Snippets */}
         <NotesAndSnippetsList
           NotesAndSnippets={this.state.NotesAndSnippets}
           deleteNote={this.deleteNote}
@@ -290,26 +290,6 @@ export default class Archive extends Component {
           deleteSnippet={this.deleteSnippet}
           updateSnippet={this.updateSnippet}
         />
-        {/* {this.state.NotesAndSnippets.filter(
-            NotesAndSnippets => NotesAndSnippets.recordTypeId === 1
-          ).map(note => (
-            <NoteSegment
-              key={note.id}
-              note={note}
-              deleteNote={this.deleteNote}
-              updateNote={this.updateNote}
-            />
-          ))}
-          {this.state.NotesAndSnippets.filter(
-            NotesAndSnippets => NotesAndSnippets.recordTypeId === 2
-          ).map(snippet => (
-            <SnippetSegment
-              key={snippet.id}
-              snippet={snippet}
-              deleteSnippet={this.deleteSnippet}
-              updateSnippet={this.updateSnippet}
-            />
-          ))} */}
         <br />
         {/* Bookmarks */}
         {this.props.location.pathname.indexOf(

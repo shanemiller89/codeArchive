@@ -9,8 +9,6 @@ import {
   Grid,
   Dropdown
 } from "semantic-ui-react";
-import * as firebase from "firebase/app";
-import "firebase/storage";
 import API from "../../../modules/API"
 
 const options = [

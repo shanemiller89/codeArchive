@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Header, Icon, Grid, Container, Card } from "semantic-ui-react";
+import { Header, Icon, Container, Card } from "semantic-ui-react";
 import API from "../../modules/API";
 import LanguageCard from "./LanguageCard";
 import LanguageForm from "./LanguageForm";
@@ -154,10 +154,6 @@ export default class Library extends Component {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          {/* <Header as="h1" icon style={{ marginLeft: 20, marginTop: 20 }}>
-            <Icon style={{ color: "#15CA00" }} name="file code outline" />
-            Languages
-          </Header> */}
           <Card.Group itemsPerRow={4}>
             {this.state.languageLibraries.map(language => (
               <LanguageCard

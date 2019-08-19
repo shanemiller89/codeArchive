@@ -55,7 +55,6 @@ export default class Register extends Component {
           this.props.setAuthState();
           this.props.onRegister(user);
         });
-        // .then(() => this.props.history.push('/'));
       });
   };
 
