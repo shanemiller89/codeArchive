@@ -60,6 +60,12 @@ export default class SideBar extends Component {
                 Articles
               </Menu.Item>
             </Link>
+            <Link to="/events">
+              <Menu.Item>
+                <Icon name="calendar alternate" />
+                Events
+              </Menu.Item>
+            </Link>
           </Sidebar>
           <Sidebar.Pusher style={{ background: "#F5F5F5", minHeight: "100vh"}}>
             <ApplicationViews />

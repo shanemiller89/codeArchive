@@ -10,6 +10,7 @@ import Archive from "./widgets/archives/Archive";
 import IssuesLog from "./components/issues/IssuesLog";
 import CodeLog from "./components/code/CodeLog";
 import ArticlesLog from "./components/articles/ArticlesLog"
+import EventsLog from "./components/events/EventsLog"
 
 export default class ApplicationViews extends Component {
   state = {
@@ -160,6 +161,13 @@ export default class ApplicationViews extends Component {
           path="/articles"
           render={props => {
             return <ArticlesLog {...props} />;
+          }}
+        />
+                <Route
+          exact
+          path="/events"
+          render={props => {
+            return <EventsLog {...props} />;
           }}
         />
       </React.Fragment>

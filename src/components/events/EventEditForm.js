@@ -11,13 +11,15 @@ import {
 } from "semantic-ui-react";
 import API from "../../modules/API"
 
-export default class ArticleForm extends Component {
+export default class EventEditForm extends Component {
   state = {
     title: "",
-    synopsis: "",
+    date: "",
+    location: "",
+    description: "",
     link: "",
     reference: "",
-    userId:"",
+    userId: "",
     openForm: false
   };
 
@@ -26,30 +28,32 @@ export default class ArticleForm extends Component {
   };
 
   componentDidMount() {
-    API.get("articles", this.props.articleId)
-    .then(article => {
+    API.get("events", this.props.eventId)
+    .then(event => {
       this.setState({
-        title: article.title,
-        synopsis: article.synopsis,
-        link: article.link,
-        reference: article.reference,
-        userId: article.userId,
-
+        title: event.title,
+        date: event.date,
+        location: event.location,
+        description: event.description,
+        link: event.link,
+        reference: event.reference,
+        userId: event.userId
     });
 });
 }
 
-
   submit = () => {
-    const editedArticle = {
+    const event = {
       title: this.state.title,
-      synopsis: this.state.synopsis,
+      date: this.state.date,
+      location: this.state.location,
+      description: this.state.description,
       link: this.state.link,
       reference: this.state.reference,
       userId: this.state.userId,
-      id: this.props.articleId
+      id: this.props.eventId
     };
-    this.props.updateArticle(editedArticle);
+    this.props.updateEvent(event);
     this.toggle();
   };
 
@@ -71,12 +75,12 @@ export default class ArticleForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="newspaper"
+                  name="calendar alternate"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit Article Archive
+              Edit Event Archive
             </Header>
 
             <Modal.Description>
@@ -86,17 +90,30 @@ export default class ArticleForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
+                        type="date"
+                        value={this.state.date}
+                        onChange={e => this.setState({ date: e.target.value })}
+                        id="date"
+                      />
+                      <Form.Input
+                        fluid
                         value={this.state.title}
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
+                      <Form.Input
+                        fluid
+                        value={this.state.location}
+                        onChange={e => this.setState({ location: e.target.value })}
+                        id="location"
+                      />
                       <Form.TextArea
                         fluid
-                        value={this.state.synopsis}
+                        value={this.state.description}
                         onChange={e =>
-                          this.setState({ synopsis: e.target.value })
+                          this.setState({ description: e.target.value })
                         }
-                        id="synopsis"
+                        id="description"
                       />
                       <Form.Input
                         fluid

@@ -7,17 +7,18 @@ import {
   Form,
   Segment,
   Grid,
-  Dropdown
+  Label
 } from "semantic-ui-react";
-import API from "../../modules/API"
 
-export default class ArticleForm extends Component {
+export default class EventForm extends Component {
   state = {
     title: "",
-    synopsis: "",
+    date: "",
+    location: "",
+    description: "",
     link: "",
     reference: "",
-    userId:"",
+    userId: JSON.parse(localStorage.getItem("user")),
     openForm: false
   };
 
@@ -25,31 +26,17 @@ export default class ArticleForm extends Component {
     this.setState({ openForm: !this.state.openForm });
   };
 
-  componentDidMount() {
-    API.get("articles", this.props.articleId)
-    .then(article => {
-      this.setState({
-        title: article.title,
-        synopsis: article.synopsis,
-        link: article.link,
-        reference: article.reference,
-        userId: article.userId,
-
-    });
-});
-}
-
-
   submit = () => {
-    const editedArticle = {
+    const event = {
       title: this.state.title,
-      synopsis: this.state.synopsis,
+      date: this.state.date,
+      location: this.state.location,
+      description: this.state.description,
       link: this.state.link,
       reference: this.state.reference,
-      userId: this.state.userId,
-      id: this.props.articleId
+      userId: this.state.userId
     };
-    this.props.updateArticle(editedArticle);
+    this.props.addEvent(event);
     this.toggle();
   };
 
@@ -58,11 +45,19 @@ export default class ArticleForm extends Component {
       <React.Fragment>
         <Modal
           trigger={
-            <Dropdown.Item
-            icon="pencil"
-            description="Edit"
-            onClick={this.toggle}
-          />
+            <Button primary as="div" labelPosition="right">
+              <Button
+                style={{ background: "#15CA00", color: "white" }}
+                icon
+                onClick={this.toggle}
+              >
+                <Icon name="plus" />
+                Add
+              </Button>
+              <Label basic pointing="left">
+                Event Log
+              </Label>
+            </Button>
           }
           open={this.state.openForm}
           style={{ width: "30em" }}
@@ -71,12 +66,12 @@ export default class ArticleForm extends Component {
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
-                  name="newspaper"
+                  name="calendar alternate"
                   size="large"
                   style={{ color: "#15CA00" }}
                 />
               </div>
-              Edit Article Archive
+              Add A New Event
             </Header>
 
             <Modal.Description>
@@ -86,27 +81,40 @@ export default class ArticleForm extends Component {
                     <Segment>
                       <Form.Input
                         fluid
-                        value={this.state.title}
+                        type="date"
+                        placeholder="Date of Event"
+                        onChange={e => this.setState({ date: e.target.value })}
+                        id="title"
+                      />
+                      <Form.Input
+                        fluid
+                        placeholder="Title of Event"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
+                      <Form.Input
+                        fluid
+                        placeholder="Location of Event"
+                        onChange={e => this.setState({ location: e.target.value })}
+                        id="link"
+                      />
                       <Form.TextArea
                         fluid
-                        value={this.state.synopsis}
+                        placeholder="Description of Event"
                         onChange={e =>
-                          this.setState({ synopsis: e.target.value })
+                          this.setState({ description: e.target.value })
                         }
                         id="synopsis"
                       />
                       <Form.Input
                         fluid
-                        value={this.state.link}
+                        placeholder="URL of Event Page"
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
                       <Form.Input
                         fluid
-                        value={this.state.reference}
+                        placeholder="Keywords associated with this event"
                         onChange={e =>
                           this.setState({ reference: e.target.value })
                         }

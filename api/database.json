@@ -97,6 +97,28 @@
       "id": 2
     }
   ],
+  "events": [
+    {
+      "title": "Learn JavaScript! - Nashville, TN",
+      "date": "2019-08-31",
+      "location": "Three One Three Co-working Spaces",
+      "description": "Want to begin building web applications? Do you have aspirations of being a web developer? Or do you just want to learn more about coding to advance your existing career in marketing, project management or any other business that uses the internet on a daily basis?",
+      "link": "https://www.eventbrite.com/e/learn-javascript-nashville-tn-tickets-65721503787?aff=ebdshpsearchautocomplete",
+      "reference": "Javascript, Novice",
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 1
+    },
+    {
+      "title": "Thinkful Webinar | Intro to Python: Fundamentals",
+      "date": "2019-08-28",
+      "location": "Nashville",
+      "description": "Curious what Python is all about? Are you data-driven and interested in finding out how Python can take you to the next level? Join us for this hands-on workshop while we explore variables, data structures, functions, and go over basic data science concepts.\n",
+      "link": "https://www.eventbrite.com/e/thinkful-webinar-intro-to-python-fundamentals-tickets-68750627979?aff=ebdshpsearchautocomplete",
+      "reference": "Python, Intro",
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 2
+    }
+  ],
   "archives": [
     {
       "title": "map ( )",
