@@ -11,6 +11,8 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
+import API from "../../../modules/API"
+import { API_KEY } from "../../../modules/API_Key"
 
 export default class LanguageArchiveForm extends Component {
   state = {
@@ -18,22 +20,63 @@ export default class LanguageArchiveForm extends Component {
     link: "",
     libraryId: null,
     archiveId: null,
-    openForm: false
+    openForm: false,
+    disabled: true,
+    checked: false,
   };
 
   toggle = () => {
     this.setState({ openForm: !this.state.openForm });
   };
 
+  checkedToggle = () => {
+    this.setState({ checked: !this.state.checked, disabled: !this.state.disabled });
+  }
+
+  googleSubmit = () => {
+    const archive = {
+      title: this.state.title,
+      link: this.state.link
+    };
+    this.props
+      .addArchive(archive)
+      .then(newArchive => {
+        this.props.addLanguageArchive({
+          libraryId: this.props.languageId,
+          archiveId: newArchive.id
+        })
+        const searchTerm = `${this.props.languageTitle} ${this.state.title}`
+        API.getGoogle(searchTerm, API_KEY)
+        .then(searchData => {
+          searchData.items.map(item => {
+            const bookmark = {
+              title: item.title,
+              link: item.link,
+              description: item.snippet,
+              image: null,
+              archiveId: newArchive.id,
+              resourceTypeId: 1,
+            };
+            this.props.addGoogleBookmark(bookmark)
+          })
+        })
+      })
+    this.toggle();
+  }
+
   submit = () => {
     const archive = {
       title: this.state.title,
-      link: this.state.link,
+      link: this.state.link
     };
-    this.props.addArchive(archive)
-    .then(newArchive => 
-      this.props.addLanguageArchive({libraryId: this.props.languageId, archiveId: newArchive.id})
-      )
+    this.props
+      .addArchive(archive)
+      .then(newArchive =>
+        this.props.addLanguageArchive({
+          libraryId: this.props.languageId,
+          archiveId: newArchive.id
+        })
+      );
     this.toggle();
   };
 
@@ -43,7 +86,11 @@ export default class LanguageArchiveForm extends Component {
         <Modal
           trigger={
             <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon onClick={this.toggle}>
+              <Button
+                style={{ background: "#15CA00", color: "white" }}
+                icon
+                onClick={this.toggle}
+              >
                 <Icon name="plus" />
                 Add
               </Button>
@@ -84,13 +131,45 @@ export default class LanguageArchiveForm extends Component {
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
-                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
-                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
-                        Cancel
-                      </Button>
-                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
-                        Submit
-                      </Button>
+                      <Form.Checkbox
+                        fluid
+                        width={14}
+                        label="Create initial bookmarks for this archive?"
+                        checked={this.state.checked}
+                        onChange={this.checkedToggle}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly"
+                        }}
+                      >
+                        <Button
+                          style={{
+                            background: "red",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={this.toggle}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          style={{
+                            background: "#15CA00",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={
+                            this.state.disabled
+                              ? this.submit
+                              : this.googleSubmit
+                          }
+                        >
+                          Submit
+                        </Button>
                       </div>
                     </Segment>
                   </Form>

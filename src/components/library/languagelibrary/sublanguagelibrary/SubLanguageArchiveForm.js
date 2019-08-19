@@ -11,6 +11,8 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
+import API from "../../../../modules/API";
+import { API_KEY } from "../../../../modules/API_Key";
 
 export default class SubLanguageArchiveForm extends Component {
   state = {
@@ -18,11 +20,48 @@ export default class SubLanguageArchiveForm extends Component {
     link: "",
     libraryId: null,
     archiveId: null,
-    openForm: false
+    openForm: false,
+    disabled: true,
+    checked: false
   };
 
   toggle = () => {
     this.setState({ openForm: !this.state.openForm });
+  };
+
+  checkedToggle = () => {
+    this.setState({
+      checked: !this.state.checked,
+      disabled: !this.state.disabled
+    });
+  };
+
+  googleSubmit = () => {
+    const archive = {
+      title: this.state.title,
+      link: this.state.link
+    };
+    this.props.addArchive(archive).then(newArchive => {
+      this.props.addSubLanguageArchive({
+        subLanguageLibraryId: this.props.subLanguageId,
+        archiveId: newArchive.id
+      });
+      const searchTerm = `${this.props.subLanguageTitle} ${this.state.title}`
+      API.getGoogle(searchTerm, API_KEY).then(searchData => {
+        searchData.items.map(item => {
+          const bookmark = {
+            title: item.title,
+            link: item.link,
+            description: item.snippet,
+            image: null,
+            archiveId: newArchive.id,
+            resourceTypeId: 1
+          };
+          this.props.addGoogleBookmark(bookmark);
+        });
+      });
+    });
+    this.toggle();
   };
 
   submit = () => {
@@ -30,14 +69,12 @@ export default class SubLanguageArchiveForm extends Component {
       title: this.state.title,
       link: this.state.link
     };
-    this.props
-      .addArchive(archive)
-      .then(newArchive =>
-        this.props.addSubLanguageArchive({
-          subLanguageLibraryId: this.props.subLanguageId,
-          archiveId: newArchive.id
-        })
-      );
+    this.props.addArchive(archive).then(newArchive =>
+      this.props.addSubLanguageArchive({
+        subLanguageLibraryId: this.props.subLanguageId,
+        archiveId: newArchive.id
+      })
+    );
     this.toggle();
   };
 
@@ -92,13 +129,45 @@ export default class SubLanguageArchiveForm extends Component {
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
-                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
-                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
-                        Cancel
-                      </Button>
-                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
-                        Submit
-                      </Button>
+                      <Form.Checkbox
+                        fluid
+                        width={14}
+                        label="Create initial bookmarks for this archive?"
+                        checked={this.state.checked}
+                        onChange={this.checkedToggle}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly"
+                        }}
+                      >
+                        <Button
+                          style={{
+                            background: "red",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={this.toggle}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          style={{
+                            background: "#15CA00",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={
+                            this.state.disabled
+                              ? this.submit
+                              : this.googleSubmit
+                          }
+                        >
+                          Submit
+                        </Button>
                       </div>
                     </Segment>
                   </Form>

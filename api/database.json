@@ -119,9 +119,14 @@
       "id": 14
     },
     {
-      "title": "State",
+      "title": "Scope",
       "link": "",
       "id": 15
+    },
+    {
+      "title": "State",
+      "link": "",
+      "id": 16
     }
   ],
   "libraryArchives": [
@@ -134,12 +139,17 @@
       "libraryId": 2,
       "archiveId": 14,
       "id": 3
+    },
+    {
+      "libraryId": 1,
+      "archiveId": 15,
+      "id": 4
     }
   ],
   "subLibraryArchives": [
     {
       "subLanguageLibraryId": 2,
-      "archiveId": 15,
+      "archiveId": 16,
       "id": 1
     }
   ],
@@ -182,6 +192,96 @@
       "archiveId": 1,
       "resourceTypeId": 1,
       "id": 3
+    },
+    {
+      "title": "JavaScript Scope",
+      "link": "https://www.w3schools.com/js/js_scope.asp",
+      "description": "JavaScript has function scope: Each function creates a new scope. Scope ... \nVariables declared within a JavaScript function, become LOCAL to the function.",
+      "image": null,
+      "archiveId": 15,
+      "resourceTypeId": 1,
+      "id": 4
+    },
+    {
+      "title": "Understanding Variables, Scope, and Hoisting in JavaScript ...",
+      "link": "https://www.digitalocean.com/community/tutorials/understanding-variables-scope-hoisting-in-javascript",
+      "description": "Feb 20, 2018 ... Scope in JavaScript refers to the current context of code, which determines the \naccessibility of variables to JavaScript. The two types of scope ...",
+      "image": null,
+      "archiveId": 15,
+      "resourceTypeId": 1,
+      "id": 5
+    },
+    {
+      "title": "Scope - MDN Web Docs Glossary: Definitions of Web-related terms ...",
+      "link": "https://developer.mozilla.org/en-US/docs/Glossary/Scope",
+      "description": "Dec 14, 2018 ... A function serves as a closure in JavaScript, and thus creates a scope, so that (for \nexample) a variable defined exclusively within the function ...",
+      "image": null,
+      "archiveId": 15,
+      "resourceTypeId": 1,
+      "id": 6
+    },
+    {
+      "title": "Demystifying JavaScript Variable Scope and Hoisting",
+      "link": "https://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/",
+      "description": "Dec 2, 2014 ... This article looks at two fundamentals of JavaScript programming - variable \nscope and hoisting.",
+      "image": null,
+      "archiveId": 15,
+      "resourceTypeId": 1,
+      "id": 7
+    },
+    {
+      "title": "Understanding Hoisting and Scoping in Javascript - Backticks ...",
+      "link": "https://medium.com/backticks-tildes/understanding-hoisting-and-scoping-in-javascript-39ea7b41e31",
+      "description": "Feb 19, 2018 ... There is only one Global scope throughout a JavaScript document. A variable is \nin the Global scope if it's defined outside of a function.",
+      "image": null,
+      "archiveId": 15,
+      "resourceTypeId": 1,
+      "id": 8
+    },
+    {
+      "title": "State and Lifecycle – React",
+      "link": "https://reactjs.org/docs/state-and-lifecycle.html",
+      "description": "This page introduces the concept of state and lifecycle in a React component. \nYou can find a detailed component API reference here. Consider the ticking clock\n ...",
+      "image": null,
+      "archiveId": 16,
+      "resourceTypeId": 1,
+      "id": 9
+    },
+    {
+      "title": "Component State – React",
+      "link": "https://reactjs.org/docs/faq-state.html",
+      "description": "setState() schedules an update to a component's state object. ... for further \nreading on when to use props vs state : Props vs State · ReactJS: Props vs. State\n ...",
+      "image": null,
+      "archiveId": 16,
+      "resourceTypeId": 1,
+      "id": 10
+    },
+    {
+      "title": "ReactJS | State in React - GeeksforGeeks",
+      "link": "https://www.geeksforgeeks.org/reactjs-state-react/",
+      "description": "In the previous article on ReactJS | Components, we got to know that React \nComponents can be broadly classified into Functional and Class Components.",
+      "image": null,
+      "archiveId": 16,
+      "resourceTypeId": 1,
+      "id": 11
+    },
+    {
+      "title": "ReactJS - State",
+      "link": "https://www.tutorialspoint.com/reactjs/reactjs_state.htm",
+      "description": "State is the place where the data comes from. We should always try to make our \nstate as simple as possible and minimize the number of stateful components.",
+      "image": null,
+      "archiveId": 16,
+      "resourceTypeId": 1,
+      "id": 12
+    },
+    {
+      "title": "Understanding the Fundamentals of State in React - The Andela ...",
+      "link": "https://medium.com/the-andela-way/understanding-the-fundamentals-of-state-in-react-79c711be677f",
+      "description": "Jun 11, 2018 ... It is worth mentioning that state in React is immutable, that is to say, state ... Inside \nsrc/index.js , there's a simple class component that renders ...",
+      "image": null,
+      "archiveId": 16,
+      "resourceTypeId": 1,
+      "id": 13
     }
   ],
   "resourceTypes": [

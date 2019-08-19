@@ -19,7 +19,7 @@ export default class SubLanguageLibraryForm extends Component {
     image: null,
     libraryId: "",
     userId: this.props.currentUser,
-    openForm: false
+    openForm: false,
   };
 
   toggle = () => {
