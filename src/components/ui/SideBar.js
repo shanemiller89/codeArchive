@@ -3,6 +3,7 @@ import { Button, Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react"
 import { Link } from "react-router-dom";
 import ApplicationViews from "../../ApplicationViews";
 import Footer from "./Footer";
+import "./UI.css"
 
 // TODO:
 // 1.Revisit this, find a way to make side bar stick or fixed
@@ -32,38 +33,50 @@ export default class SideBar extends Component {
           >
             <Link to="/">
               <Menu.Item>
-                <Icon name="home" />
+                <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <Icon size="big" name="home" />
                 Home
+                </div>
               </Menu.Item>
             </Link>
             <Link to="/library">
               <Menu.Item>
-                <Icon name="book" />
+              <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <Icon size="big" name="book" />
                 Library
+                </div>
               </Menu.Item>
             </Link>
             <Link to="/issues">
               <Menu.Item>
-                <Icon name="dont" />
+              <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <Icon size="big" name="dont" />
                 Issues
+                </div>
               </Menu.Item>
             </Link>
-            <Link to="/code">
+            <Link className="link" to="/code">
               <Menu.Item>
-                <Icon name="code" />
+              <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <Icon size="big" name="code" />
                 Code
+                </div>
               </Menu.Item>
             </Link>
             <Link to="/articles">
               <Menu.Item>
-                <Icon name="newspaper" />
+              <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <Icon size="big" name="newspaper" />
                 Articles
+                </div>
               </Menu.Item>
             </Link>
             <Link to="/events">
               <Menu.Item>
-                <Icon name="calendar alternate" />
+              <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <Icon size="big" name="calendar alternate" />
                 Events
+                </div>
               </Menu.Item>
             </Link>
           </Sidebar>
