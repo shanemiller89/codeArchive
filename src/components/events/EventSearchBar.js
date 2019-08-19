@@ -1,10 +1,10 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Search, Grid, Header, Icon } from "semantic-ui-react";
-import "./ArticleSearchBar.css";
+import "./EventSearchBar.css";
 
 
-export default class ArticleSearchBar extends Component {
+export default class EventSearchBar extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),
     isLoading: false,
@@ -29,20 +29,22 @@ export default class ArticleSearchBar extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(this.props.articles, isMatch)
+        results: _.filter(this.props.events, isMatch)
       });
     }, 300);
   };
 
   render() {
     const { isLoading, value, results } = this.state;
-    const resultRender = ({ title, reference, link }) => (
+    const resultRender = ({ title, reference, date, location, link }) => (
       <span key="title">
           <a href={link} rel="noopener noreferrer" target="_blank">
         <Header as="h3">
         <Icon name="search" style={{ color: "#15CA00" }} />
         <Header.Content>
           {title}
+          <Header.Subheader><strong>{date}</strong></Header.Subheader>
+          <Header.Subheader><strong>{location}</strong></Header.Subheader>
           <Header.Subheader>{reference}</Header.Subheader>
           </Header.Content>
         </Header>

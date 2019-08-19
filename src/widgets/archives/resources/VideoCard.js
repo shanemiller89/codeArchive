@@ -18,7 +18,8 @@ export default class VideoCard extends Component {
             <Card.Content>
               <Image src={this.props.video.image} floated="left" size="small" />
               <Card.Header>
-            <a href={this.props.video.link} style={{fontSize: "1em"}}>
+            <a href={this.props.video.link} style={{fontSize: "1em"}} rel="noopener noreferrer"
+                target="_blank">
               {this.props.video.title}
               </a>
               <Dropdown icon="bars" style={{fontSize: "1em", marginLeft: "1em"}}>

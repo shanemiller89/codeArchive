@@ -26,7 +26,6 @@ export default class CodeArchive extends Component {
             return(
             <React.Fragment>
               <NavBar />
-              {/* <ApplicationViews isAuthenticated={this.state.authenticated} /> */}
             </React.Fragment>
             )
           } else {

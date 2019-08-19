@@ -51,8 +51,8 @@ export default class ArticleSegment extends Component {
                   />
                   <Confirm
                     size="mini"
-                    header="Delete Article"
-                    content="Are you sure you want to delete this article?"
+                    header="Delete Event"
+                    content="Are you sure you want to delete this Event?"
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}

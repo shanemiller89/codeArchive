@@ -3,7 +3,7 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import EventSegment from "./EventSegment";
 import EventForm from "./EventForm";
-// import ArticleSearchBar from "./ArticleSearchBar";
+import EventSearchBar from "./EventSearchBar";
 
 export default class EventsLog extends Component {
   state = {
@@ -71,7 +71,7 @@ export default class EventsLog extends Component {
           <EventForm addEvent={this.addEvent} />
           <br />
           <br />
-          {/* <ArticleSearchBar articles={this.state.articles}/> */}
+          <EventSearchBar events={this.state.events}/>
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="calendar alternate" style={{ color: "#15CA00" }} />
