@@ -3,11 +3,9 @@ import NoteSegment from "./NoteSegment";
 import SnippetSegment from "./SnippetSegment";
 
 export default class NotesAndSnippetsList extends Component {
- state = {
-     NotesAndSnippets: this.props.NotesAndSnippets
- }
 
   render() {
+
     return (
       <React.Fragment>
         {this.props.NotesAndSnippets.map((NotesAndSnippets) =>
@@ -15,6 +13,7 @@ export default class NotesAndSnippetsList extends Component {
               <NoteSegment
                 key={NotesAndSnippets.id}
                 note={NotesAndSnippets}
+                arrayLength={this.props.NotesAndSnippets.length}
                 deleteNote={this.props.deleteNote}
                 updateNote={this.props.updateNote}
               />
@@ -22,6 +21,7 @@ export default class NotesAndSnippetsList extends Component {
               <SnippetSegment
                 key={NotesAndSnippets.id}
                 snippet={NotesAndSnippets}
+                arrayLength={this.props.NotesAndSnippets.length}
                 deleteSnippet={this.props.deleteSnippet}
                 updateSnippet={this.props.updateSnippet}
               />

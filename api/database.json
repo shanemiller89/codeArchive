@@ -39,6 +39,14 @@
       "libraryTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 3
+    },
+    {
+      "title": "Postman",
+      "link": "",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPostman-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=f9bb9528-3876-4c52-a15b-fd4775454a4c",
+      "libraryTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 4
     }
   ],
   "libraryTypes": [
@@ -59,6 +67,14 @@
       "libraryId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 2
+    },
+    {
+      "title": "Semantic UI React",
+      "link": "https://react.semantic-ui.com/",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/sub_library_profiles%2FSemantic%20UI%20React?alt=media&token=f231ccaa-d930-4e45-bdc9-ce1176708800",
+      "libraryId": 3,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 3
     }
   ],
   "logs": [
@@ -75,13 +91,6 @@
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 3
-    },
-    {
-      "title": "Python",
-      "reference": "Stuff",
-      "logTypeId": 2,
-      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
-      "id": 4
     }
   ],
   "logTypes": [
@@ -171,14 +180,14 @@
       "id": 19
     },
     {
-      "title": "Python",
-      "link": "",
-      "id": 20
-    },
-    {
       "title": "State",
       "link": "",
       "id": 21
+    },
+    {
+      "title": "Segment",
+      "link": "",
+      "id": 22
     }
   ],
   "libraryArchives": [
@@ -213,6 +222,11 @@
       "subLanguageLibraryId": 2,
       "archiveId": 21,
       "id": 1
+    },
+    {
+      "subLanguageLibraryId": 3,
+      "archiveId": 22,
+      "id": 2
     }
   ],
   "logArchives": [
@@ -225,11 +239,6 @@
       "logId": 3,
       "archiveId": 8,
       "id": 3
-    },
-    {
-      "logId": 4,
-      "archiveId": 20,
-      "id": 4
     }
   ],
   "resources": [
@@ -439,6 +448,51 @@
       "archiveId": 21,
       "resourceTypeId": 1,
       "id": 28
+    },
+    {
+      "title": "Segment - Semantic UI React",
+      "link": "https://react.semantic-ui.com/elements/segment/",
+      "description": "Placeholder Segment2.4.0. A segment can be used to reserve space for \nconditionally displayed content. Try itCodeSandboxMaximizePermalink. No \ndocuments ...",
+      "image": null,
+      "archiveId": 22,
+      "resourceTypeId": 1,
+      "id": 29
+    },
+    {
+      "title": "Segment | Semantic UI",
+      "link": "https://semantic-ui.com/elements/segment.html",
+      "description": "A segment is used to create a grouping of related content.",
+      "image": null,
+      "archiveId": 22,
+      "resourceTypeId": 1,
+      "id": 30
+    },
+    {
+      "title": "Semantic UI React: Introduction",
+      "link": "https://react.semantic-ui.com/",
+      "description": "Semantic UI React is the official React integration for Semantic UI . jQuery Free ... \nBecause of this, all jQuery functionality has been re-implemented in React.",
+      "image": null,
+      "archiveId": 22,
+      "resourceTypeId": 1,
+      "id": 31
+    },
+    {
+      "title": "dimmer - semantic-ui-react · Bit",
+      "link": "https://bit.dev/semantic-org/semantic-ui-react/dimmer",
+      "description": "import Dimmer from '@bit/semantic-org.semantic-ui-react.dimmer'. import Image \nfrom '@bit/semantic-org.semantic-ui-react.image'. import Segment from ...",
+      "image": null,
+      "archiveId": 22,
+      "resourceTypeId": 1,
+      "id": 32
+    },
+    {
+      "title": "Menu - Semantic UI React",
+      "link": "https://react.semantic-ui.com/collections/menu/",
+      "description": "This segment will always match the tab height. Try itCodeSandboxMaximize\nPermalink. This is an stretched grid column. This segment will always match the \ntab ...",
+      "image": null,
+      "archiveId": 22,
+      "resourceTypeId": 1,
+      "id": 33
     }
   ],
   "resourceTypes": [
@@ -476,7 +530,7 @@
       "title": "Example",
       "text": "var numbers = [1, 4, 9];\nvar roots = numbers.map(function(num) {\nreturn Math.sqrt(num)\n});\n// roots is now [1, 2, 3]\n// numbers is still [1, 4, 9]\n",
       "image": null,
-      "order": 1,
+      "order": 3,
       "language": "javascript",
       "archiveId": 1,
       "recordTypeId": 2,
@@ -516,8 +570,8 @@
       "title": "Diagram",
       "text": "",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FDiagram-1?alt=media&token=58da1f9f-b43b-40d3-b97f-6c5fef4c9c71",
-      "language": null,
       "order": 4,
+      "language": null,
       "archiveId": 1,
       "recordTypeId": 1,
       "id": 10

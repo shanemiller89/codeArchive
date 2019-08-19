@@ -37,8 +37,8 @@ export default class BookmarksList extends Component {
                   />
                   <Confirm
                     size="mini"
-                    header="Delete Library"
-                    content="Are you sure you want to delete this library?"
+                    header="Delete Bookmark"
+                    content="Are you sure you want to delete this bookmark?"
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}
