@@ -1,5 +1,5 @@
-import React, { Component, createRef } from "react";
-import { Button, Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react";
+import React, { Component } from "react";
+import { Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ApplicationViews from "../../ApplicationViews";
 import Footer from "./Footer";
@@ -34,7 +34,7 @@ export default class SideBar extends Component {
             <Link to="/">
               <Menu.Item>
                 <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
-                <Icon size="big" name="home" />
+                <Icon size="big" name="home" style={{marginBottom: ".3em"}} />
                 Home
                 </div>
               </Menu.Item>
@@ -42,7 +42,7 @@ export default class SideBar extends Component {
             <Link to="/library">
               <Menu.Item>
               <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
-                <Icon size="big" name="book" />
+                <Icon size="big" name="book" style={{marginBottom: ".3em"}} />
                 Library
                 </div>
               </Menu.Item>
@@ -50,7 +50,7 @@ export default class SideBar extends Component {
             <Link to="/issues">
               <Menu.Item>
               <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
-                <Icon size="big" name="dont" />
+                <Icon size="big" name="dont" style={{marginBottom: ".3em"}} />
                 Issues
                 </div>
               </Menu.Item>
@@ -58,7 +58,7 @@ export default class SideBar extends Component {
             <Link className="link" to="/code">
               <Menu.Item>
               <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
-                <Icon size="big" name="code" />
+                <Icon size="big" name="code" style={{marginBottom: ".3em"}} />
                 Code
                 </div>
               </Menu.Item>
@@ -66,7 +66,7 @@ export default class SideBar extends Component {
             <Link to="/articles">
               <Menu.Item>
               <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
-                <Icon size="big" name="newspaper" />
+                <Icon size="big" name="newspaper" style={{marginBottom: ".3em"}} />
                 Articles
                 </div>
               </Menu.Item>
@@ -74,7 +74,7 @@ export default class SideBar extends Component {
             <Link to="/events">
               <Menu.Item>
               <div className="link" style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
-                <Icon size="big" name="calendar alternate" />
+                <Icon size="big" name="calendar alternate" style={{marginBottom: ".3em"}} />
                 Events
                 </div>
               </Menu.Item>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Authentication from './components/authentication/Authentication';
-import {getUserFromLocalStorage, logout } from './components/authentication/userManager';
-// import ApplicationViews from './ApplicationViews'
+import {getUserFromLocalStorage } from './components/authentication/userManager';
 import NavBar from './components/ui/NavBar'
 
 

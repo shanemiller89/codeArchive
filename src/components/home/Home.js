@@ -3,7 +3,6 @@ import {
   Header,
   Image,
   Container,
-  List,
   Segment,
   Grid,
   Divider,
@@ -93,28 +92,6 @@ export default class Home extends Component {
                   <Icon style={{ color: "#15CA00" }} size="tiny" name="chart pie" />
                   Stats
                 </Header>
-                {/* <List>
-              <List.Icon name="chart pie" />
-              <List.Content >
-                <List.Header>Total Libraries:</List.Header>
-                <List.Description>0</List.Description>
-              </List.Content>
-              <List.Icon name="chart pie" />
-              <List.Content>
-                <List.Header>Total Issue Logs:</List.Header>
-                <List.Description>0</List.Description>
-              </List.Content>
-              <List.Icon name="chart pie" />
-              <List.Content>
-                <List.Header>Total Code Logs:</List.Header>
-                <List.Description>0</List.Description>
-              </List.Content>
-              <List.Icon name="chart pie" />
-              <List.Content>
-                <List.Header>Total Archives:</List.Header>
-                <List.Description>0</List.Description>
-              </List.Content>
-            </List> */}
                 <PieChart
                   data={[
                     { title: "Total Libraries", value: 10, color: "#48D73D" },

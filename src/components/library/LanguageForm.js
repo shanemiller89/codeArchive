@@ -7,8 +7,7 @@ import {
   Form,
   Segment,
   Grid,
-  Label,
-  Popup
+  Label
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
@@ -89,15 +88,12 @@ export default class LanguageForm extends Component {
                 <Grid.Column>
                   <Form size="large">
                     <Segment>
-                      {/* <div style={{display: "flex"}}> */}
                       <Form.Input
                         fluid
                         placeholder="Language"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
-                      {/* <Popup content="Put the name of the Language here. e.g. 'Javascript, Python, CSS'" trigger={<Icon name="question circle outline" />}/> */}
-                      {/* </div> */}
                       <Form.Input
                         fluid
                         placeholder="Documentation URL"

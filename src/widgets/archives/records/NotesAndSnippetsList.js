@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import NoteSegment from "./NoteSegment";
 import SnippetSegment from "./SnippetSegment";
-import { Button } from "semantic-ui-react";
 
 export default class NotesAndSnippetsList extends Component {
  state = {
@@ -11,7 +10,6 @@ export default class NotesAndSnippetsList extends Component {
   render() {
     return (
       <React.Fragment>
-        {console.log(this.props.NotesAndSnippets)}
         {this.props.NotesAndSnippets.map((NotesAndSnippets) =>
           NotesAndSnippets.recordTypeId === 1 ? (
               <NoteSegment

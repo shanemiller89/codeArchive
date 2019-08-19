@@ -4,9 +4,7 @@ import {
   Segment,
   Image,
   Header,
-  Divider,
   Grid,
-  GridRow,
   Dropdown,
   Confirm
 

@@ -5,8 +5,6 @@ import { Search, Grid, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import "./IssuesSearchBar.css";
 
-// const initialState = { isLoading: false, results: [], value: '' }
-
 class IssuesSearchBar extends Component {
   state = {
     currentUser: JSON.parse(localStorage.getItem("user")),

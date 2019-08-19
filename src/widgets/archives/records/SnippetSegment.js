@@ -111,11 +111,6 @@ export default class SnippetSegment extends Component {
                         onClick={this.MoveUp}
                       />
                     )}
-                    {/* <Dropdown.Item
-                    icon="sort amount up"
-                    description="Move Up"
-                    onClick={this.MoveUp}
-                  /> */}
                     <Dropdown.Item
                       icon="sort amount down"
                       description="Move Down"

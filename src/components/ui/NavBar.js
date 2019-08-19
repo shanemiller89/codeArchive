@@ -34,7 +34,6 @@ class NavBar extends Component {
   };
 
   toggle = () => {
-    console.log("I've been clicked");
     this.setState({ visible: !this.state.visible });
   };
 
@@ -84,17 +83,12 @@ class NavBar extends Component {
               </div>
             </Menu.Item>
             <Menu.Item vertical>
-              {/* <div style={{ display: "flex", flexDirection: "column", alignItems: "center"}}> */}
                 <Icon
                   className="link"
                   name="angle double up"
                   size="big"
                   onClick={this.toTop}
                 />
-                {/* <span style={{ fontSize: ".8em", marginTop: ".1em" }}>
-                  Top
-                </span> */}
-              {/* </div> */}
             </Menu.Item>
           </Menu.Menu>
         </Menu>

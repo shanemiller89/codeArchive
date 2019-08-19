@@ -3,7 +3,6 @@ import {
   Segment,
   Header,
   Icon,
-  Image,
   Dropdown,
   Confirm
 } from "semantic-ui-react";

@@ -8,7 +8,6 @@ import {
   Segment,
   Grid,
   Label,
-  Popup
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
@@ -89,15 +88,12 @@ export default class ToolForm extends Component {
                 <Grid.Column>
                   <Form size="large">
                     <Segment>
-                      {/* <div style={{display: "flex"}}> */}
                       <Form.Input
                         fluid
                         placeholder="Tool"
                         onChange={e => this.setState({ title: e.target.value })}
                         id="title"
                       />
-                      {/* <Popup content="Put the name of the Language here. e.g. 'Javascript, Python, CSS'" trigger={<Icon name="question circle outline" />}/> */}
-                      {/* </div> */}
                       <Form.Input
                         fluid
                         placeholder="Documentation URL"

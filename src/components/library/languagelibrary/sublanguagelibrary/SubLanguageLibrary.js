@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import {
   Container,
   Header,
-  Icon,
-  Segment,
-  Image,
-  Divider
+  Icon
 } from "semantic-ui-react";
 import API from "../../../../modules/API";
 import SubLanguageArchiveList from "./SubLanguageArchivesList";
