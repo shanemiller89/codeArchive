@@ -1,6 +1,6 @@
 IMAGE
 
-## code.Archive
+# code.Archive
 
 code.Archive is a resource management tool meant to help developers keep track of information, issues, and code relating to software development.
 
@@ -30,5 +30,5 @@ And save it in a file named database.json, with a local host of `3000`.
 
 ## Technologies Used
 
-# Author
+### Author
 Shane Miller
