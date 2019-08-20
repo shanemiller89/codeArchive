@@ -1,6 +1,6 @@
 IMAGE
 
-##code.Archive
+## code.Archive
 
 code.Archive is a resource management tool meant to help developers keep track of information, issues, and code relating to software development.
 
@@ -10,7 +10,7 @@ Users may also archive different issues and solutions they have encountered, and
 
 As an added bonus, a user may log code related article and events as well.
 
-##Getting Started
+## Getting Started
 
 To get started, clone down the repository into the directory you need it to be in: `git@github.com:shanemiller89/codeArchive.git`.
 
