@@ -26,9 +26,9 @@ Once installed copy the following database structure:
 
 And save it in a file named database.json, with a local host of `3000`.
 
-##Entity Relationship Diagram
+## Entity Relationship Diagram
 
-##Technologies Used
+## Technologies Used
 
-#Author
+# Author
 Shane Miller
