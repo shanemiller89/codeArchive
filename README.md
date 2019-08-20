@@ -1,6 +1,6 @@
 IMAGE
 
-##code.Archive
+##code.Archive##
 
 code.Archive is a resource management tool meant to help developers keep track of information, issues, and code relating to software development.
 
