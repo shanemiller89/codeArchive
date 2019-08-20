@@ -42,11 +42,27 @@
     },
     {
       "title": "Postman",
-      "link": "",
+      "link": "https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPostman-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=f9bb9528-3876-4c52-a15b-fd4775454a4c",
       "libraryTypeId": 2,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 4
+    },
+    {
+      "title": "HTML",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FHTML-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=3927594c-f404-4513-bb9d-5c38cd9c8674",
+      "libraryTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 5
+    },
+    {
+      "title": "Python",
+      "link": "https://docs.python.org/3/",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2FPython-GbWhwHDmiKfml9XyKG36cFnysA62?alt=media&token=06a3baad-1459-4332-80af-ada11bcfc6c1",
+      "libraryTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 6
     }
   ],
   "libraryTypes": [
@@ -86,11 +102,39 @@
       "id": 2
     },
     {
-      "title": "Fetch Call Undefined",
-      "reference": "API",
+      "title": "Cannot Read \"__\" of undefined",
+      "reference": "React JS, Javascript, State, Props",
       "logTypeId": 1,
       "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
       "id": 3
+    },
+    {
+      "title": "Windows HTTP Server",
+      "reference": "Windows, http server, local host",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 5
+    },
+    {
+      "title": "Cannot Set State of \"____\"",
+      "reference": "React JS, State, lifecycle",
+      "logTypeId": 1,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 6
+    },
+    {
+      "title": "GET PUT POST DELETE",
+      "reference": "API, FETCH CRUD",
+      "logTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 7
+    },
+    {
+      "title": "Map Function Odd Even",
+      "reference": "Javascript, Map, Odd,Even, Transform",
+      "logTypeId": 2,
+      "userId": "GbWhwHDmiKfml9XyKG36cFnysA62",
+      "id": 8
     }
   ],
   "logTypes": [
@@ -155,21 +199,6 @@
       "id": 7
     },
     {
-      "title": "Fetch Call Undefined",
-      "link": "",
-      "id": 8
-    },
-    {
-      "title": "Keyboard Shortcuts",
-      "link": "",
-      "id": 14
-    },
-    {
-      "title": "Scope",
-      "link": "",
-      "id": 15
-    },
-    {
       "title": "Selectors",
       "link": "",
       "id": 17
@@ -180,14 +209,49 @@
       "id": 19
     },
     {
-      "title": "State",
-      "link": "",
-      "id": 21
-    },
-    {
       "title": "Segment",
       "link": "",
       "id": 22
+    },
+    {
+      "title": "Keyboard Shortcuts",
+      "link": "",
+      "id": 23
+    },
+    {
+      "title": "Local Scope",
+      "link": "",
+      "id": 24
+    },
+    {
+      "title": "Props",
+      "link": "",
+      "id": 25
+    },
+    {
+      "title": "Cannot Read \"__\" of undefined",
+      "link": "",
+      "id": 26
+    },
+    {
+      "title": "Windows HTTP Server",
+      "link": "",
+      "id": 29
+    },
+    {
+      "title": "Cannot Set State of \"____\"",
+      "link": "",
+      "id": 30
+    },
+    {
+      "title": "GET PUT POST DELETE",
+      "link": "",
+      "id": 31
+    },
+    {
+      "title": "Map Function Odd Even",
+      "link": "",
+      "id": 32
     }
   ],
   "libraryArchives": [
@@ -195,16 +259,6 @@
       "libraryId": 1,
       "archiveId": 1,
       "id": 1
-    },
-    {
-      "libraryId": 2,
-      "archiveId": 14,
-      "id": 3
-    },
-    {
-      "libraryId": 1,
-      "archiveId": 15,
-      "id": 4
     },
     {
       "libraryId": 3,
@@ -215,18 +269,28 @@
       "libraryId": 3,
       "archiveId": 19,
       "id": 7
+    },
+    {
+      "libraryId": 2,
+      "archiveId": 23,
+      "id": 8
+    },
+    {
+      "libraryId": 1,
+      "archiveId": 24,
+      "id": 9
     }
   ],
   "subLibraryArchives": [
     {
-      "subLanguageLibraryId": 2,
-      "archiveId": 21,
-      "id": 1
-    },
-    {
       "subLanguageLibraryId": 3,
       "archiveId": 22,
       "id": 2
+    },
+    {
+      "subLanguageLibraryId": 2,
+      "archiveId": 25,
+      "id": 3
     }
   ],
   "logArchives": [
@@ -237,8 +301,28 @@
     },
     {
       "logId": 3,
-      "archiveId": 8,
+      "archiveId": 26,
       "id": 3
+    },
+    {
+      "logId": 5,
+      "archiveId": 29,
+      "id": 5
+    },
+    {
+      "logId": 6,
+      "archiveId": 30,
+      "id": 6
+    },
+    {
+      "logId": 7,
+      "archiveId": 31,
+      "id": 7
+    },
+    {
+      "logId": 8,
+      "archiveId": 32,
+      "id": 8
     }
   ],
   "resources": [
@@ -268,51 +352,6 @@
       "archiveId": 1,
       "resourceTypeId": 1,
       "id": 3
-    },
-    {
-      "title": "JavaScript Scope",
-      "link": "https://www.w3schools.com/js/js_scope.asp",
-      "description": "JavaScript has function scope: Each function creates a new scope. Scope ... \nVariables declared within a JavaScript function, become LOCAL to the function.",
-      "image": null,
-      "archiveId": 15,
-      "resourceTypeId": 1,
-      "id": 4
-    },
-    {
-      "title": "Understanding Variables, Scope, and Hoisting in JavaScript ...",
-      "link": "https://www.digitalocean.com/community/tutorials/understanding-variables-scope-hoisting-in-javascript",
-      "description": "Feb 20, 2018 ... Scope in JavaScript refers to the current context of code, which determines the \naccessibility of variables to JavaScript. The two types of scope ...",
-      "image": null,
-      "archiveId": 15,
-      "resourceTypeId": 1,
-      "id": 5
-    },
-    {
-      "title": "Scope - MDN Web Docs Glossary: Definitions of Web-related terms ...",
-      "link": "https://developer.mozilla.org/en-US/docs/Glossary/Scope",
-      "description": "Dec 14, 2018 ... A function serves as a closure in JavaScript, and thus creates a scope, so that (for \nexample) a variable defined exclusively within the function ...",
-      "image": null,
-      "archiveId": 15,
-      "resourceTypeId": 1,
-      "id": 6
-    },
-    {
-      "title": "Demystifying JavaScript Variable Scope and Hoisting",
-      "link": "https://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/",
-      "description": "Dec 2, 2014 ... This article looks at two fundamentals of JavaScript programming - variable \nscope and hoisting.",
-      "image": null,
-      "archiveId": 15,
-      "resourceTypeId": 1,
-      "id": 7
-    },
-    {
-      "title": "Understanding Hoisting and Scoping in Javascript - Backticks ...",
-      "link": "https://medium.com/backticks-tildes/understanding-hoisting-and-scoping-in-javascript-39ea7b41e31",
-      "description": "Feb 19, 2018 ... There is only one Global scope throughout a JavaScript document. A variable is \nin the Global scope if it's defined outside of a function.",
-      "image": null,
-      "archiveId": 15,
-      "resourceTypeId": 1,
-      "id": 8
     },
     {
       "title": "CSS Selectors Reference",
@@ -405,51 +444,6 @@
       "id": 23
     },
     {
-      "title": "State and Lifecycle – React",
-      "link": "https://reactjs.org/docs/state-and-lifecycle.html",
-      "description": "This page introduces the concept of state and lifecycle in a React component. \nYou can find a detailed component API reference here. Consider the ticking clock\n ...",
-      "image": null,
-      "archiveId": 21,
-      "resourceTypeId": 1,
-      "id": 24
-    },
-    {
-      "title": "ReactJS | State in React - GeeksforGeeks",
-      "link": "https://www.geeksforgeeks.org/reactjs-state-react/",
-      "description": "In the previous article on ReactJS | Components, we got to know that React \nComponents can be broadly classified into Functional and Class Components.",
-      "image": null,
-      "archiveId": 21,
-      "resourceTypeId": 1,
-      "id": 25
-    },
-    {
-      "title": "Component State – React",
-      "link": "https://reactjs.org/docs/faq-state.html",
-      "description": "setState() schedules an update to a component's state object. ... for further \nreading on when to use props vs state : Props vs State · ReactJS: Props vs. State\n ...",
-      "image": null,
-      "archiveId": 21,
-      "resourceTypeId": 1,
-      "id": 26
-    },
-    {
-      "title": "ReactJS - State",
-      "link": "https://www.tutorialspoint.com/reactjs/reactjs_state.htm",
-      "description": "State is the place where the data comes from. We should always try to make our \nstate as simple as possible and minimize the number of stateful components.",
-      "image": null,
-      "archiveId": 21,
-      "resourceTypeId": 1,
-      "id": 27
-    },
-    {
-      "title": "Understanding the Fundamentals of State in React - The Andela ...",
-      "link": "https://medium.com/the-andela-way/understanding-the-fundamentals-of-state-in-react-79c711be677f",
-      "description": "Jun 11, 2018 ... It is worth mentioning that state in React is immutable, that is to say, state ... Inside \nsrc/index.js , there's a simple class component that renders ...",
-      "image": null,
-      "archiveId": 21,
-      "resourceTypeId": 1,
-      "id": 28
-    },
-    {
       "title": "Segment - Semantic UI React",
       "link": "https://react.semantic-ui.com/elements/segment/",
       "description": "Placeholder Segment2.4.0. A segment can be used to reserve space for \nconditionally displayed content. Try itCodeSandboxMaximizePermalink. No \ndocuments ...",
@@ -493,6 +487,96 @@
       "archiveId": 22,
       "resourceTypeId": 1,
       "id": 33
+    },
+    {
+      "title": "Keyboard shortcuts for Windows",
+      "link": "https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf",
+      "description": "Quick Open, Go to File… Ctrl+Shift+N. New window/instance. Ctrl+Shift+W. Close \nwindow/instance. Ctrl+,. User Settings. Ctrl+K Ctrl+S. Keyboard Shortcuts.",
+      "image": null,
+      "archiveId": 23,
+      "resourceTypeId": 1,
+      "id": 34
+    },
+    {
+      "title": "Keyboard shortcuts for macOS",
+      "link": "https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf",
+      "description": "Keyboard Shortcuts. Basic editing. ⌘X. Cut line (empty selection). ⌘C. Copy line (\nempty selection). ⌥↓ / ⌥↑. Move line down/up. ⇧⌥↓ / ⇧⌥↑. Copy line down/ ...",
+      "image": null,
+      "archiveId": 23,
+      "resourceTypeId": 1,
+      "id": 35
+    },
+    {
+      "title": "Visual Studio Code keyboard shortcut cheat sheet - Donovan Brown",
+      "link": "http://donovanbrown.com/post/visual-studio-code-keyboard-shortcut-cheat-sheet",
+      "description": "May 18, 2015 ... Donovan Brown - Technology Blog - I recently starting playing with the new cross\n-platform editor from Microsoft, Visual Studio Code.&n.",
+      "image": null,
+      "archiveId": 23,
+      "resourceTypeId": 1,
+      "id": 36
+    },
+    {
+      "title": "15 Visual Studio Code Shortcuts You Should Know - The Startup ...",
+      "link": "https://medium.com/swlh/15-visual-studio-code-shortcuts-you-should-know-ea1b4166f69f",
+      "description": "Jun 18, 2019 ... Mastering your keyboard can save you hours upon hours of time every week. ... \nFor Visual Studio Code, these are the essential shortcuts that ...",
+      "image": null,
+      "archiveId": 23,
+      "resourceTypeId": 1,
+      "id": 37
+    },
+    {
+      "title": "Visual Studio Code Tips and Tricks",
+      "link": "https://code.visualstudio.com/docs/getstarted/tips-and-tricks",
+      "description": "If you don't have Visual Studio Code installed, go to the Download page. You can \n... If you forget a keyboard shortcut, use the Command Palette to help you out.",
+      "image": null,
+      "archiveId": 23,
+      "resourceTypeId": 1,
+      "id": 38
+    },
+    {
+      "title": "JavaScript Scope",
+      "link": "https://www.w3schools.com/js/js_scope.asp",
+      "description": "Scope determines the accessibility (visibility) of variables. JavaScript Function \nScope. In JavaScript there are two types of scope: Local scope; Global scope.",
+      "image": null,
+      "archiveId": 24,
+      "resourceTypeId": 1,
+      "id": 39
+    },
+    {
+      "title": "Demystifying JavaScript Variable Scope and Hoisting",
+      "link": "https://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/",
+      "description": "Dec 2, 2014 ... JavaScript has two scopes – global and local. Any variable declared outside of a \nfunction belongs to the global scope, and is therefore ...",
+      "image": null,
+      "archiveId": 24,
+      "resourceTypeId": 1,
+      "id": 40
+    },
+    {
+      "title": "Understanding Hoisting and Scoping in Javascript - Backticks ...",
+      "link": "https://medium.com/backticks-tildes/understanding-hoisting-and-scoping-in-javascript-39ea7b41e31",
+      "description": "Feb 19, 2018 ... There are several times Javascript developers want to tear their hair out because \n... Variables declared within a function are in the local scope.",
+      "image": null,
+      "archiveId": 24,
+      "resourceTypeId": 1,
+      "id": 41
+    },
+    {
+      "title": "Understanding Variables, Scope, and Hoisting in JavaScript ...",
+      "link": "https://www.digitalocean.com/community/tutorials/understanding-variables-scope-hoisting-in-javascript",
+      "description": "Feb 20, 2018 ... Scope in JavaScript refers to the current context of code, which ... Using local \nscope, we can actually create new variables with the same name ...",
+      "image": null,
+      "archiveId": 24,
+      "resourceTypeId": 1,
+      "id": 42
+    },
+    {
+      "title": "Understanding variable scopes in JavaScript - GeeksforGeeks",
+      "link": "https://www.geeksforgeeks.org/understanding-variable-scopes-in-javascript/",
+      "description": "In JavaScript, there are two types of scopes. Global Scope – Scope outside the \noutermost function attached to window. Local Scope – Inside the function being ...",
+      "image": null,
+      "archiveId": 24,
+      "resourceTypeId": 1,
+      "id": 43
     }
   ],
   "resourceTypes": [
@@ -557,20 +641,10 @@
       "id": 5
     },
     {
-      "title": "Linux",
-      "text": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FLinux-14?alt=media&token=e28a196e-ae06-48cf-b8c6-8222d11dc728",
-      "language": null,
-      "order": 1,
-      "archiveId": 14,
-      "recordTypeId": 1,
-      "id": 9
-    },
-    {
       "title": "Diagram",
       "text": "",
       "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FDiagram-1?alt=media&token=58da1f9f-b43b-40d3-b97f-6c5fef4c9c71",
-      "order": 4,
+      "order": 5,
       "language": null,
       "archiveId": 1,
       "recordTypeId": 1,
@@ -585,6 +659,66 @@
       "archiveId": 17,
       "recordTypeId": 2,
       "id": 11
+    },
+    {
+      "title": "Linux",
+      "text": "Linux OS Shortcuts",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FLinux-23?alt=media&token=087ac7fa-f2a2-4acc-b8ce-447b6009b861",
+      "language": null,
+      "order": 1,
+      "archiveId": 23,
+      "recordTypeId": 1,
+      "id": 12
+    },
+    {
+      "title": "Example 2",
+      "text": "//This example only uses map to only transform even numbers, and leaves the odd alone\n\nlet arr = [1,2,3,4];\n\nlet newArr = arr.map((v,i,a) => {\n  if (v % 2 === 0){\n    return v * 2;\n  } else {\n    return v;\n  }\n});\n// newArr = [1,4,3,8];",
+      "image": null,
+      "order": 4,
+      "language": "javascript",
+      "archiveId": 1,
+      "recordTypeId": 2,
+      "id": 13
+    },
+    {
+      "title": "Explanation of Issue",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "image": null,
+      "language": null,
+      "order": 1,
+      "archiveId": 26,
+      "recordTypeId": 1,
+      "id": 14
+    },
+    {
+      "title": "Error Message",
+      "text": "",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FError%20Message-26?alt=media&token=986f7540-a49a-4f69-83f0-bb16a5ec88ae",
+      "language": null,
+      "order": 1,
+      "archiveId": 26,
+      "recordTypeId": 1,
+      "id": 15
+    },
+    {
+      "title": "Solution",
+      "text": "// Most typically this error is caused by {explanation}, when setting state make sure this is done.\n\n  state = {\n    open: false\n  };\n\n  open = () => this.setState({ open: true });\n  close = () => this.setState({ open: false });",
+      "image": null,
+      "language": "javascript",
+      "order": 3,
+      "archiveId": 26,
+      "recordTypeId": 2,
+      "id": 16
+    },
+    {
+      "title": "Purpose",
+      "text": "This function transforms only even numbers using the map function and and conditional rendering. This is useful as a reference as to manipulate data, but also limit the data that is being manipulated in a single array.\n",
+      "image": null,
+      "language": null,
+      "order": 1,
+      "archiveId": 32,
+      "recordTypeId": 1,
+      "id": 17
     }
   ],
   "recordTypes": [
