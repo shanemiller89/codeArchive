@@ -102,11 +102,14 @@ export default class NoteSegment extends Component {
                       onClick={this.MoveUp}
                     />
                   )}
-                  <Dropdown.Item
-                    icon="sort amount down"
-                    description="Move Down"
-                    onClick={this.MoveDown}
-                  />
+                    {this.props.arrayLength ===
+                    this.props.note.order ? null : (
+                      <Dropdown.Item
+                        icon="sort amount down"
+                        description="Move Down"
+                        onClick={this.MoveDown}
+                      />
+                    )}
                 </Dropdown.Menu>
               </Dropdown>
               </div>

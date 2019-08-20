@@ -35,8 +35,8 @@ export default class VideoCard extends Component {
                   />
                   <Confirm
                     size="mini"
-                    header="Delete Library"
-                    content="Are you sure you want to delete this library?"
+                    header="Delete Video"
+                    content="Are you sure you want to delete this video?"
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}
