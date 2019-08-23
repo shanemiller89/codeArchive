@@ -1,5 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { existsTypeAnnotation } from "@babel/types";
 
 const url = "http://localhost:8088/users";
 
@@ -72,10 +73,6 @@ export const login = (email, password) => {
   return firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    // .catch(function(error) {
-    //   alert(error.message,7000);
-    //   break error
-    // })
     .then(credentials => {
       const id = credentials.user.uid;
       return getUser(id);
@@ -83,5 +80,8 @@ export const login = (email, password) => {
     .then(user => {
       setUserInLocalStorage(user);
       return user;
+    })
+    .catch(function(error) {
+      alert(error.message, 7000);
     });
 };
