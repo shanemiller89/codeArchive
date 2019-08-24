@@ -71,6 +71,7 @@ class NavBar extends Component {
           <Menu.Menu position="right">
             <Menu.Item header as="h3">
               {this.state.username.map(username => (
+                username.profile === null ? <Image src="https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fprofile_placeholder.png?alt=media&token=a47e94d2-94b5-419c-8da3-9ccb382d5f70" size="mini" circular /> :
                 <Image src={username.profile} size="mini" circular />
               ))}
             </Menu.Item>

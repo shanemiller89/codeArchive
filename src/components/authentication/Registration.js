@@ -31,12 +31,21 @@ export default class Register extends Component {
     email: "",
     password: "",
     name: "",
+    disabled: true,
+    checked: false,
     profile: null
+  };
+
+  checkedToggle = () => {
+    this.setState({
+      checked: !this.state.checked,
+      disabled: !this.state.disabled
+    });
   };
 
   storageRef = firebase.storage().ref("profile_picture");
 
-  submit = () => {
+  submitWithImage = () => {
     const ref = this.storageRef.child(this.state.username);
 
     return ref
@@ -58,9 +67,30 @@ export default class Register extends Component {
       });
   };
 
+  submit = () => {
+    const user = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      name: this.state.name,
+      profile: this.state.profile
+    };
+    return register(user).then(user => {
+      this.props.setAuthState();
+      this.props.onRegister(user);
+    });
+  };
+
   render() {
     return (
-      <Modal trigger={<Button style={{ background: "#15CA00", color: "white" }}>Sign Up</Button>} centered={false}>
+      <Modal
+        trigger={
+          <Button style={{ background: "#15CA00", color: "white" }}>
+            Sign Up
+          </Button>
+        }
+        centered={false}
+      >
         <Modal.Content>
           <Header size="huge" textAlign="center">
             <div>
@@ -112,6 +142,13 @@ export default class Register extends Component {
                         this.setState({ password: e.target.value })
                       }
                     />
+                    <Form.Checkbox
+                      fluid
+                      width={6}
+                      label="Do you want to include a Profile Image?"
+                      checked={this.state.checked}
+                      onChange={this.checkedToggle}
+                    />
                     <Form.Input
                       fluid
                       icon="image"
@@ -121,8 +158,19 @@ export default class Register extends Component {
                       onChange={e =>
                         this.setState({ profile: e.target.files[0] })
                       }
+                      id="imageURL"
+                      disabled={this.state.disabled}
                     />
-                    <Button style={{ background: "#15CA00", color: "white" }} fluid size="large" onClick={this.submit}>
+                    <Button
+                      style={{ background: "#15CA00", color: "white" }}
+                      fluid
+                      size="large"
+                      onClick={
+                        this.state.disabled
+                          ? this.submit
+                          : this.submitWithImage
+                      }
+                    >
                       Register
                     </Button>
                   </Segment>

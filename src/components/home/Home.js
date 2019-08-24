@@ -65,12 +65,19 @@ export default class Home extends Component {
                 <div>
                   {this.state.userInfo.map(userInfo => (
                     <div key={userInfo.id}>
+                      {userInfo.profile === null ? 
+                      <Image
+                        src="https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fprofile_placeholder.png?alt=media&token=a47e94d2-94b5-419c-8da3-9ccb382d5f70"
+                        size="medium"
+                        circular
+                        style={{ margin: "1em auto" }}
+                      /> :
                       <Image
                         src={userInfo.profile}
                         size="medium"
                         circular
                         style={{ margin: "1em auto" }}
-                      />
+                      />}
                       <EditProfileImageForm
                         userInfo={userInfo}
                         updateProfile={this.updateProfile}
