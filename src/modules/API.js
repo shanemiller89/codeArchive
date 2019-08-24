@@ -1,5 +1,5 @@
 // const remoteURL = "http://localhost:8088"
-const remoteURL = "https://code-archive-api.herokuapp.com/"
+const remoteURL = "https://code-archive-api.herokuapp.com"
 
 export default {
   get(database, id) {
