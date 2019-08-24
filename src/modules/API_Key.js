@@ -1,0 +1,1 @@
+export const API_KEY = process.env.GOOGLESEARCH_API_KEY
