@@ -61,6 +61,9 @@ export const register = user => {
     })
     .then(() => {
       return saveUserToJsonServer(user);
+    })
+    .catch(function(error) {
+      alert(error.message, 7000);
     });
 };
 
