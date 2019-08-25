@@ -10,6 +10,8 @@ import {
 import NoteEditForm from "./NoteEditForm";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import * as firebase from "firebase/app";
+import "firebase/storage";
 
 export default class NoteSegment extends Component {
   state = {
@@ -53,6 +55,17 @@ export default class NoteSegment extends Component {
     return false;
   };
 
+  deleteImageNote = () => {
+    const storageRef = firebase.storage().ref("archive_images");
+    const imageRef = storageRef.child(
+      `${this.props.note.title}-${this.props.note.archiveId}`
+    );
+    imageRef.delete().then(function() {
+      console.log("Image Deleted")
+    })
+    .then(() => this.props.deleteNote(this.props.note.id))
+  };
+
   render() {
     const { isOpen } = this.state;
 
@@ -63,7 +76,7 @@ export default class NoteSegment extends Component {
             <Icon name="sticky note" style={{ color: "#15CA00" }} />
           </Header>
           <Segment style={{ width: "80%" }}>
-          <div
+            <div
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -72,46 +85,46 @@ export default class NoteSegment extends Component {
             >
               <Header as="h1">{this.props.note.title}</Header>
               <div>
-              <Dropdown
-                icon="bars"
-                style={{ fontSize: "1.5em" }}
-              >
-                <Dropdown.Menu>
-                  <NoteEditForm
-                    noteId={this.props.note.id}
-                    updateNote={this.props.updateNote}
-                  />
-                  <Dropdown.Item
-                    icon="trash alternate"
-                    description="Delete"
-                    onClick={this.open}
-                  />
-                  <Confirm
-                    size="mini"
-                    header="Delete Note"
-                    content="Are you sure you want to delete this note?"
-                    confirmButton="Yes"
-                    open={this.state.open}
-                    onCancel={this.close}
-                    onConfirm={() => this.props.deleteNote(this.props.note.id)}
-                  />
-                  {this.props.note.order <= 1 ? null : (
-                    <Dropdown.Item
-                      icon="sort amount up"
-                      description="Move Up"
-                      onClick={this.MoveUp}
+                <Dropdown icon="bars" style={{ fontSize: "1.5em" }}>
+                  <Dropdown.Menu>
+                    <NoteEditForm
+                      noteId={this.props.note.id}
+                      updateNote={this.props.updateNote}
                     />
-                  )}
-                    {this.props.arrayLength ===
-                    this.props.note.order ? null : (
+                    <Dropdown.Item
+                      icon="trash alternate"
+                      description="Delete"
+                      onClick={this.open}
+                    />
+                    <Confirm
+                      size="mini"
+                      header="Delete Note"
+                      content="Are you sure you want to delete this note?"
+                      confirmButton="Yes"
+                      open={this.state.open}
+                      onCancel={this.close}
+                      onConfirm={
+                        this.props.note.image === null || this.props.note.image !== `${this.props.note.title}-${this.props.note.archiveId}`
+                          ? () => this.props.deleteNote(this.props.note.id)
+                          : () => this.deleteImageNote()
+                      }
+                    />
+                    {this.props.note.order <= 1 ? null : (
+                      <Dropdown.Item
+                        icon="sort amount up"
+                        description="Move Up"
+                        onClick={this.MoveUp}
+                      />
+                    )}
+                    {this.props.arrayLength === this.props.note.order ? null : (
                       <Dropdown.Item
                         icon="sort amount down"
                         description="Move Down"
                         onClick={this.MoveDown}
                       />
                     )}
-                </Dropdown.Menu>
-              </Dropdown>
+                  </Dropdown.Menu>
+                </Dropdown>
               </div>
             </div>
             <div style={{ whiteSpace: "pre-wrap" }}>{this.props.note.text}</div>

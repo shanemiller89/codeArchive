@@ -6,7 +6,8 @@ import {
   Segment,
   Grid,
   Divider,
-  Icon
+  Icon,
+  Message
 } from "semantic-ui-react";
 import PieChart from "react-minimal-pie-chart";
 import API from "../../modules/API";
@@ -62,22 +63,36 @@ export default class Home extends Component {
 
             <Grid.Row verticalAlign="middle">
               <Grid.Column>
+                <Message negative>
+                  <Message.Header>
+                    THIS APP IS CURRENTLY IN TESTING STAGES
+                  </Message.Header>
+                  <p>
+                    This app is only in testing phase. Please know your archives
+                    will be lost upon alpha deployment. Report bugs{" "}
+                    <a href="https://github.com/shanemiller89/codeArchive/issues">
+                      here.
+                    </a>
+                  </p>
+                </Message>
                 <div>
                   {this.state.userInfo.map(userInfo => (
                     <div key={userInfo.id}>
-                      {userInfo.profile === null ? 
-                      <Image
-                        src="https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fprofile_placeholder.png?alt=media&token=a47e94d2-94b5-419c-8da3-9ccb382d5f70"
-                        size="medium"
-                        circular
-                        style={{ margin: "1em auto" }}
-                      /> :
-                      <Image
-                        src={userInfo.profile}
-                        size="medium"
-                        circular
-                        style={{ margin: "1em auto" }}
-                      />}
+                      {userInfo.profile === null ? (
+                        <Image
+                          src="https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fprofile_placeholder.png?alt=media&token=a47e94d2-94b5-419c-8da3-9ccb382d5f70"
+                          size="medium"
+                          circular
+                          style={{ margin: "1em auto" }}
+                        />
+                      ) : (
+                        <Image
+                          src={userInfo.profile}
+                          size="medium"
+                          circular
+                          style={{ margin: "1em auto" }}
+                        />
+                      )}
                       <EditProfileImageForm
                         userInfo={userInfo}
                         updateProfile={this.updateProfile}
@@ -87,8 +102,12 @@ export default class Home extends Component {
                           {userInfo.username}{" "}
                         </span>{" "}
                       </h2>
-                      <h3><Icon name="user" /> {userInfo.name} </h3>
-                      <h3><Icon name="mail" />  {userInfo.email} </h3>
+                      <h3>
+                        <Icon name="user" /> {userInfo.name}{" "}
+                      </h3>
+                      <h3>
+                        <Icon name="mail" /> {userInfo.email}{" "}
+                      </h3>
                     </div>
                   ))}
                 </div>
@@ -96,7 +115,11 @@ export default class Home extends Component {
 
               <Grid.Column>
                 <Header style={{ fontSize: "3em" }}>
-                  <Icon style={{ color: "#15CA00" }} size="tiny" name="chart pie" />
+                  <Icon
+                    style={{ color: "#15CA00" }}
+                    size="tiny"
+                    name="chart pie"
+                  />
                   Stats
                 </Header>
                 <PieChart
@@ -111,8 +134,8 @@ export default class Home extends Component {
                   rounded
                   label
                   labelStyle={{
-                    fontSize: '5px',
-                    fontFamily: 'sans-serif'
+                    fontSize: "5px",
+                    fontFamily: "sans-serif"
                   }}
                   radius={42}
                   labelPosition={112}

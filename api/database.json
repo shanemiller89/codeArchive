@@ -4,7 +4,7 @@
       "username": "shanemiller89",
       "email": "shanemiller89@gmail.com",
       "name": "Shane Miller",
-      "profile": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/library_profiles%2Fundefined-undefined?alt=media&token=d16f56ff-0948-40c6-9dad-3c3780c60c2d",
+      "profile": null,
       "id": "GbWhwHDmiKfml9XyKG36cFnysA62"
     }
   ],
@@ -632,16 +632,6 @@
       "archiveId": 7,
       "recordTypeId": 2,
       "id": 5
-    },
-    {
-      "title": "Diagram",
-      "text": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/archive_images%2FDiagram-1?alt=media&token=58da1f9f-b43b-40d3-b97f-6c5fef4c9c71",
-      "order": 5,
-      "language": null,
-      "archiveId": 1,
-      "recordTypeId": 1,
-      "id": 10
     },
     {
       "title": "Simple Selectors",
