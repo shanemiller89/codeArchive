@@ -8,6 +8,7 @@ import {
   Confirm
 } from "semantic-ui-react";
 import NoteEditForm from "./NoteEditForm";
+import API from "../../../modules/API";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import * as firebase from "firebase/app";
@@ -20,31 +21,71 @@ export default class NoteSegment extends Component {
   };
 
   MoveUp = () => {
-    const editedNote = {
-      title: this.props.note.title,
-      text: this.props.note.text,
-      image: this.props.note.image,
-      order: this.props.note.order - 1,
-      language: this.props.note.language,
-      archiveId: this.props.note.archiveId,
-      recordTypeId: this.props.note.recordTypeId,
-      id: this.props.note.id
-    };
-    this.props.updateNote(editedNote);
+    API.getAll(
+      "records",
+      `archiveId=${this.props.note.archiveId}&order=${this.props.note.order -
+        1}`
+    )
+      .then(swappedNote => {
+        const prevNote = {
+          title: swappedNote[0].title,
+          text: swappedNote[0].text,
+          image: swappedNote[0].image,
+          order: swappedNote[0].order + 1,
+          language: swappedNote[0].language,
+          archiveId: swappedNote[0].archiveId,
+          recordTypeId: swappedNote[0].recordTypeId,
+          id: swappedNote[0].id
+        };
+        API.put("records", prevNote)
+        .then(() => {
+          const editedNote = {
+            title: this.props.note.title,
+            text: this.props.note.text,
+            image: this.props.note.image,
+            order: this.props.note.order - 1,
+            language: this.props.note.language,
+            archiveId: this.props.note.archiveId,
+            recordTypeId: this.props.note.recordTypeId,
+            id: this.props.note.id
+          };
+          this.props.updateNote(editedNote);
+        });
+      })
   };
 
   MoveDown = () => {
-    const editedNote = {
-      title: this.props.note.title,
-      text: this.props.note.text,
-      image: this.props.note.image,
-      order: this.props.note.order + 1,
-      language: this.props.note.language,
-      archiveId: this.props.note.archiveId,
-      recordTypeId: this.props.note.recordTypeId,
-      id: this.props.note.id
-    };
-    this.props.updateNote(editedNote);
+    API.getAll(
+      "records",
+      `archiveId=${this.props.note.archiveId}&order=${this.props.note.order +
+        1}`
+    )
+      .then(swappedNote => {
+        const prevNote = {
+          title: swappedNote[0].title,
+          text: swappedNote[0].text,
+          image: swappedNote[0].image,
+          order: swappedNote[0].order - 1,
+          language: swappedNote[0].language,
+          archiveId: swappedNote[0].archiveId,
+          recordTypeId: swappedNote[0].recordTypeId,
+          id: swappedNote[0].id
+        };
+        API.put("records", prevNote)
+        .then(() => {
+          const editedNote = {
+            title: this.props.note.title,
+            text: this.props.note.text,
+            image: this.props.note.image,
+            order: this.props.note.order + 1,
+            language: this.props.note.language,
+            archiveId: this.props.note.archiveId,
+            recordTypeId: this.props.note.recordTypeId,
+            id: this.props.note.id
+          };
+          this.props.updateNote(editedNote);
+        });
+      })
   };
 
   open = () => this.setState({ open: true });
@@ -60,10 +101,12 @@ export default class NoteSegment extends Component {
     const imageRef = storageRef.child(
       `${this.props.note.title}-${this.props.note.archiveId}`
     );
-    imageRef.delete().then(function() {
-      console.log("Image Deleted")
-    })
-    .then(() => this.props.deleteNote(this.props.note.id))
+    imageRef
+      .delete()
+      .then(function() {
+        console.log("Image Deleted");
+      })
+      .then(() => this.props.deleteNote(this.props.note.id));
   };
 
   render() {
@@ -104,7 +147,9 @@ export default class NoteSegment extends Component {
                       open={this.state.open}
                       onCancel={this.close}
                       onConfirm={
-                        this.props.note.image === null || this.props.note.image !== `${this.props.note.title}-${this.props.note.archiveId}`
+                        this.props.note.image === null ||
+                        this.props.note.image !==
+                          `${this.props.note.title}-${this.props.note.archiveId}`
                           ? () => this.props.deleteNote(this.props.note.id)
                           : () => this.deleteImageNote()
                       }

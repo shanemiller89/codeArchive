@@ -11,6 +11,7 @@ import {
   Confirm
 } from "semantic-ui-react";
 import SnippetEditForm from "./SnippetEditForm";
+import API from "../../../modules/API";
 import copy from "copy-to-clipboard";
 
 export default class SnippetSegment extends Component {
@@ -19,31 +20,71 @@ export default class SnippetSegment extends Component {
   };
 
   MoveUp = () => {
-    const editedSnippet = {
-      title: this.props.snippet.title,
-      text: this.props.snippet.text,
-      image: this.props.snippet.image,
-      order: this.props.snippet.order - 1,
-      language: this.props.snippet.language,
-      archiveId: this.props.snippet.archiveId,
-      recordTypeId: this.props.snippet.recordTypeId,
-      id: this.props.snippet.id
-    };
-    this.props.updateSnippet(editedSnippet);
+    API.getAll(
+      "records",
+      `archiveId=${this.props.snippet.archiveId}&order=${this.props.snippet.order -
+        1}`
+    )
+      .then(swappedSnippet => {
+        const prevSnippet = {
+          title: swappedSnippet[0].title,
+          text: swappedSnippet[0].text,
+          image: swappedSnippet[0].image,
+          order: swappedSnippet[0].order + 1,
+          language: swappedSnippet[0].language,
+          archiveId: swappedSnippet[0].archiveId,
+          recordTypeId: swappedSnippet[0].recordTypeId,
+          id: swappedSnippet[0].id
+        };
+        API.put("records", prevSnippet)
+        .then(() => {
+          const editedSnippet = {
+            title: this.props.snippet.title,
+            text: this.props.snippet.text,
+            image: this.props.snippet.image,
+            order: this.props.snippet.order - 1,
+            language: this.props.snippet.language,
+            archiveId: this.props.snippet.archiveId,
+            recordTypeId: this.props.snippet.recordTypeId,
+            id: this.props.snippet.id
+          };
+          this.props.updateSnippet(editedSnippet);
+        });
+      })
   };
 
   MoveDown = () => {
-    const editedSnippet = {
-      title: this.props.snippet.title,
-      text: this.props.snippet.text,
-      image: this.props.snippet.image,
-      order: this.props.snippet.order + 1,
-      language: this.props.snippet.language,
-      archiveId: this.props.snippet.archiveId,
-      recordTypeId: this.props.snippet.recordTypeId,
-      id: this.props.snippet.id
-    };
-    this.props.updateSnippet(editedSnippet);
+    API.getAll(
+      "records",
+      `archiveId=${this.props.snippet.archiveId}&order=${this.props.snippet.order +
+        1}`
+    )
+      .then(swappedSnippet => {
+        const prevSnippet = {
+          title: swappedSnippet[0].title,
+          text: swappedSnippet[0].text,
+          image: swappedSnippet[0].image,
+          order: swappedSnippet[0].order - 1,
+          language: swappedSnippet[0].language,
+          archiveId: swappedSnippet[0].archiveId,
+          recordTypeId: swappedSnippet[0].recordTypeId,
+          id: swappedSnippet[0].id
+        };
+        API.put("records", prevSnippet)
+        .then(() => {
+          const editedSnippet = {
+            title: this.props.snippet.title,
+            text: this.props.snippet.text,
+            image: this.props.snippet.image,
+            order: this.props.snippet.order + 1,
+            language: this.props.snippet.language,
+            archiveId: this.props.snippet.archiveId,
+            recordTypeId: this.props.snippet.recordTypeId,
+            id: this.props.snippet.id
+          };
+          this.props.updateSnippet(editedSnippet);
+        });
+      })
   };
 
   open = () => this.setState({ open: true });

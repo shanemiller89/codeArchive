@@ -11,6 +11,7 @@ import {
   Container
 } from "semantic-ui-react";
 import { login } from "./userManager";
+import Register from "./Registration";
 
 // TODO:
 // 1.Form Validation
@@ -97,7 +98,7 @@ export default class Login extends Component {
                     </Button>
                   </Segment>
                 </Form>
-                <Message>Don't have an Account? Be Sure to Register!</Message>
+                <Message>Don't have an Account? Be Sure to <span style={{marginLeft: "1em"}}><Register /></span></Message>
               </Grid.Column>
             </Grid>
           </Modal.Description>
