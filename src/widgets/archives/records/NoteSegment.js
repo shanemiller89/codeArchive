@@ -14,6 +14,8 @@ import "react-image-lightbox/style.css";
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
+let orderNumber = 1;
+
 export default class NoteSegment extends Component {
   state = {
     open: false,
@@ -25,33 +27,31 @@ export default class NoteSegment extends Component {
       "records",
       `archiveId=${this.props.note.archiveId}&order=${this.props.note.order -
         1}`
-    )
-      .then(swappedNote => {
-        const prevNote = {
-          title: swappedNote[0].title,
-          text: swappedNote[0].text,
-          image: swappedNote[0].image,
-          order: swappedNote[0].order + 1,
-          language: swappedNote[0].language,
-          archiveId: swappedNote[0].archiveId,
-          recordTypeId: swappedNote[0].recordTypeId,
-          id: swappedNote[0].id
+    ).then(swappedNote => {
+      const prevNote = {
+        title: swappedNote[0].title,
+        text: swappedNote[0].text,
+        image: swappedNote[0].image,
+        order: swappedNote[0].order + 1,
+        language: swappedNote[0].language,
+        archiveId: swappedNote[0].archiveId,
+        recordTypeId: swappedNote[0].recordTypeId,
+        id: swappedNote[0].id
+      };
+      API.put("records", prevNote).then(() => {
+        const editedNote = {
+          title: this.props.note.title,
+          text: this.props.note.text,
+          image: this.props.note.image,
+          order: this.props.note.order - 1,
+          language: this.props.note.language,
+          archiveId: this.props.note.archiveId,
+          recordTypeId: this.props.note.recordTypeId,
+          id: this.props.note.id
         };
-        API.put("records", prevNote)
-        .then(() => {
-          const editedNote = {
-            title: this.props.note.title,
-            text: this.props.note.text,
-            image: this.props.note.image,
-            order: this.props.note.order - 1,
-            language: this.props.note.language,
-            archiveId: this.props.note.archiveId,
-            recordTypeId: this.props.note.recordTypeId,
-            id: this.props.note.id
-          };
-          this.props.updateNote(editedNote);
-        });
-      })
+        this.props.updateNote(editedNote);
+      });
+    });
   };
 
   MoveDown = () => {
@@ -59,33 +59,31 @@ export default class NoteSegment extends Component {
       "records",
       `archiveId=${this.props.note.archiveId}&order=${this.props.note.order +
         1}`
-    )
-      .then(swappedNote => {
-        const prevNote = {
-          title: swappedNote[0].title,
-          text: swappedNote[0].text,
-          image: swappedNote[0].image,
-          order: swappedNote[0].order - 1,
-          language: swappedNote[0].language,
-          archiveId: swappedNote[0].archiveId,
-          recordTypeId: swappedNote[0].recordTypeId,
-          id: swappedNote[0].id
+    ).then(swappedNote => {
+      const prevNote = {
+        title: swappedNote[0].title,
+        text: swappedNote[0].text,
+        image: swappedNote[0].image,
+        order: swappedNote[0].order - 1,
+        language: swappedNote[0].language,
+        archiveId: swappedNote[0].archiveId,
+        recordTypeId: swappedNote[0].recordTypeId,
+        id: swappedNote[0].id
+      };
+      API.put("records", prevNote).then(() => {
+        const editedNote = {
+          title: this.props.note.title,
+          text: this.props.note.text,
+          image: this.props.note.image,
+          order: this.props.note.order + 1,
+          language: this.props.note.language,
+          archiveId: this.props.note.archiveId,
+          recordTypeId: this.props.note.recordTypeId,
+          id: this.props.note.id
         };
-        API.put("records", prevNote)
-        .then(() => {
-          const editedNote = {
-            title: this.props.note.title,
-            text: this.props.note.text,
-            image: this.props.note.image,
-            order: this.props.note.order + 1,
-            language: this.props.note.language,
-            archiveId: this.props.note.archiveId,
-            recordTypeId: this.props.note.recordTypeId,
-            id: this.props.note.id
-          };
-          this.props.updateNote(editedNote);
-        });
-      })
+        this.props.updateNote(editedNote);
+      });
+    });
   };
 
   open = () => this.setState({ open: true });
@@ -106,7 +104,46 @@ export default class NoteSegment extends Component {
       .then(function() {
         console.log("Image Deleted");
       })
-      .then(() => this.props.deleteNote(this.props.note.id));
+      .then(() => this.deleteAndOrder());
+  };
+
+  deleteAndOrder = () => {
+    API.delete("records", this.props.note.id)
+      .then(() => {
+        return API.getAll(
+          "records",
+          `archiveId=${this.props.note.archiveId}&_sort=order&_order=asc`
+        );
+      })
+      .then(records =>
+        records.map(record => ({
+          title: record.title,
+          text: record.text,
+          image: record.image,
+          order: orderNumber++,
+          language: record.language,
+          archiveId: record.archiveId,
+          recordTypeId: record.recordTypeId,
+          id: record.id
+        }))
+      )
+      // .then(records => {
+      //   console.log(records)
+      //   // for (let i = 0; i <= records.length; i++) {
+      //   //   let newRecord = {
+      //   //     title: records[i].title,
+      //   //     text: records[i].text,
+      //   //     image: records[i].image,
+      //   //     order: orderNumber++,
+      //   //     language: records[i].language,
+      //   //     archiveId: records[i].archiveId,
+      //   //     recordTypeId: records[i].recordTypeId,
+      //   //     id: records[i].id
+      //   //   };
+      //   //   console.log(newRecord)
+      //   //   this.props.updateNote(newRecord);
+      //   // }
+      // });
   };
 
   render() {
@@ -150,7 +187,7 @@ export default class NoteSegment extends Component {
                         this.props.note.image === null ||
                         this.props.note.image !==
                           `${this.props.note.title}-${this.props.note.archiveId}`
-                          ? () => this.props.deleteNote(this.props.note.id)
+                          ? () => this.deleteAndOrder()
                           : () => this.deleteImageNote()
                       }
                     />
