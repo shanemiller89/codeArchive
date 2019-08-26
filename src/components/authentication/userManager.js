@@ -2,8 +2,8 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import { existsTypeAnnotation } from "@babel/types";
 
-const url = "http://localhost:8088/users";
-// const url = "https://code-archive-api.herokuapp.com/users"
+// const url = "http://localhost:8088/users";
+const url = "https://code-archive-api.herokuapp.com/users"
 
 const setUserInLocalStorage = user => {
   localStorage.setItem("user", JSON.stringify(user.id));
