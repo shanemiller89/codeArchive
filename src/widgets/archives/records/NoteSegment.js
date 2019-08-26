@@ -109,14 +109,15 @@ export default class NoteSegment extends Component {
 
   deleteAndOrder = () => {
     API.delete("records", this.props.note.id)
-      .then(() => {
-        return API.getAll(
+      .then(() => 
+        API.getAll(
           "records",
           `archiveId=${this.props.note.archiveId}&_sort=order&_order=asc`
-        );
-      })
-      .then(records =>
-        records.map(record => ({
+        )
+      )
+      .then(records => (
+        records.map(record => {
+          const movedRecord = {
           title: record.title,
           text: record.text,
           image: record.image,
@@ -125,25 +126,10 @@ export default class NoteSegment extends Component {
           archiveId: record.archiveId,
           recordTypeId: record.recordTypeId,
           id: record.id
-        }))
-      )
-      // .then(records => {
-      //   console.log(records)
-      //   // for (let i = 0; i <= records.length; i++) {
-      //   //   let newRecord = {
-      //   //     title: records[i].title,
-      //   //     text: records[i].text,
-      //   //     image: records[i].image,
-      //   //     order: orderNumber++,
-      //   //     language: records[i].language,
-      //   //     archiveId: records[i].archiveId,
-      //   //     recordTypeId: records[i].recordTypeId,
-      //   //     id: records[i].id
-      //   //   };
-      //   //   console.log(newRecord)
-      //   //   this.props.updateNote(newRecord);
-      //   // }
-      // });
+          }
+          API.put("records", movedRecord)
+        })
+      )).then(() => this.props.resetOrderState(), orderNumber = 1)
   };
 
   render() {

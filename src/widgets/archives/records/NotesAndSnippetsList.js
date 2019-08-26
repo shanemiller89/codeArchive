@@ -16,6 +16,7 @@ export default class NotesAndSnippetsList extends Component {
                 arrayLength={this.props.NotesAndSnippets.length}
                 deleteNote={this.props.deleteNote}
                 updateNote={this.props.updateNote}
+                resetOrderState={this.props.resetOrderState}
               />
           ) : (
               <SnippetSegment
@@ -24,6 +25,7 @@ export default class NotesAndSnippetsList extends Component {
                 arrayLength={this.props.NotesAndSnippets.length}
                 deleteSnippet={this.props.deleteSnippet}
                 updateSnippet={this.props.updateSnippet}
+                resetOrderState={this.props.resetOrderState}
               />
           )
         )}

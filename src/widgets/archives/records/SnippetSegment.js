@@ -14,6 +14,8 @@ import SnippetEditForm from "./SnippetEditForm";
 import API from "../../../modules/API";
 import copy from "copy-to-clipboard";
 
+let orderNumber = 1;
+
 export default class SnippetSegment extends Component {
   state = {
     open: false
@@ -87,6 +89,32 @@ export default class SnippetSegment extends Component {
       })
   };
 
+
+  deleteAndOrder = () => {
+    API.delete("records", this.props.snippet.id)
+      .then(() => 
+        API.getAll(
+          "records",
+          `archiveId=${this.props.snippet.archiveId}&_sort=order&_order=asc`
+        )
+      )
+      .then(records => (
+        records.map(record => {
+          const movedRecord = {
+          title: record.title,
+          text: record.text,
+          image: record.image,
+          order: orderNumber++,
+          language: record.language,
+          archiveId: record.archiveId,
+          recordTypeId: record.recordTypeId,
+          id: record.id
+          }
+          API.put("records", movedRecord)
+        })
+      )).then(() => this.props.resetOrderState(), orderNumber = 1)
+  };
+
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
 
@@ -142,7 +170,7 @@ export default class SnippetSegment extends Component {
                       open={this.state.open}
                       onCancel={this.close}
                       onConfirm={() =>
-                        this.props.deleteSnippet(this.props.snippet.id)
+                        this.deleteAndOrder()
                       }
                     />
                     {this.props.snippet.order <= 1 ? null : (

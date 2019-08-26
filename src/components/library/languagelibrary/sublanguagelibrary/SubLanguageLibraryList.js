@@ -9,6 +9,9 @@ import {
   Confirm
 
 } from "semantic-ui-react";
+import * as firebase from "firebase/app";
+import "firebase/storage";
+
 import SubLanguageLibraryEditForm from "./SubLanguageLibraryEditForm"
 
 export default class SubLanguageLibraryList extends Component {
@@ -18,6 +21,17 @@ export default class SubLanguageLibraryList extends Component {
 
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
+
+  deleteImageSubLanguageLibrary = () => {
+    const storageRef = firebase.storage().ref("sub_library_profiles");
+    const imageRef = storageRef.child(
+      `${this.props.subLanguage.title}-${this.props.subLanguage.userId}`
+    );
+    imageRef.delete().then(function() {
+      console.log("Image Deleted")
+    })
+    .then(() => this.props.deleteSubLanguageLibrary(this.props.subLanguage.id))
+  };
 
   render() {
     return (
@@ -53,8 +67,13 @@ export default class SubLanguageLibraryList extends Component {
                     confirmButton="Yes"
                     open={this.state.open}
                     onCancel={this.close}
-                    onConfirm={() =>
-                      this.props.deleteSubLanguageLibrary(this.props.subLanguage.id)
+                    // onConfirm={() =>
+                    //   this.props.deleteSubLanguageLibrary(this.props.subLanguage.id)
+                    // }
+                    onConfirm={
+                      this.props.subLanguage.image === null || this.props.subLanguage.image !== `${this.props.subLanguage.title}-${this.props.subLanguage.userId}`
+                        ? () => this.props.deleteSubLanguageLibrary(this.props.subLanguage.id)
+                        : () => this.deleteImageSubLanguageLibrary()
                     }
                   />
                 </Dropdown.Menu>
