@@ -117,6 +117,7 @@ export default class Register extends Component {
                       onChange={e => this.setState({ name: e.target.value })}
                     />
                     <Form.Input
+                      required
                       fluid
                       icon="user"
                       iconPosition="left"
@@ -126,6 +127,7 @@ export default class Register extends Component {
                       }
                     />
                     <Form.Input
+                      required
                       fluid
                       icon="mail"
                       iconPosition="left"
@@ -133,6 +135,7 @@ export default class Register extends Component {
                       onChange={e => this.setState({ email: e.target.value })}
                     />
                     <Form.Input
+                      required
                       fluid
                       icon="lock"
                       iconPosition="left"
@@ -166,9 +169,7 @@ export default class Register extends Component {
                       fluid
                       size="large"
                       onClick={
-                        this.state.disabled
-                          ? this.submit
-                          : this.submitWithImage
+                        this.state.username === "" | this.state.email === "" | this.state.password === "" ? null : this.state.disabled ? this.submit : this.submitWithImage
                       }
                     >
                       Register

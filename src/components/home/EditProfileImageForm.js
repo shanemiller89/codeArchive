@@ -25,12 +25,12 @@ export default class EditProfileImageForm extends Component {
     this.setState({ openForm: !this.state.openForm });
   };
 
-  storageRef = firebase.storage().ref("library_profiles");
+  storageRef = firebase.storage().ref("profile_picture");
 
   submit = () => {
     //will determine name of storage reference
     const ref = this.storageRef.child(
-      `${this.state.title}-${this.state.userId}`
+      `${this.props.userInfo.username}`
     );
 
     return ref

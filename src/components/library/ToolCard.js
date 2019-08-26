@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Card, Image, Grid, Dropdown, Confirm } from "semantic-ui-react";
 import ToolEditForm from "./ToolEditForm";
+import * as firebase from "firebase/app";
+import "firebase/storage";
+
 
 // TODO:
 // 2. Find better place for Link
@@ -12,6 +15,17 @@ export default class Tools extends Component {
 
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
+
+  deleteImageToolLibrary = () => {
+    const storageRef = firebase.storage().ref("library_profiles");
+    const imageRef = storageRef.child(
+      `${this.props.tool.title}-${this.props.tool.userId}`
+    );
+    imageRef.delete().then(function() {
+      console.log("Image Deleted")
+    })
+    .then(() => this.props.deleteToolLibrary(this.props.tool.id))
+  };
 
   render() {
     return (
@@ -48,10 +62,10 @@ export default class Tools extends Component {
                         confirmButton="Yes"
                         open={this.state.open}
                         onCancel={this.close}
-                        onConfirm={() =>
-                          this.props.deleteToolLibrary(
-                            this.props.tool.id
-                          )
+                        onConfirm={
+                          this.props.tool.image === null
+                            ? () => this.props.deleteToolLibrary(this.props.tool.id)
+                            : () => this.deleteImageToolLibrary()
                         }
                       />
                     </Dropdown.Menu>

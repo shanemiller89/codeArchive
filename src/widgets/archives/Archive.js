@@ -53,9 +53,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&_sort=order&_order=asc`
+          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
         )
       )
       .then(NotesAndSnippets =>
@@ -69,9 +67,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&_sort=order&_order=asc`
+          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
         )
       )
       .then(NotesAndSnippets =>
@@ -85,9 +81,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&_sort=order&_order=asc`
+          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
         )
       )
       .then(NotesAndSnippets =>
@@ -102,9 +96,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&_sort=order&_order=asc`
+          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
         )
       )
       .then(NotesAndSnippets =>
@@ -118,9 +110,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&_sort=order&_order=asc`
+          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
         )
       )
       .then(NotesAndSnippets =>
@@ -134,9 +124,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${
-            this.props.match.params.ArchiveId
-          }&_sort=order&_order=asc`
+          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
         )
       )
       .then(NotesAndSnippets =>
@@ -144,6 +132,17 @@ export default class Archive extends Component {
           NotesAndSnippets: NotesAndSnippets
         })
       );
+  };
+
+  resetOrderState = () => {
+    API.getAll(
+      "records",
+      `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+    ).then(NotesAndSnippets =>
+      this.setState({
+        NotesAndSnippets: NotesAndSnippets
+      })
+    );
   };
 
   // FOR CRUD OF BOOKMARK //
@@ -289,6 +288,7 @@ export default class Archive extends Component {
           updateNote={this.updateNote}
           deleteSnippet={this.deleteSnippet}
           updateSnippet={this.updateSnippet}
+          resetOrderState={this.resetOrderState}
         />
         <br />
         {/* Bookmarks */}
@@ -299,7 +299,7 @@ export default class Archive extends Component {
             <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
               <Icon name="bookmark" style={{ color: "#15CA00" }} />
               <Header.Content>
-                <div style ={{display: "flex", alignItems: "flex-end"}}>
+                <div style={{ display: "flex", alignItems: "flex-end" }}>
                   Bookmarks
                   <div>
                     <BookmarkForm
@@ -334,14 +334,14 @@ export default class Archive extends Component {
             <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
               <Icon name="video" style={{ color: "#15CA00" }} />
               <Header.Content>
-              <div style ={{display: "flex", alignItems: "flex-end"}}>
-                Videos
-                <div>
-                <VideoForm
-                  archiveId={this.archiveId}
-                  addVideo={this.addVideo}
-                />
-                </div>
+                <div style={{ display: "flex", alignItems: "flex-end" }}>
+                  Videos
+                  <div>
+                    <VideoForm
+                      archiveId={this.archiveId}
+                      addVideo={this.addVideo}
+                    />
+                  </div>
                 </div>
                 <Header.Subheader>
                   All videos relating to this Archive

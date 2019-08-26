@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Card, Image, Grid, Dropdown, Confirm } from "semantic-ui-react";
 import LanguageEditForm from "./LanguageEditForm";
+import * as firebase from "firebase/app";
+import "firebase/storage";
+
 
 // TODO:
 // 2. Find better place for Link
@@ -12,6 +15,18 @@ export default class Languages extends Component {
 
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
+
+  deleteImageLanguageLibrary = () => {
+    const storageRef = firebase.storage().ref("library_profiles");
+    const imageRef = storageRef.child(
+      `${this.props.language.title}-${this.props.language.userId}`
+    );
+    imageRef.delete().then(function() {
+      console.log("Image Deleted")
+    })
+    .then(() => this.props.deleteLanguageLibrary(this.props.language.id))
+  };
+
 
   render() {
     return (
@@ -48,10 +63,10 @@ export default class Languages extends Component {
                         confirmButton="Yes"
                         open={this.state.open}
                         onCancel={this.close}
-                        onConfirm={() =>
-                          this.props.deleteLanguageLibrary(
-                            this.props.language.id
-                          )
+                        onConfirm={
+                          this.props.language.image === null
+                            ? () => this.props.deleteLanguageLibrary(this.props.language.id)
+                            : () => this.deleteImageLanguageLibrary()
                         }
                       />
                     </Dropdown.Menu>
