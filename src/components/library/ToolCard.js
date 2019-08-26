@@ -63,7 +63,7 @@ export default class Tools extends Component {
                         open={this.state.open}
                         onCancel={this.close}
                         onConfirm={
-                          this.props.tool.image === null || this.props.tool.image !== `${this.props.tool.title}-${this.props.tool.userId}`
+                          this.props.tool.image === null
                             ? () => this.props.deleteToolLibrary(this.props.tool.id)
                             : () => this.deleteImageToolLibrary()
                         }

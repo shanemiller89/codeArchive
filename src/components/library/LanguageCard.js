@@ -64,7 +64,7 @@ export default class Languages extends Component {
                         open={this.state.open}
                         onCancel={this.close}
                         onConfirm={
-                          this.props.language.image === null || this.props.language.image !== `${this.props.language.title}-${this.props.language.userId}`
+                          this.props.language.image === null
                             ? () => this.props.deleteLanguageLibrary(this.props.language.id)
                             : () => this.deleteImageLanguageLibrary()
                         }

@@ -124,10 +124,10 @@ export default class Home extends Component {
                 </Header>
                 <PieChart
                   data={[
-                    { title: "Total Libraries", value: 10, color: "#48D73D" },
-                    { title: "Total Issue Logs", value: 15, color: "#12BB00" },
-                    { title: "Total Code Logs", value: 20, color: "#318329" },
-                    { title: "Total Archives", value: 20, color: "#1E4919" }
+                    { title: "Total Libraries", value: 1, color: "#48D73D" },
+                    { title: "Total Issue Logs", value: 1, color: "#12BB00" },
+                    { title: "Total Code Logs", value: 1, color: "#318329" },
+                    { title: "Total Archives", value: 1, color: "#1E4919" }
                   ]}
                   style={{ height: "26em" }}
                   lineWidth={25}

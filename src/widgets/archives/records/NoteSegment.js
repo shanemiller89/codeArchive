@@ -170,9 +170,7 @@ export default class NoteSegment extends Component {
                       open={this.state.open}
                       onCancel={this.close}
                       onConfirm={
-                        this.props.note.image === null ||
-                        this.props.note.image !==
-                          `${this.props.note.title}-${this.props.note.archiveId}`
+                        this.props.note.image === null
                           ? () => this.deleteAndOrder()
                           : () => this.deleteImageNote()
                       }
