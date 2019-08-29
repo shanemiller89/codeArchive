@@ -19,7 +19,7 @@ export default class Languages extends Component {
   deleteImageLanguageLibrary = () => {
     const storageRef = firebase.storage().ref("library_profiles");
     const imageRef = storageRef.child(
-      `${this.props.language.title}-${this.props.language.userId}`
+      `${this.props.language.image_title}`
     );
     imageRef.delete().then(function() {
       console.log("Image Deleted")

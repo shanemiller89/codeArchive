@@ -25,7 +25,7 @@ export default class SubLanguageLibraryList extends Component {
   deleteImageSubLanguageLibrary = () => {
     const storageRef = firebase.storage().ref("sub_library_profiles");
     const imageRef = storageRef.child(
-      `${this.props.subLanguage.title}`
+      `${this.props.subLanguage.image_title}`
     );
     imageRef.delete().then(function() {
       console.log("Image Deleted")

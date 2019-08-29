@@ -21,6 +21,7 @@ export default class subLanguageLibraryEditForm extends Component {
     title: "",
     link: "",
     image: "",
+    image_title: "",
     libraryId: "",
     userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
@@ -39,6 +40,7 @@ export default class subLanguageLibraryEditForm extends Component {
           title: subLanguage.title,
           link: subLanguage.link,
           image: subLanguage.image,
+          image_title: subLanguage.image_title,
           libraryId: subLanguage.libraryId,
           userId: this.state.userId
         });
@@ -53,9 +55,17 @@ export default class subLanguageLibraryEditForm extends Component {
     });
   };
 
-  storageRef = firebase.storage().ref("library_profiles");
+  storageRef = firebase.storage().ref("sub_library_profiles");
 
   submitWithImage = () => {
+    //deletes old image
+    const storageRef = firebase.storage().ref("sub_library_profiles");
+    const imageRef = storageRef.child(
+      `${this.props.subLanguage.image_title}`
+    );
+    imageRef.delete().then(function() {
+      console.log("Image Deleted")
+    })
     //will determine name of storage reference
     const ref = this.storageRef.child(
       `${this.state.title}-${this.state.userId}`
@@ -69,6 +79,7 @@ export default class subLanguageLibraryEditForm extends Component {
           title: this.state.title,
           link: this.state.link,
           image: iURL,
+          image_title: `${this.state.title}-${this.state.userId}`,
           libraryId: this.state.libraryId,
           userId: this.state.userId,
           id: this.props.subLanguage.id
@@ -89,6 +100,7 @@ export default class subLanguageLibraryEditForm extends Component {
       title: this.state.title,
       link: this.state.link,
       image: this.state.image,
+      image_title: this.state.image_title,
       libraryId: this.state.libraryId,
       userId: this.state.userId,
       id: this.props.subLanguage.id

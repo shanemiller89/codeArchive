@@ -17,6 +17,7 @@ export default class SubLanguageLibraryForm extends Component {
     title: "",
     link: "",
     image: null,
+    image_title: "",
     libraryId: "",
     userId: this.props.currentUser,
     openForm: false,
@@ -30,7 +31,7 @@ export default class SubLanguageLibraryForm extends Component {
 
   submit = () => {
     //will determine name of storage reference
-    const ref = this.storageRef.child(this.state.title);
+    const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
 
     return ref
       .put(this.state.image)
@@ -40,6 +41,7 @@ export default class SubLanguageLibraryForm extends Component {
           title: this.state.title,
           link: this.state.link,
           image: iURL,
+          image_title: `${this.state.title}-${this.state.userId}`,
           libraryId: this.props.languageId,
           userId: this.props.currentUser
         });

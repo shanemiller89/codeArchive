@@ -17,6 +17,7 @@ export default class LanguageForm extends Component {
     title: "",
     link: "",
     image: null,
+    image_title: "",
     libraryTypeId: 1,
     userId: this.props.currentUser,
     openForm: false
@@ -41,6 +42,7 @@ export default class LanguageForm extends Component {
         return this.props.addLanguageLibrary({
           title: this.state.title,
           link: this.state.link,
+          image_title: `${this.state.title}-${this.state.userId}`,
           image: imageURL,
           libraryTypeId: 1,
           userId: this.props.currentUser

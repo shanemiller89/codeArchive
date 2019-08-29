@@ -17,6 +17,7 @@ export default class ToolForm extends Component {
     title: "",
     link: "",
     image: null,
+    image_title: "",
     libraryTypeId: 2,
     userId: this.props.currentUser,
     openForm: false
@@ -42,6 +43,7 @@ export default class ToolForm extends Component {
           title: this.state.title,
           link: this.state.link,
           image: imageURL,
+          image_title: `${this.state.title}-${this.state.userId}`,
           libraryTypeId: 2,
           userId: this.props.currentUser
         });

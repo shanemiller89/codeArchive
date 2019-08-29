@@ -19,7 +19,7 @@ export default class Tools extends Component {
   deleteImageToolLibrary = () => {
     const storageRef = firebase.storage().ref("library_profiles");
     const imageRef = storageRef.child(
-      `${this.props.tool.title}-${this.props.tool.userId}`
+      `${this.props.tool.image_title}`
     );
     imageRef.delete().then(function() {
       console.log("Image Deleted")
