@@ -59,7 +59,7 @@ export default class NoteEditForm extends Component {
   submitWithImage = () => {
     //delete old image
     const storageRef = firebase.storage().ref("archive_images");
-    const imageRef = storageRef.child(`${this.state.note.image_title}`);
+    const imageRef = storageRef.child(`${this.state.image_title}`);
     imageRef.delete().then(function() {
       console.log("Image Deleted");
     });
