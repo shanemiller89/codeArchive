@@ -1,1 +1,1 @@
-export const API_KEY = process.env.REACT_APP_GOOGLESEARCH_API_KEY
+export const API_KEY = "AIzaSyDnDYs3pu11dWmFcoebw6auX42cHI4Nh3c"

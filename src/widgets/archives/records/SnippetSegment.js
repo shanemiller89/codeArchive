@@ -62,6 +62,7 @@ export default class SnippetSegment extends Component {
         1}`
     )
       .then(swappedSnippet => {
+        if (swappedSnippet.length < 1) return;
         const prevSnippet = {
           title: swappedSnippet[0].title,
           text: swappedSnippet[0].text,
