@@ -18,6 +18,7 @@ let orderNumber = 1;
 
 export default class NoteSegment extends Component {
   state = {
+    userId: JSON.parse(localStorage.getItem("user")),
     open: false,
     isOpen: false
   };
@@ -32,6 +33,7 @@ export default class NoteSegment extends Component {
         title: swappedNote[0].title,
         text: swappedNote[0].text,
         image: swappedNote[0].image,
+        image_title: swappedNote[0].image_title,
         order: swappedNote[0].order + 1,
         language: swappedNote[0].language,
         archiveId: swappedNote[0].archiveId,
@@ -43,6 +45,7 @@ export default class NoteSegment extends Component {
           title: this.props.note.title,
           text: this.props.note.text,
           image: this.props.note.image,
+          image_title: this.props.note.image_title,
           order: this.props.note.order - 1,
           language: this.props.note.language,
           archiveId: this.props.note.archiveId,
@@ -60,10 +63,12 @@ export default class NoteSegment extends Component {
       `archiveId=${this.props.note.archiveId}&order=${this.props.note.order +
         1}`
     ).then(swappedNote => {
+      if (swappedNote.length < 1) return;
       const prevNote = {
         title: swappedNote[0].title,
         text: swappedNote[0].text,
         image: swappedNote[0].image,
+        image_title: swappedNote[0].image_title,
         order: swappedNote[0].order - 1,
         language: swappedNote[0].language,
         archiveId: swappedNote[0].archiveId,
@@ -75,6 +80,7 @@ export default class NoteSegment extends Component {
           title: this.props.note.title,
           text: this.props.note.text,
           image: this.props.note.image,
+          image_title: this.props.note.image_title,
           order: this.props.note.order + 1,
           language: this.props.note.language,
           archiveId: this.props.note.archiveId,
@@ -97,39 +103,44 @@ export default class NoteSegment extends Component {
   deleteImageNote = () => {
     const storageRef = firebase.storage().ref("archive_images");
     const imageRef = storageRef.child(
-      `${this.props.note.title}-${this.props.note.archiveId}`
+      `${this.props.note.image_title}`
     );
     imageRef
       .delete()
       .then(function() {
         console.log("Image Deleted");
       })
-      .then(() => this.deleteAndOrder());
+      .then(() => this.deleteAndOrder())
+      // .catch(function(error) {
+      //   console.log(error.message, 7000);
+      // });
   };
 
   deleteAndOrder = () => {
     API.delete("records", this.props.note.id)
-      .then(() => 
+      .then(() =>
         API.getAll(
           "records",
           `archiveId=${this.props.note.archiveId}&_sort=order&_order=asc`
         )
       )
-      .then(records => (
+      .then(records =>
         records.map(record => {
           const movedRecord = {
-          title: record.title,
-          text: record.text,
-          image: record.image,
-          order: orderNumber++,
-          language: record.language,
-          archiveId: record.archiveId,
-          recordTypeId: record.recordTypeId,
-          id: record.id
-          }
-          API.put("records", movedRecord)
+            title: record.title,
+            text: record.text,
+            image: record.image,
+            image_title: record.image_title,
+            order: orderNumber++,
+            language: record.language,
+            archiveId: record.archiveId,
+            recordTypeId: record.recordTypeId,
+            id: record.id
+          };
+          API.put("records", movedRecord);
         })
-      )).then(() => this.props.resetOrderState(), orderNumber = 1)
+      )
+      .then(() => this.props.resetOrderState(), (orderNumber = 1));
   };
 
   render() {

@@ -32,6 +32,7 @@ export default class SnippetSegment extends Component {
           title: swappedSnippet[0].title,
           text: swappedSnippet[0].text,
           image: swappedSnippet[0].image,
+          image_title: swappedSnippet[0].image_title,
           order: swappedSnippet[0].order + 1,
           language: swappedSnippet[0].language,
           archiveId: swappedSnippet[0].archiveId,
@@ -44,6 +45,7 @@ export default class SnippetSegment extends Component {
             title: this.props.snippet.title,
             text: this.props.snippet.text,
             image: this.props.snippet.image,
+            image_title: this.props.snippet.image_title,
             order: this.props.snippet.order - 1,
             language: this.props.snippet.language,
             archiveId: this.props.snippet.archiveId,
@@ -62,10 +64,12 @@ export default class SnippetSegment extends Component {
         1}`
     )
       .then(swappedSnippet => {
+        if (swappedSnippet.length < 1) return;
         const prevSnippet = {
           title: swappedSnippet[0].title,
           text: swappedSnippet[0].text,
           image: swappedSnippet[0].image,
+          image_title: swappedSnippet[0].image_title,
           order: swappedSnippet[0].order - 1,
           language: swappedSnippet[0].language,
           archiveId: swappedSnippet[0].archiveId,
@@ -78,6 +82,7 @@ export default class SnippetSegment extends Component {
             title: this.props.snippet.title,
             text: this.props.snippet.text,
             image: this.props.snippet.image,
+            image_title: this.props.snippet.image_title,
             order: this.props.snippet.order + 1,
             language: this.props.snippet.language,
             archiveId: this.props.snippet.archiveId,
@@ -104,6 +109,7 @@ export default class SnippetSegment extends Component {
           title: record.title,
           text: record.text,
           image: record.image,
+          image_title: record.image_title,
           order: orderNumber++,
           language: record.language,
           archiveId: record.archiveId,

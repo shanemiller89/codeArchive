@@ -11,16 +11,18 @@ import {
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import API from "../../../modules/API"
+import API from "../../../modules/API";
 
 export default class NoteEditForm extends Component {
   state = {
     title: "",
     text: "",
     image: null,
+    image_title: "",
     order: null,
     archiveId: "",
     recordTypeId: "",
+    userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
     checked: false,
     openForm: false
@@ -31,29 +33,40 @@ export default class NoteEditForm extends Component {
   };
 
   componentDidMount() {
-    API.get("records", this.props.noteId)
-    .then(note => {
+    API.get("records", this.props.noteId).then(note => {
       this.setState({
         title: note.title,
         text: note.text,
         image: note.image,
+        image_title: note.image_title,
         language: note.language,
         order: note.order,
         archiveId: note.archiveId,
-        recordTypeId: note.recordTypeId,
+        recordTypeId: note.recordTypeId
       });
     });
   }
 
   checkedToggle = () => {
-    this.setState({ checked: !this.state.checked, disabled: !this.state.disabled });
-  }
+    this.setState({
+      checked: !this.state.checked,
+      disabled: !this.state.disabled
+    });
+  };
 
   storageRef = firebase.storage().ref("archive_images");
 
   submitWithImage = () => {
+    //delete old image
+    const storageRef = firebase.storage().ref("archive_images");
+    const imageRef = storageRef.child(`${this.state.image_title}`);
+    imageRef.delete().then(function() {
+      console.log("Image Deleted");
+    });
     //will determine name of storage reference
-    const ref = this.storageRef.child(`${this.state.title}-${this.state.archiveId}`);
+    const ref = this.storageRef.child(
+      `${this.state.title}-${this.state.userId}`
+    );
 
     return ref
       .put(this.state.image)
@@ -63,29 +76,30 @@ export default class NoteEditForm extends Component {
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
-          language:this.state.language,
+          image_title: `${this.state.title}-${this.state.userId}`,
+          language: this.state.language,
           order: this.state.order,
-          archiveId:this.state.archiveId,
+          archiveId: this.state.archiveId,
           recordTypeId: this.state.recordTypeId,
           id: this.props.noteId
         });
       })
-    .then(() => this.toggle());
+      .then(() => this.toggle());
   };
 
   submit = () => {
     const editedNote = {
-        title: this.state.title,
-        text: this.state.text,
-        image: this.state.image,
-        language: this.state.language,
-        order: this.state.order,
-        archiveId:this.state.archiveId,
-        recordTypeId: this.state.recordTypeId,
-        id: this.props.noteId
-
+      title: this.state.title,
+      text: this.state.text,
+      image: this.state.image,
+      image_title: this.state.image_title,
+      language: this.state.language,
+      order: this.state.order,
+      archiveId: this.state.archiveId,
+      recordTypeId: this.state.recordTypeId,
+      id: this.props.noteId
     };
-    this.props.updateNote(editedNote)
+    this.props.updateNote(editedNote);
     this.toggle();
   };
 
@@ -95,10 +109,10 @@ export default class NoteEditForm extends Component {
         <Modal
           trigger={
             <Dropdown.Item
-            icon="pencil"
-            description="Edit"
-            onClick={this.toggle}
-          />
+              icon="pencil"
+              description="Edit"
+              onClick={this.toggle}
+            />
           }
           open={this.state.openForm}
           style={{ width: "45em" }}
@@ -134,11 +148,11 @@ export default class NoteEditForm extends Component {
                         value={this.state.text}
                       />
                       <Form.Checkbox
-                      fluid
-                      width={10}
-                      label="Do you want add or replace existing image?"
-                      checked={this.state.checked}
-                      onChange={this.checkedToggle}
+                        fluid
+                        width={10}
+                        label="Do you want add or replace existing image?"
+                        checked={this.state.checked}
+                        onChange={this.checkedToggle}
                       />
                       <Form.Input
                         fluid
@@ -150,7 +164,7 @@ export default class NoteEditForm extends Component {
                         id="imageURL"
                         disabled={this.state.disabled}
                       />
-                   <div
+                      <div
                         style={{
                           display: "flex",
                           justifyContent: "space-evenly"

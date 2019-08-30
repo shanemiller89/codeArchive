@@ -19,8 +19,10 @@ export default class NoteForm extends Component {
     title: "",
     text: "",
     image: null,
+    image_title: "",
     archiveId: parseInt(this.props.archiveId),
     recordTypeId: 1,
+    userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
     checked: false,
     openForm: false
@@ -38,7 +40,7 @@ export default class NoteForm extends Component {
 
   submitWithImage = () => {
     //will determine name of storage reference
-    const ref = this.storageRef.child(`${this.state.title}-${this.state.archiveId}`);
+    const ref = this.storageRef.child(`${this.state.title}-${this.state.userId}`);
 
     return ref
       .put(this.state.image)
@@ -48,6 +50,7 @@ export default class NoteForm extends Component {
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
+          image_title: `${this.state.title}-${this.state.userId}`,
           language: null,
           order: this.props.arrayLength === 1 ? 1 : this.props.arrayLength + 1,
           archiveId:this.state.archiveId,
@@ -62,6 +65,7 @@ export default class NoteForm extends Component {
         title: this.state.title,
         text: this.state.text,
         image: null,
+        image_title: null,
         language: null,
         order: this.props.arrayLength < 1 ? 1 : this.props.arrayLength + 1,
         archiveId:this.state.archiveId,

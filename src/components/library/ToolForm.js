@@ -7,7 +7,7 @@ import {
   Form,
   Segment,
   Grid,
-  Label,
+  Label
 } from "semantic-ui-react";
 import * as firebase from "firebase/app";
 import "firebase/storage";
@@ -17,18 +17,28 @@ export default class ToolForm extends Component {
     title: "",
     link: "",
     image: null,
+    image_title: "",
     libraryTypeId: 2,
     userId: this.props.currentUser,
-    openForm: false
+    openForm: false,
+    disabled: true,
+    checked: false
   };
 
   toggle = () => {
     this.setState({ openForm: !this.state.openForm });
   };
 
+  checkedToggle = () => {
+    this.setState({
+      checked: !this.state.checked,
+      disabled: !this.state.disabled
+    });
+  };
+
   storageRef = firebase.storage().ref("library_profiles");
 
-  submit = () => {
+  submitWithImage = () => {
     //will determine name of storage reference
     const ref = this.storageRef.child(
       `${this.state.title}-${this.state.userId}`
@@ -42,11 +52,25 @@ export default class ToolForm extends Component {
           title: this.state.title,
           link: this.state.link,
           image: imageURL,
+          image_title: `${this.state.title}-${this.state.userId}`,
           libraryTypeId: 2,
           userId: this.props.currentUser
         });
       })
       .then(() => this.toggle());
+  };
+
+  submit = () => {
+    const newTool = {
+      title: this.state.title,
+      link: this.state.link,
+      image: null,
+      image_title: null,
+      libraryTypeId: 2,
+      userId: this.props.currentUser
+    };
+    this.props.addToolLibrary(newTool);
+    this.toggle();
   };
 
   render() {
@@ -74,11 +98,7 @@ export default class ToolForm extends Component {
           <Modal.Content>
             <Header size="huge" textAlign="center">
               <div>
-                <Icon
-                  name="cogs"
-                  size="large"
-                  style={{ color: "#15CA00" }}
-                />
+                <Icon name="cogs" size="large" style={{ color: "#15CA00" }} />
               </div>
               Add A New Tool
             </Header>
@@ -100,6 +120,13 @@ export default class ToolForm extends Component {
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
+                      <Form.Checkbox
+                        fluid
+                        width={12}
+                        label="Do you want to upload the Tool Logo?"
+                        checked={this.state.checked}
+                        onChange={this.checkedToggle}
+                      />
                       <Form.Input
                         fluid
                         placeholder="Image"
@@ -108,14 +135,36 @@ export default class ToolForm extends Component {
                         }
                         type="file"
                         id="imageURL"
+                        disabled={this.state.disabled}
                       />
-                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
-                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
-                        Cancel
-                      </Button>
-                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
-                        Submit
-                      </Button>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly"
+                        }}
+                      >
+                        <Button
+                          style={{
+                            background: "red",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={this.toggle}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          style={{
+                            background: "#15CA00",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={this.state.disabled ? this.submit : this.submitWithImage}
+                        >
+                          Submit
+                        </Button>
                       </div>
                     </Segment>
                   </Form>

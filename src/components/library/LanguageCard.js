@@ -5,6 +5,7 @@ import LanguageEditForm from "./LanguageEditForm";
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
+const default_language_icon = "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Flanguage_default.png?alt=media&token=ffe5f722-4e7a-4157-9ba8-145354cda54f"
 
 // TODO:
 // 2. Find better place for Link
@@ -19,7 +20,7 @@ export default class Languages extends Component {
   deleteImageLanguageLibrary = () => {
     const storageRef = firebase.storage().ref("library_profiles");
     const imageRef = storageRef.child(
-      `${this.props.language.title}-${this.props.language.userId}`
+      `${this.props.language.image_title}`
     );
     imageRef.delete().then(function() {
       console.log("Image Deleted")
@@ -33,7 +34,7 @@ export default class Languages extends Component {
       <React.Fragment>
         <Grid.Column floated="left">
           <Card style={{ margin: "2.5em 4em" }}>
-            <Image src={this.props.language.image} wrapped ui={false} />
+            <Image src={this.props.language.image === null ? default_language_icon : this.props.language.image} wrapped ui={false} />
             <Card.Content>
               <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div>

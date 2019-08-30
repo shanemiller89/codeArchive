@@ -18,6 +18,7 @@ export default class LanguageEditForm extends Component {
     title: "",
     link: "",
     image: null,
+    image_title: "",
     libraryTypeId: null,
     userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
@@ -35,6 +36,7 @@ export default class LanguageEditForm extends Component {
         title: language.title,
         link: language.link,
         image: language.image,
+        image_title: language.image_title,
         libraryTypeId: language.libraryTypeId,
         userId: this.state.userId
       });
@@ -51,6 +53,14 @@ export default class LanguageEditForm extends Component {
   storageRef = firebase.storage().ref("library_profiles");
 
   submitWithImage = () => {
+    //deletes old image
+    const storageRef = firebase.storage().ref("library_profiles");
+    const imageRef = storageRef.child(
+      `${this.state.image_title}`
+    );
+    imageRef.delete().then(function() {
+      console.log("Image Deleted")
+    })
     //will determine name of storage reference
     const ref = this.storageRef.child(
       `${this.state.title}-${this.state.userId}`
@@ -64,6 +74,7 @@ export default class LanguageEditForm extends Component {
           title: this.state.title,
           link: this.state.link,
           image: iURL,
+          image_title: `${this.state.title}-${this.state.userId}`,
           libraryTypeId: this.state.libraryTypeId,
           userId: this.state.userId,
           id: this.props.language.id
@@ -84,6 +95,7 @@ export default class LanguageEditForm extends Component {
       title: this.state.title,
       link: this.state.link,
       image: this.state.image,
+      image_title: this.state.image_title,
       libraryTypeId: this.state.libraryTypeId,
       userId: this.state.userId,
       id: this.props.language.id

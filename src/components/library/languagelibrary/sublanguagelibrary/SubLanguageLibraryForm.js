@@ -17,20 +17,32 @@ export default class SubLanguageLibraryForm extends Component {
     title: "",
     link: "",
     image: null,
+    image_title: "",
     libraryId: "",
     userId: this.props.currentUser,
     openForm: false,
+    disabled: true,
+    checked: false
   };
 
   toggle = () => {
     this.setState({ openForm: !this.state.openForm });
   };
 
+  checkedToggle = () => {
+    this.setState({
+      checked: !this.state.checked,
+      disabled: !this.state.disabled
+    });
+  };
+
   storageRef = firebase.storage().ref("sub_library_profiles");
 
-  submit = () => {
+  submitWithImage = () => {
     //will determine name of storage reference
-    const ref = this.storageRef.child(this.state.title);
+    const ref = this.storageRef.child(
+      `${this.state.title}-${this.state.userId}`
+    );
 
     return ref
       .put(this.state.image)
@@ -40,11 +52,25 @@ export default class SubLanguageLibraryForm extends Component {
           title: this.state.title,
           link: this.state.link,
           image: iURL,
+          image_title: `${this.state.title}-${this.state.userId}`,
           libraryId: this.props.languageId,
           userId: this.props.currentUser
         });
       })
       .then(() => this.toggle());
+  };
+
+  submit = () => {
+    const newSubLanguage = {
+      title: this.state.title,
+      link: this.state.link,
+      image: null,
+      image_title: null,
+      libraryId: this.props.languageId,
+      userId: this.props.currentUser
+    };
+    this.props.addSubLanguageLibrary(newSubLanguage);
+    this.toggle();
   };
 
   render() {
@@ -53,7 +79,11 @@ export default class SubLanguageLibraryForm extends Component {
         <Modal
           trigger={
             <Button primary as="div" labelPosition="right">
-              <Button style={{ background: "#15CA00", color: "white" }} icon onClick={this.toggle}>
+              <Button
+                style={{ background: "#15CA00", color: "white" }}
+                icon
+                onClick={this.toggle}
+              >
                 <Icon name="plus" />
                 Add
               </Button>
@@ -94,6 +124,13 @@ export default class SubLanguageLibraryForm extends Component {
                         onChange={e => this.setState({ link: e.target.value })}
                         id="link"
                       />
+                      <Form.Checkbox
+                        fluid
+                        width={15}
+                        label="Do you want to upload the Sub-Language Logo?"
+                        checked={this.state.checked}
+                        onChange={this.checkedToggle}
+                      />
                       <Form.Input
                         fluid
                         placeholder="Image"
@@ -102,14 +139,36 @@ export default class SubLanguageLibraryForm extends Component {
                         }
                         type="file"
                         id="image"
+                        disabled={this.state.disabled}
                       />
-                      <div style={{display: "flex", justifyContent: "space-evenly"}}>
-                      <Button style={{ background: "red", color: "white", width: "10em" }}size="large" onClick={this.toggle}>
-                        Cancel
-                      </Button>
-                      <Button style={{ background: "#15CA00", color: "white", width: "10em" }} size="large" onClick={this.submit}>
-                        Submit
-                      </Button>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly"
+                        }}
+                      >
+                        <Button
+                          style={{
+                            background: "red",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={this.state.disabled ? this.submit : this.submitWithImage}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          style={{
+                            background: "#15CA00",
+                            color: "white",
+                            width: "10em"
+                          }}
+                          size="large"
+                          onClick={this.submit}
+                        >
+                          Submit
+                        </Button>
                       </div>
                     </Segment>
                   </Form>
