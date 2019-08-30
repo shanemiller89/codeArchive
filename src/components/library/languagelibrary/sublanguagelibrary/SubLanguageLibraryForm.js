@@ -165,7 +165,11 @@ export default class SubLanguageLibraryForm extends Component {
                             width: "10em"
                           }}
                           size="large"
-                          onClick={this.submit}
+                          onClick={
+                            this.state.disabled
+                              ? this.submit
+                              : this.submitWithImage
+                          }
                         >
                           Submit
                         </Button>
