@@ -5,7 +5,7 @@ import ToolEditForm from "./ToolEditForm";
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-
+const default_tool_icon = "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Ftool_default.png?alt=media&token=3adb0fab-bbaa-4545-b380-04c491d59005"
 // TODO:
 // 2. Find better place for Link
 export default class Tools extends Component {
@@ -32,7 +32,7 @@ export default class Tools extends Component {
       <React.Fragment>
         <Grid.Column floated="left">
           <Card style={{ margin: "2.5em 4em" }}>
-            <Image src={this.props.tool.image} wrapped ui={false} />
+            <Image src={this.props.tool.image === null ? default_tool_icon : this.props.tool.image} wrapped ui={false} />
             <Card.Content>
               <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div>
