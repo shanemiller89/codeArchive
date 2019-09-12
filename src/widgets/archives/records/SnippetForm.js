@@ -22,6 +22,7 @@ const options = [
   { key: 'json', text: 'JSON', value: 'json' },
   { key: 'md', text: 'MarkDown', value: 'markdown' },
   { key: 'python', text: 'Python', value: 'python' },
+  { key: 'sql', text: 'SQL', value: 'sql' },
   
 ]
 
