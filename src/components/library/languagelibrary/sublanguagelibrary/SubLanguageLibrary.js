@@ -138,7 +138,7 @@ export default class SubLanguageLibrary extends Component {
           </Header.Content>
         </Header>
         <div>
-          {this.state.subLanguageArchives.map(archive => (
+          {this.state.subLanguageArchives.sort((a, b) => (a.archive.title.toLowerCase() > b.archive.title.toLowerCase()) ? 1 : -1).map(archive => (
             <SubLanguageArchiveList
               key={archive.archive.id}
               archive={archive}
