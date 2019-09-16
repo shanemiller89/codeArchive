@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Icon
-} from "semantic-ui-react";
+import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../../modules/API";
 import SubLanguageArchiveList from "./SubLanguageArchivesList";
-import SubLanguageArchiveForm from "./SubLanguageArchiveForm"
+import SubLanguageArchiveForm from "./SubLanguageArchiveForm";
+import LibraryArchiveSearchBar from "../../LibraryArchiveSearchBar";
 
 export default class SubLanguageLibrary extends Component {
   state = {
@@ -25,9 +22,7 @@ export default class SubLanguageLibrary extends Component {
     // ALL SUB LANGUAGE ARCHIVES //
     API.getAll(
       "subLibraryArchives",
-      `_expand=archive&subLanguageLibraryId=${
-        this.props.match.params.subLanguageLibraryId
-      }`
+      `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
     )
       .then(
         subLanguageArchives =>
@@ -46,9 +41,7 @@ export default class SubLanguageLibrary extends Component {
       .then(() =>
         API.getAll(
           "subLibraryArchives",
-          `_expand=archive&subLanguageLibraryId=${
-            this.props.match.params.subLanguageLibraryId
-          }`
+          `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
         )
       )
       .then(subLanguageArchives =>
@@ -59,17 +52,15 @@ export default class SubLanguageLibrary extends Component {
   };
 
   addGoogleBookmark = data => {
-    API.post("resources", data)
-  }
+    API.post("resources", data);
+  };
 
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
         API.getAll(
           "subLibraryArchives",
-          `_expand=archive&subLanguageLibraryId=${
-            this.props.match.params.subLanguageLibraryId
-          }`
+          `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
         )
       )
       .then(subLanguageArchives =>
@@ -84,9 +75,7 @@ export default class SubLanguageLibrary extends Component {
       .then(() =>
         API.getAll(
           "subLibraryArchives",
-          `_expand=archive&subLanguageLibraryId=${
-            this.props.match.params.subLanguageLibraryId
-          }`
+          `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
         )
       )
       .then(subLanguageArchives =>
@@ -102,7 +91,7 @@ export default class SubLanguageLibrary extends Component {
         <Container
           style={{
             background: "#E8E8E8",
-            height: "20em",
+            height: "21em",
             color: "#15CA00",
             padding: "1em"
           }}
@@ -132,6 +121,10 @@ export default class SubLanguageLibrary extends Component {
             addArchive={this.addArchive}
             addSubLanguageArchive={this.addSubLanguageArchive}
             addGoogleBookmark={this.addGoogleBookmark}
+          />
+          <LibraryArchiveSearchBar
+            archives={this.state.subLanguageArchives}
+            style={{ marginTop: "1em" }}
           />
         </Container>
         {/* Archives */}

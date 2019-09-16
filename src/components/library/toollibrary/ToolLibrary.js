@@ -3,6 +3,7 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../modules/API";
 import ToolArchivesList from "./ToolArchivesList";
 import ToolArchiveForm from "./ToolArchiveForm";
+import LibraryArchiveSearchBar from "../LibraryArchiveSearchBar";
 
 export default class ToolLibrary extends Component {
   state = {
@@ -34,9 +35,7 @@ export default class ToolLibrary extends Component {
       .then(() =>
         API.getAll(
           "libraryArchives",
-          `_expand=archive&libraryId=${
-            this.props.match.params.toolLibraryId
-          }`
+          `_expand=archive&libraryId=${this.props.match.params.toolLibraryId}`
         )
       )
       .then(toolArchives =>
@@ -47,17 +46,15 @@ export default class ToolLibrary extends Component {
   };
 
   addGoogleBookmark = data => {
-    API.post("resources", data)
-  }
+    API.post("resources", data);
+  };
 
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
         API.getAll(
           "libraryArchives",
-          `_expand=archive&libraryId=${
-            this.props.match.params.toolLibraryId
-          }`
+          `_expand=archive&libraryId=${this.props.match.params.toolLibraryId}`
         )
       )
       .then(toolArchives =>
@@ -72,9 +69,7 @@ export default class ToolLibrary extends Component {
       .then(() =>
         API.getAll(
           "libraryArchives",
-          `_expand=archive&libraryId=${
-            this.props.match.params.toolLibraryId
-          }`
+          `_expand=archive&libraryId=${this.props.match.params.toolLibraryId}`
         )
       )
       .then(toolArchives =>
@@ -90,14 +85,17 @@ export default class ToolLibrary extends Component {
         <Container
           style={{
             background: "#E8E8E8",
-            height: "22em",
+            height: "21em",
             color: "#15CA00",
             padding: "1em"
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", marginTop: ".1em", }}>
-            <Icon style={{ color: "#15CA00", marginRight: ".25em"  }} name="cogs" />
+          <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+            <Icon
+              style={{ color: "#15CA00", marginRight: ".25em" }}
+              name="cogs"
+            />
             {this.state.tool.title}
           </Header>
           <a
@@ -121,6 +119,10 @@ export default class ToolLibrary extends Component {
             addArchive={this.addArchive}
             addToolArchive={this.addToolArchive}
             addGoogleBookmark={this.addGoogleBookmark}
+          />
+          <LibraryArchiveSearchBar
+            archives={this.state.toolArchives}
+            style={{ marginTop: "1em" }}
           />
         </Container>
         {/* Archives */}

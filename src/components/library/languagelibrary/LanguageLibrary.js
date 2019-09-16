@@ -5,6 +5,7 @@ import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList"
 import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
 import LanguageArchiveList from "./LanguageArchivesList";
 import LanguageArchiveForm from "./LanguageArchiveForm";
+import LibraryArchiveSearchBar from "../LibraryArchiveSearchBar";
 
 export default class LanguageLibrary extends Component {
   state = {
@@ -21,9 +22,7 @@ export default class LanguageLibrary extends Component {
     // Gets ALL sub languages associated with this language
     API.getAll(
       "subLanguageLibraries",
-      `userId=${this.props.currentUser}&libraryId=${
-        this.props.match.params.languageLibraryId
-      }`
+      `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
     )
       .then(
         subLanguageLibraries =>
@@ -46,9 +45,7 @@ export default class LanguageLibrary extends Component {
       .then(() =>
         API.getAll(
           "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${
-            this.props.match.params.languageLibraryId
-          }`
+          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -63,9 +60,7 @@ export default class LanguageLibrary extends Component {
       .then(() =>
         API.getAll(
           "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${
-            this.props.match.params.languageLibraryId
-          }`
+          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -80,9 +75,7 @@ export default class LanguageLibrary extends Component {
       .then(() =>
         API.getAll(
           "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${
-            this.props.match.params.languageLibraryId
-          }`
+          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -100,9 +93,7 @@ export default class LanguageLibrary extends Component {
       .then(() =>
         API.getAll(
           "libraryArchives",
-          `_expand=archive&libraryId=${
-            this.props.match.params.languageLibraryId
-          }`
+          `_expand=archive&libraryId=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(languageArchives =>
@@ -113,17 +104,15 @@ export default class LanguageLibrary extends Component {
   };
 
   addGoogleBookmark = data => {
-    API.post("resources", data)
-  }
+    API.post("resources", data);
+  };
 
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
         API.getAll(
           "libraryArchives",
-          `_expand=archive&libraryId=${
-            this.props.match.params.languageLibraryId
-          }`
+          `_expand=archive&libraryId=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(languageArchives =>
@@ -138,9 +127,7 @@ export default class LanguageLibrary extends Component {
       .then(() =>
         API.getAll(
           "libraryArchives",
-          `_expand=archive&libraryId=${
-            this.props.match.params.languageLibraryId
-          }`
+          `_expand=archive&libraryId=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(languageArchives =>
@@ -156,7 +143,7 @@ export default class LanguageLibrary extends Component {
         <Container
           style={{
             background: "#E8E8E8",
-            height: "22em",
+            height: "25em",
             color: "#15CA00",
             padding: "1em"
           }}
@@ -195,6 +182,10 @@ export default class LanguageLibrary extends Component {
             addArchive={this.addArchive}
             addLanguageArchive={this.addLanguageArchive}
             addGoogleBookmark={this.addGoogleBookmark}
+          />
+          <LibraryArchiveSearchBar
+            archives={this.state.languageArchives}
+            style={{ marginTop: "1em" }}
           />
         </Container>
         {/* Sub-Languages */}
