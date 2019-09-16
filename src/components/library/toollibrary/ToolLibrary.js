@@ -136,14 +136,20 @@ export default class ToolLibrary extends Component {
           </Header.Content>
         </Header>
         <div>
-          {this.state.toolArchives.map(archive => (
-            <ToolArchivesList
-              key={archive.archive.id}
-              archive={archive}
-              updateArchive={this.updateArchive}
-              deleteArchive={this.deleteArchive}
-            />
-          ))}
+          {this.state.toolArchives
+            .sort((a, b) =>
+              a.archive.title.toLowerCase() > b.archive.title.toLowerCase()
+                ? 1
+                : -1
+            )
+            .map(archive => (
+              <ToolArchivesList
+                key={archive.archive.id}
+                archive={archive}
+                updateArchive={this.updateArchive}
+                deleteArchive={this.deleteArchive}
+              />
+            ))}
         </div>
       </React.Fragment>
     );

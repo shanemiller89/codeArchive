@@ -219,14 +219,20 @@ export default class LanguageLibrary extends Component {
           </Header.Content>
         </Header>
         <div>
-          {this.state.languageArchives.map(archive => (
-            <LanguageArchiveList
-              key={archive.archive.id}
-              archive={archive}
-              updateArchive={this.updateArchive}
-              deleteArchive={this.deleteArchive}
-            />
-          ))}
+          {this.state.languageArchives
+            .sort((a, b) =>
+              a.archive.title.toLowerCase() > b.archive.title.toLowerCase()
+                ? 1
+                : -1
+            )
+            .map(archive => (
+              <LanguageArchiveList
+                key={archive.archive.id}
+                archive={archive}
+                updateArchive={this.updateArchive}
+                deleteArchive={this.deleteArchive}
+              />
+            ))}
         </div>
       </React.Fragment>
     );
