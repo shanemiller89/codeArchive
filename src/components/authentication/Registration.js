@@ -33,7 +33,7 @@ export default class Register extends Component {
     name: "",
     disabled: true,
     checked: false,
-    profile: null
+    profile: ""
   };
 
   checkedToggle = () => {

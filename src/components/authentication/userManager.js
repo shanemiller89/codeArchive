@@ -2,8 +2,8 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import { existsTypeAnnotation } from "@babel/types";
 
-const url = "http://localhost:8088/users";
-// const url = "https://codearchive-api.azurewebsites.net/users"
+// const url = "http://localhost:8088/users";
+const url = "http://localhost:8000/users";
 
 const setUserInLocalStorage = user => {
   localStorage.setItem("user", JSON.stringify(user.id));
@@ -78,6 +78,7 @@ export const login = (email, password) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(credentials => {
+      console.log(credentials)
       const id = credentials.user.uid;
       return getUser(id);
     })
