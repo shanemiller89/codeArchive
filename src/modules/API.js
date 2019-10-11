@@ -1,5 +1,5 @@
-// const remoteURL = "http://localhost:8088"
-const remoteURL = "https://codearchive-api.azurewebsites.net/"
+const remoteURL = "http://localhost:8088"
+// const remoteURL = "https://codearchive-api.azurewebsites.net/"
 
 export default {
   get(database, id) {
