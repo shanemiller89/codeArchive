@@ -6,6 +6,7 @@ import { existsTypeAnnotation } from "@babel/types";
 const url = "http://localhost:8000/users";
 
 const setUserInLocalStorage = user => {
+  
   localStorage.setItem("user", JSON.stringify(user.id));
 };
 
@@ -25,7 +26,14 @@ export const saveUserToJsonServer = user => {
 };
 
 export const getUser = userId => {
-  return fetch(`${url}/${userId}`).then(res => res.json());
+  return fetch(`${url}/${userId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "JWT": localStorage.getItem("Token")
+    }
+  }).then(res => res.json())
 };
 
 export const getUserFromLocalStorage = () => {
@@ -78,7 +86,7 @@ export const login = (email, password) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(credentials => {
-      console.log(credentials)
+      console.log(credentials);
       const id = credentials.user.uid;
       return getUser(id);
     })
@@ -86,7 +94,13 @@ export const login = (email, password) => {
       setUserInLocalStorage(user);
       return user;
     })
+    .then(() => {
+      firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+        localStorage.setItem("Token", idToken);
+      })
+    })
     .catch(function(error) {
       alert(error.message, 7000);
     });
 };
+

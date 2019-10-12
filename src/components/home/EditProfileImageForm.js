@@ -13,9 +13,6 @@ import "firebase/storage";
 
 export default class EditProfileImageForm extends Component {
   state = {
-    username: "",
-    email: "",
-    name: "",
     profile: "",
     Id: this.props.currentUser,
     openForm: false
@@ -38,9 +35,9 @@ export default class EditProfileImageForm extends Component {
       .then(data => data.ref.getDownloadURL())
       .then(imageURL => {
         return this.props.updateProfile({
-          username: this.props.userInfo.username,
-          email: this.props.userInfo.email,
-          name: this.props.userInfo.name,
+          // username: this.props.userInfo.username,
+          // email: this.props.userInfo.email,
+          // name: this.props.userInfo.name,
           profile: imageURL,
           id: this.props.userInfo.id
         });
