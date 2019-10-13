@@ -12,7 +12,7 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-import SubLanguageLibraryEditForm from "./SubLanguageLibraryEditForm"
+import SubLanguageLibraryEditForm from "./sublanguagelibrary/SubLanguageLibraryEditForm"
 
 const default_language_icon = "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Flanguage_default.png?alt=media&token=ffe5f722-4e7a-4157-9ba8-145354cda54f"
 

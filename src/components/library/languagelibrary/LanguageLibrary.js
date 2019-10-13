@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../modules/API";
-import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList";
+import SubLanguageLibraryList from "./SubLanguageLibraryList";
 import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
-import LanguageArchiveList from "./sublanguagelibrary/LanguageArchivesList";
+import LanguageArchiveList from "./LanguageArchivesList";
 import LibraryArchiveForm from "../LibraryArchiveForm";
 import LibraryArchiveSearchBar from "../LibraryArchiveSearchBar";
 

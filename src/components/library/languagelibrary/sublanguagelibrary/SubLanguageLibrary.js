@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../../modules/API";
 import SubLanguageArchiveList from "./SubLanguageArchivesList";
-import SubLanguageArchiveForm from "./SubLanguageArchiveForm";
+import LibraryArchiveForm from "../../LibraryArchiveForm"
 import LibraryArchiveSearchBar from "../../LibraryArchiveSearchBar";
 
 export default class SubLanguageLibrary extends Component {
@@ -20,33 +20,22 @@ export default class SubLanguageLibrary extends Component {
       .then(subLanguage => (newState.subLanguage = subLanguage))
       .then(() => this.setState(newState));
     // ALL SUB LANGUAGE ARCHIVES //
-    API.getAll(
-      "subLibraryArchives",
-      `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
-    )
-      .then(
-        subLanguageArchives =>
-          (newState.subLanguageArchives = subLanguageArchives)
-      )
-      .then(() => this.setState(newState));
+    API.get("libraries", `${this.props.match.params.subLanguageLibraryId}`)
+      .then(archives => (newState.subLanguageArchives = archives.archives))
+      .then(() => {
+        this.setState(newState);
+      });
   }
 
   // CRUD FOR SUB LANGUAGE ARCHIVE //
-
   addArchive = data => {
-    return API.post("archives", data);
-  };
-  addSubLanguageArchive = data => {
-    API.post("subLibraryArchives", data)
+    return API.post("archives", data)
       .then(() =>
-        API.getAll(
-          "subLibraryArchives",
-          `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.subLanguageLibraryId}`)
       )
       .then(subLanguageArchives =>
         this.setState({
-          subLanguageArchives: subLanguageArchives
+          subLanguageArchives: subLanguageArchives.archives
         })
       );
   };
@@ -58,14 +47,11 @@ export default class SubLanguageLibrary extends Component {
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
-        API.getAll(
-          "subLibraryArchives",
-          `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.subLanguageLibraryId}`)
       )
       .then(subLanguageArchives =>
         this.setState({
-          subLanguageArchives: subLanguageArchives
+          subLanguageArchives: subLanguageArchives.archives
         })
       );
   };
@@ -73,14 +59,11 @@ export default class SubLanguageLibrary extends Component {
   updateArchive = editedData => {
     API.put("archives", editedData)
       .then(() =>
-        API.getAll(
-          "subLibraryArchives",
-          `_expand=archive&subLanguageLibraryId=${this.props.match.params.subLanguageLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.subLanguageLibraryId}`)
       )
       .then(subLanguageArchives =>
         this.setState({
-          subLanguageArchives: subLanguageArchives
+          subLanguageArchives: subLanguageArchives.archives
         })
       );
   };
@@ -115,11 +98,10 @@ export default class SubLanguageLibrary extends Component {
             </Header>
           </a>
           <br />
-          <SubLanguageArchiveForm
-            subLanguageId={this.state.subLanguage.id}
-            subLanguageTitle={this.state.subLanguage.title}
+          <LibraryArchiveForm
+            libraryId={this.state.subLanguage.id}
+            libraryTitle={this.state.subLanguage.title}
             addArchive={this.addArchive}
-            addSubLanguageArchive={this.addSubLanguageArchive}
             addGoogleBookmark={this.addGoogleBookmark}
           />
           <LibraryArchiveSearchBar
@@ -138,9 +120,9 @@ export default class SubLanguageLibrary extends Component {
           </Header.Content>
         </Header>
         <div>
-          {this.state.subLanguageArchives.sort((a, b) => (a.archive.title.toLowerCase() > b.archive.title.toLowerCase()) ? 1 : -1).map(archive => (
+          {this.state.subLanguageArchives.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1).map(archive => (
             <SubLanguageArchiveList
-              key={archive.archive.id}
+              key={archive.id}
               archive={archive}
               updateArchive={this.updateArchive}
               deleteArchive={this.deleteArchive}

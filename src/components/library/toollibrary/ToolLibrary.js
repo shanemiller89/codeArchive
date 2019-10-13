@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../modules/API";
 import ToolArchivesList from "./ToolArchivesList";
-import ToolArchiveForm from "./ToolArchiveForm";
+import LibraryArchiveForm from "../LibraryArchiveForm"
 import LibraryArchiveSearchBar from "../LibraryArchiveSearchBar";
 
 export default class ToolLibrary extends Component {
@@ -17,30 +17,22 @@ export default class ToolLibrary extends Component {
       .then(tool => (newState.tool = tool))
       .then(() => this.setState(newState));
     // Gets ALL archives associated with this tool
-    API.getAll(
-      "libraryArchives",
-      `_expand=archive&libraryId=${this.props.match.params.toolLibraryId}`
-    )
-      .then(toolArchives => (newState.toolArchives = toolArchives))
-      .then(() => this.setState(newState));
+    API.get("libraries", `${this.props.match.params.toolLibraryId}`)
+      .then(archives => (newState.toolArchives = archives.archives))
+      .then(() => {
+        this.setState(newState);
+      });
   }
 
   // FOR CRUD OF TOOL ARCHIVES //
-
   addArchive = data => {
-    return API.post("archives", data);
-  };
-  addToolArchive = data => {
-    API.post("libraryArchives", data)
+    return API.post("archives", data)
       .then(() =>
-        API.getAll(
-          "libraryArchives",
-          `_expand=archive&libraryId=${this.props.match.params.toolLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.toolLibraryId}`)
       )
       .then(toolArchives =>
         this.setState({
-          toolArchives: toolArchives
+          toolArchives: toolArchives.archives
         })
       );
   };
@@ -52,14 +44,11 @@ export default class ToolLibrary extends Component {
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
-        API.getAll(
-          "libraryArchives",
-          `_expand=archive&libraryId=${this.props.match.params.toolLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.toolLibraryId}`)
       )
       .then(toolArchives =>
         this.setState({
-          toolArchives: toolArchives
+          toolArchives: toolArchives.archives
         })
       );
   };
@@ -67,14 +56,11 @@ export default class ToolLibrary extends Component {
   updateArchive = editedData => {
     API.put("archives", editedData)
       .then(() =>
-        API.getAll(
-          "libraryArchives",
-          `_expand=archive&libraryId=${this.props.match.params.toolLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.toolLibraryId}`)
       )
       .then(toolArchives =>
         this.setState({
-          toolArchives: toolArchives
+          toolArchives: toolArchives.archives
         })
       );
   };
@@ -113,11 +99,10 @@ export default class ToolLibrary extends Component {
           </a>
           <br />
           {/* Add Tool Archive Form */}
-          <ToolArchiveForm
-            toolId={this.state.tool.id}
-            toolTitle={this.state.tool.title}
+          <LibraryArchiveForm
+            libraryId={this.state.tool.id}
+            libraryTitle={this.state.tool.title}
             addArchive={this.addArchive}
-            addToolArchive={this.addToolArchive}
             addGoogleBookmark={this.addGoogleBookmark}
           />
           <LibraryArchiveSearchBar
@@ -138,13 +123,13 @@ export default class ToolLibrary extends Component {
         <div>
           {this.state.toolArchives
             .sort((a, b) =>
-              a.archive.title.toLowerCase() > b.archive.title.toLowerCase()
+              a.title.toLowerCase() > b.title.toLowerCase()
                 ? 1
                 : -1
             )
             .map(archive => (
               <ToolArchivesList
-                key={archive.archive.id}
+                key={archive.id}
                 archive={archive}
                 updateArchive={this.updateArchive}
                 deleteArchive={this.deleteArchive}

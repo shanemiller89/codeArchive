@@ -8,8 +8,7 @@ import {
   Dropdown,
   Confirm
 } from "semantic-ui-react";
-import LibraryArchiveEditForm from "../../LibraryArchiveEditForm";
-
+import LibraryArchiveEditForm from "../LibraryArchiveEditForm"
 export default class LanguageArchivesList extends Component {
   state = {
     open: false
