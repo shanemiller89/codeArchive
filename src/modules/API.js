@@ -35,7 +35,7 @@ export default {
         Accept: "application/json",
         "Authorization": `Bearer ${localStorage.getItem("Token")}`
       }
-    }).then(data => data.json());
+    })
   },
   post(database, newData) {
     return fetch(`${remoteURL}/${database}`, {
@@ -57,7 +57,7 @@ export default {
         "Authorization": `Bearer ${localStorage.getItem("Token")}`
       },
       body: JSON.stringify(editedItem)
-    }).then(data => data.json());
+    })
   },
   getGoogle(query, key) {
     return fetch(

@@ -16,10 +16,11 @@ export default class SubLanguageLibraryForm extends Component {
   state = {
     title: "",
     link: "",
-    image: null,
+    image: "",
     image_title: "",
-    libraryId: "",
-    userId: this.props.currentUser,
+    parent_library_id: this.props.languageId,
+    library_type_id: 3,
+    user_id: this.props.currentUser,
     openForm: false,
     disabled: true,
     checked: false
@@ -53,8 +54,9 @@ export default class SubLanguageLibraryForm extends Component {
           link: this.state.link,
           image: iURL,
           image_title: `${this.state.title}-${this.state.userId}`,
-          libraryId: this.props.languageId,
-          userId: this.props.currentUser
+          parent_library_id: this.props.languageId,
+          library_type_id: 3,
+          user_id: this.props.currentUser
         });
       })
       .then(() => this.toggle());
@@ -64,10 +66,11 @@ export default class SubLanguageLibraryForm extends Component {
     const newSubLanguage = {
       title: this.state.title,
       link: this.state.link,
-      image: null,
-      image_title: null,
-      libraryId: this.props.languageId,
-      userId: this.props.currentUser
+      image: "",
+      image_title: "",
+      parent_library_id: this.props.languageId,
+      library_type_id: 3,
+      user_id: this.props.currentUser
     };
     this.props.addSubLanguageLibrary(newSubLanguage);
     this.toggle();

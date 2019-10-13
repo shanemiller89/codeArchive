@@ -19,8 +19,6 @@ export default class ToolEditForm extends Component {
     link: "",
     image: null,
     image_title: "",
-    libraryTypeId: null,
-    userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
     checked: false,
     openForm: false
@@ -37,8 +35,6 @@ export default class ToolEditForm extends Component {
         link: tool.link,
         image: tool.image,
         image_title: tool.image_title,
-        libraryTypeId: tool.libraryTypeId,
-        userId: this.state.userId
       });
     });
   }
@@ -75,8 +71,6 @@ export default class ToolEditForm extends Component {
           link: this.state.link,
           image: iURL,
           image_title: `${this.state.title}-${this.state.userId}`,
-          libraryTypeId: this.state.libraryTypeId,
-          userId: this.state.userId,
           id: this.props.tool.id
         });
       })
@@ -96,8 +90,6 @@ export default class ToolEditForm extends Component {
       link: this.state.link,
       image: this.state.image,
       image_title: this.state.image_title,
-      libraryTypeId: this.state.libraryTypeId,
-      userId: this.state.userId,
       id: this.props.tool.id
     };
     this.props.updateToolLibrary(editedTool);

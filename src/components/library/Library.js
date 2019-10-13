@@ -15,12 +15,12 @@ export default class Library extends Component {
 
   componentDidMount() {
     const newState = {};
-    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`)
+    API.getAll("libraries", `user_id=${this.state.currentUser}&library_type_id=1`)
       .then(
         languageLibraries => (newState.languageLibraries = languageLibraries)
       )
       .then(() => this.setState(newState));
-    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=2`)
+    API.getAll("libraries", `user_id=${this.state.currentUser}&library_type_id=2`)
       .then(toolLibraries => (newState.toolLibraries = toolLibraries))
       .then(() => this.setState(newState));
   }
@@ -29,8 +29,7 @@ export default class Library extends Component {
     API.post("libraries", data)
       .then(() =>
         API.getAll(
-          "libraries",
-          `userId=${this.state.currentUser}&libraryTypeId=1`
+          "libraries", `user_id=${this.state.currentUser}&library_type_id=1`
         )
       )
       .then(languageLibraries =>
@@ -44,8 +43,7 @@ export default class Library extends Component {
     API.delete("libraries", id)
       .then(() =>
         API.getAll(
-          "libraries",
-          `userId=${this.state.currentUser}&libraryTypeId=1`
+          "libraries", `user_id=${this.state.currentUser}&library_type_id=1`
         )
       )
       .then(languageLibraries =>
@@ -59,8 +57,7 @@ export default class Library extends Component {
     API.put("libraries", editedData)
       .then(() =>
         API.getAll(
-          "libraries",
-          `userId=${this.state.currentUser}&libraryTypeId=1`
+          "libraries", `user_id=${this.state.currentUser}&library_type_id=1`
         )
       )
       .then(languageLibraries =>
@@ -74,8 +71,7 @@ export default class Library extends Component {
     API.post("libraries", data)
       .then(() =>
         API.getAll(
-          "libraries",
-          `userId=${this.state.currentUser}&libraryTypeId=2`
+          "libraries", `user_id=${this.state.currentUser}&library_type_id=2`
         )
       )
       .then(toolLibraries =>
@@ -89,8 +85,7 @@ export default class Library extends Component {
     API.delete("libraries", id)
       .then(() =>
         API.getAll(
-          "libraries",
-          `userId=${this.state.currentUser}&libraryTypeId=2`
+          "libraries", `user_id=${this.state.currentUser}&library_type_id=2`
         )
       )
       .then(toolLibraries =>
@@ -104,8 +99,7 @@ export default class Library extends Component {
     API.put("libraries", editedData)
       .then(() =>
         API.getAll(
-          "libraries",
-          `userId=${this.state.currentUser}&libraryTypeId=2`
+          "libraries", `user_id=${this.state.currentUser}&library_type_id=2`
         )
       )
       .then(toolLibraries =>

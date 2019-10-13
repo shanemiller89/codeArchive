@@ -21,8 +21,8 @@ export default class LanguageLibrary extends Component {
       .then(() => this.setState(newState));
     // Gets ALL sub languages associated with this language
     API.getAll(
-      "subLanguageLibraries",
-      `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+      "libraries",
+      `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
     )
       .then(
         subLanguageLibraries =>
@@ -41,11 +41,11 @@ export default class LanguageLibrary extends Component {
   // FOR CRUD OF SUB-LANGUAGE //
 
   addSubLanguageLibrary = data => {
-    API.post("subLanguageLibraries", data)
+    API.post("libraries", data)
       .then(() =>
         API.getAll(
-          "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+          "libraries",
+          `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -56,11 +56,11 @@ export default class LanguageLibrary extends Component {
   };
 
   deleteSubLanguageLibrary = id => {
-    API.delete("subLanguageLibraries", id)
+    API.delete("libraries", id)
       .then(() =>
         API.getAll(
-          "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+          "libraries",
+          `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -71,11 +71,11 @@ export default class LanguageLibrary extends Component {
   };
 
   updateSubLanguageLibrary = editedData => {
-    API.put("subLanguageLibraries", editedData)
+    API.put("libraries", editedData)
       .then(() =>
         API.getAll(
-          "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+          "libraries",
+          `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>

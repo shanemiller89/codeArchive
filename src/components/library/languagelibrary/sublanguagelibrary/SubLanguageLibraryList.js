@@ -43,7 +43,7 @@ export default class SubLanguageLibraryList extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column>
-              <Image src={this.props.subLanguage.image === null ? default_language_icon : this.props.subLanguage.image} size="tiny" />
+              <Image src={this.props.subLanguage.image === "" ? default_language_icon : this.props.subLanguage.image} size="tiny" />
               </Grid.Column>
               <Grid.Column width={13} verticalAlign="middle">
                 {/* LINK */}
@@ -74,7 +74,7 @@ export default class SubLanguageLibraryList extends Component {
                     //   this.props.deleteSubLanguageLibrary(this.props.subLanguage.id)
                     // }
                     onConfirm={
-                      this.props.subLanguage.image === null 
+                      this.props.subLanguage.image === "" 
                         ? () => this.props.deleteSubLanguageLibrary(this.props.subLanguage.id)
                         : () => this.deleteImageSubLanguageLibrary()
                     }

@@ -14,7 +14,7 @@ export default class SubLanguageLibrary extends Component {
   componentDidMount() {
     const newState = {};
     API.get(
-      "subLanguageLibraries",
+      "libraries",
       `${this.props.match.params.subLanguageLibraryId}`
     )
       .then(subLanguage => (newState.subLanguage = subLanguage))

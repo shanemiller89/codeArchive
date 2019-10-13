@@ -22,8 +22,6 @@ export default class subLanguageLibraryEditForm extends Component {
     link: "",
     image: "",
     image_title: "",
-    libraryId: "",
-    userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
     checked: false,
     openForm: false
@@ -34,15 +32,13 @@ export default class subLanguageLibraryEditForm extends Component {
   };
 
   componentDidMount() {
-    API.get("subLanguageLibraries", this.props.subLanguage.id).then(
+    API.get("libraries", this.props.subLanguage.id).then(
       subLanguage => {
         this.setState({
           title: subLanguage.title,
           link: subLanguage.link,
           image: subLanguage.image,
           image_title: subLanguage.image_title,
-          libraryId: subLanguage.libraryId,
-          userId: this.state.userId
         });
       }
     );
@@ -80,8 +76,6 @@ export default class subLanguageLibraryEditForm extends Component {
           link: this.state.link,
           image: iURL,
           image_title: `${this.state.title}-${this.state.userId}`,
-          libraryId: this.state.libraryId,
-          userId: this.state.userId,
           id: this.props.subLanguage.id
         });
       })
@@ -101,8 +95,6 @@ export default class subLanguageLibraryEditForm extends Component {
       link: this.state.link,
       image: this.state.image,
       image_title: this.state.image_title,
-      libraryId: this.state.libraryId,
-      userId: this.state.userId,
       id: this.props.subLanguage.id
     };
     this.props.updateSubLanguageLibrary(editedLanguage);
