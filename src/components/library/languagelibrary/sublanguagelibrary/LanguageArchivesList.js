@@ -8,7 +8,7 @@ import {
   Dropdown,
   Confirm
 } from "semantic-ui-react";
-import LanguageArchiveEditForm from "./LanguageArchiveEditForm";
+import LibraryArchiveEditForm from "../../LibraryArchiveEditForm";
 
 export default class LanguageArchivesList extends Component {
   state = {
@@ -34,11 +34,11 @@ export default class LanguageArchivesList extends Component {
                 {/* LINK */}
                 <Link
                   to={`/library-archive/${
-                    this.props.archive.archive.id
+                    this.props.archive.id
                   }`}
                 >
                   <Header as="h2" style={{ marginLeft: "1.5em" }}>
-                    {this.props.archive.archive.title}
+                    {this.props.archive.title}
                   </Header>
                 </Link>
               </Grid.Column>
@@ -49,7 +49,7 @@ export default class LanguageArchivesList extends Component {
                   style={{ fontSize: "1.75em" }}
                 >
                   <Dropdown.Menu direction="left">
-                    <LanguageArchiveEditForm
+                    <LibraryArchiveEditForm
                       archive={this.props.archive}
                       updateArchive={this.props.updateArchive}
                     />
@@ -66,7 +66,7 @@ export default class LanguageArchivesList extends Component {
                       open={this.state.open}
                       onCancel={this.close}
                       onConfirm={() =>
-                        this.props.deleteArchive(this.props.archive.archive.id)
+                        this.props.deleteArchive(this.props.archive.id)
                       }
                     />
                   </Dropdown.Menu>

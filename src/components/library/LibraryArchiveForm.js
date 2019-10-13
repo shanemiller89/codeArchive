@@ -9,18 +9,17 @@ import {
   Grid,
   Label
 } from "semantic-ui-react";
-import API from "../../../modules/API"
-import { API_KEY } from "../../../modules/API_Key"
+import API from "../../modules/API";
+import { API_KEY } from "../../modules/API_Key";
 
-export default class LanguageArchiveForm extends Component {
+export default class LibraryArchiveForm extends Component {
   state = {
     title: "",
     link: "",
-    libraryId: null,
-    archiveId: null,
+    library_id: null,
     openForm: false,
     disabled: true,
-    checked: false,
+    checked: false
   };
 
   toggle = () => {
@@ -28,53 +27,47 @@ export default class LanguageArchiveForm extends Component {
   };
 
   checkedToggle = () => {
-    this.setState({ checked: !this.state.checked, disabled: !this.state.disabled });
-  }
+    this.setState({
+      checked: !this.state.checked,
+      disabled: !this.state.disabled
+    });
+  };
 
   googleSubmit = () => {
     const archive = {
       title: this.state.title,
       link: this.state.link
     };
-    this.props
-      .addArchive(archive)
-      .then(newArchive => {
-        this.props.addLanguageArchive({
-          libraryId: this.props.languageId,
-          archiveId: newArchive.id
-        })
-        const searchTerm = `${this.props.languageTitle} ${this.state.title}`
-        API.getGoogle(searchTerm, API_KEY)
-        .then(searchData => {
-          searchData.items.map(item => {
-            const bookmark = {
-              title: item.title,
-              link: item.link,
-              description: item.snippet,
-              image: null,
-              archiveId: newArchive.id,
-              resourceTypeId: 1,
-            };
-            this.props.addGoogleBookmark(bookmark)
-          })
-        })
-      })
+    this.props.addArchive(archive).then(newArchive => {
+      this.props.addLanguageArchive({
+        libraryId: this.props.languageId,
+        archiveId: newArchive.id
+      });
+      const searchTerm = `${this.props.libraryTitle} ${this.state.title}`;
+      API.getGoogle(searchTerm, API_KEY).then(searchData => {
+        searchData.items.map(item => {
+          const bookmark = {
+            title: item.title,
+            link: item.link,
+            description: item.snippet,
+            image: null,
+            archiveId: newArchive.id,
+            resourceTypeId: 1
+          };
+          this.props.addGoogleBookmark(bookmark);
+        });
+      });
+    });
     this.toggle();
-  }
+  };
 
   submit = () => {
     const archive = {
       title: this.state.title,
-      link: this.state.link
+      link: this.state.link,
+      library_id: this.props.libraryId
     };
-    this.props
-      .addArchive(archive)
-      .then(newArchive =>
-        this.props.addLanguageArchive({
-          libraryId: this.props.languageId,
-          archiveId: newArchive.id
-        })
-      );
+    this.props.addArchive(archive);
     this.toggle();
   };
 

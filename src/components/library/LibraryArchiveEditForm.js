@@ -9,8 +9,9 @@ import {
   Grid,
   Dropdown
 } from "semantic-ui-react";
-import API from "../../../modules/API"
-export default class LanguageArchiveEditForm extends Component {
+import API from "../../modules/API"
+
+export default class LibraryArchiveEditForm extends Component {
   state = {
     title: "",
     link: "",
@@ -23,7 +24,7 @@ export default class LanguageArchiveEditForm extends Component {
 
 
   componentDidMount() {
-    API.get("archives", this.props.archive.archive.id)
+    API.get("archives", this.props.archive.id)
     .then(archive => {
       this.setState({
         title: archive.title,
@@ -43,7 +44,7 @@ handleFieldChange = evt => {
     const editedArchive = {
       title: this.state.title,
       link: this.state.link,
-      id: this.props.archive.archive.id
+      id: this.props.archive.id
     };
     this.props.updateArchive(editedArchive);
     this.toggle()
