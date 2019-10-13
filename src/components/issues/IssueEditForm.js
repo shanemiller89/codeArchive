@@ -15,10 +15,7 @@ export default class IssueEditForm extends Component {
   state = {
     title: "",
     reference: "",
-    logTypeId: "",
-    userId: "",
-    issueId: "",
-    archiveId: "",
+    link: "",
     openForm: false
   };
 
@@ -32,30 +29,27 @@ export default class IssueEditForm extends Component {
       this.setState({
         title: issue.title,
         reference: issue.reference,
-        logTypeId: issue.logTypeId,
-        userId: issue.userId
+        link: issue.archives[0].link
       });
     });
   }
 
 
 // Update Existing Log //
-  submit = () => {
-    const editedIssue = {
-      title: this.state.title,
-      reference: this.state.reference,
-      logTypeId: this.state.logTypeId,
-      userId: this.state.userId,
-      id: this.props.issueId
-    }
-    const editedArchive = {
-      title: this.state.title,
-      link: "",
-      id: this.props.archiveId
-    };
-    this.props.updateIssue(editedIssue, editedArchive)
-    this.toggle();
+submit = () => {
+  const editedIssue = {
+    title: this.state.title,
+    reference: this.state.reference,
+    id: this.props.issueId
+  }
+  const editedArchive = {
+    title: this.state.title,
+    link: this.state.link,
+    id: this.props.archiveId
   };
+  this.props.updateIssue(editedIssue, editedArchive)
+  this.toggle();
+};
 
   render() {
     return (

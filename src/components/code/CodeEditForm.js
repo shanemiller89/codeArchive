@@ -15,10 +15,7 @@ export default class CodeEditForm extends Component {
   state = {
     title: "",
     reference: "",
-    logTypeId: "",
-    userId: "",
-    codeId: "",
-    archiveId: "",
+    link: "",
     openForm: false
   };
 
@@ -32,8 +29,7 @@ export default class CodeEditForm extends Component {
       this.setState({
         title: code.title,
         reference: code.reference,
-        logTypeId: code.logTypeId,
-        userId: code.userId
+        link: code.archives[0].link
       });
     });
   }
@@ -44,13 +40,11 @@ export default class CodeEditForm extends Component {
     const editedCode = {
       title: this.state.title,
       reference: this.state.reference,
-      logTypeId: this.state.logTypeId,
-      userId: this.state.userId,
       id: this.props.codeId
     }
     const editedArchive = {
       title: this.state.title,
-      link: "",
+      link: this.state.link,
       id: this.props.archiveId
     };
     this.props.updateCode(editedCode, editedArchive)

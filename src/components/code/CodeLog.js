@@ -3,7 +3,7 @@ import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../modules/API";
 import CodeList from "./CodeList";
 import CodeForm from "./CodeForm";
-import CodeSearchBar from "./CodeSearchBar"
+import CodeSearchBar from "./CodeSearchBar";
 
 export default class CodeLog extends Component {
   state = {
@@ -13,21 +13,17 @@ export default class CodeLog extends Component {
 
   componentDidMount() {
     const newState = {};
-    API.getAll("logArchives", `_expand=archive&_expand=log`)
+    API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
       .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
   }
 
   // ADD CODE //
   addCode = data => {
-    return API.post("logs", data);
-  };
-  addArchive = data => {
-    return API.post("archives", data);
-  };
-  addCodeArchive = data => {
-    API.post("logArchives", data)
-      .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
+    API.post("logs", data)
+      .then(() =>
+        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
+      )
       .then(logArchives =>
         this.setState({
           logArchives: logArchives
@@ -40,7 +36,9 @@ export default class CodeLog extends Component {
   };
   deleteArchive = id => {
     API.delete("archives", id)
-      .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
+      .then(() =>
+        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
+      )
       .then(logArchives =>
         this.setState({
           logArchives: logArchives
@@ -54,7 +52,9 @@ export default class CodeLog extends Component {
   };
   updateArchive = editedData => {
     API.put("archives", editedData)
-      .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
+      .then(() =>
+        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
+      )
       .then(logArchives =>
         this.setState({
           logArchives: logArchives
@@ -90,32 +90,24 @@ export default class CodeLog extends Component {
           <br />
           <br />
           <br />
-            <CodeSearchBar />
+          <CodeSearchBar codeLogs={this.state.logArchives} />
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
           <Icon name="code" style={{ color: "#15CA00" }} />
           <Header.Content>
             Code Archives
-            <Header.Subheader>
-              Logs of Code useful repeat use
-            </Header.Subheader>
+            <Header.Subheader>Logs of Code useful repeat use</Header.Subheader>
           </Header.Content>
         </Header>
         <div>
-          {this.state.logArchives
-            .filter(
-              codeArchive =>
-                (codeArchive.log.logTypeId === 2) &
-                (codeArchive.log.userId === this.state.currentUser)
-            )
-            .map(codeArchive => (
-              <CodeList
-                key={codeArchive.archive.id}
-                codeArchive={codeArchive}
-                updateCode={this.updateCode}
-                deleteCode={this.deleteCode}
-              />
-            ))}
+          {this.state.logArchives.map(codeArchive => (
+            <CodeList
+              key={codeArchive.archives.id}
+              codeArchive={codeArchive}
+              updateCode={this.updateCode}
+              deleteCode={this.deleteCode}
+            />
+          ))}
         </div>
         <br />
       </React.Fragment>

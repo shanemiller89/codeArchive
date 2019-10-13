@@ -33,12 +33,12 @@ export default class IssueList extends Component {
               <Grid.Column width={7} verticalAlign="middle">
                 {/* LINK */}
                 <Link
-                  to={`/issue-log-archive/${this.props.issueArchive.archive.id}`}
+                  to={`/issue-log-archive/${this.props.issueArchive.archives[0].id}`}
                 >
                   <Header as="h2">
-                    {this.props.issueArchive.archive.title}
+                    {this.props.issueArchive.title}
                     <Header.Subheader>
-                      {this.props.issueArchive.log.reference}
+                      {this.props.issueArchive.reference}
                     </Header.Subheader>
                   </Header>
                 </Link>
@@ -48,8 +48,8 @@ export default class IssueList extends Component {
                 <Dropdown icon="bars" style={{ fontSize: "1.75em" }}>
                   <Dropdown.Menu direction="left">
                     <IssueEditForm
-                      issueId={this.props.issueArchive.log.id}
-                      archiveId={this.props.issueArchive.archive.id}
+                      issueId={this.props.issueArchive.id}
+                      archiveId={this.props.issueArchive.archives[0].id}
                       updateIssue={this.props.updateIssue}
                     />
                     <Dropdown.Item
@@ -66,7 +66,7 @@ export default class IssueList extends Component {
                       onCancel={this.close}
                       onConfirm={() =>
                         this.props
-                          .deleteIssue(this.props.issueArchive.log.id, this.props.issueArchive.archive.id)
+                          .deleteIssue(this.props.issueArchive.id, this.props.issueArchive.archives[0].id)
                       }
                     />
                   </Dropdown.Menu>

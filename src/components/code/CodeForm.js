@@ -13,10 +13,10 @@ import {
 export default class CodeForm extends Component {
   state = {
     title: "",
+    link: "",
     reference: "",
-    logTypeId: 2,
-    userId: JSON.parse(localStorage.getItem("user")),
-    newCodeId: "",
+    log_type_id: 2,
+    user_id: JSON.parse(localStorage.getItem("user")),
     openForm: false
   };
 
@@ -28,16 +28,12 @@ export default class CodeForm extends Component {
   submit = () => {
     const code = {
       title: this.state.title,
+      link: this.state.link,
       reference: this.state.reference,
-      logTypeId: this.state.logTypeId,
-      userId: this.state.userId
+      log_type_id: this.state.log_type_id,
+      user_id: this.state.user_id
     };
     this.props.addCode(code)
-    .then(newCode => this.setState({newCodeId: newCode.id}))
-    .then(() => this.props.addArchive({title: this.state.title, link: ""}))
-    .then(newArchive =>
-      this.props.addCodeArchive({logId: this.state.newCodeId, archiveId: newArchive.id})
-      )
     this.toggle();
   };
   

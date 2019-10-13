@@ -33,12 +33,12 @@ export default class CodeList extends Component {
               <Grid.Column width={7} verticalAlign="middle">
                 {/* LINK */}
                 <Link
-                  to={`/code-log-archive/${this.props.codeArchive.archive.id}`}
+                  to={`/code-log-archive/${this.props.codeArchive.archives[0].id}`}
                 >
                   <Header as="h2">
-                    {this.props.codeArchive.archive.title}
+                    {this.props.codeArchive.title}
                     <Header.Subheader>
-                      {this.props.codeArchive.log.reference}
+                      {this.props.codeArchive.reference}
                     </Header.Subheader>
                   </Header>
                 </Link>
@@ -48,8 +48,8 @@ export default class CodeList extends Component {
                 <Dropdown icon="bars" style={{ fontSize: "1.75em" }}>
                   <Dropdown.Menu direction="left">
                     <CodeEditForm
-                      codeId={this.props.codeArchive.log.id}
-                      archiveId={this.props.codeArchive.archive.id}
+                      codeId={this.props.codeArchive.id}
+                      archiveId={this.props.codeArchive.archives[0].id}
                       updateCode={this.props.updateCode}
                     />
                     <Dropdown.Item
@@ -66,7 +66,7 @@ export default class CodeList extends Component {
                       onCancel={this.close}
                       onConfirm={() =>
                         this.props
-                          .deleteCode(this.props.codeArchive.log.id, this.props.codeArchive.archive.id)
+                          .deleteCode(this.props.codeArchive.id, this.props.codeArchive.archives[0].id)
                       }
                     />
                   </Dropdown.Menu>
