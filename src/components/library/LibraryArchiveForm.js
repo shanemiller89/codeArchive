@@ -36,13 +36,12 @@ export default class LibraryArchiveForm extends Component {
   googleSubmit = () => {
     const archive = {
       title: this.state.title,
-      link: this.state.link
+      link: this.state.link,
+      library_id: this.props.libraryId
     };
-    this.props.addArchive(archive).then(newArchive => {
-      this.props.addLanguageArchive({
-        libraryId: this.props.languageId,
-        archiveId: newArchive.id
-      });
+    API.post("archives", archive).then(newArchive => {
+      console.log("NewArchive", newArchive)
+      const id = newArchive.archive_id
       const searchTerm = `${this.props.libraryTitle} ${this.state.title}`;
       API.getGoogle(searchTerm, API_KEY).then(searchData => {
         searchData.items.map(item => {
@@ -50,10 +49,10 @@ export default class LibraryArchiveForm extends Component {
             title: item.title,
             link: item.link,
             description: item.snippet,
-            image: null,
-            archiveId: newArchive.id,
-            resourceTypeId: 1
+            archive_id: id,
+            resource_type_id: 1
           };
+          console.log("Bookmarks",bookmark)
           this.props.addGoogleBookmark(bookmark);
         });
       });

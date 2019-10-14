@@ -17,10 +17,8 @@ export default class VideoForm extends Component {
     title: "",
     link: "",
     description: "",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
-    archiveId: parseInt(this.props.archiveId),
-    resourceTypeId: 2,
+    archive_id: parseInt(this.props.archiveId),
+    resource_type_id: 2,
     openForm: false
   };
 
@@ -33,9 +31,8 @@ export default class VideoForm extends Component {
       title: this.state.title,
       link: this.state.link,
       description: this.state.description,
-      image: this.state.image,
-      archiveId: this.state.archiveId,
-      resourceTypeId: this.state.resourceTypeId
+      archive_id: this.state.archive_id,
+      resource_type_id: this.state.resource_type_id
     };
     this.props.addVideo(video);
     this.toggle();

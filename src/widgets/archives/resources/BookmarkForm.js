@@ -15,9 +15,8 @@ export default class BookmarkForm extends Component {
     title: "",
     link: "",
     description: "",
-    image: null,
-    archiveId: parseInt(this.props.archiveId),
-    resourceTypeId: 1,
+    archive_id: parseInt(this.props.archiveId),
+    resource_type_id: 1,
     openForm: false
   };
 
@@ -30,9 +29,8 @@ export default class BookmarkForm extends Component {
       title: this.state.title,
       link: this.state.link,
       description: this.state.description,
-      image: this.state.image,
-      archiveId: this.state.archiveId,
-      resourceTypeId: this.state.resourceTypeId,
+      archive_id: this.state.archive_id,
+      resource_type_id: this.state.resource_type_id,
 
     };
     this.props.addBookmark(bookmark)

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../../modules/API";
 import SubLanguageArchiveList from "./SubLanguageArchivesList";
-import LibraryArchiveForm from "../../LibraryArchiveForm"
+import LibraryArchiveForm from "../../LibraryArchiveForm";
 import LibraryArchiveSearchBar from "../../LibraryArchiveSearchBar";
 
 export default class SubLanguageLibrary extends Component {
@@ -13,10 +13,7 @@ export default class SubLanguageLibrary extends Component {
 
   componentDidMount() {
     const newState = {};
-    API.get(
-      "libraries",
-      `${this.props.match.params.subLanguageLibraryId}`
-    )
+    API.get("libraries", `${this.props.match.params.subLanguageLibraryId}`)
       .then(subLanguage => (newState.subLanguage = subLanguage))
       .then(() => this.setState(newState));
     // ALL SUB LANGUAGE ARCHIVES //
@@ -41,7 +38,15 @@ export default class SubLanguageLibrary extends Component {
   };
 
   addGoogleBookmark = data => {
-    API.post("resources", data);
+    API.post("resources", data)
+      .then(() =>
+        API.get("libraries", `${this.props.match.params.subLanguageLibraryId}`)
+      )
+      .then(subLanguageArchives =>
+        this.setState({
+          subLanguageArchives: subLanguageArchives.archives
+        })
+      );
   };
 
   deleteArchive = id => {
@@ -120,14 +125,18 @@ export default class SubLanguageLibrary extends Component {
           </Header.Content>
         </Header>
         <div>
-          {this.state.subLanguageArchives.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1).map(archive => (
-            <SubLanguageArchiveList
-              key={archive.id}
-              archive={archive}
-              updateArchive={this.updateArchive}
-              deleteArchive={this.deleteArchive}
-            />
-          ))}
+          {this.state.subLanguageArchives
+            .sort((a, b) =>
+              a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+            )
+            .map(archive => (
+              <SubLanguageArchiveList
+                key={archive.id}
+                archive={archive}
+                updateArchive={this.updateArchive}
+                deleteArchive={this.deleteArchive}
+              />
+            ))}
         </div>
       </React.Fragment>
     );

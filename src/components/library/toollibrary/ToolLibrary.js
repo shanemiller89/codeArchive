@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../modules/API";
 import ToolArchivesList from "./ToolArchivesList";
-import LibraryArchiveForm from "../LibraryArchiveForm"
+import LibraryArchiveForm from "../LibraryArchiveForm";
 import LibraryArchiveSearchBar from "../LibraryArchiveSearchBar";
 
 export default class ToolLibrary extends Component {
@@ -38,7 +38,15 @@ export default class ToolLibrary extends Component {
   };
 
   addGoogleBookmark = data => {
-    API.post("resources", data);
+    API.post("resources", data)
+      .then(() =>
+        API.get("libraries", `${this.props.match.params.toolLibraryId}`)
+      )
+      .then(toolArchives =>
+        this.setState({
+          toolArchives: toolArchives.archives
+        })
+      );
   };
 
   deleteArchive = id => {
@@ -123,9 +131,7 @@ export default class ToolLibrary extends Component {
         <div>
           {this.state.toolArchives
             .sort((a, b) =>
-              a.title.toLowerCase() > b.title.toLowerCase()
-                ? 1
-                : -1
+              a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
             )
             .map(archive => (
               <ToolArchivesList

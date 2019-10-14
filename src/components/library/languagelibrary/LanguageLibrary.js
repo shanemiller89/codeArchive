@@ -99,7 +99,15 @@ export default class LanguageLibrary extends Component {
   };
 
   addGoogleBookmark = data => {
-    API.post("resources", data);
+    API.post("resources", data)
+      .then(() =>
+        API.get("libraries", `${this.props.match.params.languageLibraryId}`)
+      )
+      .then(languageArchives =>
+        this.setState({
+          languageArchives: languageArchives.archives
+        })
+      );
   };
 
   deleteArchive = id => {

@@ -18,9 +18,6 @@ export default class VideoEditForm extends Component {
     title: "",
     link: "",
     description: "",
-    image: "",
-    archiveId: "",
-    resourceTypeId: "",
     openForm: false
   };
 
@@ -35,9 +32,6 @@ export default class VideoEditForm extends Component {
         title: video.title,
         link: video.link,
         description: video.description,
-        image: video.image,
-        archiveId: video.archiveId,
-        resourceTypeId: video.resourceTypeId,
       });
     });
   }
@@ -47,9 +41,6 @@ export default class VideoEditForm extends Component {
       title: this.state.title,
       link: this.state.link,
       description: this.state.description,
-      image: this.state.image,
-      archiveId: this.state.archiveId,
-      resourceTypeId: this.state.resourceTypeId,
       id: this.props.video.id
 
     };

@@ -16,9 +16,6 @@ export default class BookmarkEditForm extends Component {
     title: "",
     link: "",
     description: "",
-    image: "",
-    archiveId: "",
-    resourceTypeId: "",
     openForm: false
   };
 
@@ -33,9 +30,6 @@ export default class BookmarkEditForm extends Component {
         title: bookmark.title,
         link: bookmark.link,
         description: bookmark.description,
-        image: bookmark.image,
-        archiveId: bookmark.archiveId,
-        resourceTypeId: bookmark.resourceTypeId,
       });
     })
   }
@@ -45,9 +39,6 @@ export default class BookmarkEditForm extends Component {
       title: this.state.title,
       link: this.state.link,
       description: this.state.description,
-      image: this.state.image,
-      archiveId: this.state.archiveId,
-      resourceTypeId: this.state.resourceTypeId,
       id: this.props.bookmark.id
     };
     this.props.updateBookmark(editedBookmark)

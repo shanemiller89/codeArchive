@@ -12,8 +12,7 @@ import NotesAndSnippetsList from "./records/NotesAndSnippetsList";
 export default class Archive extends Component {
   state = {
     Archive: [],
-    Bookmarks: [],
-    Videos: [],
+    Resources: [],
     NotesAndSnippets: []
   };
 
@@ -22,8 +21,12 @@ export default class Archive extends Component {
   componentDidMount() {
     const newState = {};
     API.get("archives", `${this.props.match.params.ArchiveId}`)
-      .then(Archive => (newState.Archive = Archive))
+      .then(Archive => {
+        newState.Archive = Archive;
+        newState.Resources = Archive.resources;
+      })
       .then(() => this.setState(newState));
+
     // Get ALl Notes and Snippets //
     API.getAll(
       "records",
@@ -31,20 +34,7 @@ export default class Archive extends Component {
     )
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
       .then(() => this.setState(newState));
-    // Get All bookmarks //
-    API.getAll(
-      "resources",
-      `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-    )
-      .then(Bookmarks => (newState.Bookmarks = Bookmarks))
-      .then(() => this.setState(newState));
-    // Get All videos //
-    API.getAll(
-      "resources",
-      `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-    )
-      .then(Videos => (newState.Videos = Videos))
-      .then(() => this.setState(newState));
+ 
   }
 
   // FOR CRUD OF NOTE //
@@ -148,91 +138,62 @@ export default class Archive extends Component {
   // FOR CRUD OF BOOKMARK //
   addBookmark = data => {
     API.post("resources", data)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-        )
-      )
-      .then(Bookmarks =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Bookmarks: Bookmarks
+          Resources: Archive.resources
         })
       );
   };
   deleteBookmark = id => {
     API.delete("resources", id)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-        )
-      )
-      .then(Bookmarks =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Bookmarks: Bookmarks
+          Resources: Archive.resources
         })
       );
   };
   updateBookmark = editedData => {
     API.put("resources", editedData)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-        )
-      )
-      .then(Bookmarks =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Bookmarks: Bookmarks
+          Resources: Archive.resources
         })
       );
   };
   // CRUD FOR VIDEOS
   addVideo = data => {
     API.post("resources", data)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-        )
-      )
-      .then(Videos =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Videos: Videos
+          Resources: Archive.resources
         })
       );
   };
   deleteVideo = id => {
     API.delete("resources", id)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-        )
-      )
-      .then(Videos =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Videos: Videos
+          Resources: Archive.resources
         })
       );
   };
   updateVideo = editedData => {
     API.put("resources", editedData)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-        )
-      )
-      .then(Videos =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Videos: Videos
+          Resources: Archive.resources
         })
       );
   };
 
   render() {
+    console.log("resources", this.state.Resources);
     return (
       <React.Fragment>
         <Container
@@ -315,7 +276,9 @@ export default class Archive extends Component {
               </Header.Content>
             </Header>
             <List>
-              {this.state.Bookmarks.map(bookmark => (
+              {this.state.Resources.filter(
+                bookmarks => bookmarks.resource_type_id === 1
+              ).map(bookmark => (
                 <BookmarksList
                   key={bookmark.id}
                   bookmark={bookmark}
@@ -349,7 +312,9 @@ export default class Archive extends Component {
               </Header.Content>
             </Header>
             <Card.Group itemsPerRow={2}>
-              {this.state.Videos.map(video => (
+              {this.state.Resources.filter(
+                videos => videos.resource_type_id === 2
+              ).map(video => (
                 <VideoCard
                   key={video.id}
                   video={video}
