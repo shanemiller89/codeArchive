@@ -44,7 +44,7 @@ export default class VideoEditForm extends Component {
       id: this.props.video.id
 
     };
-    this.props.updateVideo(editedVideo)
+    this.props.updateResource(editedVideo)
     this.toggle();
   };
 

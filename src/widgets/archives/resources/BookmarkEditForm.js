@@ -41,7 +41,7 @@ export default class BookmarkEditForm extends Component {
       description: this.state.description,
       id: this.props.bookmark.id
     };
-    this.props.updateBookmark(editedBookmark)
+    this.props.updateResource(editedBookmark)
     this.toggle();
   };
 

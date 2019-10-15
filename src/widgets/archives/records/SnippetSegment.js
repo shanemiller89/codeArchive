@@ -24,7 +24,7 @@ export default class SnippetSegment extends Component {
   MoveUp = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.snippet.archiveId}&order=${this.props.snippet.order -
+      `archive_id=${this.props.snippet.archive_id}&order=${this.props.snippet.order -
         1}`
     )
       .then(swappedSnippet => {
@@ -35,8 +35,8 @@ export default class SnippetSegment extends Component {
           image_title: swappedSnippet[0].image_title,
           order: swappedSnippet[0].order + 1,
           language: swappedSnippet[0].language,
-          archiveId: swappedSnippet[0].archiveId,
-          recordTypeId: swappedSnippet[0].recordTypeId,
+          archive_id: swappedSnippet[0].archive_id,
+          record_type_id: swappedSnippet[0].record_type_id,
           id: swappedSnippet[0].id
         };
         API.put("records", prevSnippet)
@@ -48,11 +48,11 @@ export default class SnippetSegment extends Component {
             image_title: this.props.snippet.image_title,
             order: this.props.snippet.order - 1,
             language: this.props.snippet.language,
-            archiveId: this.props.snippet.archiveId,
-            recordTypeId: this.props.snippet.recordTypeId,
+            archive_id: this.props.snippet.archive_id,
+            record_type_id: this.props.snippet.record_type_id,
             id: this.props.snippet.id
           };
-          this.props.updateSnippet(editedSnippet);
+          this.props.updateRecord(editedSnippet);
         });
       })
   };
@@ -60,7 +60,7 @@ export default class SnippetSegment extends Component {
   MoveDown = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.snippet.archiveId}&order=${this.props.snippet.order +
+      `archive_id=${this.props.snippet.archive_id}&order=${this.props.snippet.order +
         1}`
     )
       .then(swappedSnippet => {
@@ -72,8 +72,8 @@ export default class SnippetSegment extends Component {
           image_title: swappedSnippet[0].image_title,
           order: swappedSnippet[0].order - 1,
           language: swappedSnippet[0].language,
-          archiveId: swappedSnippet[0].archiveId,
-          recordTypeId: swappedSnippet[0].recordTypeId,
+          archive_id: swappedSnippet[0].archive_id,
+          record_type_id: swappedSnippet[0].record_type_id,
           id: swappedSnippet[0].id
         };
         API.put("records", prevSnippet)
@@ -85,11 +85,11 @@ export default class SnippetSegment extends Component {
             image_title: this.props.snippet.image_title,
             order: this.props.snippet.order + 1,
             language: this.props.snippet.language,
-            archiveId: this.props.snippet.archiveId,
-            recordTypeId: this.props.snippet.recordTypeId,
+            archive_id: this.props.snippet.archive_id,
+            record_type_id: this.props.snippet.record_type_id,
             id: this.props.snippet.id
           };
-          this.props.updateSnippet(editedSnippet);
+          this.props.updateRecord(editedSnippet);
         });
       })
   };
@@ -100,7 +100,7 @@ export default class SnippetSegment extends Component {
       .then(() => 
         API.getAll(
           "records",
-          `archiveId=${this.props.snippet.archiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.snippet.archive_id}&_sort=order&_order=asc`
         )
       )
       .then(records => (
@@ -112,8 +112,8 @@ export default class SnippetSegment extends Component {
           image_title: record.image_title,
           order: orderNumber++,
           language: record.language,
-          archiveId: record.archiveId,
-          recordTypeId: record.recordTypeId,
+          archive_id: record.archive_id,
+          record_type_id: record.record_type_id,
           id: record.id
           }
           API.put("records", movedRecord)
@@ -161,7 +161,7 @@ export default class SnippetSegment extends Component {
                   <Dropdown.Menu>
                     <SnippetEditForm
                       snippetId={this.props.snippet.id}
-                      updateSnippet={this.props.updateSnippet}
+                      updateRecord={this.props.updateRecord}
                     />
                     <Dropdown.Item
                       icon="trash alternate"

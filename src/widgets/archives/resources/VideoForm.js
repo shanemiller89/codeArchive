@@ -34,7 +34,7 @@ export default class VideoForm extends Component {
       archive_id: this.state.archive_id,
       resource_type_id: this.state.resource_type_id
     };
-    this.props.addVideo(video);
+    this.props.addResource(video);
     this.toggle();
   };
 

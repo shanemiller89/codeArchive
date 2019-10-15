@@ -33,7 +33,7 @@ export default class BookmarkForm extends Component {
       resource_type_id: this.state.resource_type_id,
 
     };
-    this.props.addBookmark(bookmark)
+    this.props.addResource(bookmark)
     this.toggle();
   };
 

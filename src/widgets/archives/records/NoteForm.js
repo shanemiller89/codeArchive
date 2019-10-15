@@ -46,7 +46,7 @@ export default class NoteForm extends Component {
       .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
       .then(imageURL => {
-        return this.props.addNote({
+        return this.props.addRecord({
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
@@ -72,7 +72,7 @@ export default class NoteForm extends Component {
         record_type_id: this.state.recordTypeId,
 
     };
-    this.props.addNote(note)
+    this.props.addRecord(note)
     this.toggle();
   };
 
