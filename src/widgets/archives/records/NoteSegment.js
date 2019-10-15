@@ -26,7 +26,7 @@ export default class NoteSegment extends Component {
   MoveUp = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.note.archiveId}&order=${this.props.note.order -
+      `archive_id=${this.props.note.archiveId}&order=${this.props.note.order -
         1}`
     ).then(swappedNote => {
       const prevNote = {
@@ -60,7 +60,7 @@ export default class NoteSegment extends Component {
   MoveDown = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.note.archiveId}&order=${this.props.note.order +
+      `archive_id=${this.props.note.archiveId}&order=${this.props.note.order +
         1}`
     ).then(swappedNote => {
       if (swappedNote.length < 1) return;
@@ -121,7 +121,7 @@ export default class NoteSegment extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.note.archiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.note.archive_id}`
         )
       )
       .then(records =>
@@ -181,7 +181,7 @@ export default class NoteSegment extends Component {
                       open={this.state.open}
                       onCancel={this.close}
                       onConfirm={
-                        this.props.note.image === null
+                        this.props.note.image === ""
                           ? () => this.deleteAndOrder()
                           : () => this.deleteImageNote()
                       }
@@ -205,7 +205,7 @@ export default class NoteSegment extends Component {
               </div>
             </div>
             <div style={{ whiteSpace: "pre-wrap" }}>{this.props.note.text}</div>
-            {this.props.note.image !== null ? (
+            {this.props.note.image !== "" ? (
               <div>
                 <Image
                   src={this.props.note.image}

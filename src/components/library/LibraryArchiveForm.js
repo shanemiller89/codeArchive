@@ -40,7 +40,6 @@ export default class LibraryArchiveForm extends Component {
       library_id: this.props.libraryId
     };
     API.post("archives", archive).then(newArchive => {
-      console.log("NewArchive", newArchive)
       const id = newArchive.archive_id
       const searchTerm = `${this.props.libraryTitle} ${this.state.title}`;
       API.getGoogle(searchTerm, API_KEY).then(searchData => {
@@ -52,7 +51,6 @@ export default class LibraryArchiveForm extends Component {
             archive_id: id,
             resource_type_id: 1
           };
-          console.log("Bookmarks",bookmark)
           this.props.addGoogleBookmark(bookmark);
         });
       });

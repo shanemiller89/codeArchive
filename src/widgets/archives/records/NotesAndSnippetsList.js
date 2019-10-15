@@ -9,7 +9,7 @@ export default class NotesAndSnippetsList extends Component {
     return (
       <React.Fragment>
         {this.props.NotesAndSnippets.map((NotesAndSnippets) =>
-          NotesAndSnippets.recordTypeId === 1 ? (
+          NotesAndSnippets.record_type_id === 1 ? (
               <NoteSegment
                 key={NotesAndSnippets.id}
                 note={NotesAndSnippets}

@@ -13,7 +13,7 @@ export default class Archive extends Component {
   state = {
     Archive: [],
     Resources: [],
-    NotesAndSnippets: []
+    NotesAndSnippets: [],
   };
 
   archiveId = this.props.match.params.ArchiveId;
@@ -21,19 +21,26 @@ export default class Archive extends Component {
   componentDidMount() {
     const newState = {};
     API.get("archives", `${this.props.match.params.ArchiveId}`)
-      .then(Archive => {
-        newState.Archive = Archive;
-        newState.Resources = Archive.resources;
+    .then(Archive => {
+      newState.Archive = Archive;
+      newState.Resources = Archive.resources;
       })
       .then(() => this.setState(newState));
 
-    // Get ALl Notes and Snippets //
+    // Get ALl Notes and Snippets
     API.getAll(
       "records",
-      `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+      `archive_id=${this.props.match.params.ArchiveId}`
     )
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
       .then(() => this.setState(newState));
+ 
+    // API.getAll(
+    //   "records",
+    //   `archive_id=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+    // )
+    //   .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
+    //   .then(() => this.setState(newState));
  
   }
 
@@ -43,7 +50,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.match.params.ArchiveId}`
         )
       )
       .then(NotesAndSnippets =>
@@ -57,7 +64,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.match.params.ArchiveId}`
         )
       )
       .then(NotesAndSnippets =>
@@ -71,7 +78,7 @@ export default class Archive extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.match.params.ArchiveId}`
         )
       )
       .then(NotesAndSnippets =>
@@ -127,7 +134,7 @@ export default class Archive extends Component {
   resetOrderState = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+      `archive_id=${this.props.match.params.ArchiveId}`
     ).then(NotesAndSnippets =>
       this.setState({
         NotesAndSnippets: NotesAndSnippets
@@ -193,7 +200,7 @@ export default class Archive extends Component {
   };
 
   render() {
-    console.log("resources", this.state.Resources);
+    console.log("NotesAndSnippets", this.state.NotesAndSnippets)
     return (
       <React.Fragment>
         <Container

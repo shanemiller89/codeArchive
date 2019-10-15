@@ -135,7 +135,6 @@ export default class LanguageLibrary extends Component {
   };
 
   render() {
-    console.log("These are ARchives", this.state.languageArchives);
     return (
       <React.Fragment>
         <Container
