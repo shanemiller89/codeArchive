@@ -9,7 +9,7 @@ import {
   Grid,
   Dropdown
 } from "semantic-ui-react";
-import API from "../../modules/API"
+import API from "../../modules/API";
 
 export default class EventEditForm extends Component {
   state = {
@@ -19,7 +19,6 @@ export default class EventEditForm extends Component {
     description: "",
     link: "",
     reference: "",
-    userId: "",
     openForm: false
   };
 
@@ -28,19 +27,17 @@ export default class EventEditForm extends Component {
   };
 
   componentDidMount() {
-    API.get("events", this.props.eventId)
-    .then(event => {
+    API.get("events", this.props.eventId).then(event => {
       this.setState({
         title: event.title,
         date: event.date,
         location: event.location,
         description: event.description,
         link: event.link,
-        reference: event.reference,
-        userId: event.userId
+        reference: event.reference
+      });
     });
-});
-}
+  }
 
   submit = () => {
     const event = {
@@ -50,7 +47,6 @@ export default class EventEditForm extends Component {
       description: this.state.description,
       link: this.state.link,
       reference: this.state.reference,
-      userId: this.state.userId,
       id: this.props.eventId
     };
     this.props.updateEvent(event);
@@ -63,10 +59,10 @@ export default class EventEditForm extends Component {
         <Modal
           trigger={
             <Dropdown.Item
-            icon="pencil"
-            description="Edit"
-            onClick={this.toggle}
-          />
+              icon="pencil"
+              description="Edit"
+              onClick={this.toggle}
+            />
           }
           open={this.state.openForm}
           style={{ width: "30em" }}
@@ -104,7 +100,9 @@ export default class EventEditForm extends Component {
                       <Form.Input
                         fluid
                         value={this.state.location}
-                        onChange={e => this.setState({ location: e.target.value })}
+                        onChange={e =>
+                          this.setState({ location: e.target.value })
+                        }
                         id="location"
                       />
                       <Form.TextArea

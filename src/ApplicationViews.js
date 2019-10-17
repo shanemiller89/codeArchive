@@ -22,29 +22,29 @@ export default class ApplicationViews extends Component {
     logArchives: []
   };
 
-  componentDidMount() {
-    const newState = {};
-    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`)
-      .then(
-        languageLibraries => (newState.languageLibraries = languageLibraries)
-      )
-      .then(() => this.setState(newState));
-    API.getAll("subLanguageLibraries", `userId=${this.state.currentUser}`)
-      .then(
-        subLanguageLibraries =>
-          (newState.subLanguageLibraries = subLanguageLibraries)
-      )
-      .then(() => this.setState(newState));
-    API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=2`)
-      .then(toolLibraries => (newState.toolLibraries = toolLibraries))
-      .then(() => this.setState(newState));
-    API.getAll("libraryArchives", `_expand=archive`)
-      .then(languageArchives => (newState.languageArchives = languageArchives))
-      .then(() => this.setState(newState));
-    API.getAll("logArchives", `_expand=archive`)
-      .then(logArchives => (newState.logArchives = logArchives))
-      .then(() => this.setState(newState));
-  }
+  // componentDidMount() {
+  //   const newState = {};
+  //   API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=1`)
+  //     .then(
+  //       languageLibraries => (newState.languageLibraries = languageLibraries)
+  //     )
+  //     .then(() => this.setState(newState));
+  //   API.getAll("subLanguageLibraries", `userId=${this.state.currentUser}`)
+  //     .then(
+  //       subLanguageLibraries =>
+  //         (newState.subLanguageLibraries = subLanguageLibraries)
+  //     )
+  //     .then(() => this.setState(newState));
+  //   API.getAll("libraries", `userId=${this.state.currentUser}&libraryTypeId=2`)
+  //     .then(toolLibraries => (newState.toolLibraries = toolLibraries))
+  //     .then(() => this.setState(newState));
+  //   API.getAll("libraryArchives", `_expand=archive`)
+  //     .then(languageArchives => (newState.languageArchives = languageArchives))
+  //     .then(() => this.setState(newState));
+  //   API.getAll("logArchives", `_expand=archive`)
+  //     .then(logArchives => (newState.logArchives = logArchives))
+  //     .then(() => this.setState(newState));
+  // }
 
   render() {
     return (
@@ -67,10 +67,10 @@ export default class ApplicationViews extends Component {
           exact
           path="/library/language/:languageLibraryId(\d+)"
           render={props => {
-            this.state.languageLibraries.find(
-              language =>
-                language.id === parseInt(props.match.params.languageLibraryId)
-            );
+            // this.state.languageLibraries.find(
+            //   language =>
+            //     language.id === parseInt(props.match.params.languageLibraryId)
+            // );
             return (
               <LanguageLibrary
                 {...props}
@@ -83,11 +83,11 @@ export default class ApplicationViews extends Component {
           exact
           path="/library/language/sublanguage/:subLanguageLibraryId(\d+)"
           render={props => {
-            this.state.subLanguageLibraries.find(
-              subLanguage =>
-                subLanguage.id ===
-                parseInt(props.match.params.subLanguageLibraryId)
-            );
+            // this.state.subLanguageLibraries.find(
+            //   subLanguage =>
+            //     subLanguage.id ===
+            //     parseInt(props.match.params.subLanguageLibraryId)
+            // );
             return (
               <SubLanguageLibrary
                 {...props}
@@ -100,9 +100,9 @@ export default class ApplicationViews extends Component {
           exact
           path="/library/tool/:toolLibraryId(\d+)"
           render={props => {
-            this.state.toolLibraries.find(
-              tool => tool.id === parseInt(props.match.params.toolLibraryId)
-            );
+            // this.state.toolLibraries.find(
+            //   tool => tool.id === parseInt(props.match.params.toolLibraryId)
+            // );
             return (
               <ToolLibrary {...props} currentUser={this.state.currentUser} />
             );
@@ -112,11 +112,11 @@ export default class ApplicationViews extends Component {
           exact
           path="/library-archive/:ArchiveId(\d+)"
           render={props => {
-            this.state.languageArchives.find(
-              languageArchive =>
-                languageArchive.archive.id ===
-                parseInt(props.match.params.ArchiveId)
-            );
+            // this.state.languageArchives.find(
+            //   languageArchive =>
+            //     languageArchive.archive.id ===
+            //     parseInt(props.match.params.ArchiveId)
+            // );
             return <Archive {...props} />;
           }}
         />
@@ -131,10 +131,10 @@ export default class ApplicationViews extends Component {
           exact
           path="/issue-log-archive/:ArchiveId(\d+)"
           render={props => {
-            this.state.logArchives.find(
-              logArchive =>
-                logArchive.archive.id === parseInt(props.match.params.ArchiveId)
-            );
+            // this.state.logArchives.find(
+            //   logArchive =>
+            //     logArchive.archive.id === parseInt(props.match.params.ArchiveId)
+            // );
             return <Archive {...props} />;
           }}
         />
@@ -149,10 +149,10 @@ export default class ApplicationViews extends Component {
           exact
           path="/code-log-archive/:ArchiveId(\d+)"
           render={props => {
-            this.state.logArchives.find(
-              logArchive =>
-                logArchive.archive.id === parseInt(props.match.params.ArchiveId)
-            );
+            // this.state.logArchives.find(
+            //   logArchive =>
+            //     logArchive.archive.id === parseInt(props.match.params.ArchiveId)
+            // );
             return <Archive {...props} />;
           }}
         />

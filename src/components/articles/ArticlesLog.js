@@ -13,7 +13,7 @@ export default class ArticlesLog extends Component {
 
   componentDidMount() {
     const newState = {};
-    API.getAll("articles", `userId=${this.state.currentUser}`)
+    API.getAll("articles", `user_id=${this.state.currentUser}`)
       .then(articles => (newState.articles = articles))
       .then(() => this.setState(newState));
   }
@@ -21,7 +21,7 @@ export default class ArticlesLog extends Component {
   // CRUD //
   addArticle = data => {
     API.post("articles", data)
-      .then(() => API.getAll("articles", `userId=${this.state.currentUser}`))
+      .then(() => API.getAll("articles", `user_id=${this.state.currentUser}`))
       .then(articles =>
         this.setState({
           articles: articles
@@ -31,7 +31,7 @@ export default class ArticlesLog extends Component {
 
   deleteArticle = id => {
     API.delete("articles", id)
-      .then(() => API.getAll("articles", `userId=${this.state.currentUser}`))
+      .then(() => API.getAll("articles", `user_id=${this.state.currentUser}`))
       .then(articles =>
         this.setState({
           articles: articles
@@ -41,7 +41,7 @@ export default class ArticlesLog extends Component {
 
   updateArticle = editedData => {
     API.put("articles", editedData)
-      .then(() => API.getAll("articles", `userId=${this.state.currentUser}`))
+      .then(() => API.getAll("articles", `user_id=${this.state.currentUser}`))
       .then(articles =>
         this.setState({
           articles: articles

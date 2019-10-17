@@ -17,7 +17,6 @@ export default class ArticleForm extends Component {
     synopsis: "",
     link: "",
     reference: "",
-    userId:"",
     openForm: false
   };
 
@@ -33,8 +32,6 @@ export default class ArticleForm extends Component {
         synopsis: article.synopsis,
         link: article.link,
         reference: article.reference,
-        userId: article.userId,
-
     });
 });
 }
@@ -46,7 +43,6 @@ export default class ArticleForm extends Component {
       synopsis: this.state.synopsis,
       link: this.state.link,
       reference: this.state.reference,
-      userId: this.state.userId,
       id: this.props.articleId
     };
     this.props.updateArticle(editedArticle);
