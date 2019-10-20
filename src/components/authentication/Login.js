@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import {
   Modal,
   Button,
@@ -10,8 +11,9 @@ import {
   Grid,
   Container
 } from "semantic-ui-react";
-import { login } from "./userManager";
+// import { login } from "./userManager";
 import Register from "./Registration";
+import useSimpleAuth from "../../hooks/useSimpleAuth";
 
 // TODO:
 // 1.Form Validation
@@ -24,86 +26,91 @@ const textLarge = {
   fontSize: "1.25em"
 };
 
-export default class Login extends Component {
-  state = {
-    email: "",
-    password: ""
+const Login = props => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useSimpleAuth();
+
+  const submit = () => {
+    const credentials = {
+      username: username,
+      password: password
+    };
+
+    login(credentials).then(() => {
+      window.location.reload(true)
+    })
+    // .then(() => {
+    //   props.history.push({
+    //     pathname: "/"
+    //   });
+    // });
   };
 
-  submit = () => {
-    login(this.state.email, this.state.password).then(user => {
-      this.props.setAuthState();
-      this.props.onLogin(user);
-    });
-  };
+  return (
+    <Modal
+      trigger={
+        <Button style={{ background: "#15CA00", color: "white" }}>Login</Button>
+      }
+      centered={false}
+    >
+      <Modal.Content>
+        <Header size="huge" textAlign="center">
+          <div>
+            <Icon name="database" style={archiveColor} size="large" />
+            code.<span style={archiveColor}>Archive</span>
+          </div>
+        </Header>
+        <Container textAlign="center">
+          <p style={textLarge}>All your resources</p>
+          <p style={textLarge}>All in one place</p>
+          <br />
+        </Container>
 
-  render() {
-    return (
-      <Modal
-        trigger={
-          <Button style={{ background: "#15CA00", color: "white" }}>
-            Login
-          </Button>
-        }
-        centered={false}
-      >
-        <Modal.Content>
-          <Header size="huge" textAlign="center">
-            <div>
-              <Icon name="database" style={archiveColor} size="large" />
-              code.<span style={archiveColor}>Archive</span>
-            </div>
-          </Header>
-          <Container textAlign="center">
-            <p style={textLarge}>All your resources</p>
-            <p style={textLarge}>All in one place</p>
-            <br />
-          </Container>
+        <Modal.Description>
+          <Grid textAlign="center" verticalAlign="middle">
+            <Grid.Column>
+              <Form size="large">
+                <Segment stacked>
+                  <Form.Input
+                    required
+                    fluid
+                    icon="user"
+                    iconPosition="left"
+                    placeholder="Username"
+                    onChange={e => setUsername(e.target.value)}
+                  />
+                  <Form.Input
+                    required
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Password"
+                    type="password"
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                  <Button
+                    style={{ background: "#15CA00", color: "white" }}
+                    fluid
+                    size="large"
+                    onClick={username === "" || password === "" ? null : submit}
+                  >
+                    Login
+                  </Button>
+                </Segment>
+              </Form>
+              <Message>
+                Don't have an Account? Be Sure to{" "}
+                <span style={{ marginLeft: "1em" }}>
+                  <Register />
+                </span>
+              </Message>
+            </Grid.Column>
+          </Grid>
+        </Modal.Description>
+      </Modal.Content>
+    </Modal>
+  );
+};
 
-          <Modal.Description>
-            <Grid textAlign="center" verticalAlign="middle">
-              <Grid.Column>
-                <Form size="large">
-                  <Segment stacked>
-                    <Form.Input
-                      required
-                      fluid
-                      icon="mail"
-                      iconPosition="left"
-                      placeholder="E-mail address"
-                      onChange={e => this.setState({ email: e.target.value })}
-                    />
-                    <Form.Input
-                      required
-                      fluid
-                      icon="lock"
-                      iconPosition="left"
-                      placeholder="Password"
-                      type="password"
-                      onChange={e =>
-                        this.setState({ password: e.target.value })
-                      }
-                    />
-                    <Button
-                      style={{ background: "#15CA00", color: "white" }}
-                      fluid
-                      size="large"
-                      onClick={
-                        this.state.email === "" || this.state.password === ""
-                          ? null
-                          : this.submit
-                      }
-                    >
-                      Login
-                    </Button>
-                  </Segment>
-                </Form>
-                <Message>Don't have an Account? Be Sure to <span style={{marginLeft: "1em"}}><Register /></span></Message>
-              </Grid.Column>
-            </Grid>
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
-    );
-  }
-}
+export default withRouter(Login);

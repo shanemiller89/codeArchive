@@ -8,7 +8,7 @@ export default class Authentication extends Component {
   render() {
     return (
       <React.Fragment>
-        <LoginNavBar setAuthState={this.props.setAuthState} />
+        <LoginNavBar setAuthState={this.props.setAuthState}/>
         <header
           style={{
             background: "#1b1c1d",

@@ -9,7 +9,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("Token")}`
+        Authorization: `Token ${localStorage.getItem("codearchive_token")}`
       }
     }).then(data => data.json());
   },
@@ -23,7 +23,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("Token")}`
+        Authorization: `Token ${localStorage.getItem("codearchive_token")}`
       }
     }).then(data => data.json());
   },
@@ -33,7 +33,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("Token")}`
+        Authorization: `Token ${localStorage.getItem("codearchive_token")}`
       }
     })
   },
@@ -43,7 +43,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("Token")}`
+        Authorization: `Token ${localStorage.getItem("codearchive_token")}`
       },
       body: JSON.stringify(newData)
     }).then(data => data.json());
@@ -54,7 +54,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("Token")}`
+        Authorization: `Token ${localStorage.getItem("codearchive_token")}`
       },
       body: JSON.stringify(editedItem)
     })

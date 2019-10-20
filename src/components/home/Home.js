@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Header,
   Image,
@@ -13,140 +13,135 @@ import PieChart from "react-minimal-pie-chart";
 import API from "../../modules/API";
 import EditProfileImageForm from "./EditProfileImageForm";
 
-export default class Home extends Component {
-  state = {
-    currentUser: JSON.parse(localStorage.getItem("user")),
-    userInfo: []
+const Home = () => {
+  const [coder, setCoder] = useState({ user: {} });
+
+  const getCoder = () => {
+    API.getAll("coders/profile")
+      .then(data => {
+        console.log(data);
+        setCoder(data);
+      });
+  };
+  const updateProfile = editedData => {
+    API.put("coders", editedData).then(() => {
+      getCoder()
+    })
   };
 
-  componentDidMount() {
-    const newState = {};
-    API.getAll("users", `id=${this.state.currentUser}`)
-      .then(userInfo => (newState.userInfo = userInfo))
-      .then(() => this.setState(newState));
-  }
+  useEffect(getCoder, []);
 
-  updateProfile = editedData => {
-    API.put("users", editedData)
-      .then(() => API.getAll("users", `id=${this.state.currentUser}`))
-      .then(userInfo =>
-        this.setState({
-          userInfo: userInfo
-        })
-      );
-  };
+  return (
+    <React.Fragment>
+      <Container
+        style={{
+          background: "#E8E8E8",
+          height: "7.5em",
+          color: "#15CA00",
+          padding: "1em"
+        }}
+        fluid
+      >
+        <Header style={{ fontSize: "5em" }}>
+          <Icon style={{ color: "#15CA00" }} name="address card" />
+          User Profile
+        </Header>
+        <br />
+      </Container>
 
-  render() {
-    return (
-      <React.Fragment>
-        <Container
-          style={{
-            background: "#E8E8E8",
-            height: "7.5em",
-            color: "#15CA00",
-            padding: "1em"
-          }}
-          fluid
-        >
-          <Header style={{ fontSize: "5em" }}>
-            <Icon style={{ color: "#15CA00" }} name="address card" />
-            User Profile
-          </Header>
-          <br />
-        </Container>
+      <Segment placeholder style={{ marginTop: "5em" }}>
+        <Grid columns={2} stackable textAlign="center">
+          <Divider vertical>
+            <Icon name="database" />
+          </Divider>
 
-        <Segment placeholder style={{ marginTop: "5em" }}>
-          <Grid columns={2} stackable textAlign="center">
-            <Divider vertical>
-              <Icon name="database" />
-            </Divider>
-
-            <Grid.Row verticalAlign="middle">
-              <Grid.Column>
-                <Message negative>
-                  <Message.Header>
-                    THIS APP IS CURRENTLY IN TESTING STAGES
-                  </Message.Header>
-                  <p>
-                    This app is only in testing phase. Please know your archives
-                    will be lost upon alpha deployment. Report bugs{" "}
-                    <a href="https://github.com/shanemiller89/codeArchive/issues">
-                      here.
-                    </a>
-                  </p>
-                </Message>
-                <div>
-                  {this.state.userInfo.map(userInfo => (
-                    <div key={userInfo.id}>
-                      {userInfo.profile === "" ? (
-                        <Image
-                          src="https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fprofile_placeholder.png?alt=media&token=a47e94d2-94b5-419c-8da3-9ccb382d5f70"
-                          size="medium"
-                          circular
-                          style={{ margin: "1em auto" }}
-                        />
-                      ) : (
-                        <Image
-                          src={userInfo.profile}
-                          size="medium"
-                          circular
-                          style={{ margin: "1em auto" }}
-                        />
-                      )}
-                      <EditProfileImageForm
-                        userInfo={userInfo}
-                        updateProfile={this.updateProfile}
-                      />
-                      <h2>
-                        <span style={{ color: "#15CA00" }}>
-                          {userInfo.username}{" "}
-                        </span>{" "}
-                      </h2>
-                      <h3>
-                        <Icon name="user" /> {userInfo.name}{" "}
-                      </h3>
-                      <h3>
-                        <Icon name="mail" /> {userInfo.email}{" "}
-                      </h3>
-                    </div>
-                  ))}
-                </div>
-              </Grid.Column>
-
-              <Grid.Column>
-                <Header style={{ fontSize: "3em" }}>
-                  <Icon
-                    style={{ color: "#15CA00" }}
-                    size="tiny"
-                    name="chart pie"
+          <Grid.Row verticalAlign="middle">
+            <Grid.Column>
+              <Message negative>
+                <Message.Header>
+                  THIS APP IS CURRENTLY IN TESTING STAGES
+                </Message.Header>
+                <p>
+                  This app is only in testing phase. Please know your archives
+                  will be lost upon alpha deployment. Report bugs{" "}
+                  <a href="https://github.com/shanemiller89/codeArchive/issues">
+                    here.
+                  </a>
+                </p>
+              </Message>
+              <div>
+                {/* {this.state.userInfo.map(userInfo => ( */}
+                <div key={coder.id}>
+                  {coder.profile_image === "" ? (
+                    <Image
+                      src="https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fprofile_placeholder.png?alt=media&token=a47e94d2-94b5-419c-8da3-9ccb382d5f70"
+                      size="medium"
+                      circular
+                      style={{ margin: "1em auto" }}
+                    />
+                  ) : (
+                    <Image
+                      src={coder.profile_image}
+                      size="medium"
+                      circular
+                      style={{ margin: "1em auto" }}
+                    />
+                  )}
+                  <EditProfileImageForm
+                    userInfo={coder}
+                    updateProfile={updateProfile}
                   />
-                  Stats
-                </Header>
-                <PieChart
-                  data={[
-                    { title: "Total Libraries", value: 1, color: "#48D73D" },
-                    { title: "Total Issue Logs", value: 1, color: "#12BB00" },
-                    { title: "Total Code Logs", value: 1, color: "#318329" },
-                    { title: "Total Archives", value: 1, color: "#1E4919" }
-                  ]}
-                  style={{ height: "26em" }}
-                  lineWidth={25}
-                  rounded
-                  label
-                  labelStyle={{
-                    fontSize: "5px",
-                    fontFamily: "sans-serif"
-                  }}
-                  radius={42}
-                  labelPosition={112}
-                  animate
+                  <h2>
+                    <span style={{ color: "#15CA00" }}>
+                      {coder.user.username}
+                    </span>
+                  </h2>
+                  <h3>
+                    <Icon name="user" /> {coder.user.first_name}
+                  </h3>
+                  <h3>
+                    <Icon name="mail" /> {coder.user.email}
+                  </h3>
+                </div>
+                {/* // ))} */}
+              </div>
+            </Grid.Column>
+
+            <Grid.Column>
+              <Header style={{ fontSize: "3em" }}>
+                <Icon
+                  style={{ color: "#15CA00" }}
+                  size="tiny"
+                  name="chart pie"
                 />
-                ;
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
-      </React.Fragment>
-    );
-  }
-}
+                Stats
+              </Header>
+              <PieChart
+                data={[
+                  { title: "Total Libraries", value: 1, color: "#48D73D" },
+                  { title: "Total Issue Logs", value: 1, color: "#12BB00" },
+                  { title: "Total Code Logs", value: 1, color: "#318329" },
+                  { title: "Total Archives", value: 1, color: "#1E4919" }
+                ]}
+                style={{ height: "26em" }}
+                lineWidth={25}
+                rounded
+                label
+                labelStyle={{
+                  fontSize: "5px",
+                  fontFamily: "sans-serif"
+                }}
+                radius={42}
+                labelPosition={112}
+                animate
+              />
+              ;
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
+    </React.Fragment>
+  );
+};
+
+export default Home

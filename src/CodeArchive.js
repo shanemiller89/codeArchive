@@ -1,39 +1,25 @@
-import React, { Component } from 'react'
-import Authentication from './components/authentication/Authentication';
-import {getUserFromLocalStorage } from './components/authentication/userManager';
-import NavBar from './components/ui/NavBar'
+import React, { Component } from "react";
+import Authentication from "./components/authentication/Authentication";
+import { getUserFromLocalStorage } from "./components/authentication/userManager";
+import NavBar from "./components/ui/NavBar";
+import useSimpleAuth from "./hooks/useSimpleAuth"
 
+const CodeArchive = () => {
+  const { isAuthenticated } = useSimpleAuth();
 
-export default class CodeArchive extends Component {
+  if (isAuthenticated()) 
+    return (
+      <React.Fragment>
+        <NavBar />
+      </React.Fragment>
+    );
+   else 
+    return (
+      <React.Fragment>
+        <Authentication/>
+      </React.Fragment>
+    );
+  
+};
 
-    state = {
-        user: getUserFromLocalStorage(),
-        authenticated: localStorage.getItem("user")
-      }
-
-      setAuthState = () => {
-        if( localStorage.getItem("user")) {
-          this.setState({authenticated: true})
-        } else {
-          this.setState({authenticated: false})
-        }
-      }
-
-
-    render() {
-        if(this.state.authenticated) {
-            return(
-            <React.Fragment>
-              <NavBar />
-            </React.Fragment>
-            )
-          } else {
-          return (
-            <React.Fragment>
-            <Authentication setAuthState={this.setAuthState} />
-            </React.Fragment>
-          
-          );
-          }
-    }
-}
+export default CodeArchive;

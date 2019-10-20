@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Menu, Icon, Image } from "semantic-ui-react";
-import { logout } from "../authentication/userManager";
+import { logout } from "../../hooks/useSimpleAuth";
 import { withRouter } from "react-router-dom";
 import SideBar from "./SideBar";
 import API from "../../modules/API";
@@ -9,6 +9,7 @@ import "./UI.css"
 // TODO:
 // 1.Add Link hover over logout
 // 3.Fix Refresh to logout bug
+//FIX LOGOUT
 
 const archiveColor = {
   color: "#15CA00"
@@ -50,8 +51,10 @@ class NavBar extends Component {
   }
 
   logUserOut = () => {
-    this.setState({ user: null });
-    logout();
+    // this.setState({ user: null });
+    // logout();
+    // setIsLoggedIn(false)
+    localStorage.removeItem("codearchive_token")
     this.props.history.push("/");
     window.location.reload();
   };
