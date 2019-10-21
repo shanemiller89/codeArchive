@@ -18,7 +18,6 @@ export default class EventForm extends Component {
     description: "",
     link: "",
     reference: "",
-    user_id: JSON.parse(localStorage.getItem("user")),
     openForm: false
   };
 
@@ -34,7 +33,6 @@ export default class EventForm extends Component {
       description: this.state.description,
       link: this.state.link,
       reference: this.state.reference,
-      user_id: this.state.user_id
     };
     this.props.addEvent(event);
     this.toggle();

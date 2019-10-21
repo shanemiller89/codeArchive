@@ -7,13 +7,12 @@ import IssuesSearchBar from "./IssuesSearchBar";
 
 export default class IssuesLog extends Component {
   state = {
-    currentUser: JSON.parse(localStorage.getItem("user")),
     logArchives: [],
   };
 
   componentDidMount() {
     const newState = {};
-    API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=1`)
+    API.getAll("logs", `log_type_id=1`)
       .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
   }
@@ -22,7 +21,7 @@ export default class IssuesLog extends Component {
   addIssue = data => {
     API.post("logs", data)
       .then(() =>
-        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=1`)
+        API.getAll("logs", `log_type_id=1`)
       )
       .then(logArchives =>
         this.setState({
@@ -37,7 +36,7 @@ export default class IssuesLog extends Component {
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
-        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=1`)
+        API.getAll("logs", `log_type_id=1`)
       )
       .then(logArchives =>
         this.setState({
@@ -53,7 +52,7 @@ export default class IssuesLog extends Component {
   updateArchive = editedData => {
     API.put("archives", editedData)
       .then(() =>
-        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=1`)
+        API.getAll("logs", `log_type_id=1`)
       )
       .then(logArchives =>
         this.setState({

@@ -7,13 +7,12 @@ import CodeSearchBar from "./CodeSearchBar";
 
 export default class CodeLog extends Component {
   state = {
-    currentUser: JSON.parse(localStorage.getItem("user")),
     logArchives: []
   };
 
   componentDidMount() {
     const newState = {};
-    API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
+    API.getAll("logs", `log_type_id=2`)
       .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
   }
@@ -22,7 +21,7 @@ export default class CodeLog extends Component {
   addCode = data => {
     API.post("logs", data)
       .then(() =>
-        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
+        API.getAll("logs", `log_type_id=2`)
       )
       .then(logArchives =>
         this.setState({
@@ -37,7 +36,7 @@ export default class CodeLog extends Component {
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
-        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
+        API.getAll("logs", `log_type_id=2`)
       )
       .then(logArchives =>
         this.setState({
@@ -53,7 +52,7 @@ export default class CodeLog extends Component {
   updateArchive = editedData => {
     API.put("archives", editedData)
       .then(() =>
-        API.getAll("logs", `user_id=${this.state.currentUser}&log_type_id=2`)
+        API.getAll("logs", `log_type_id=2`)
       )
       .then(logArchives =>
         this.setState({

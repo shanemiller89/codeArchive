@@ -20,7 +20,6 @@ export default class ToolForm extends Component {
     image_title: "",
     parent_library_id: null,
     library_type_id: 2,
-    user_id: this.props.currentUser,
     openForm: false,
     disabled: true,
     checked: false
@@ -56,7 +55,6 @@ export default class ToolForm extends Component {
           image_title: `${this.state.title}-${this.state.userId}`,
           parent_library_id: this.state.parent_library_id,
           library_type_id: 2,
-          user_id: this.props.currentUser
         });
       })
       .then(() => this.toggle());
@@ -70,7 +68,6 @@ export default class ToolForm extends Component {
       image_title: "",
       parent_library_id: this.state.parent_library_id,
       library_type_id: 2,
-      user_id: this.props.currentUser
     };
     this.props.addToolLibrary(newTool);
     this.toggle();

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Authentication from "./components/authentication/Authentication";
-import { getUserFromLocalStorage } from "./components/authentication/userManager";
 import NavBar from "./components/ui/NavBar";
 import useSimpleAuth from "./hooks/useSimpleAuth"
 

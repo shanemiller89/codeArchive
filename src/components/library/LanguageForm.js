@@ -20,7 +20,6 @@ export default class LanguageForm extends Component {
     image_title: "",
     parent_library_id: null,
     library_type_id: 1,
-    user_id: this.props.currentUser,
     openForm: false,
     disabled: true,
     checked: false
@@ -56,7 +55,6 @@ export default class LanguageForm extends Component {
           image_title: `${this.state.title}-${this.state.userId}`,
           parent_library_id: this.state.parent_library_id,
           library_type_id: 1,
-          user_id: this.props.currentUser
         });
       })
       .then(() => this.toggle());
@@ -70,7 +68,7 @@ export default class LanguageForm extends Component {
       image_title: "",
       parent_library_id: this.state.parent_library_id,
       library_type_id: 1,
-      user_id: this.props.currentUser
+      coder_id: 3
     };
     this.props.addLanguageLibrary(newLanguage);
     this.toggle();

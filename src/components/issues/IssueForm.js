@@ -16,7 +16,6 @@ export default class IssueForm extends Component {
     link: "",
     reference: "",
     log_type_id: 1,
-    user_id: JSON.parse(localStorage.getItem("user")),
     openForm: false
   };
 
@@ -30,7 +29,6 @@ export default class IssueForm extends Component {
       link: this.state.link,
       reference: this.state.reference,
       log_type_id: this.state.log_type_id,
-      user_id: this.state.user_id
     };
     this.props.addIssue(issue)
     this.toggle();

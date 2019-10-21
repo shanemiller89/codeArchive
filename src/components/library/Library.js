@@ -25,7 +25,7 @@ export default class Library extends Component {
     const newState = {};
     API.getAll(
       "libraries",
-      `user_id=${this.state.currentUser}&library_type_id=1`
+      `library_type_id=1`
     )
       .then(
         languageLibraries => (newState.languageLibraries = languageLibraries)
@@ -34,7 +34,7 @@ export default class Library extends Component {
       .then(() => {
         API.getAll(
           "libraries",
-          `user_id=${this.state.currentUser}&library_type_id=2`
+          `library_type_id=2`
         )
           .then(toolLibraries => (newState.toolLibraries = toolLibraries))
           .then(() => this.setState(newState)).then(() => {
@@ -50,7 +50,7 @@ export default class Library extends Component {
       .then(() =>
         API.getAll(
           "libraries",
-          `user_id=${this.state.currentUser}&library_type_id=1`
+          `library_type_id=1`
         )
       )
       .then(languageLibraries =>
@@ -65,7 +65,7 @@ export default class Library extends Component {
       .then(() =>
         API.getAll(
           "libraries",
-          `user_id=${this.state.currentUser}&library_type_id=1`
+          `library_type_id=1`
         )
       )
       .then(languageLibraries =>
@@ -80,7 +80,7 @@ export default class Library extends Component {
       .then(() =>
         API.getAll(
           "libraries",
-          `user_id=${this.state.currentUser}&library_type_id=1`
+          `library_type_id=1`
         )
       )
       .then(languageLibraries =>
@@ -95,7 +95,7 @@ export default class Library extends Component {
       .then(() =>
         API.getAll(
           "libraries",
-          `user_id=${this.state.currentUser}&library_type_id=2`
+          `library_type_id=2`
         )
       )
       .then(toolLibraries =>
@@ -110,7 +110,7 @@ export default class Library extends Component {
       .then(() =>
         API.getAll(
           "libraries",
-          `user_id=${this.state.currentUser}&library_type_id=2`
+          `library_type_id=2`
         )
       )
       .then(toolLibraries =>
@@ -125,7 +125,7 @@ export default class Library extends Component {
       .then(() =>
         API.getAll(
           "libraries",
-          `user_id=${this.state.currentUser}&library_type_id=2`
+          `library_type_id=2`
         )
       )
       .then(toolLibraries => this.setState({ toolLibraries: toolLibraries }));

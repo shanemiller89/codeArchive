@@ -27,19 +27,16 @@ export default class EditProfileImageForm extends Component {
   submit = () => {
     //will determine name of storage reference
     const ref = this.storageRef.child(
-      `${this.props.userInfo.username}`
+      `${this.props.coder.user.username}`
     );
 
     return ref
       .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
       .then(imageURL => {
-        return this.props.updateProfile({
-          // username: this.props.userInfo.username,
-          // email: this.props.userInfo.email,
-          // name: this.props.userInfo.name,
-          profile: imageURL,
-          id: this.props.userInfo.id
+        return this.props.updateProfileImage({
+          profile_image: imageURL,
+          id: this.props.coder.id
         });
       })
       .then(() => this.toggle());

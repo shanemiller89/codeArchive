@@ -14,7 +14,6 @@ import EventsLog from "./components/events/EventsLog"
 
 export default class ApplicationViews extends Component {
   state = {
-    currentUser: JSON.parse(localStorage.getItem("user")),
     languageLibraries: [],
     toolLibraries: [],
     subLanguageLibraries: [],
