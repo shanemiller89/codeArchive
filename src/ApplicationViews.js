@@ -57,6 +57,13 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
+          path="/home"
+          render={props => {
+            return <Home {...props} />;
+          }}
+        />
+        <Route
+          exact
           path="/library"
           render={props => {
             return <Library {...props} />;

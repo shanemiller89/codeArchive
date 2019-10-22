@@ -29,7 +29,7 @@ const textLarge = {
 const Login = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useSimpleAuth();
+  const { login, isAuthenticated } = useSimpleAuth();
 
   const submit = () => {
     const credentials = {
@@ -37,13 +37,15 @@ const Login = props => {
       password: password
     };
     login(credentials).then(() => {
-      window.location.reload(true)
-    })
-    // .then(() => {
-    //   props.history.push({
-    //     pathname: "/"
-    //   });
-    // });
+      if (isAuthenticated()) {
+        props.history.push({
+          pathname: "/home"
+        });
+        window.location.reload(true);
+      } else {
+        console.log("Wrong Username or Password");
+      }
+    });
   };
 
   return (

@@ -61,16 +61,17 @@ const Register = props => {
             last_name: detail.lastName,
             profile_image: imageUrl
           };
-
-          return register(user).then(() => {
-            window.location.reload(true);
-          });
+          register(user)
+            .catch(error => {
+              alert("Username or email already in use!");
+            })
+            .then(() => {
+              props.history.push({
+                pathname: "/home"
+              })
+              window.location.reload(true);
+            });
         }
-        // .then(() => {
-        //   props.history.push({
-        //     pathname: "/"
-        //   });
-        // });
       });
   };
 
@@ -86,15 +87,17 @@ const Register = props => {
         last_name: detail.lastName,
         profile_image: profile_image
       };
-      return register(user).then(() => {
-        window.location.reload(true);
-      });
+      register(user)
+        .catch(error => {
+          alert("Username or Email is already in use!");
+        })
+        .then(() => {
+          props.history.push({
+            pathname: "/home"
+          })
+          window.location.reload(true);
+        });
     }
-    // .then(() => {
-    //   props.history.push({
-    //     pathname: "/"
-    //   });
-    // });
   };
 
   return (

@@ -164,42 +164,48 @@ const Home = () => {
                   />
                   Stats
                 </Header>
-                <PieChart
-                  data={[
-                    {
-                      title: "Total Libraries",
-                      value: libraryTotal,
-                      color: "#48D73D"
-                    },
-                    {
-                      title: "Total Issue Logs",
-                      value: issueLogTotal,
-                      color: "#12BB00"
-                    },
-                    {
-                      title: "Total Code Logs",
-                      value: codeLogTotal,
-                      color: "#318329"
-                    },
-                    {
-                      title: "Total Articles",
-                      value: articlesTotal,
-                      color: "#1E4919"
-                    }
-                  ]}
-                  style={{ height: "26em" }}
-                  lineWidth={25}
-                  rounded
-                  label
-                  labelStyle={{
-                    fontSize: "5px",
-                    fontFamily: "sans-serif"
-                  }}
-                  radius={42}
-                  labelPosition={112}
-                  animate
-                />
-                ;
+                {(libraryTotal === 0) &
+                (issueLogTotal === 0) &
+                (codeLogTotal === 0) &
+                (articlesTotal === 0) ? (
+                  <h2>No Data to Display</h2>
+                ) : (
+                  <PieChart
+                    data={[
+                      {
+                        title: "Total Libraries",
+                        value: libraryTotal,
+                        color: "#48D73D"
+                      },
+                      {
+                        title: "Total Issue Logs",
+                        value: issueLogTotal,
+                        color: "#12BB00"
+                      },
+                      {
+                        title: "Total Code Logs",
+                        value: codeLogTotal,
+                        color: "#318329"
+                      },
+                      {
+                        title: "Total Articles",
+                        value: articlesTotal,
+                        color: "#1E4919"
+                      }
+                    ]}
+                    style={{ height: "26em" }}
+                    lineWidth={25}
+                    rounded
+                    label
+                    labelStyle={{
+                      fontSize: "5px",
+                      fontFamily: "sans-serif"
+                    }}
+                    radius={42}
+                    labelPosition={112}
+                    animate
+                  />
+                )}
               </Grid.Column>
             </Grid.Row>
           </Grid>
