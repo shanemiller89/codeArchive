@@ -36,25 +36,6 @@ const Register = props => {
   });
   const { register } = useSimpleAuth();
 
-  //   const handleRegister = (e) => {
-  //     e.preventDefault()
-
-  //     const newUser = {
-  //         "username": userName.current.value,
-  //         "first_name": firstName.current.value,
-  //         "last_name": lastName.current.value,
-  //         "profile": familyMembers.current.value,
-  //         "email": email.current.value,
-  //         "password": password.current.value
-  //     }
-
-  //     register(newUser).then(() => {
-  //         props.history.push({
-  //             pathname: "/"
-  //         })
-  //     })
-  // }
-
   const checkedToggle = () => {
     setIsChecked(!checked);
     setIsDisabled(!disabled);
@@ -69,18 +50,22 @@ const Register = props => {
       .put(profile_image)
       .then(data => data.ref.getDownloadURL())
       .then(imageUrl => {
-        const user = {
-          username: detail.username,
-          email: detail.email,
-          password: detail.password,
-          first_name: detail.firstName,
-          last_name: detail.lastName,
-          profile_image: imageUrl
-        };
+        if (detail.password !== detail.verifyPassword) {
+          alert("Your passwords do not match. Please check your passwords.");
+        } else {
+          const user = {
+            username: detail.username,
+            email: detail.email,
+            password: detail.password,
+            first_name: detail.firstName,
+            last_name: detail.lastName,
+            profile_image: imageUrl
+          };
 
-        return register(user).then(() => {
-          window.location.reload(true)
-        })
+          return register(user).then(() => {
+            window.location.reload(true);
+          });
+        }
         // .then(() => {
         //   props.history.push({
         //     pathname: "/"
@@ -90,17 +75,21 @@ const Register = props => {
   };
 
   const submit = () => {
-    const user = {
-      username: detail.username,
-      email: detail.email,
-      password: detail.password,
-      first_name: detail.firstName,
-      last_name: detail.lastName,
-      profile_image: profile_image
-    };
-    return register(user).then(() => {
-      window.location.reload(true)
-    })
+    if (detail.password !== detail.verifyPassword) {
+      alert("Your passwords do not match. Please check your passwords.");
+    } else {
+      const user = {
+        username: detail.username,
+        email: detail.email,
+        password: detail.password,
+        first_name: detail.firstName,
+        last_name: detail.lastName,
+        profile_image: profile_image
+      };
+      return register(user).then(() => {
+        window.location.reload(true);
+      });
+    }
     // .then(() => {
     //   props.history.push({
     //     pathname: "/"

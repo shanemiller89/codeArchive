@@ -36,7 +36,6 @@ const Login = props => {
       username: username,
       password: password
     };
-
     login(credentials).then(() => {
       window.location.reload(true)
     })

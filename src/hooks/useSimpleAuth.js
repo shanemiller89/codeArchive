@@ -18,9 +18,12 @@ const useSimpleAuth = () => {
         })
             .then(res => res.json())
             .then(res => {
+                console.log("response", res)
                 if ("token" in res) {
                     localStorage.setItem( "codearchive_token", res.token )
                     setIsLoggedIn(true)
+                } else {
+                    alert("Username is taken, try another one.")
                 }
             })
     }
@@ -39,6 +42,10 @@ const useSimpleAuth = () => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "codearchive_token", res.token )
                     setIsLoggedIn(true)
+                }
+                else {
+                    alert("Sorry, the username or password was not valid. Try again.")
+                    return
                 }
             })
     }
