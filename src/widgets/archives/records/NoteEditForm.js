@@ -20,8 +20,6 @@ export default class NoteEditForm extends Component {
     image: null,
     image_title: "",
     order: null,
-    archiveId: "",
-    recordTypeId: "",
     userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
     checked: false,
@@ -41,8 +39,6 @@ export default class NoteEditForm extends Component {
         image_title: note.image_title,
         language: note.language,
         order: note.order,
-        archiveId: note.archiveId,
-        recordTypeId: note.recordTypeId
       });
     });
   }
@@ -72,15 +68,13 @@ export default class NoteEditForm extends Component {
       .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
       .then(imageURL => {
-        return this.props.updateNote({
+        return this.props.updateRecord({
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
           image_title: `${this.state.title}-${this.state.userId}`,
           language: this.state.language,
           order: this.state.order,
-          archiveId: this.state.archiveId,
-          recordTypeId: this.state.recordTypeId,
           id: this.props.noteId
         });
       })
@@ -95,11 +89,9 @@ export default class NoteEditForm extends Component {
       image_title: this.state.image_title,
       language: this.state.language,
       order: this.state.order,
-      archiveId: this.state.archiveId,
-      recordTypeId: this.state.recordTypeId,
       id: this.props.noteId
     };
-    this.props.updateNote(editedNote);
+    this.props.updateRecord(editedNote);
     this.toggle();
   };
 

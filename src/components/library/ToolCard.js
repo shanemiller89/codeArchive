@@ -32,7 +32,7 @@ export default class Tools extends Component {
       <React.Fragment>
         <Grid.Column floated="left">
           <Card style={{ margin: "2.5em 4em" }}>
-            <Image src={this.props.tool.image === null ? default_tool_icon : this.props.tool.image} wrapped ui={false} />
+            <Image src={this.props.tool.image === "" ? default_tool_icon : this.props.tool.image} wrapped ui={false} />
             <Card.Content>
               <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div>
@@ -63,7 +63,7 @@ export default class Tools extends Component {
                         open={this.state.open}
                         onCancel={this.close}
                         onConfirm={
-                          this.props.tool.image === null
+                          this.props.tool.image === ""
                             ? () => this.props.deleteToolLibrary(this.props.tool.id)
                             : () => this.deleteImageToolLibrary()
                         }

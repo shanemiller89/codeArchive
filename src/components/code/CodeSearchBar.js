@@ -11,33 +11,11 @@ class CodeSearchBar extends Component {
     isLoading: false,
     results: [],
     value: "",
-    code: []
   };
-
-  componentDidMount() {
-    const newState = {};
-
-    API.getAll("logArchives", `_expand=archive&_expand=log`)
-      .then(logArchives =>
-        logArchives
-          .filter(
-            codeArchives =>
-              (codeArchives.log.logTypeId === 2) &
-              (codeArchives.log.userId === this.state.currentUser)
-          )
-          .map(code => ({
-            title: code.archive.title,
-            reference: code.log.reference,
-            archiveId: code.archive.id
-          }))
-      )
-      .then(code => (newState.code = code))
-      .then(() => this.setState(newState));
-  }
 
   handleResultSelect = (e, { result }) =>
     this.setState({ value: result.id }, () =>
-      this.props.history.push(`/code-log-archive/${result.archiveId}`)
+      this.props.history.push(`/code-log-archive/${result.archives[0].id}`)
     );
 
   handleSearchChange = (e, { value }) => {
@@ -52,17 +30,17 @@ class CodeSearchBar extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(this.state.code, isMatch)
+        results: _.filter(this.props.codeLogs, isMatch)
       });
     }, 300);
   };
 
   render() {
     const { isLoading, value, results } = this.state;
-    const resultRender = ({ title, reference, archiveId }) => (
+    const resultRender = ({ title, reference,archives }) => (
       <span key="title">
         <Link
-          to={`/code-log-archive/${archiveId}`}
+          to={`/code-log-archive/${archives[0].id}`}
           style={{ textDecoration: "none" }}
         >
         <Header as="h2">

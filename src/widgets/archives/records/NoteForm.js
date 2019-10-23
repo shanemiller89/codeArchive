@@ -18,7 +18,7 @@ export default class NoteForm extends Component {
   state = {
     title: "",
     text: "",
-    image: null,
+    image: "",
     image_title: "",
     archiveId: parseInt(this.props.archiveId),
     recordTypeId: 1,
@@ -46,15 +46,15 @@ export default class NoteForm extends Component {
       .put(this.state.image)
       .then(data => data.ref.getDownloadURL())
       .then(imageURL => {
-        return this.props.addNote({
+        return this.props.addRecord({
           title: this.state.title,
           text: this.state.text,
           image: imageURL,
           image_title: `${this.state.title}-${this.state.userId}`,
-          language: null,
+          language: "",
           order: this.props.arrayLength === 1 ? 1 : this.props.arrayLength + 1,
-          archiveId:this.state.archiveId,
-          recordTypeId: this.state.recordTypeId,
+          archive_id:this.state.archiveId,
+          record_type_id: this.state.recordTypeId,
         });
       })
       .then(() => this.toggle());
@@ -64,15 +64,15 @@ export default class NoteForm extends Component {
     const note = {
         title: this.state.title,
         text: this.state.text,
-        image: null,
-        image_title: null,
-        language: null,
+        image: "",
+        image_title: "",
+        language: "",
         order: this.props.arrayLength < 1 ? 1 : this.props.arrayLength + 1,
-        archiveId:this.state.archiveId,
-        recordTypeId: this.state.recordTypeId,
+        archive_id:this.state.archiveId,
+        record_type_id: this.state.recordTypeId,
 
     };
-    this.props.addNote(note)
+    this.props.addRecord(note)
     this.toggle();
   };
 

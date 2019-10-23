@@ -16,10 +16,10 @@ export default class LanguageForm extends Component {
   state = {
     title: "",
     link: "",
-    image: null,
+    image: "",
     image_title: "",
-    libraryTypeId: 1,
-    userId: this.props.currentUser,
+    parent_library_id: null,
+    library_type_id: 1,
     openForm: false,
     disabled: true,
     checked: false
@@ -51,10 +51,10 @@ export default class LanguageForm extends Component {
         return this.props.addLanguageLibrary({
           title: this.state.title,
           link: this.state.link,
-          image_title: `${this.state.title}-${this.state.userId}`,
           image: imageURL,
-          libraryTypeId: 1,
-          userId: this.props.currentUser
+          image_title: `${this.state.title}-${this.state.userId}`,
+          parent_library_id: this.state.parent_library_id,
+          library_type_id: 1,
         });
       })
       .then(() => this.toggle());
@@ -64,10 +64,11 @@ export default class LanguageForm extends Component {
     const newLanguage = {
       title: this.state.title,
       link: this.state.link,
-      image: null,
-      image_title: null,
-      libraryTypeId: 1,
-      userId: this.props.currentUser
+      image: "",
+      image_title: "",
+      parent_library_id: this.state.parent_library_id,
+      library_type_id: 1,
+      coder_id: 3
     };
     this.props.addLanguageLibrary(newLanguage);
     this.toggle();

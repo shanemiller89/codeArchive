@@ -26,7 +26,7 @@ export default class NoteSegment extends Component {
   MoveUp = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.note.archiveId}&order=${this.props.note.order -
+      `archive_id=${this.props.note.archive_id}&order=${this.props.note.order -
         1}`
     ).then(swappedNote => {
       const prevNote = {
@@ -36,8 +36,8 @@ export default class NoteSegment extends Component {
         image_title: swappedNote[0].image_title,
         order: swappedNote[0].order + 1,
         language: swappedNote[0].language,
-        archiveId: swappedNote[0].archiveId,
-        recordTypeId: swappedNote[0].recordTypeId,
+        archive_id: swappedNote[0].archive_id,
+        record_type_id: swappedNote[0].record_type_id,
         id: swappedNote[0].id
       };
       API.put("records", prevNote).then(() => {
@@ -48,11 +48,11 @@ export default class NoteSegment extends Component {
           image_title: this.props.note.image_title,
           order: this.props.note.order - 1,
           language: this.props.note.language,
-          archiveId: this.props.note.archiveId,
-          recordTypeId: this.props.note.recordTypeId,
+          archive_id: this.props.note.archive_id,
+          record_type_id: this.props.note.record_type_id,
           id: this.props.note.id
         };
-        this.props.updateNote(editedNote);
+        this.props.updateRecord(editedNote);
       });
     });
   };
@@ -60,7 +60,7 @@ export default class NoteSegment extends Component {
   MoveDown = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.note.archiveId}&order=${this.props.note.order +
+      `archive_id=${this.props.note.archive_id}&order=${this.props.note.order +
         1}`
     ).then(swappedNote => {
       if (swappedNote.length < 1) return;
@@ -71,8 +71,8 @@ export default class NoteSegment extends Component {
         image_title: swappedNote[0].image_title,
         order: swappedNote[0].order - 1,
         language: swappedNote[0].language,
-        archiveId: swappedNote[0].archiveId,
-        recordTypeId: swappedNote[0].recordTypeId,
+        archive_id: swappedNote[0].archive_id,
+        record_type_id: swappedNote[0].record_type_id,
         id: swappedNote[0].id
       };
       API.put("records", prevNote).then(() => {
@@ -83,11 +83,11 @@ export default class NoteSegment extends Component {
           image_title: this.props.note.image_title,
           order: this.props.note.order + 1,
           language: this.props.note.language,
-          archiveId: this.props.note.archiveId,
-          recordTypeId: this.props.note.recordTypeId,
+          archive_id: this.props.note.archive_id,
+          record_type_id: this.props.note.record_type_id,
           id: this.props.note.id
         };
-        this.props.updateNote(editedNote);
+        this.props.updateRecord(editedNote);
       });
     });
   };
@@ -121,7 +121,7 @@ export default class NoteSegment extends Component {
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.note.archiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.note.archive_id}`
         )
       )
       .then(records =>
@@ -133,8 +133,8 @@ export default class NoteSegment extends Component {
             image_title: record.image_title,
             order: orderNumber++,
             language: record.language,
-            archiveId: record.archiveId,
-            recordTypeId: record.recordTypeId,
+            archive_id: record.archive_id,
+            record_type_id: record.record_type_id,
             id: record.id
           };
           API.put("records", movedRecord);
@@ -166,7 +166,7 @@ export default class NoteSegment extends Component {
                   <Dropdown.Menu>
                     <NoteEditForm
                       noteId={this.props.note.id}
-                      updateNote={this.props.updateNote}
+                      updateRecord={this.props.updateRecord}
                     />
                     <Dropdown.Item
                       icon="trash alternate"
@@ -181,7 +181,7 @@ export default class NoteSegment extends Component {
                       open={this.state.open}
                       onCancel={this.close}
                       onConfirm={
-                        this.props.note.image === null
+                        this.props.note.image === ""
                           ? () => this.deleteAndOrder()
                           : () => this.deleteImageNote()
                       }
@@ -205,7 +205,7 @@ export default class NoteSegment extends Component {
               </div>
             </div>
             <div style={{ whiteSpace: "pre-wrap" }}>{this.props.note.text}</div>
-            {this.props.note.image !== null ? (
+            {this.props.note.image !== "" ? (
               <div>
                 <Image
                   src={this.props.note.image}

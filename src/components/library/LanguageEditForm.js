@@ -19,8 +19,6 @@ export default class LanguageEditForm extends Component {
     link: "",
     image: null,
     image_title: "",
-    libraryTypeId: null,
-    userId: JSON.parse(localStorage.getItem("user")),
     disabled: true,
     checked: false,
     openForm: false
@@ -37,8 +35,6 @@ export default class LanguageEditForm extends Component {
         link: language.link,
         image: language.image,
         image_title: language.image_title,
-        libraryTypeId: language.libraryTypeId,
-        userId: this.state.userId
       });
     });
   }
@@ -75,8 +71,6 @@ export default class LanguageEditForm extends Component {
           link: this.state.link,
           image: iURL,
           image_title: `${this.state.title}-${this.state.userId}`,
-          libraryTypeId: this.state.libraryTypeId,
-          userId: this.state.userId,
           id: this.props.language.id
         });
       })
@@ -96,8 +90,6 @@ export default class LanguageEditForm extends Component {
       link: this.state.link,
       image: this.state.image,
       image_title: this.state.image_title,
-      libraryTypeId: this.state.libraryTypeId,
-      userId: this.state.userId,
       id: this.props.language.id
     };
     this.props.updateLanguageLibrary(editedLanguage);

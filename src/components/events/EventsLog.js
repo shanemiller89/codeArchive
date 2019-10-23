@@ -13,7 +13,7 @@ export default class EventsLog extends Component {
 
   componentDidMount() {
     const newState = {};
-    API.getAll("events", `userId=${this.state.currentUser}`)
+    API.getAll("events")
       .then(events => (newState.events = events))
       .then(() => this.setState(newState));
   }
@@ -21,7 +21,7 @@ export default class EventsLog extends Component {
   // CRUD //
   addEvent = data => {
     API.post("events", data)
-    .then(() => API.getAll("events", `userId=${this.state.currentUser}`))
+    .then(() => API.getAll("events"))
     .then(events =>
       this.setState({
         events: events
@@ -31,7 +31,7 @@ export default class EventsLog extends Component {
 
   deleteEvent = id => {
     API.delete("events", id)
-      .then(() => API.getAll("events", `userId=${this.state.currentUser}`))
+      .then(() => API.getAll("events"))
       .then(events =>
         this.setState({
           events: events
@@ -41,7 +41,7 @@ export default class EventsLog extends Component {
 
   updateEvent = editedData => {
     API.put("events", editedData)
-    .then(() => API.getAll("events", `userId=${this.state.currentUser}`))
+    .then(() => API.getAll("events"))
     .then(events =>
       this.setState({
         events: events

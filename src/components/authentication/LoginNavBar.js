@@ -19,8 +19,8 @@ export default class NavBar extends Component {
         </Menu.Item>
 
         <Menu.Menu position="right">
-          <Menu.Item><Login setAuthState={this.props.setAuthState} onLogin={(user) => this.setState({ user: user }) }/></Menu.Item>
-          <Menu.Item><Register setAuthState={this.props.setAuthState} onRegister={(user) => this.setState({ user: user })}/></Menu.Item>
+          <Menu.Item><Login/></Menu.Item>
+          <Menu.Item><Register/></Menu.Item>
         </Menu.Menu>
       </Menu>
     );

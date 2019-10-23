@@ -13,10 +13,9 @@ import {
 export default class IssueForm extends Component {
   state = {
     title: "",
+    link: "",
     reference: "",
-    logTypeId: 1,
-    userId: JSON.parse(localStorage.getItem("user")),
-    newIssueId: "",
+    log_type_id: 1,
     openForm: false
   };
 
@@ -27,16 +26,11 @@ export default class IssueForm extends Component {
   submit = () => {
     const issue = {
       title: this.state.title,
+      link: this.state.link,
       reference: this.state.reference,
-      logTypeId: this.state.logTypeId,
-      userId: this.state.userId
+      log_type_id: this.state.log_type_id,
     };
     this.props.addIssue(issue)
-    .then(newIssue => this.setState({newIssueId: newIssue.id}))
-    .then(() => this.props.addArchive({title: this.state.title, link: ""}))
-    .then(newArchive =>
-      this.props.addIssueArchive({logId: this.state.newIssueId, archiveId: newArchive.id})
-      )
     this.toggle();
   };
 

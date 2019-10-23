@@ -16,7 +16,6 @@ export default class ArticleForm extends Component {
     synopsis: "",
     link: "",
     reference: "",
-    userId: JSON.parse(localStorage.getItem("user")),
     openForm: false
   };
 
@@ -30,8 +29,8 @@ export default class ArticleForm extends Component {
       synopsis: this.state.synopsis,
       link: this.state.link,
       reference: this.state.reference,
-      userId: this.state.userId
     };
+    console.log(code)
     this.props.addArticle(code);
     this.toggle();
   };

@@ -12,9 +12,8 @@ import NotesAndSnippetsList from "./records/NotesAndSnippetsList";
 export default class Archive extends Component {
   state = {
     Archive: [],
-    Bookmarks: [],
-    Videos: [],
-    NotesAndSnippets: []
+    Resources: [],
+    NotesAndSnippets: [],
   };
 
   archiveId = this.props.match.params.ArchiveId;
@@ -22,38 +21,36 @@ export default class Archive extends Component {
   componentDidMount() {
     const newState = {};
     API.get("archives", `${this.props.match.params.ArchiveId}`)
-      .then(Archive => (newState.Archive = Archive))
+    .then(Archive => {
+      newState.Archive = Archive;
+      newState.Resources = Archive.resources;
+      })
       .then(() => this.setState(newState));
-    // Get ALl Notes and Snippets //
+
+    // Get ALl Notes and Snippets
     API.getAll(
       "records",
-      `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+      `archive_id=${this.props.match.params.ArchiveId}`
     )
       .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
       .then(() => this.setState(newState));
-    // Get All bookmarks //
-    API.getAll(
-      "resources",
-      `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-    )
-      .then(Bookmarks => (newState.Bookmarks = Bookmarks))
-      .then(() => this.setState(newState));
-    // Get All videos //
-    API.getAll(
-      "resources",
-      `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-    )
-      .then(Videos => (newState.Videos = Videos))
-      .then(() => this.setState(newState));
+ 
+    // API.getAll(
+    //   "records",
+    //   `archive_id=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+    // )
+    //   .then(NotesAndSnippets => (newState.NotesAndSnippets = NotesAndSnippets))
+    //   .then(() => this.setState(newState));
+ 
   }
 
-  // FOR CRUD OF NOTE //
-  addNote = data => {
+  // FOR CRUD OF Records //
+  addRecord = data => {
     API.post("records", data)
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.match.params.ArchiveId}`
         )
       )
       .then(NotesAndSnippets =>
@@ -62,12 +59,12 @@ export default class Archive extends Component {
         })
       );
   };
-  deleteNote = id => {
+  deleteRecord = id => {
     API.delete("records", id)
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.match.params.ArchiveId}`
         )
       )
       .then(NotesAndSnippets =>
@@ -76,12 +73,12 @@ export default class Archive extends Component {
         })
       );
   };
-  updateNote = editedData => {
+  updateRecord = editedData => {
     API.put("records", editedData)
       .then(() =>
         API.getAll(
           "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+          `archive_id=${this.props.match.params.ArchiveId}`
         )
       )
       .then(NotesAndSnippets =>
@@ -90,54 +87,12 @@ export default class Archive extends Component {
         })
       );
   };
-  // FOR CRUD SNIPPETS //
-  addSnippet = data => {
-    API.post("records", data)
-      .then(() =>
-        API.getAll(
-          "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
-        )
-      )
-      .then(NotesAndSnippets =>
-        this.setState({
-          NotesAndSnippets: NotesAndSnippets
-        })
-      );
-  };
-  deleteSnippet = id => {
-    API.delete("records", id)
-      .then(() =>
-        API.getAll(
-          "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
-        )
-      )
-      .then(NotesAndSnippets =>
-        this.setState({
-          NotesAndSnippets: NotesAndSnippets
-        })
-      );
-  };
-  updateSnippet = editedData => {
-    API.put("records", editedData)
-      .then(() =>
-        API.getAll(
-          "records",
-          `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
-        )
-      )
-      .then(NotesAndSnippets =>
-        this.setState({
-          NotesAndSnippets: NotesAndSnippets
-        })
-      );
-  };
+
 
   resetOrderState = () => {
     API.getAll(
       "records",
-      `archiveId=${this.props.match.params.ArchiveId}&_sort=order&_order=asc`
+      `archive_id=${this.props.match.params.ArchiveId}`
     ).then(NotesAndSnippets =>
       this.setState({
         NotesAndSnippets: NotesAndSnippets
@@ -146,93 +101,37 @@ export default class Archive extends Component {
   };
 
   // FOR CRUD OF BOOKMARK //
-  addBookmark = data => {
+  addResource = data => {
     API.post("resources", data)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-        )
-      )
-      .then(Bookmarks =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Bookmarks: Bookmarks
+          Resources: Archive.resources
         })
       );
   };
-  deleteBookmark = id => {
+  deleteResource = id => {
     API.delete("resources", id)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-        )
-      )
-      .then(Bookmarks =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Bookmarks: Bookmarks
+          Resources: Archive.resources
         })
       );
   };
-  updateBookmark = editedData => {
+  updateResource = editedData => {
     API.put("resources", editedData)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=1`
-        )
-      )
-      .then(Bookmarks =>
+      .then(() => API.get("archives", `${this.props.match.params.ArchiveId}`))
+      .then(Archive =>
         this.setState({
-          Bookmarks: Bookmarks
-        })
-      );
-  };
-  // CRUD FOR VIDEOS
-  addVideo = data => {
-    API.post("resources", data)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-        )
-      )
-      .then(Videos =>
-        this.setState({
-          Videos: Videos
-        })
-      );
-  };
-  deleteVideo = id => {
-    API.delete("resources", id)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-        )
-      )
-      .then(Videos =>
-        this.setState({
-          Videos: Videos
-        })
-      );
-  };
-  updateVideo = editedData => {
-    API.put("resources", editedData)
-      .then(() =>
-        API.getAll(
-          "resources",
-          `archiveId=${this.props.match.params.ArchiveId}&resourceTypeId=2`
-        )
-      )
-      .then(Videos =>
-        this.setState({
-          Videos: Videos
+          Resources: Archive.resources
         })
       );
   };
 
+
   render() {
+    console.log("NotesAndSnippets", this.state.NotesAndSnippets)
     return (
       <React.Fragment>
         <Container
@@ -268,7 +167,7 @@ export default class Archive extends Component {
           {/* Add Note Form */}
           <NoteForm
             archiveId={this.archiveId}
-            addNote={this.addNote}
+            addRecord={this.addRecord}
             arrayLength={this.state.NotesAndSnippets.length}
           />
           <br />
@@ -276,7 +175,7 @@ export default class Archive extends Component {
           {/* Add Code Snippet Form */}
           <SnippetForm
             archiveId={this.archiveId}
-            addSnippet={this.addSnippet}
+            addRecord={this.addRecord}
             arrayLength={this.state.NotesAndSnippets.length}
           />
         </Container>
@@ -284,10 +183,10 @@ export default class Archive extends Component {
         {/* Notes and Snippets */}
         <NotesAndSnippetsList
           NotesAndSnippets={this.state.NotesAndSnippets}
-          deleteNote={this.deleteNote}
-          updateNote={this.updateNote}
-          deleteSnippet={this.deleteSnippet}
-          updateSnippet={this.updateSnippet}
+          deleteRecord={this.deleteRecord}
+          updateRecord={this.updateRecord}
+          deleteRecord={this.deleteRecord}
+          updateRecord={this.updateRecord}
           resetOrderState={this.resetOrderState}
         />
         <br />
@@ -304,7 +203,7 @@ export default class Archive extends Component {
                   <div>
                     <BookmarkForm
                       archiveId={this.archiveId}
-                      addBookmark={this.addBookmark}
+                      addResource={this.addResource}
                     />
                   </div>
                 </div>
@@ -315,12 +214,14 @@ export default class Archive extends Component {
               </Header.Content>
             </Header>
             <List>
-              {this.state.Bookmarks.map(bookmark => (
+              {this.state.Resources.filter(
+                bookmarks => bookmarks.resource_type_id === 1
+              ).map(bookmark => (
                 <BookmarksList
                   key={bookmark.id}
                   bookmark={bookmark}
-                  deleteBookmark={this.deleteBookmark}
-                  updateBookmark={this.updateBookmark}
+                  deleteResource={this.deleteResource}
+                  updateResource={this.updateResource}
                 />
               ))}
             </List>
@@ -339,7 +240,7 @@ export default class Archive extends Component {
                   <div>
                     <VideoForm
                       archiveId={this.archiveId}
-                      addVideo={this.addVideo}
+                      addResource={this.addResource}
                     />
                   </div>
                 </div>
@@ -349,12 +250,14 @@ export default class Archive extends Component {
               </Header.Content>
             </Header>
             <Card.Group itemsPerRow={2}>
-              {this.state.Videos.map(video => (
+              {this.state.Resources.filter(
+                videos => videos.resource_type_id === 2
+              ).map(video => (
                 <VideoCard
                   key={video.id}
                   video={video}
-                  deleteVideo={this.deleteVideo}
-                  updateVideo={this.updateVideo}
+                  deleteResource={this.deleteResource}
+                  updateResource={this.updateResource}
                 />
               ))}
             </Card.Group>

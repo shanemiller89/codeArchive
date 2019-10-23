@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Container, Header, Icon } from "semantic-ui-react";
 import API from "../../../modules/API";
-import SubLanguageLibraryList from "./sublanguagelibrary/SubLanguageLibraryList";
+import SubLanguageLibraryList from "./SubLanguageLibraryList";
 import SubLanguageLibraryForm from "./sublanguagelibrary/SubLanguageLibraryForm";
 import LanguageArchiveList from "./LanguageArchivesList";
-import LanguageArchiveForm from "./LanguageArchiveForm";
+import LibraryArchiveForm from "../LibraryArchiveForm";
 import LibraryArchiveSearchBar from "../LibraryArchiveSearchBar";
 
 export default class LanguageLibrary extends Component {
@@ -18,34 +18,35 @@ export default class LanguageLibrary extends Component {
     const newState = {};
     API.get("libraries", `${this.props.match.params.languageLibraryId}`)
       .then(language => (newState.language = language))
-      .then(() => this.setState(newState));
+      .then(() => {
+        this.setState(newState);
+      });
     // Gets ALL sub languages associated with this language
     API.getAll(
-      "subLanguageLibraries",
-      `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+      "libraries",
+      `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
     )
       .then(
         subLanguageLibraries =>
           (newState.subLanguageLibraries = subLanguageLibraries)
       )
       .then(() => this.setState(newState));
-    // Gets ALL archives associated with this language
-    API.getAll(
-      "libraryArchives",
-      `_expand=archive&libraryId=${this.props.match.params.languageLibraryId}`
-    )
-      .then(languageArchives => (newState.languageArchives = languageArchives))
-      .then(() => this.setState(newState));
+    // Get Archives
+    API.get("libraries", `${this.props.match.params.languageLibraryId}`)
+      .then(archives => (newState.languageArchives = archives.archives))
+      .then(() => {
+        this.setState(newState);
+      });
   }
 
   // FOR CRUD OF SUB-LANGUAGE //
 
   addSubLanguageLibrary = data => {
-    API.post("subLanguageLibraries", data)
+    API.post("libraries", data)
       .then(() =>
         API.getAll(
-          "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+          "libraries",
+          `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -56,11 +57,11 @@ export default class LanguageLibrary extends Component {
   };
 
   deleteSubLanguageLibrary = id => {
-    API.delete("subLanguageLibraries", id)
+    API.delete("libraries", id)
       .then(() =>
         API.getAll(
-          "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+          "libraries",
+          `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -71,11 +72,11 @@ export default class LanguageLibrary extends Component {
   };
 
   updateSubLanguageLibrary = editedData => {
-    API.put("subLanguageLibraries", editedData)
+    API.put("libraries", editedData)
       .then(() =>
         API.getAll(
-          "subLanguageLibraries",
-          `userId=${this.props.currentUser}&libraryId=${this.props.match.params.languageLibraryId}`
+          "libraries",
+          `userId=${this.props.currentUser}&parent_library_id=${this.props.match.params.languageLibraryId}`
         )
       )
       .then(subLanguageLibraries =>
@@ -86,38 +87,37 @@ export default class LanguageLibrary extends Component {
   // FOR CRUD OF LANGUAGE ARCHIVES //
 
   addArchive = data => {
-    return API.post("archives", data);
-  };
-  addLanguageArchive = data => {
-    API.post("libraryArchives", data)
+    return API.post("archives", data)
       .then(() =>
-        API.getAll(
-          "libraryArchives",
-          `_expand=archive&libraryId=${this.props.match.params.languageLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.languageLibraryId}`)
       )
       .then(languageArchives =>
         this.setState({
-          languageArchives: languageArchives
+          languageArchives: languageArchives.archives
         })
       );
   };
 
   addGoogleBookmark = data => {
-    API.post("resources", data);
+    API.post("resources", data)
+      .then(() =>
+        API.get("libraries", `${this.props.match.params.languageLibraryId}`)
+      )
+      .then(languageArchives =>
+        this.setState({
+          languageArchives: languageArchives.archives
+        })
+      );
   };
 
   deleteArchive = id => {
     API.delete("archives", id)
       .then(() =>
-        API.getAll(
-          "libraryArchives",
-          `_expand=archive&libraryId=${this.props.match.params.languageLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.languageLibraryId}`)
       )
       .then(languageArchives =>
         this.setState({
-          languageArchives: languageArchives
+          languageArchives: languageArchives.archives
         })
       );
   };
@@ -125,14 +125,11 @@ export default class LanguageLibrary extends Component {
   updateArchive = editedData => {
     API.put("archives", editedData)
       .then(() =>
-        API.getAll(
-          "libraryArchives",
-          `_expand=archive&libraryId=${this.props.match.params.languageLibraryId}`
-        )
+        API.get("libraries", `${this.props.match.params.languageLibraryId}`)
       )
       .then(languageArchives =>
         this.setState({
-          languageArchives: languageArchives
+          languageArchives: languageArchives.archives
         })
       );
   };
@@ -176,11 +173,10 @@ export default class LanguageLibrary extends Component {
           <br />
           <br />
           {/* Add Language Archive Form */}
-          <LanguageArchiveForm
-            languageId={this.state.language.id}
-            languageTitle={this.state.language.title}
+          <LibraryArchiveForm
+            libraryId={this.state.language.id}
+            libraryTitle={this.state.language.title}
             addArchive={this.addArchive}
-            addLanguageArchive={this.addLanguageArchive}
             addGoogleBookmark={this.addGoogleBookmark}
           />
           <LibraryArchiveSearchBar
@@ -221,13 +217,11 @@ export default class LanguageLibrary extends Component {
         <div>
           {this.state.languageArchives
             .sort((a, b) =>
-              a.archive.title.toLowerCase() > b.archive.title.toLowerCase()
-                ? 1
-                : -1
+              a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
             )
             .map(archive => (
               <LanguageArchiveList
-                key={archive.archive.id}
+                key={archive.id}
                 archive={archive}
                 updateArchive={this.updateArchive}
                 deleteArchive={this.deleteArchive}

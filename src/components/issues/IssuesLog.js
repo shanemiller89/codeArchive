@@ -7,31 +7,22 @@ import IssuesSearchBar from "./IssuesSearchBar";
 
 export default class IssuesLog extends Component {
   state = {
-    currentUser: JSON.parse(localStorage.getItem("user")),
-    issueLogs: [],
     logArchives: [],
   };
 
   componentDidMount() {
     const newState = {};
-    API.getAll("logs", `userId=${this.state.currentUser}&logTypeId=1`)
-      .then(issueLogs => (newState.issueLogs = issueLogs))
-      .then(() => this.setState(newState));
-    API.getAll("logArchives", `_expand=archive&_expand=log`)
+    API.getAll("logs", `log_type_id=1`)
       .then(logArchives => (newState.logArchives = logArchives))
       .then(() => this.setState(newState));
   }
 
   // ADD ISSUE //
   addIssue = data => {
-    return API.post("logs", data);
-  };
-  addArchive = data => {
-    return API.post("archives", data);
-  };
-  addIssueArchive = data => {
-    API.post("logArchives", data)
-      .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
+    API.post("logs", data)
+      .then(() =>
+        API.getAll("logs", `log_type_id=1`)
+      )
       .then(logArchives =>
         this.setState({
           logArchives: logArchives
@@ -40,12 +31,13 @@ export default class IssuesLog extends Component {
   };
   // DELETE ISSUE //
   deleteIssue = (id1, id2) => {
-    API.delete("logs", id1)
-    .then(() => this.deleteArchive(id2))
+    API.delete("logs", id1).then(() => this.deleteArchive(id2));
   };
   deleteArchive = id => {
     API.delete("archives", id)
-      .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
+      .then(() =>
+        API.getAll("logs", `log_type_id=1`)
+      )
       .then(logArchives =>
         this.setState({
           logArchives: logArchives
@@ -55,18 +47,19 @@ export default class IssuesLog extends Component {
 
   // UPDATE ISSUE //
   updateIssue = (editedData1, editedData2) => {
-    API.put("logs", editedData1)
-    .then(() => this.updateArchive(editedData2))
+    API.put("logs", editedData1).then(() => this.updateArchive(editedData2));
   };
   updateArchive = editedData => {
     API.put("archives", editedData)
-    .then(() => API.getAll("logArchives", `_expand=archive&_expand=log`))
-    .then(logArchives =>
-      this.setState({
-        logArchives: logArchives
-      })
-    );
-  }
+      .then(() =>
+        API.getAll("logs", `log_type_id=1`)
+      )
+      .then(logArchives =>
+        this.setState({
+          logArchives: logArchives
+        })
+      );
+  };
 
   render() {
     return (
@@ -94,7 +87,7 @@ export default class IssuesLog extends Component {
           <br />
           <br />
 
-            <IssuesSearchBar/>
+            <IssuesSearchBar issueLogs={this.state.logArchives}/>
 
         </Container>
         <Header as="h1" style={{ marginLeft: 20, marginTop: 20 }}>
@@ -108,14 +101,9 @@ export default class IssuesLog extends Component {
         </Header>
         <div>
           {this.state.logArchives
-            .filter(
-              issueArchive =>
-                (issueArchive.log.logTypeId === 1) &
-                (issueArchive.log.userId === this.state.currentUser)
-            )
             .map(issueArchive => (
               <IssuesList
-                key={issueArchive.archive.id}
+                key={issueArchive.id}
                 issueArchive={issueArchive}
                 updateIssue={this.updateIssue}
                 deleteIssue={this.deleteIssue}

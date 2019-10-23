@@ -14,30 +14,9 @@ class IssuesSearchBar extends Component {
     issue: []
   };
 
-  componentDidMount() {
-    const newState = {};
-
-    API.getAll("logArchives", `_expand=archive&_expand=log`)
-      .then(logArchives =>
-        logArchives
-          .filter(
-            issueArchives =>
-              (issueArchives.log.logTypeId === 1) &
-              (issueArchives.log.userId === this.state.currentUser)
-          )
-          .map(issue => ({
-            title: issue.archive.title,
-            reference: issue.log.reference,
-            archiveId: issue.archive.id
-          }))
-      )
-      .then(issue => (newState.issue = issue))
-      .then(() => this.setState(newState));
-  }
-
   handleResultSelect = (e, { result }) =>
     this.setState({ value: result.id }, () =>
-      this.props.history.push(`/issue-log-archive/${result.archiveId}`)
+      this.props.history.push(`/issue-log-archive/${result.archives[0].id}`)
     );
 
   handleSearchChange = (e, { value }) => {
@@ -52,17 +31,17 @@ class IssuesSearchBar extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(this.state.issue, isMatch)
+        results: _.filter(this.props.issueLogs, isMatch)
       });
     }, 300);
   };
 
   render() {
     const { isLoading, value, results } = this.state;
-    const resultRender = ({ title, reference, archiveId }) => (
+    const resultRender = ({ title, reference, archives }) => (
       <span key="title">
         <Link
-          to={`/issue-log-archive/${archiveId}`}
+          to={`/issue-log-archive/${archives[0].id}`}
           style={{ textDecoration: "none" }}
         >
         <Header as="h2">

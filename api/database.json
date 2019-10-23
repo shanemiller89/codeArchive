@@ -1,7 +1,67 @@
 {
   "users": [
+    {
+      "username": "TestUser12345",
+      "email": "TestUser12345@gmail.com",
+      "name": "TestUser12345",
+      "profile": null,
+      "id": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3"
+    },
+    {
+      "username": "testing",
+      "email": "testing@gmail.com",
+      "name": "testing",
+      "profile": null,
+      "id": "BQfkfYT2QDeCiIVeqv6rJfJlHhq1"
+    }
   ],
-  "libraries": [],
+  "libraries": [
+    {
+      "title": "Python",
+      "link": "",
+      "image": null,
+      "image_title": null,
+      "libraryTypeId": 1,
+      "userId": "M1A2W20xcxU8F7wQp3iHjBUkFJZ2",
+      "id": 1
+    },
+    {
+      "title": "Python123",
+      "link": "",
+      "image": null,
+      "image_title": null,
+      "libraryTypeId": 1,
+      "userId": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3",
+      "id": 2
+    },
+    {
+      "title": "LetsGO",
+      "link": "",
+      "image": null,
+      "image_title": null,
+      "libraryTypeId": 2,
+      "userId": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3",
+      "id": 3
+    },
+    {
+      "title": "TESTING",
+      "link": "",
+      "image": null,
+      "image_title": null,
+      "libraryTypeId": 2,
+      "userId": "BQfkfYT2QDeCiIVeqv6rJfJlHhq1",
+      "id": 4
+    },
+    {
+      "title": "Python",
+      "link": "",
+      "image": null,
+      "image_title": null,
+      "libraryTypeId": 1,
+      "userId": "BQfkfYT2QDeCiIVeqv6rJfJlHhq1",
+      "id": 5
+    }
+  ],
   "libraryTypes": [
     {
       "type": "language",
@@ -12,8 +72,33 @@
       "id": 2
     }
   ],
-  "subLanguageLibraries": [],
-  "logs": [],
+  "subLanguageLibraries": [
+    {
+      "title": "TESTING",
+      "link": "",
+      "image": null,
+      "image_title": null,
+      "libraryId": 2,
+      "userId": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3",
+      "id": 1
+    }
+  ],
+  "logs": [
+    {
+      "title": "12345",
+      "reference": "hello",
+      "logTypeId": 1,
+      "userId": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3",
+      "id": 1
+    },
+    {
+      "title": "helo12345",
+      "reference": "heloo",
+      "logTypeId": 2,
+      "userId": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3",
+      "id": 2
+    }
+  ],
   "logTypes": [
     {
       "type": "issue",
@@ -24,13 +109,85 @@
       "id": 2
     }
   ],
-  "articles": [],
-  "events": [],
-  "archives": [],
-  "libraryArchives": [],
+  "articles": [
+    {
+      "title": "Semantic UI",
+      "synopsis": "asdsad",
+      "link": "sdsd",
+      "reference": "sadsad",
+      "userId": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3",
+      "id": 1
+    }
+  ],
+  "events": [
+    {
+      "title": "ASAS",
+      "date": "2019-10-11",
+      "location": "asaS",
+      "description": "ASaS",
+      "link": "ASAS",
+      "reference": "ASAS",
+      "userId": "Z7NCC9EtjyMmtPnmWj9DUVTB77E3",
+      "id": 1
+    }
+  ],
+  "archives": [
+    {
+      "title": "TESTING",
+      "link": "",
+      "id": 1
+    },
+    {
+      "title": "12345",
+      "link": "",
+      "id": 2
+    },
+    {
+      "title": "helo12345",
+      "link": "",
+      "id": 3
+    }
+  ],
+  "libraryArchives": [
+    {
+      "libraryId": 2,
+      "archiveId": 1,
+      "id": 1
+    }
+  ],
   "subLibraryArchives": [],
-  "logArchives": [],
-  "resources": [],
+  "logArchives": [
+    {
+      "logId": 1,
+      "archiveId": 2,
+      "id": 1
+    },
+    {
+      "logId": 2,
+      "archiveId": 3,
+      "id": 2
+    }
+  ],
+  "resources": [
+    {
+      "title": "er",
+      "link": "er",
+      "description": "rer",
+      "image": null,
+      "archiveId": 1,
+      "resourceTypeId": 1,
+      "id": 1
+    },
+    {
+      "title": "rer",
+      "link": "dr",
+      "description": "dr",
+      "image": "https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2Fvideo_image.png?alt=media&token=621cf16e-e317-4150-a672-6fdcbd2afc0e",
+      "archiveId": 1,
+      "resourceTypeId": 2,
+      "id": 2
+    }
+  ],
   "resourceTypes": [
     {
       "type": "bookmark",
@@ -41,7 +198,41 @@
       "id": 2
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "title": "Testing",
+      "text": "esrewr",
+      "image": null,
+      "image_title": null,
+      "language": null,
+      "order": 1,
+      "archiveId": 1,
+      "recordTypeId": 1,
+      "id": 1
+    },
+    {
+      "title": "Testing",
+      "text": "awdw",
+      "image": null,
+      "image_title": null,
+      "language": "csharp",
+      "order": 2,
+      "archiveId": 1,
+      "recordTypeId": 2,
+      "id": 2
+    },
+    {
+      "title": "",
+      "text": "d",
+      "image": null,
+      "image_title": null,
+      "language": [],
+      "order": 3,
+      "archiveId": 1,
+      "recordTypeId": 2,
+      "id": 3
+    }
+  ],
   "recordTypes": [
     {
       "type": "note",

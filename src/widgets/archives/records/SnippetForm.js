@@ -30,10 +30,10 @@ export default class SnippetForm extends Component {
   state = {
     title: "",
     text: "",
-    image: null,
-    image_title: null,
-    archiveId: parseInt(this.props.archiveId),
-    recordTypeId: 2,
+    image: "",
+    image_title: "",
+    archive_id: parseInt(this.props.archiveId),
+    record_type_id: 2,
     openForm: false,
     value: [],
   };
@@ -53,10 +53,10 @@ export default class SnippetForm extends Component {
       image_title: this.state.image_title,
       language: this.state.value === [] ? null : this.state.value,
       order: this.props.arrayLength < 1 ? 1 : this.props.arrayLength + 1,
-      archiveId: this.state.archiveId,
-      recordTypeId: this.state.recordTypeId
+      archive_id: this.state.archive_id,
+      record_type_id: this.state.record_type_id
     };
-    this.props.addSnippet(snippet);
+    this.props.addRecord(snippet);
     this.toggle();
   };
 

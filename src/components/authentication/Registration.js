@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { useState, useRef } from "react";
+import { withRouter } from "react-router-dom";
+import useSimpleAuth from "../../hooks/useSimpleAuth";
 import * as firebase from "firebase/app";
 import "firebase/storage";
 import {
@@ -11,11 +13,6 @@ import {
   Segment,
   Grid
 } from "semantic-ui-react";
-import { register } from "./userManager";
-
-// TODO:
-// 1.Form Validation
-//2. MAKE PROFILE  PIC OPTIONAL!
 
 const archiveColor = {
   color: "#15CA00"
@@ -25,162 +22,245 @@ const textLarge = {
   fontSize: "1.25em"
 };
 
-export default class Register extends Component {
-  state = {
+const Register = props => {
+  const [checked, setIsChecked] = useState(false);
+  const [disabled, setIsDisabled] = useState(true);
+  const [profile_image, setProfileImage] = useState("");
+  const [detail, setUserDetail] = useState({
     username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
-    name: "",
-    disabled: true,
-    checked: false,
-    profile: null
+    verifyPassword: ""
+  });
+  const { register } = useSimpleAuth();
+
+  const checkedToggle = () => {
+    setIsChecked(!checked);
+    setIsDisabled(!disabled);
   };
 
-  checkedToggle = () => {
-    this.setState({
-      checked: !this.state.checked,
-      disabled: !this.state.disabled
-    });
-  };
+  const storageRef = firebase.storage().ref("profile_picture");
 
-  storageRef = firebase.storage().ref("profile_picture");
-
-  submitWithImage = () => {
-    const ref = this.storageRef.child(this.state.username);
+  const submitWithImage = () => {
+    const ref = storageRef.child(detail.username);
 
     return ref
-      .put(this.state.profile)
+      .put(profile_image)
       .then(data => data.ref.getDownloadURL())
       .then(imageUrl => {
-        const user = {
-          username: this.state.username,
-          email: this.state.email,
-          password: this.state.password,
-          name: this.state.name,
-          profile: imageUrl
-        };
-
-        return register(user).then(user => {
-          this.props.setAuthState();
-          this.props.onRegister(user);
-        });
+        if (detail.password !== detail.verifyPassword) {
+          alert("Your passwords do not match. Please check your passwords.");
+        } else {
+          const user = {
+            username: detail.username,
+            email: detail.email,
+            password: detail.password,
+            first_name: detail.firstName,
+            last_name: detail.lastName,
+            profile_image: imageUrl
+          };
+          register(user)
+            .catch(error => {
+              alert("Username or email already in use!");
+            })
+            .then(() => {
+              props.history.push({
+                pathname: "/home"
+              })
+              window.location.reload(true);
+            });
+        }
       });
   };
 
-  submit = () => {
-    const user = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
-      name: this.state.name,
-      profile: this.state.profile
-    };
-    return register(user).then(user => {
-      this.props.setAuthState();
-      this.props.onRegister(user);
-    });
+  const submit = () => {
+    if (detail.password !== detail.verifyPassword) {
+      alert("Your passwords do not match. Please check your passwords.");
+    } else {
+      const user = {
+        username: detail.username,
+        email: detail.email,
+        password: detail.password,
+        first_name: detail.firstName,
+        last_name: detail.lastName,
+        profile_image: profile_image
+      };
+      register(user)
+        .catch(error => {
+          alert("Username or Email is already in use!");
+        })
+        .then(() => {
+          props.history.push({
+            pathname: "/home"
+          })
+          window.location.reload(true);
+        });
+    }
   };
 
-  render() {
-    return (
-      <Modal
-        trigger={
-          <Button style={{ background: "#15CA00", color: "white" }}>
-            Sign Up
-          </Button>
-        }
-        centered={false}
-      >
-        <Modal.Content>
-          <Header size="huge" textAlign="center">
-            <div>
-              <Icon name="database" style={archiveColor} size="large" />
-              code.<span style={archiveColor}>Archive</span>
-            </div>
-          </Header>
-          <Container textAlign="center">
-            <p style={textLarge}>All your resources</p>
-            <p style={textLarge}>All in one place</p>
-            <br />
-          </Container>
+  return (
+    <Modal
+      trigger={
+        <Button style={{ background: "#15CA00", color: "white" }}>
+          Sign Up
+        </Button>
+      }
+      centered={false}
+    >
+      <Modal.Content>
+        <Header size="huge" textAlign="center">
+          <div>
+            <Icon name="database" style={archiveColor} size="large" />
+            code.<span style={archiveColor}>Archive</span>
+          </div>
+        </Header>
+        <Container textAlign="center">
+          <p style={textLarge}>All your resources</p>
+          <p style={textLarge}>All in one place</p>
+          <br />
+        </Container>
 
-          <Modal.Description>
-            <Grid textAlign="center" verticalAlign="middle">
-              <Grid.Column>
-                <Form size="large">
-                  <Segment stacked>
-                    <Form.Input
-                      fluid
-                      icon="address card"
-                      iconPosition="left"
-                      placeholder="Full Name"
-                      onChange={e => this.setState({ name: e.target.value })}
-                    />
-                    <Form.Input
-                      required
-                      fluid
-                      icon="user"
-                      iconPosition="left"
-                      placeholder="Username"
-                      onChange={e =>
-                        this.setState({ username: e.target.value })
-                      }
-                    />
-                    <Form.Input
-                      required
-                      fluid
-                      icon="mail"
-                      iconPosition="left"
-                      placeholder="E-mail address"
-                      onChange={e => this.setState({ email: e.target.value })}
-                    />
-                    <Form.Input
-                      required
-                      fluid
-                      icon="lock"
-                      iconPosition="left"
-                      placeholder="Password"
-                      type="password"
-                      onChange={e =>
-                        this.setState({ password: e.target.value })
-                      }
-                    />
-                    <Form.Checkbox
-                      fluid
-                      width={6}
-                      label="Do you want to include a Profile Image?"
-                      checked={this.state.checked}
-                      onChange={this.checkedToggle}
-                    />
-                    <Form.Input
-                      fluid
-                      icon="image"
-                      iconPosition="left"
-                      placeholder="Upload Profile Pick"
-                      type="file"
-                      onChange={e =>
-                        this.setState({ profile: e.target.files[0] })
-                      }
-                      id="imageURL"
-                      disabled={this.state.disabled}
-                    />
-                    <Button
-                      style={{ background: "#15CA00", color: "white" }}
-                      fluid
-                      size="large"
-                      onClick={
-                        this.state.username === "" | this.state.email === "" | this.state.password === "" ? null : this.state.disabled ? this.submit : this.submitWithImage
-                      }
-                    >
-                      Register
-                    </Button>
-                  </Segment>
-                </Form>
-              </Grid.Column>
-            </Grid>
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
-    );
-  }
-}
+        <Modal.Description>
+          <Grid textAlign="center" verticalAlign="middle">
+            <Grid.Column>
+              <Form size="large">
+                <Segment stacked>
+                  <Form.Input
+                    icon="address card"
+                    iconPosition="left"
+                    placeholder="First Name"
+                    onChange={e =>
+                      setUserDetail({
+                        username: detail.username,
+                        firstName: e.target.value,
+                        lastName: detail.lastName,
+                        email: detail.email,
+                        password: detail.password,
+                        verifyPassword: detail.verifyPassword
+                      })
+                    }
+                  />
+                  <Form.Input
+                    icon="address card"
+                    iconPosition="left"
+                    placeholder="Last Name"
+                    onChange={e =>
+                      setUserDetail({
+                        username: detail.username,
+                        firstName: detail.firstName,
+                        lastName: e.target.value,
+                        email: detail.email,
+                        password: detail.password,
+                        verifyPassword: detail.verifyPassword
+                      })
+                    }
+                  />
+                  <Form.Input
+                    required
+                    icon="user"
+                    iconPosition="left"
+                    placeholder="Username"
+                    onChange={e =>
+                      setUserDetail({
+                        username: e.target.value,
+                        firstName: detail.firstName,
+                        lastName: detail.lastName,
+                        email: detail.email,
+                        password: detail.password,
+                        verifyPassword: detail.verifyPassword
+                      })
+                    }
+                  />
+                  <Form.Input
+                    required
+                    icon="mail"
+                    iconPosition="left"
+                    placeholder="E-mail address"
+                    onChange={e =>
+                      setUserDetail({
+                        username: detail.username,
+                        firstName: detail.firstName,
+                        lastName: detail.lastName,
+                        email: e.target.value,
+                        password: detail.password,
+                        verifyPassword: detail.verifyPassword
+                      })
+                    }
+                  />
+                  <Form.Input
+                    required
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Password"
+                    type="password"
+                    onChange={e =>
+                      setUserDetail({
+                        username: detail.username,
+                        firstName: detail.firstName,
+                        lastName: detail.lastName,
+                        email: detail.email,
+                        password: e.target.value,
+                        verifyPassword: detail.verifyPassword
+                      })
+                    }
+                  />
+                  <Form.Input
+                    required
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Verify Password"
+                    type="password"
+                    onChange={e =>
+                      setUserDetail({
+                        username: detail.username,
+                        firstName: detail.firstName,
+                        lastName: detail.lastName,
+                        email: detail.email,
+                        password: detail.password,
+                        verifyPassword: e.target.value
+                      })
+                    }
+                  />
+                  <Form.Checkbox
+                    width={6}
+                    label="Do you want to include a Profile Image?"
+                    checked={checked}
+                    onChange={checkedToggle}
+                  />
+                  <Form.Input
+                    icon="image"
+                    iconPosition="left"
+                    placeholder="Upload Profile Pick"
+                    type="file"
+                    onChange={e => setProfileImage(e.target.files[0])}
+                    id="imageURL"
+                    disabled={disabled}
+                  />
+                  <Button
+                    style={{ background: "#15CA00", color: "white" }}
+                    size="large"
+                    onClick={
+                      (detail.username === "") |
+                      (detail.email === "") |
+                      (detail.password === "")
+                        ? null
+                        : disabled
+                        ? submit
+                        : submitWithImage
+                    }
+                  >
+                    Register
+                  </Button>
+                </Segment>
+              </Form>
+            </Grid.Column>
+          </Grid>
+        </Modal.Description>
+      </Modal.Content>
+    </Modal>
+  );
+};
+
+export default withRouter(Register);

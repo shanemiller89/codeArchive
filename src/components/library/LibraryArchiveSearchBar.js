@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Search, Grid, Header, Icon } from "semantic-ui-react";
+import { conditionalExpression } from "@babel/types";
 // import "./ArticleSearchBar.css";Art
 
 export default class LibraryArchiveSearchBar extends Component {
@@ -13,8 +14,8 @@ export default class LibraryArchiveSearchBar extends Component {
   };
 
   handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.archive.id }, () =>
-      this.setState({ value: result.archive.title })
+    this.setState({ value: result.id }, () =>
+      this.setState({ value: result.title })
     );
 
   handleSearchChange = (e, { value }) => {
@@ -25,7 +26,7 @@ export default class LibraryArchiveSearchBar extends Component {
         return this.setState({ isLoading: false, results: [], value: "" });
 
       const re = new RegExp(_.escapeRegExp(this.state.value), "i");
-      const isMatch = result => re.test(result.archive.title);
+      const isMatch = result => re.test(result.title);
 
       this.setState({
         isLoading: false,
@@ -36,12 +37,12 @@ export default class LibraryArchiveSearchBar extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
-    const resultRender = ({ archive }) => (
-      <span key="title">
-        <Link to={`/library-archive/${archive.id}`}>
+    const resultRender = ({ title, url }) => (
+      <span key={title}>
+        <Link to={`/library-archive/${url.split("s/")[1]}`}>
           <Header as="h2">
             <Icon name="search" style={{ color: "#15CA00" }} />
-            <Header.Content>{archive.title}</Header.Content>
+            <Header.Content>{title}</Header.Content>
           </Header>
         </Link>
       </span>

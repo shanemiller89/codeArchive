@@ -34,7 +34,7 @@ export default class Languages extends Component {
       <React.Fragment>
         <Grid.Column floated="left">
           <Card style={{ margin: "2.5em 4em" }}>
-            <Image src={this.props.language.image === null ? default_language_icon : this.props.language.image} wrapped ui={false} />
+            <Image src={this.props.language.image === "" ? default_language_icon : this.props.language.image} wrapped ui={false} />
             <Card.Content>
               <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div>
@@ -65,7 +65,7 @@ export default class Languages extends Component {
                         open={this.state.open}
                         onCancel={this.close}
                         onConfirm={
-                          this.props.language.image === null
+                          this.props.language.image === ""
                             ? () => this.props.deleteLanguageLibrary(this.props.language.id)
                             : () => this.deleteImageLanguageLibrary()
                         }

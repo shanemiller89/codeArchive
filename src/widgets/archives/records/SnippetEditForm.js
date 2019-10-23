@@ -30,11 +30,9 @@ export default class SnippetEditForm extends Component {
   state = {
     title: "",
     text: "",
-    image: null,
-    image_title: null,
+    image: "",
+    image_title: "",
     order: null,
-    archiveId: "",
-    recordTypeId: 2,
     openForm: false,
     value: [],
   };
@@ -56,8 +54,6 @@ export default class SnippetEditForm extends Component {
         image_title: snippet.image,
         value: snippet.language,
         order: snippet.order,
-        archiveId: snippet.archiveId,
-        recordTypeId: snippet.recordTypeId,
       });
     });
   }
@@ -70,12 +66,10 @@ export default class SnippetEditForm extends Component {
         image_title: this.state.image_title,
         language: this.state.value,
         order: this.state.order,
-        archiveId:this.state.archiveId,
-        recordTypeId: this.state.recordTypeId,
         id: this.props.snippetId
 
     };
-    this.props.updateSnippet(editedSnippet)
+    this.props.updateRecord(editedSnippet)
     this.toggle();
   };
 
