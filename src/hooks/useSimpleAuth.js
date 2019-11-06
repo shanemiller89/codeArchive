@@ -22,9 +22,10 @@ const useSimpleAuth = () => {
                 if ("token" in res) {
                     localStorage.setItem( "codearchive_token", res.token )
                     setIsLoggedIn(true)
-                } else {
-                    alert("Username is taken, try another one.")
-                }
+                } 
+                // else {
+                //     alert("Username is taken, try another one.")
+                // }
             })
     }
 

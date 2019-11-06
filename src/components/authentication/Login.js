@@ -43,7 +43,7 @@ const Login = props => {
         });
         window.location.reload(true);
       } else {
-        console.log("Wrong Username or Password");
+        alert("Wrong Username or Password");
       }
     });
   };
