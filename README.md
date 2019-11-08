@@ -19,7 +19,7 @@ Once cloned, in the root of the directory, run the following command:
 To set up images support, set up a [firebase](https://firebase.google.com/) account and create the following files
 
 ```
-src/confif/firebase.js
+src/config/firebase.js
 ```
 
 From the side menu, click the ***Storage*** menu item, and create file bucket. Once created, click the Rules tab and change the config to the following:
