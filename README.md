@@ -42,8 +42,8 @@ const firebaseConfig = {
   apiKey: "{ Your Key }",
   authDomain: "app.firebaseapp.com",
   databaseURL: "https://app.firebaseio.com",
-  projectId: "codeproject-client",
-  storageBucket: "codeproject-client.appspot.com",
+  projectId: "app-client",
+  storageBucket: "app-client.appspot.com",
   messagingSenderId: "{ Your Id }",
   appId: "{ Your Id }"
 };
@@ -61,7 +61,6 @@ Then insert your key in this file, should look like this:
 
 ```
 export const API_KEY = "{ INSERT KEY HERE }"
-
 ```
 
 Next, clone the associated API and located [here](https://github.com/shanemiller89/codeArchive_API) and follow those setup instructions.
