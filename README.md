@@ -71,9 +71,8 @@ Now, just run this command
 npm start
 ```
 
-And your all set!
+And your all set, simply run this command each time you need to start the app.
 
-And save it in a file named database.json, with a local host of `3000`.
 
 ## Entity Relationship Diagram
 
