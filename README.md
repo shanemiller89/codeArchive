@@ -78,7 +78,7 @@ And save it in a file named database.json, with a local host of `3000`.
 
 ## Entity Relationship Diagram
 
-![alt text](https://dbdiagram.io/d/5d449a72ced98361d6dd4227 "ERD")
+![alt text](https://firebasestorage.googleapis.com/v0/b/codearchive-app.appspot.com/o/app_resources%2FcodearchiveERD.png?alt=media&token=709a880e-3505-4346-b168-a1e5b2a0d2c9 "ERD")
 
 ## Technologies Used
 
