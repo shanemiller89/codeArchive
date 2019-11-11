@@ -8,7 +8,7 @@ const useSimpleAuth = () => {
         loggedIn || localStorage.getItem("codearchive_token") !== null
 
     const register = userInfo => {
-        return fetch("http://127.0.0.1:8001/register", {
+        return fetch("https://api.codearchive.net", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const useSimpleAuth = () => {
     }
 
     const login = credentials => {
-        return fetch("http://127.0.0.1:8001/login", {
+        return fetch("https://api.codearchive.net", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
