@@ -91,12 +91,12 @@ const Register = props => {
         .catch(error => {
           alert("Username or Email is already in use!");
         })
-        // .then(() => {
-        //   props.history.push({
-        //     pathname: "/home"
-        //   })
-        //   window.location.reload(true);
-        // });
+        .then(() => {
+          props.history.push({
+            pathname: "/home"
+          })
+          window.location.reload(true);
+        });
     }
   };
 

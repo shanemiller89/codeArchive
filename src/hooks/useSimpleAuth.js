@@ -18,7 +18,6 @@ const useSimpleAuth = () => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("response", res)
                 if ("token" in res) {
                     localStorage.setItem( "codearchive_token", res.token )
                     setIsLoggedIn(true)
