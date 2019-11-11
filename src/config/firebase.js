@@ -1,3 +1,4 @@
+
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "codearchive-app.firebaseapp.com",
