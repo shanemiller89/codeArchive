@@ -36,16 +36,17 @@ const Login = props => {
       username: username,
       password: password
     };
-    login(credentials).then(() => {
-      if (isAuthenticated()) {
-        props.history.push({
-          pathname: "/home"
-        });
-        window.location.reload(true);
-      } else {
-        alert("Wrong Username or Password");
-      }
-    });
+    login(credentials)
+    // .then(() => {
+    //   if (isAuthenticated()) {
+    //     props.history.push({
+    //       pathname: "/home"
+    //     });
+    //     window.location.reload(true);
+    //   } else {
+    //     alert("Wrong Username or Password");
+    //   }
+    // });
   };
 
   return (
