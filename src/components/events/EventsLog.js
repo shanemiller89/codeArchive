@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Responsive } from "semantic-ui-react";
 import API from "../../modules/API";
 import EventSegment from "./EventSegment";
 import EventForm from "./EventForm";
@@ -61,6 +61,7 @@ export default class EventsLog extends Component {
           }}
           fluid
         >
+          <Responsive minWidth={480}>
           <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
             <Icon
               style={{ color: "#15CA00", marginRight: ".25em" }}
@@ -68,6 +69,16 @@ export default class EventsLog extends Component {
             />
             Event Log
           </Header>
+          </Responsive>
+          <Responsive maxWidth={480}>
+          <Header style={{ fontSize: "3em", margin: ".1em 0 .2em 0" }}>
+            <Icon
+              style={{ color: "#15CA00", marginRight: ".25em" }}
+              name="calendar alternate"
+            />
+            Event Log
+          </Header>
+          </Responsive>
           <EventForm addEvent={this.addEvent} />
           <br />
           <br />

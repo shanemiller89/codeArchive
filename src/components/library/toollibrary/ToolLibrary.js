@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Responsive } from "semantic-ui-react";
 import API from "../../../modules/API";
 import ToolArchivesList from "./ToolArchivesList";
 import LibraryArchiveForm from "../LibraryArchiveForm";
@@ -85,13 +85,21 @@ export default class ToolLibrary extends Component {
           }}
           fluid
         >
-          <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
-            <Icon
-              style={{ color: "#15CA00", marginRight: ".25em" }}
-              name="cogs"
-            />
-            {this.state.tool.title}
-          </Header>
+          <Responsive minWidth={480}>
+            <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+              <Icon
+                style={{ color: "#15CA00", marginRight: ".25em" }}
+                name="cogs"
+              />
+              {this.state.tool.title}
+            </Header>
+          </Responsive>
+          <Responsive maxWidth={480}>
+            <Header style={{ fontSize: "1.5em", margin: ".5em 0 1em 0" }}>
+              <Icon style={{ color: "#15CA00" }} name="file code outline" />
+              {this.state.tool.title}
+            </Header>
+          </Responsive>
           <a
             href={this.state.tool.link}
             rel="noopener noreferrer"

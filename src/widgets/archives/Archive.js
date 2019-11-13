@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Icon, List, Card } from "semantic-ui-react";
+import { Container, Header, Icon, List, Card, Responsive } from "semantic-ui-react";
 import API from "../../modules/API";
 import BookmarksList from "./resources/BookmarksList";
 import BookmarkForm from "./resources/BookmarkForm";
@@ -143,10 +143,18 @@ export default class Archive extends Component {
           }}
           fluid
         >
+          <Responsive minWidth={480}>
           <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
             <Icon style={{ color: "#15CA00" }} name="archive" />
             {this.state.Archive.title}
           </Header>
+          </Responsive>
+          <Responsive maxWidth={480}>
+          <Header style={{ fontSize: "2em", marginTop: ".1em" }}>
+            <Icon style={{ color: "#15CA00" }} name="archive" />
+            {this.state.Archive.title}
+          </Header>
+          </Responsive>
           {/* Main Documentation Link */}
           {this.state.Archive.link !== "" ? (
             <a

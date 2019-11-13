@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Responsive } from "semantic-ui-react";
 import API from "../../modules/API";
 import CodeList from "./CodeList";
 import CodeForm from "./CodeForm";
@@ -73,6 +73,7 @@ export default class CodeLog extends Component {
           }}
           fluid
         >
+          <Responsive minWidth={480}>
           <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
             <Icon
               style={{ color: "#15CA00", marginRight: ".25em" }}
@@ -80,6 +81,16 @@ export default class CodeLog extends Component {
             />
             Code Log
           </Header>
+          </Responsive>
+          <Responsive maxWidth={480}>
+          <Header style={{ fontSize: "3em", margin: ".1em 0 .2em 0" }}>
+            <Icon
+              style={{ color: "#15CA00", marginRight: ".25em" }}
+              name="code"
+            />
+            Code Log
+          </Header>
+          </Responsive>
           {/* Add Code Form */}
           <CodeForm
             addCode={this.addCode}

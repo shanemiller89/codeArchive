@@ -2,13 +2,20 @@ import React, { Component } from "react";
 import LoginNavBar from "./LoginNavBar";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import { Segment, Grid, Header, Icon, Message } from "semantic-ui-react";
+import {
+  Segment,
+  Grid,
+  Header,
+  Icon,
+  Message,
+  Responsive
+} from "semantic-ui-react";
 
 export default class Authentication extends Component {
   render() {
     return (
       <React.Fragment>
-        <LoginNavBar setAuthState={this.props.setAuthState}/>
+        <LoginNavBar setAuthState={this.props.setAuthState} />
         <header
           style={{
             background: "#1b1c1d",
@@ -21,33 +28,68 @@ export default class Authentication extends Component {
             alignItems: "center"
           }}
         >
-          <Header
-            style={{
-              fontSize: "5em",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <Icon style={{ color: "#15CA00" }} name="database" />
-            <span style={{ color: "white" }}>code.</span>
-            <span style={{ color: "#15CA00" }}>Archive</span>
-          </Header>
+          <Responsive minWidth={480}>
+            <Header
+              style={{
+                fontSize: "5em",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <Icon style={{ color: "#15CA00" }} name="database" />
+              <span style={{ color: "white" }}>code.</span>
+              <span style={{ color: "#15CA00" }}>Archive</span>
+            </Header>
+          </Responsive>
+          <Responsive maxWidth={480}>
+            <Header
+              style={{
+                fontSize: "3em",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: ".5em"
+              }}
+            >
+              <Icon style={{ color: "#15CA00" }} name="database" />
+              <span style={{ color: "white" }}>code.</span>
+              <span style={{ color: "#15CA00" }}>Archive</span>
+            </Header>
+          </Responsive>
+          <Responsive minWidth={480}>
+            <p
+              style={{
+                fontSize: "3em",
+                color: "white"
+              }}
+            >
+              All your resources . All in one place
+            </p>
+          </Responsive>
+          <Responsive maxWidth={480}>
           <p
             style={{
-              fontSize: "3em",
+              fontSize: "1.5em",
               color: "white"
             }}
           >
             All your resources . All in one place
           </p>
+          </Responsive>
         </header>
         <Segment>
           <Message negative>
             <Message.Header>
               THIS APP IS CURRENTLY IN TESTING STAGES
             </Message.Header>
-            <p>This app is only in testing phase. Please know your archives will be lost upon alpha deployment. Report bugs <a href="https://github.com/shanemiller89/codeArchive/issues">here.</a></p>
+            <p>
+              This app is only in testing phase. Please know your archives will
+              be lost upon alpha deployment. Report bugs{" "}
+              <a href="https://github.com/shanemiller89/codeArchive/issues">
+                here.
+              </a>
+            </p>
           </Message>
         </Segment>
         <Segment style={{ padding: "8em 0em" }} vertical>
@@ -83,6 +125,7 @@ export default class Authentication extends Component {
                   save it all right here.
                 </p>
               </Grid.Column>
+              <Responsive minWidth={480}>
               <Grid.Column floated="right" width={6}>
                 <Icon
                   bordered
@@ -95,6 +138,7 @@ export default class Authentication extends Component {
                   name="archive"
                 />
               </Grid.Column>
+              </Responsive>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign="center" />
