@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Responsive } from "semantic-ui-react";
 import API from "../../modules/API";
 import IssuesList from "./IssuesList";
 import IssueForm from "./IssueForm";
@@ -73,10 +73,18 @@ export default class IssuesLog extends Component {
           }}
           fluid
         >
+          <Responsive minWidth={480}>
           <Header style={{ fontSize: "5em", marginTop: ".1em"}}>
             <Icon style={{color: "#15CA00"}} name="dont" />
             Issue Log
           </Header>
+          </Responsive>
+          <Responsive maxWidth={480}>
+          <Header style={{ fontSize: "3em", margin: ".1em 0 .2em 0"}}>
+            <Icon style={{color: "#15CA00"}} name="dont" />
+            Issue Log
+          </Header>
+          </Responsive>
           {/* Add Issue Form */}
           <IssueForm
             addIssue={this.addIssue}

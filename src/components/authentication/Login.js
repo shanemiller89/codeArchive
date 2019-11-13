@@ -56,7 +56,7 @@ const Login = props => {
       }
       centered={false}
     >
-      <Modal.Content>
+      <Modal.Content fluid>
         <Header size="huge" textAlign="center">
           <div>
             <Icon name="database" style={archiveColor} size="large" />

@@ -5,7 +5,8 @@ import {
   Container,
   Card,
   Loader,
-  Dimmer
+  Dimmer,
+  Responsive
 } from "semantic-ui-react";
 import API from "../../modules/API";
 import LanguageCard from "./LanguageCard";
@@ -147,13 +148,22 @@ export default class Library extends Component {
               background: "#E8E8E8",
               height: "18em",
               color: "#15CA00",
-              padding: "1em"
+              padding: "1.5em"
             }}
           >
-            <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
+            <Responsive minWidth={480}>
+            <Header style={{ fontSize: "5em", margin: ".1em 0 .2em 0" }}>
               <Icon style={{ color: "#15CA00" }} name="book" />
               Library
             </Header>
+            </Responsive>
+            {/* TEMP FIX */}
+            <Responsive maxWidth={480}>
+            <Header style={{ fontSize: "3.5em", margin: ".3em 0 .5em 0" }}>
+              <Icon style={{ color: "#15CA00" }} name="book" />
+              Library
+            </Header>
+            </Responsive>
 
             {/* Add Language Form */}
             <LanguageForm

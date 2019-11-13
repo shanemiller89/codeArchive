@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Responsive } from "semantic-ui-react";
 import API from "../../../../modules/API";
 import SubLanguageArchiveList from "./SubLanguageArchivesList";
 import LibraryArchiveForm from "../../LibraryArchiveForm";
@@ -85,10 +85,18 @@ export default class SubLanguageLibrary extends Component {
           }}
           fluid
         >
+          <Responsive minWidth={480}>
           <Header style={{ fontSize: "5em", marginTop: ".1em" }}>
             <Icon style={{ color: "#15CA00" }} name="file code outline" />
             {this.state.subLanguage.title}
           </Header>
+          </Responsive>
+            <Responsive maxWidth={480}>
+            <Header style={{ fontSize: "1.5em", margin: ".5em 0 1em 0" }}>
+              <Icon style={{ color: "#15CA00" }} name="file code outline" />
+              {this.state.subLanguage.title}
+            </Header>
+          </Responsive>
           <a
             href={this.state.subLanguage.link}
             rel="noopener noreferrer"

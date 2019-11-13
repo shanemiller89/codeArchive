@@ -9,7 +9,8 @@ import {
   Icon,
   Message,
   Dimmer,
-  Loader
+  Loader,
+  Responsive
 } from "semantic-ui-react";
 import PieChart from "react-minimal-pie-chart";
 import API from "../../modules/API";
@@ -91,10 +92,19 @@ const Home = () => {
           }}
           fluid
         >
+          <Responsive minWidth={480}>
           <Header style={{ fontSize: "5em" }}>
             <Icon style={{ color: "#15CA00" }} name="address card" />
             User Profile
           </Header>
+          </Responsive>
+          {/* TEMP FIX */}
+          <Responsive maxWidth={480}>
+          <Header style={{ fontSize: "3.5em" }}>
+            <Icon style={{ color: "#15CA00" }} name="address card" />
+            User Profile
+          </Header>
+          </Responsive>
           <br />
         </Container>
 
