@@ -1,75 +1,67 @@
+import React, { useState } from "react";
 import _ from "lodash";
-import React, { Component } from "react";
 import { Search, Grid, Header, Icon } from "semantic-ui-react";
 import "./ArticleSearchBar.css";
 
+const ArticleSearchBar = props => {
+  const [isLoading, setLoading] = useState(false);
+  const [results, setResults] = useState([]);
+  const [currentValue, setValue] = useState("");
 
-export default class ArticleSearchBar extends Component {
-  state = {
-    currentUser: JSON.parse(localStorage.getItem("user")),
-    isLoading: false,
-    results: [],
-    value: ""
+  const handleResultSelect = (e, { result }) => {
+    setValue(result.title);
   };
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.id }, () =>
-    this.setState({ value: result.title })
-    );
-
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
+  const handleSearchChange = (e, { currentValue }) => {
+    setLoading(true);
+    setValue(currentValue);
 
     setTimeout(() => {
-      if (this.state.value.length < 1)
-        return this.setState({ isLoading: false, results: [], value: "" });
+      if (currentValue.length < 1)
+        return setLoading(false); setResults([]); setValue("");
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), "i");
+      const re = new RegExp(_.escapeRegExp(currentValue), "i");
       const isMatch = result => re.test(result.reference);
 
-      this.setState({
-        isLoading: false,
-        results: _.filter(this.props.articles, isMatch)
-      });
+      setLoading(false);
+      setResults(_.filter(props.articles, isMatch));
     }, 300);
   };
 
-  render() {
-    const { isLoading, value, results } = this.state;
-    const resultRender = ({ title, reference, link }) => (
-      <span key="title">
-          <a href={link} rel="noopener noreferrer" target="_blank">
+  // const { isLoading, value, results } = this.state;
+  const resultRender = ({ title, reference, link }) => (
+    <span key="title">
+      <a href={link} rel="noopener noreferrer" target="_blank">
         <Header as="h3">
-        <Icon name="search" style={{ color: "#15CA00" }} />
-        <Header.Content>
-          {title}
-          <Header.Subheader>{reference}</Header.Subheader>
+          <Icon name="search" style={{ color: "#15CA00" }} />
+          <Header.Content>
+            {title}
+            <Header.Subheader>{reference}</Header.Subheader>
           </Header.Content>
         </Header>
-        </a>
-      </span>
-    );
+      </a>
+    </span>
+  );
 
-    return (
-      <Grid>
-        <Grid.Column width={6}>
-          <Search
-            fluid
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, {
-              leading: true
-            })}
-            placeholder="Search by Reference"
-            results={results}
-            value={value}
-            resultRenderer={resultRender}
-            {...this.props}
-          />
-        </Grid.Column>
-      </Grid>
-    );
-  }
-}
+  return (
+    <Grid>
+      <Grid.Column width={6}>
+        <Search
+          fluid
+          loading={isLoading}
+          onResultSelect={handleResultSelect}
+          onSearchChange={_.debounce(handleSearchChange, 500, {
+            leading: true
+          })}
+          placeholder="Search by Reference"
+          results={results}
+          value={currentValue}
+          resultRenderer={resultRender}
+          {...props}
+        />
+      </Grid.Column>
+    </Grid>
+  );
+};
 
-
+export default ArticleSearchBar
