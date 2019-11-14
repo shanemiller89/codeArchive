@@ -17,6 +17,8 @@ const options = [
   { key: 'c#', text: 'C#', value: 'csharp' },
   { key: 'css', text: 'CSS', value: 'css' },
   { key: 'django', text: 'Django', value: 'django' },
+  { key: 'elixir', text: 'Elixir', value: 'elixir' },
+  { key: 'erlang', text: 'Erlang', value: 'erlang' },
   { key: 'html', text: 'HTML, XML', value: 'xml' },
   { key: 'js', text: 'JavaScript', value: 'javascript' },
   { key: 'jsx', text: 'JSX', value: 'jsx' },
