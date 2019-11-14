@@ -95,7 +95,7 @@ export default class ToolForm extends Component {
           open={this.state.openForm}
           style={{ width: "30em" }}
         >
-          <Modal.Content>
+          <Modal.Content fluid>
             <Header size="huge" textAlign="center">
               <div>
                 <Icon name="cogs" size="large" style={{ color: "#15CA00" }} />

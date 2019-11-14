@@ -110,7 +110,7 @@ export default class ToolEditForm extends Component {
           open={this.state.openForm}
           style={{ width: "36em" }}
         >
-          <Modal.Content>
+          <Modal.Content fluid>
             <Header size="huge" textAlign="center">
               <div>
                 <Icon
