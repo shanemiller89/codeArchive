@@ -7,7 +7,7 @@
     "dotenv": "^8.2.0",
     "eslint-utils": ">=1.4.1",
     "firebase": "^6.3.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-image-lightbox": "^5.1.0",
